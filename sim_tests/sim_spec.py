@@ -1,6 +1,6 @@
-from simulation.classes.indel_event import IndelEvent
-from simulation.classes.seq_node import SequenceNode
-from simulation.classes.sim_config import SimConfiguration
+from classes.indel_event import IndelEvent
+from classes.seq_node import SequenceNode
+from classes.sim_config import SimConfiguration
 
 basic_config: SimConfiguration = SimConfiguration(
     original_sequence=None, original_sequence_length=100, substitutions_per_site_rate=1, indel_length_alpha=1.7,

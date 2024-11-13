@@ -2,10 +2,10 @@ import random
 
 import numpy as np
 
-from simulation.classes.indel_event import IndelEvent
-from simulation.classes.seq_node import SequenceNode
-from simulation.classes.sim_config import SimConfiguration
-from simulation.constants import NUCLEOTIDES
+from classes.indel_event import IndelEvent
+from classes.seq_node import SequenceNode
+from classes.sim_config import SimConfiguration
+from constants import NUCLEOTIDES
 from utils import calc_inserted_seq, calc_inserted_seq_len_and_place
 
 
