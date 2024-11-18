@@ -139,5 +139,3 @@ class SequenceNode:
         length: int = self.get_length()
         return {'blocks': blocks, 'length': length}
 
-
-# TODO: check uncovered cases from the enum

@@ -33,65 +33,6 @@ def calc_trunc_zipf(alpha: float, max_val: int) -> int:
             return z
 
 
-def roll_dice(s_l: int, prob_array: list[float]) -> list[int]:  # task 1 / st 1
-    seq = list(range(1, 7))
-    draw = np.random.choice(seq, s_l, p=prob_array)
-    return list(draw)
-
-
-def gen_runs(n: int, s_l: int, prob_array: list[float], file_name: str):  # task 1 / st 2
-    dice_type = 'F' if len(set(prob_array)) == 1 else 'B'
-    with open(file_name, 'w') as outfile:
-        for i in range(n):
-            print(str(roll_dice(s_l, prob_array)) + ' ' + dice_type, file=outfile)
-
-
-def format_row_freq_to_array(run: list[int]) -> list[int]:  # task 1 / st 3
-    freq_array = []
-    freq = (Counter(run))
-    for i in range(1, 7):
-        if i in freq:
-            freq_array.append(freq[i])
-        else:
-            freq_array.append(0)
-    freq_array.append(sum(freq_array))
-    return freq_array
-
-
-def create_freq_df_from_rows(input_file_name: str, df_file_name: str | None) -> pd.DataFrame:  # task 1 / st 3
-    data = []
-    label_mapper = {'B': 0, 'F': 1}
-    with open(input_file_name, 'r') as in_file:
-        for line in in_file:
-            line = line.strip()
-            label: str = (line[-1])
-            label_int: int = label_mapper[label]
-            run = eval(line[:-2])
-            freq_array = format_row_freq_to_array(run)
-            freq_array.append(label_int)
-            data.append(freq_array)
-
-    df: pd.DataFrame = pd.DataFrame(data, columns=[1, 2, 3, 4, 5, 6, 'Total', 'Label'])
-
-    # TSV
-    if df_file_name:
-        df.to_csv(df_file_name, sep='\t', index=True)
-    return df
-
-
-def prep_data(df: pd.DataFrame):  # task 1 / st 4
-    X: pd.DataFrame = df.drop(columns=['Label', 'Total'])
-    y: pd.DataFrame = df['Label']
-    return X, y
-
-
-def calc_auprc(model, X, y) -> float:  # task 1 / st 4
-    y_pred = model.predict_proba(X)
-    y_pred = y_pred[:, 1]
-    precision, recall, thresholds = precision_recall_curve(y, y_pred)
-    return auc(recall, precision)
-
-
 def plot_distribution(distribution_list: list[float], bins: int, density: bool, file_name: str,
                       measure: str):  # task 1 / st 5
     fig, ax = plt.subplots()
@@ -101,16 +42,6 @@ def plot_distribution(distribution_list: list[float], bins: int, density: bool, 
     plt.ylabel("counts")
     plt.savefig(file_name)
     plt.show()
-
-
-def simulate_rolls_and_compare(s_l: int, prob_array: list[float], rolls: int,
-                               compare_with: list[int]) -> int:  # task 2 / st 1
-    res_counts = 0
-    for i in range(rolls):
-        biased_run = roll_dice(s_l, prob_array)
-        if biased_run == compare_with:
-            res_counts += 1
-    return res_counts
 
 
 def calc_sequence_log_prob(sequence: list[int], prob_array: list[float]) -> float:  # task 2 / st 1
@@ -177,7 +108,7 @@ def calc_inserted_seq(original_seq_len: int, alpha: float) -> tuple[list[str], i
 def calc_inserted_seq_len_and_place(original_seq_len: int, alpha: float) -> IndelEvent:
     place: int = rnd.randint(0, original_seq_len)
     insertion_size: int = calc_trunc_zipf(alpha, 50)
-    return IndelEvent(length=insertion_size, place=place)
+    return IndelEvent(length=insertion_size, place=place, is_insertion=True)
 
 
 def insertion_event(seq: list[str], alpha: float) -> list[str]:
