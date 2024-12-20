@@ -1,11 +1,11 @@
 from collections import Counter
 
-from sklearn.metrics import precision_recall_curve
-from sklearn.metrics import auc
+# from sklearn.metrics import precision_recall_curve
+# from sklearn.metrics import auc
 
 import math
 import numpy as np
-import pandas as pd
+# import pandas as pd
 import random as rnd
 import matplotlib.pyplot as plt
 

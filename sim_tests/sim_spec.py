@@ -1,5 +1,6 @@
 from classes.indel_event import IndelEvent
-from classes.seq_node import SequenceNode
+from classes.seq_node_as_list import SequenceNodeAsList
+from classes.seq_node_as_tree import SequenceNodeAsTree
 from classes.sim_config import SimConfiguration
 
 basic_config: SimConfiguration = SimConfiguration(
@@ -8,7 +9,7 @@ basic_config: SimConfiguration = SimConfiguration(
 
 
 def test_insertion_including_inside_copied_and_at_end():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -22,7 +23,7 @@ def test_insertion_including_inside_copied_and_at_end():
 
 
 def test_deletion_case_start_on_copy_start_and_contained():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=35))
@@ -36,7 +37,7 @@ def test_deletion_case_start_on_copy_start_and_contained():
 
 
 def test_deletion_case_start_on_copy_mid_and_contained():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=6, place=10))
@@ -51,7 +52,7 @@ def test_deletion_case_start_on_copy_mid_and_contained():
 
 
 def test_deletion_case_start_on_copy_mid_and_not_contained():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=9, place=37))
@@ -65,7 +66,7 @@ def test_deletion_case_start_on_copy_mid_and_not_contained():
 
 
 def test_deletion_case_start_on_copy_mid_and_continue_to_next_block():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=17, place=37))
@@ -79,7 +80,7 @@ def test_deletion_case_start_on_copy_mid_and_continue_to_next_block():
 
 
 def test_deletion_case_start_on_insert_contained():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=4, place=43))
@@ -93,7 +94,7 @@ def test_deletion_case_start_on_insert_contained():
 
 
 def test_deletion_case_start_on_insert_continue_to_next():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=19, place=42))
@@ -107,7 +108,7 @@ def test_deletion_case_start_on_insert_continue_to_next():
 
 
 def test_insertion_inside_insertion():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
@@ -125,7 +126,7 @@ def test_insertion_inside_insertion():
 
 
 def test_deletion_case_of_deleting_several_blocks():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
@@ -142,7 +143,7 @@ def test_deletion_case_of_deleting_several_blocks():
 
 
 def test_deletion_case_on_copied_more_than_end():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=17, place=111))
@@ -156,7 +157,7 @@ def test_deletion_case_on_copied_more_than_end():
 
 
 def test_deletion_case_on_inserted_more_than_end():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=8, place=117))
@@ -171,7 +172,7 @@ def test_deletion_case_on_inserted_more_than_end():
 
 
 def test_deletion_before_start_not_affecting():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=-5))
@@ -185,7 +186,7 @@ def test_deletion_before_start_not_affecting():
 
 
 def test_deletion_before_start_affecting():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=11, place=-5))
@@ -199,7 +200,7 @@ def test_deletion_before_start_affecting():
 
 
 def test_deletion_after_end_not_affecting():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=127))
@@ -213,7 +214,7 @@ def test_deletion_after_end_not_affecting():
 
 
 def test_insertion_before_start():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -229,7 +230,7 @@ def test_insertion_before_start():
 
 
 def test_insertion_before_start_not_affecting():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=-4))
@@ -243,7 +244,7 @@ def test_insertion_before_start_not_affecting():
 
 
 def test_insertion_after_end_not_affecting():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=119))
@@ -257,7 +258,7 @@ def test_insertion_after_end_not_affecting():
 
 
 def test_insertion_at_start():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=3, place=42))
@@ -271,7 +272,7 @@ def test_insertion_at_start():
 
 
 def test_deletion_at_start_of_copied():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
     res = new_node.get_dto()
@@ -283,7 +284,7 @@ def test_deletion_at_start_of_copied():
 
 
 def test_deletion_at_start_insertion_only():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
@@ -297,7 +298,7 @@ def test_deletion_at_start_insertion_only():
 
 
 def test_deletion_at_end_of_copied():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
     res = new_node.get_dto()
@@ -309,7 +310,7 @@ def test_deletion_at_end_of_copied():
 
 
 def test_deletion_after_end_of_copied():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=False, length=3, place=105))
     res = new_node.get_dto()
@@ -321,7 +322,7 @@ def test_deletion_after_end_of_copied():
 
 
 def test_deletion_at_end_of_inserted():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -336,7 +337,7 @@ def test_deletion_at_end_of_inserted():
 
 
 def test_deletion_after_end_of_inserted():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -351,7 +352,7 @@ def test_deletion_after_end_of_inserted():
 
 
 def test_deletion_at_end_of_copied_plus_inserted():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -366,7 +367,7 @@ def test_deletion_at_end_of_copied_plus_inserted():
 
 
 def test_insertion_at_end_of_inserted():
-    new_node = SequenceNode(original_sequence_length=100)
+    new_node = SequenceNodeAsList(original_sequence_length=100)
     new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -378,3 +379,41 @@ def test_insertion_at_end_of_inserted():
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 6'],
         'length': 123}
+
+
+def avl_insertion_including_inside_copied_and_at_end():
+    new_node = SequenceNodeAsTree(original_sequence_length=100)
+    new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    res = new_node.get_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 2'],
+        'length': 119}
+
+
+def test_avl_insertion_elya_a():
+    new_node = SequenceNodeAsTree(original_sequence_length=100)
+    new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    res = new_node.get_dto()
+    assert res == {
+        'blocks': [
+            'id: 0, predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 105',
+            'id: 1, predecessor index: 30, #copied sites: 70, inserted len: 0, length_under_including: 70'],
+        'length': 105}
+
+
+def test_avl_deletion_elya_b():
+    new_node = SequenceNodeAsTree(original_sequence_length=100)
+    new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_node.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    res = new_node.get_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 94',
+            'predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 35'
+            'predecessor index: 47, #copied sites: 54, inserted len: 0, length_under_including: 54'],
+        'length': 105}

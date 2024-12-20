@@ -3,7 +3,7 @@ import random
 import numpy as np
 
 from classes.indel_event import IndelEvent
-from classes.seq_node import SequenceNode
+from classes.seq_node_as_list import SequenceNodeAsList
 from classes.sim_config import SimConfiguration
 from constants import NUCLEOTIDES
 from utils import calc_inserted_seq, calc_inserted_seq_len_and_place
@@ -13,7 +13,7 @@ class SimulatedNode:
     indel_length_alpha: float
     indel_truncated_length: int
     list_of_options: list[str]
-    seq_node: SequenceNode
+    seq_node: SequenceNodeAsList
 
     def __init__(self, config: SimConfiguration):
         self.is_use_nucleotides = config.is_use_nucleotides
@@ -23,7 +23,7 @@ class SimulatedNode:
             self.list_of_options = ['A']
         self.indel_length_alpha = config.indel_length_alpha
         self.indel_truncated_length = config.indel_truncated_length
-        self.seq_node = SequenceNode(config.original_sequence_length)
+        self.seq_node = SequenceNodeAsList(config.original_sequence_length)
 
     # def create_original_sequence(self, seq: str | None, seq_len: str | None) -> list[str]:
     #     if seq is not None:
