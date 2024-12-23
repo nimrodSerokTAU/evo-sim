@@ -1,3 +1,5 @@
+from classes.avl_tree import AVLTree
+from classes.block import Block
 from classes.indel_event import IndelEvent
 from classes.seq_node_as_list import SequenceNodeAsList
 from classes.seq_node_as_tree import SequenceNodeAsTree
@@ -381,12 +383,15 @@ def test_insertion_at_end_of_inserted():
         'length': 123}
 
 
+############################################################################# avl #####################
+
+
 def avl_insertion_including_inside_copied_and_at_end():
-    new_node = SequenceNodeAsTree(original_sequence_length=100)
-    new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
-    new_node.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
-    new_node.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
-    res = new_node.get_dto()
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    res = new_organism.get_dto()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
@@ -395,10 +400,20 @@ def avl_insertion_including_inside_copied_and_at_end():
         'length': 119}
 
 
+def test_tree_search():
+    tree = AVLTree(Block(30, 5, 0))
+    tree.insert_block(Block(4, 8, 2))
+    tree.insert_block(Block(0, 1, 0))
+    tree.insert_block(Block(12, 18, 5))
+    tree.insert_block(Block(47, 48, 20))
+    tree.insert_block(Block(95, 6, 0))
+    node, seq_length_with_block = tree.search(tree.root, 37, 0)
+    assert seq_length_with_block == 39
+
 def test_avl_insertion_elya_a():
-    new_node = SequenceNodeAsTree(original_sequence_length=100)
-    new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
-    res = new_node.get_dto()
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    res = new_organism.get_dto()
     assert res == {
         'blocks': [
             'id: 0, predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 105',
@@ -407,13 +422,63 @@ def test_avl_insertion_elya_a():
 
 
 def test_avl_deletion_elya_b():
-    new_node = SequenceNodeAsTree(original_sequence_length=100)
-    new_node.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
-    new_node.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
-    res = new_node.get_dto()
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    res = new_organism.get_dto()
     assert res == {
         'blocks': [
-            'predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 94',
-            'predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 35'
-            'predecessor index: 47, #copied sites: 54, inserted len: 0, length_under_including: 54'],
-        'length': 105}
+            'id: 0, predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 35',
+            'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 93',
+            'id: 2, predecessor index: 47, #copied sites: 53, inserted len: 0, length_under_including: 53'],
+        'length': 93}
+
+
+def test_avl_deletion_elya_c():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'id: 0, predecessor index: 0, #copied sites: 12, inserted len: 2, length_under_including: 37',
+            'id: 3, predecessor index: 12, #copied sites: 18, inserted len: 5, length_under_including: 23',
+            'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 95',
+            'id: 2, predecessor index: 47, #copied sites: 53, inserted len: 0, length_under_including: 53'],
+        'length': 95}
+
+
+def test_avl_deletion_elya_d():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=20, place=90))
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'id: 0, predecessor index: 0, #copied sites: 12, inserted len: 2, length_under_including: 37',
+            'id: 3, predecessor index: 12, #copied sites: 18, inserted len: 5, length_under_including: 23',
+            'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 115',
+            'id: 2, predecessor index: 47, #copied sites: 48, inserted len: 20, length_under_including: 73',
+            'id: 4, predecessor index: 95, #copied sites: 5, inserted len: 0, length_under_including: 5'],
+        'length': 115}
+
+
+def test_avl_deletion_elya_e():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=20, place=90))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=0))
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'id: 5, predecessor index: 4, #copied sites: 8, inserted len: 2, length_under_including: 10',
+            'id: 3, predecessor index: 12, #copied sites: 18, inserted len: 5, length_under_including: 33',
+            'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 111',
+            'id: 2, predecessor index: 47, #copied sites: 48, inserted len: 20, length_under_including: 73',
+            'id: 4, predecessor index: 95, #copied sites: 5, inserted len: 0, length_under_including: 5'],
+        'length': 111}

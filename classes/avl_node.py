@@ -34,17 +34,30 @@ class AVLNode:
         if inserted_seq_count is not None:
             # delta_length += inserted_seq_count - self.bl.inserted_seq_count
             self.bl.update_insert_count(inserted_seq_count)
-        self.update_val_up()
+        self.update_length_under_including_recursive()
 
-    def update_val_up(self):
+    def update_length_under_including(self):
         self.length_under_including = self.bl.copy_sites_count + self.bl.inserted_seq_count
         if self.left is not None:
             self.length_under_including += self.left.length_under_including
         if self.right is not None:
             self.length_under_including += self.right.length_under_including
-        if self.father is not None:
-            self.father.update_val_up()
 
+
+    def update_length_under_including_recursive(self):
+        self.update_length_under_including()
+        if self.father is not None:
+            self.father.update_length_under_including_recursive()
+
+    def set_a_father(self, father: Self):
+        self.father = father
+
+    def calc_seq_len_for_me(self, father_seq_len_including_for_right: int) -> tuple[int, int]:
+        seq_len_up_to: int = father_seq_len_including_for_right
+        if self.left is not None:
+            seq_len_up_to += self.left.length_under_including
+        seq_len_including: int = seq_len_up_to + self.bl.copy_sites_count + self.bl.inserted_seq_count
+        return seq_len_up_to, seq_len_including
 
     def get_dto_str(self) -> str:
         return f"id: {self.id}, predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, " + \

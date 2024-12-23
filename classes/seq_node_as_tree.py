@@ -15,11 +15,7 @@ class SequenceNodeAsTree:
                                              inserted_seq_count=0))
 
     def find_block_item_and_sites_count(self, place: int) -> tuple[AVLNode, int]:
-        block_node, ancestor_node = self.block_tree.search(self.block_tree.root, place, None)
-        if ancestor_node is None or ancestor_node.bl.index_in_predecessor > block_node.bl.index_in_predecessor:
-            seq_length_with_block: int = block_node.length_under_including
-        else:
-            seq_length_with_block: int = ancestor_node.length_under_including
+        block_node, seq_length_with_block = self.block_tree.search(self.block_tree.root, place, 0)
         return block_node, seq_length_with_block
 
     def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, AVLNode, int]:
@@ -71,14 +67,14 @@ class SequenceNodeAsTree:
             block_item = Block(index_in_predecessor=0,
                                        copy_sites_count=0,
                                        inserted_seq_count=event.length)
-            self.block_tree.insert(self.block_tree.root, block_item)
-        elif event_type == EventSubTypes.INSERTION_INSIDE_COPIED:
+            self.block_tree.insert_block(block_item)
+        elif event_type == EventSubTypes.INSERTION_INSIDE_COPIED:  # this case seems covered
             first_block_copy_count = event.place - seq_len_up_to_block
             block_item = Block(index_in_predecessor=avl_node.bl.index_in_predecessor + first_block_copy_count,
                                copy_sites_count=avl_node.bl.copy_sites_count - first_block_copy_count,
-                               inserted_seq_count=0)
+                               inserted_seq_count=avl_node.bl.inserted_seq_count)
             self.block_tree.update_on_same_location(avl_node, first_block_copy_count, event.length)
-            self.block_tree.insert(self.block_tree.root, block_item)  # TODO: continue from here:
+            self.block_tree.insert_block(block_item)  # TODO: continue from here:
         elif event_type == EventSubTypes.INSERTION_INSIDE_INSERTED:
             avl_node.bl.inc_insert_count(event.length)  # TODO: update node and tree
         self.my_length += event.length
@@ -88,21 +84,20 @@ class SequenceNodeAsTree:
         seq_len_up_to_block: int = (seq_length_with_block - avl_node.bl.inserted_seq_count -
                                     avl_node.bl.copy_sites_count)
         position_in_block: int = event.place - seq_len_up_to_block
-        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED:
+        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED:  # this case seems covered
             block_item = Block(
                 index_in_predecessor=avl_node.bl.index_in_predecessor + position_in_block + event.length,
                 copy_sites_count=avl_node.bl.copy_sites_count - (position_in_block + event.length),
                 inserted_seq_count=avl_node.bl.inserted_seq_count)
-            avl_node.bl.update_copy_sites_count(position_in_block)
-            avl_node.bl.update_insert_count(0)
-            self.block_tree.insert(cb_index + 1, block_item)
+            self.block_tree.update_on_same_location(avl_node, position_in_block, 0)
+            self.block_tree.insert_block(block_item)
             self.my_length -= event.length
         elif event_type == EventSubTypes.DELETION_OF_COPIED:
             block_item = Block(
                 index_in_predecessor=avl_node.bl.index_in_predecessor + position_in_block + event.length,
                 copy_sites_count=avl_node.bl.copy_sites_count - (position_in_block + event.length),
                 inserted_seq_count=avl_node.bl.inserted_seq_count)
-            self.block_tree[cb_index] = block_item
+            self.block_tree.update_to_new_location(avl_node, block_item)
             self.my_length -= event.length
         elif event_type == EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED:
             removed_from_copied: int = avl_node.bl.copy_sites_count - position_in_block
