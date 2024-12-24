@@ -20,6 +20,10 @@ class AVLTree:
     def update_on_same_location(avl_node: AVLNode, copy_sites_count: int | None, inserted_seq_count: int | None):
         avl_node.update_on_same_location(copy_sites_count, inserted_seq_count)
 
+    @staticmethod
+    def inc_on_same_location(avl_node: AVLNode, delta_inserted_count: int):
+        avl_node.inc_on_same_location(delta_inserted_count)
+
     def update_to_new_location(self, node_to_update: AVLNode, new_bl: Block):  # TODO: can improve
         nodes_to_update_val: set[AVLNode] = set()
         self.root = self.delete(self.root, node_to_update.bl.index_in_predecessor, nodes_to_update_val)
@@ -84,7 +88,7 @@ class AVLTree:
                 self.delete(current_node, value, nodes_to_update_val)
         elif value > current_node.bl.index_in_predecessor:
             current_node.right = self.delete(current_node.right, value, nodes_to_update_val)
-        else:
+        elif current_node.left is not None or current_node.right is not None:
             if not current_node.left:
                 temp = current_node.right
                 temp.set_a_father(current_node.father)
@@ -99,7 +103,11 @@ class AVLTree:
                 return temp
 
             temp = self.min_value_node(current_node.right)
-            current_node.right = self.delete(current_node.right, temp.value, nodes_to_update_val)
+            current_node.bl = temp.bl
+            current_node.right = self.delete(current_node.right, temp.bl.index_in_predecessor, nodes_to_update_val)
+
+        else:
+            current_node = None
 
         if not current_node:
             return current_node
@@ -182,7 +190,10 @@ class AVLTree:
             return root, seq_len_including
         if place < seq_len_up_to:
             return self.search(root.left, place, 0)
-        return self.search(root.right, place, seq_len_including)
+        if root.right is not None:
+            return self.search(root.right, place, seq_len_including)
+        else:
+            return root, seq_len_including
 
     def inorder_traversal(self, root: AVLNode, res_list: list[AVLNode]):
         if root:

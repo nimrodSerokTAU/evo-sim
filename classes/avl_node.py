@@ -36,6 +36,10 @@ class AVLNode:
             self.bl.update_insert_count(inserted_seq_count)
         self.update_length_under_including_recursive()
 
+    def inc_on_same_location(self, delta_inserted_count: int):
+        self.bl.inc_insert_count(delta_inserted_count)
+        self.update_length_under_including_recursive()
+
     def update_length_under_including(self):
         self.length_under_including = self.bl.copy_sites_count + self.bl.inserted_seq_count
         if self.left is not None:
@@ -62,3 +66,6 @@ class AVLNode:
     def get_dto_str(self) -> str:
         return f"id: {self.id}, predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, " + \
             f"inserted len: {self.bl.inserted_seq_count}, length_under_including: {self.length_under_including}"
+
+    def get_clean_dto_str(self) -> str:
+        return f"predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, inserted len: {self.bl.inserted_seq_count}"
