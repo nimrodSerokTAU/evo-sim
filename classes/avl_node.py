@@ -27,17 +27,17 @@ class AVLNode:
         return self.bl.inserted_seq_count + self.bl.copy_sites_count
 
     def update_on_same_location(self, copy_sites_count: int | None, inserted_seq_count: int | None):
-        # delta_length: int = 0
         if copy_sites_count is not None:
-            # delta_length += copy_sites_count - self.bl.copy_sites_count
             self.bl.copy_sites_count = copy_sites_count
         if inserted_seq_count is not None:
-            # delta_length += inserted_seq_count - self.bl.inserted_seq_count
             self.bl.update_insert_count(inserted_seq_count)
         self.update_length_under_including_recursive()
 
-    def inc_on_same_location(self, delta_inserted_count: int):
-        self.bl.inc_insert_count(delta_inserted_count)
+    def inc_on_same_location(self, delta_copy_sites_count: int | None, delta_inserted_count: int | None):
+        if delta_copy_sites_count is not None:
+            self.bl.inc_copy_sites_count(delta_copy_sites_count)
+        if delta_inserted_count is not None:
+            self.bl.inc_insert_count(delta_inserted_count)
         self.update_length_under_including_recursive()
 
     def update_length_under_including(self):
@@ -56,12 +56,25 @@ class AVLNode:
     def set_a_father(self, father: Self):
         self.father = father
 
-    def calc_seq_len_for_me(self, father_seq_len_including_for_right: int) -> tuple[int, int]:
-        seq_len_up_to: int = father_seq_len_including_for_right
-        if self.left is not None:
-            seq_len_up_to += self.left.length_under_including
-        seq_len_including: int = seq_len_up_to + self.bl.copy_sites_count + self.bl.inserted_seq_count
+    def calc_seq_len_for_me(self, father_including_seq_len: int) -> tuple[int, int]:
+        seq_len_including: int = father_including_seq_len
+        is_left_of_father: bool = False
+        if self.father is not None and self.father.left is not None and self.father.left.id == self.id:
+            is_left_of_father = True
+        if is_left_of_father:
+            seq_len_including -= (self.father.bl.inserted_seq_count + self.father.bl.copy_sites_count)
+        else:
+            seq_len_including += self.length_under_including
+        if self.right is not None:
+            seq_len_including -= self.right.length_under_including
+        seq_len_up_to: int  = seq_len_including - self.bl.inserted_seq_count - self.bl.copy_sites_count
         return seq_len_up_to, seq_len_including
+
+    def is_redundant(self) -> bool:
+        return self.bl.is_redundant()
+
+    def get_my_own_length(self) -> int:
+        return self.bl.copy_sites_count + self.bl.inserted_seq_count
 
     def get_dto_str(self) -> str:
         return f"id: {self.id}, predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, " + \
@@ -69,3 +82,4 @@ class AVLNode:
 
     def get_clean_dto_str(self) -> str:
         return f"predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, inserted len: {self.bl.inserted_seq_count}"
+

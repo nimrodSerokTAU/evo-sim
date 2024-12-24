@@ -15,13 +15,15 @@ class SequenceNodeAsTree:
                                              inserted_seq_count=0))
 
     def find_block_item_and_sites_count(self, place: int, is_insertion: bool) -> tuple[AVLNode, int]:
-        if not is_insertion:
-            place = min(place + 1, self.block_tree.root.length_under_including - 1)
-        block_node, seq_length_with_block = self.block_tree.search(self.block_tree.root, place, 0)
+        if is_insertion:
+            block_node, seq_length_with_block = self.block_tree.search_for_insert(self.block_tree.root, place, 0)
+        else:
+            block_node, seq_length_with_block = self.block_tree.search_for_delete(self.block_tree.root, place, 0)
         return block_node, seq_length_with_block
 
     def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, AVLNode, int]:
-        if event.length < 0 or event.place > self.block_tree.root.length_under_including:
+        if event.length < 0 or event.place > self.block_tree.root.length_under_including or \
+                (not event.is_insertion and event.place == self.block_tree.root.length_under_including):
             return EventSubTypes.OUT_OF_SEQUENCE, None, -1
 
         # insertion events need the end of prev
@@ -65,7 +67,7 @@ class SequenceNodeAsTree:
         seq_len_up_to_block: int = (seq_length_with_block - avl_node.bl.inserted_seq_count -
                                     avl_node.bl.copy_sites_count)
         if event_type == EventSubTypes.INSERTION_AT_END:
-            avl_node.bl.inc_insert_count(event.length)  # TODO: update node and tree
+            avl_node.inc_on_same_location(0, event.length)
         elif event_type == EventSubTypes.INSERTION_AT_START:
             block_item = Block(index_in_predecessor=0,
                                        copy_sites_count=0,
@@ -77,9 +79,9 @@ class SequenceNodeAsTree:
                                copy_sites_count=avl_node.bl.copy_sites_count - first_block_copy_count,
                                inserted_seq_count=avl_node.bl.inserted_seq_count)
             self.block_tree.update_on_same_location(avl_node, first_block_copy_count, event.length)
-            self.block_tree.insert_block(block_item)  # TODO: continue from here:
+            self.block_tree.insert_block(block_item)
         elif event_type == EventSubTypes.INSERTION_INSIDE_INSERTED:
-            avl_node.bl.inc_insert_count(event.length)
+            avl_node.inc_on_same_location(0, event.length)
         self.my_length += event.length
 
     def calculate_deletion_event(self, event: IndelEvent, event_type: EventSubTypes, avl_node: AVLNode,
@@ -105,25 +107,25 @@ class SequenceNodeAsTree:
         elif event_type == EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED:
             removed_from_copied: int = avl_node.bl.copy_sites_count - position_in_block
             deleted_from_insertion = min((event.length - removed_from_copied), avl_node.bl.inserted_seq_count)
-            avl_node.bl.inc_copy_sites_count(-removed_from_copied)
+            self.block_tree.inc_on_same_location(avl_node, -removed_from_copied, None)
             deletion_len = event.length - removed_from_copied
             self.my_length -= removed_from_copied
-            self.delete_from_insertion_part(avl_node.bl, deletion_len, deleted_from_insertion, seq_len_up_to_block)
+            self.delete_from_insertion_part(avl_node, deletion_len, deleted_from_insertion, seq_len_up_to_block)
         elif event_type in [EventSubTypes.DELETION_INSIDE_INSERTED_CONTAINED,
                             EventSubTypes.DELETION_INSIDE_INSERTED_UNCONTAINED, EventSubTypes.DELETION_OF_INSERTED]:  # starts inside insertion part:
             deleted_from_insertion = min(avl_node.bl.inserted_seq_count -
                                          (position_in_block - avl_node.bl.copy_sites_count), event.length)
-            self.delete_from_insertion_part(avl_node.bl, event.length, deleted_from_insertion, seq_len_up_to_block)
+            self.delete_from_insertion_part(avl_node, event.length, deleted_from_insertion, seq_len_up_to_block)
 
-    def delete_from_insertion_part(self, block: Block, deletion_len: int, deleted_from_insertion: int,
+    def delete_from_insertion_part(self, node: AVLNode, deletion_len: int, deleted_from_insertion: int,
                                    seq_len_up_to_block: int):
         left_to_delete_later = deletion_len - deleted_from_insertion
-        block.inc_insert_count(-deleted_from_insertion)
+        node.inc_on_same_location(None, -deleted_from_insertion)
         self.my_length -= deleted_from_insertion
-        if block.is_redundant():
-            self.block_tree.remove(block)
+        if node.is_redundant():
+            self.block_tree.delete_node(node)
         if left_to_delete_later > 0:  # continue to next block:
-            next_block_start_place = seq_len_up_to_block + block.copy_sites_count + block.inserted_seq_count
+            next_block_start_place = seq_len_up_to_block + node.get_my_own_length()
             deletion_event = IndelEvent(is_insertion=False, place=next_block_start_place, length=left_to_delete_later)
             self.calculate_event(deletion_event)
 

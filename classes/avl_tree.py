@@ -21,13 +21,18 @@ class AVLTree:
         avl_node.update_on_same_location(copy_sites_count, inserted_seq_count)
 
     @staticmethod
-    def inc_on_same_location(avl_node: AVLNode, delta_inserted_count: int):
-        avl_node.inc_on_same_location(delta_inserted_count)
+    def inc_on_same_location(avl_node: AVLNode, delta_copied_count: int | None, delta_inserted_count: int | None):
+        avl_node.inc_on_same_location(delta_copied_count, delta_inserted_count)
 
     def update_to_new_location(self, node_to_update: AVLNode, new_bl: Block):  # TODO: can improve
         nodes_to_update_val: set[AVLNode] = set()
         self.root = self.delete(self.root, node_to_update.bl.index_in_predecessor, nodes_to_update_val)
         self.insert_block(new_bl)
+        self.update_all_needed_nodes(nodes_to_update_val)
+
+    def delete_node(self, node_to_delete: AVLNode):
+        nodes_to_update_val: set[AVLNode] = set()
+        self.root = self.delete(self.root, node_to_delete.bl.index_in_predecessor, nodes_to_update_val)
         self.update_all_needed_nodes(nodes_to_update_val)
 
     @staticmethod
@@ -181,17 +186,32 @@ class AVLTree:
             current = current.left
         return current
 
-    def search(self, root: AVLNode, place: int, father_seq_len_including_for_right: int) -> tuple[AVLNode, int]:
-        # TODO: notice that left and right can be missing in case of place out of sequence range
+    def search_for_delete(self, root: AVLNode, place: int, father_including_seq_len: int) -> tuple[AVLNode, int]:
         if not root:
             return root, 0
-        seq_len_up_to, seq_len_including = root.calc_seq_len_for_me(father_seq_len_including_for_right)
+        seq_len_up_to, seq_len_including = root.calc_seq_len_for_me(father_including_seq_len)
         if seq_len_up_to <= place < seq_len_including:
             return root, seq_len_including
         if place < seq_len_up_to:
-            return self.search(root.left, place, 0)
+            return self.search_for_delete(root.left, place, seq_len_including)
+        if place == seq_len_up_to:
+            return root, seq_len_including
         if root.right is not None:
-            return self.search(root.right, place, seq_len_including)
+            return self.search_for_delete(root.right, place, seq_len_including)
+        else:
+            return root, seq_len_including
+
+    def search_for_insert(self, root: AVLNode, place: int, father_including_seq_len: int) -> tuple[AVLNode, int]:
+        # TODO: notice that left and right can be missing in case of place out of sequence range
+        if not root:
+            return root, 0
+        seq_len_up_to, seq_len_including = root.calc_seq_len_for_me(father_including_seq_len)
+        if seq_len_up_to <= place < seq_len_including:
+            return root, seq_len_including
+        if place < seq_len_up_to:
+            return self.search_for_insert(root.left, place, seq_len_including)
+        if root.right is not None:
+            return self.search_for_insert(root.right, place, seq_len_including)
         else:
             return root, seq_len_including
 

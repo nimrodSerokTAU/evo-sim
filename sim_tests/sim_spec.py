@@ -1,3 +1,4 @@
+from classes.avl_node import AVLNode
 from classes.avl_tree import AVLTree
 from classes.block import Block
 from classes.indel_event import IndelEvent
@@ -383,18 +384,83 @@ def test_insertion_at_end_of_inserted():
         'length': 123}
 
 
-############################################################################# avl #####################
+################################################### avl #############################################
 
 
-def test_tree_search():
+def test_tree_search_case_a():
     tree = AVLTree(Block(30, 5, 0))
     tree.insert_block(Block(4, 8, 2))
     tree.insert_block(Block(0, 1, 0))
     tree.insert_block(Block(12, 18, 5))
     tree.insert_block(Block(47, 48, 20))
     tree.insert_block(Block(95, 6, 0))
-    node, seq_length_with_block = tree.search(tree.root, 37, 0)
-    assert seq_length_with_block == 39
+    node, seq_length_with_block_0 = tree.search_for_insert(tree.root, 0, 0)
+    node, seq_length_with_block_9 = tree.search_for_insert(tree.root, 9, 0)
+    ode, seq_length_with_block_20 = tree.search_for_insert(tree.root, 20, 0)
+    node, seq_length_with_block_37 = tree.search_for_insert(tree.root, 37, 0)
+    node, seq_length_with_block_40 = tree.search_for_insert(tree.root, 40, 0)
+    node, seq_length_with_block_108 = tree.search_for_insert(tree.root, 108, 0)
+    res = {'a': seq_length_with_block_0, 'b': seq_length_with_block_9, 'c': seq_length_with_block_20,
+           'd': seq_length_with_block_37, 'e': seq_length_with_block_40, 'f': seq_length_with_block_108}
+    assert res == {'a': 1, 'b': 11, 'c': 34, 'd': 39, 'e': 107, 'f': 113}
+
+
+def test_tree_search_case_b():
+    tree = AVLTree(Block(30, 5, 7))
+    tree.insert_block(Block(0, 30, 5))
+    tree.insert_block(Block(36, 5, 1))
+    tree.insert_block(Block(35, 1, 1))
+    tree.insert_block(Block(41, 59, 0))
+    node, seq_length_with_block_1 = tree.search_for_insert(tree.root, 1, 0)
+    node, seq_length_with_block_37 = tree.search_for_insert(tree.root, 37, 0)
+    ode, seq_length_with_block_48 = tree.search_for_insert(tree.root, 48, 0)
+    node, seq_length_with_block_51 = tree.search_for_insert(tree.root, 51, 0)
+    node, seq_length_with_block_110 = tree.search_for_insert(tree.root, 110, 0)
+    res = {'a': seq_length_with_block_1, 'b': seq_length_with_block_37, 'c': seq_length_with_block_48,
+           'd': seq_length_with_block_51, 'e': seq_length_with_block_110}
+    assert res == {'a': 35, 'b': 47, 'c': 49, 'd': 55, 'e': 114}
+
+
+def test_tree_search_case_c():
+    tree = AVLTree(Block(30, 5, 7))
+    tree.insert_block(Block(3, 15, 5))
+    tree.insert_block(Block(0, 1, 1))
+    tree.insert_block(Block(35, 3, 0))
+    tree.insert_block(Block(58, 5, 1))
+    tree.insert_block(Block(41, 1, 2))
+    tree.insert_block(Block(54, 3, 4))
+    tree.insert_block(Block(67, 11, 2))
+    tree.insert_block(Block(80, 7, 0))
+    tree.insert_block(Block(90, 4, 3))
+    tree.insert_block(Block(94, 8, 2))
+    tree.insert_block(Block(110, 3, 6))
+    tree.insert_block(Block(89, 1, 2))
+    node_2, seq_length_with_block_1 = tree.search_for_insert(tree.root, 1, 0)
+    node_1, seq_length_with_block_11 = tree.search_for_insert(tree.root, 11, 0)
+    node_0, seq_length_with_block_32 = tree.search_for_insert(tree.root, 32, 0)
+    node_3, seq_length_with_block_35 = tree.search_for_insert(tree.root, 35, 0)
+    node_5, seq_length_with_block_39 = tree.search_for_insert(tree.root, 39, 0)
+    node_6, seq_length_with_block_44 = tree.search_for_insert(tree.root, 44, 0)
+    node_4, seq_length_with_block_50 = tree.search_for_insert(tree.root, 50, 0)
+    node_7, seq_length_with_block_54 = tree.search_for_insert(tree.root, 54, 0)
+    node_8, seq_length_with_block_67 = tree.search_for_insert(tree.root, 67, 0)
+    node_12, seq_length_with_block_74 = tree.search_for_insert(tree.root, 74, 0)
+    node_9, seq_length_with_block_77 = tree.search_for_insert(tree.root, 77, 0)
+    node_10, seq_length_with_block_84 = tree.search_for_insert(tree.root, 84, 0)
+    node_11, seq_length_with_block_94 = tree.search_for_insert(tree.root, 94, 0)
+    res = {'a': seq_length_with_block_1, 'b': seq_length_with_block_11, 'c': seq_length_with_block_32,
+           'd': seq_length_with_block_35, 'e': seq_length_with_block_39, 'f': seq_length_with_block_44,
+           'g': seq_length_with_block_50, 'h': seq_length_with_block_54, 'i': seq_length_with_block_67,
+           'j': seq_length_with_block_74, 'k': seq_length_with_block_77, 'l': seq_length_with_block_84,
+           'm': seq_length_with_block_94}
+    # res = {'a': calc(node_2, True, 22), 'b': calc(node_1, True, 37), 'c': calc(node_0, False, 22),
+    #        'd': calc(node_3, True, 66), 'e': calc(node_5, True, 47), 'f': calc(node_6, False, 37),
+    #        'g': calc(node_4, False, 47), 'h': calc(node_7, False, 0), 'i': calc(node_8, True, 83),
+    #        'j': calc(node_12, False, 73), 'k': calc(node_9, False, 66), 'l': calc(node_10, False, 83),
+    #        'm': calc(node_11, False, 93)}
+    assert res == {'a': 2, 'b': 22, 'c': 34, 'd': 37, 'e': 40, 'f': 47, 'g': 53, 'h': 66, 'i': 73, 'j': 76, 'k': 83,
+                   'l': 93, 'm': 102}
+
 
 def test_avl_insertion_elya_a():
     new_organism = SequenceNodeAsTree(original_sequence_length=100)
@@ -557,3 +623,109 @@ def test_avl_deletion_case_start_on_copy_mid_and_continue_to_next_block():
             'predecessor index: 30, #copied sites: 2, inserted len: 0',
             'predecessor index: 37, #copied sites: 63, inserted len: 0'],
         'length': 100}
+
+
+def test_avl_deletion_case_start_on_insert_contained():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=43))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 8',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 113}
+
+
+def test_avl_deletion_case_start_on_insert_continue_to_next():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=19, place=42))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 2',
+            'predecessor index: 44, #copied sites: 56, inserted len: 0'],
+        'length': 98}
+
+
+def test_avl_insertion_inside_insertion():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=48))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=54))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 7',
+            'predecessor index: 35, #copied sites: 1, inserted len: 1',
+            'predecessor index: 36, #copied sites: 5, inserted len: 1',
+            'predecessor index: 41, #copied sites: 59, inserted len: 0'],
+        'length': 114}
+
+
+def test_avl_deletion_case_of_deleting_several_blocks():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=48))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=54))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=21, place=37))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 2, inserted len: 0',
+            'predecessor index: 44, #copied sites: 56, inserted len: 0'],
+        'length': 93}
+
+
+def test_avl_deletion_case_on_copied_more_than_end():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=111))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 59, inserted len: 0'],
+        'length': 111}
+
+
+def test_avl_deletion_case_on_inserted_more_than_end():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=8, place=117))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=120))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 3'],
+        'length': 120}
+
+
+def test_avl_deletion_before_start_not_affecting():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=-5))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 117}
