@@ -729,3 +729,199 @@ def test_avl_deletion_before_start_not_affecting():
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
         'length': 117}
+
+
+def test_avl_deletion_before_start_affecting():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=11, place=-5))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 6, #copied sites: 24, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 111}
+
+
+def test_avl_deletion_after_end_not_affecting():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=127))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 117}
+
+
+def test_avl_insertion_before_start():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=10, place=-3))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 0, inserted len: 7',
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 2'],
+        'length': 126}
+
+
+def test_avl_insertion_before_start_not_affecting():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=-4))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 117}
+
+
+def test_avl_insertion_after_end_not_affecting():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=119))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 117}
+
+
+def test_avl_insertion_at_start():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=42))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 0, inserted len: 12',
+            'predecessor index: 0, #copied sites: 30, inserted len: 8',
+            'predecessor index: 30, #copied sites: 70, inserted len: 0'],
+        'length': 120}
+
+
+def test_avl_deletion_at_start_of_copied():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 3, #copied sites: 27, inserted len: 5',
+            'predecessor index: 30, #copied sites: 70, inserted len: 0'],
+        'length': 102}
+
+
+def test_avl_deletion_at_start_insertion_only():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 0, inserted len: 9',
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 70, inserted len: 0'],
+        'length': 114}
+
+
+def test_avl_deletion_at_end_of_copied():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 69, inserted len: 0'],
+        'length': 104}
+
+
+def test_avl_deletion_after_end_of_copied():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=105))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 70, inserted len: 0'],
+        'length': 105}
+
+
+def test_avl_deletion_at_end_of_inserted():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=2, place=118))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 1'],
+        'length': 118}
+
+
+def test_avl_deletion_after_end_of_inserted():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=2, place=119))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 2'],
+        'length': 119}
+
+
+def test_avl_deletion_at_end_of_copied_plus_inserted():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=2, place=117))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 117}
+
+
+def test_avl_insertion_at_end_of_inserted():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=119))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 6'],
+        'length': 123}
