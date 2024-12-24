@@ -202,7 +202,6 @@ class AVLTree:
             return root, seq_len_including
 
     def search_for_insert(self, root: AVLNode, place: int, father_including_seq_len: int) -> tuple[AVLNode, int]:
-        # TODO: notice that left and right can be missing in case of place out of sequence range
         if not root:
             return root, 0
         seq_len_up_to, seq_len_including = root.calc_seq_len_for_me(father_including_seq_len)

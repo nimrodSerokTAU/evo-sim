@@ -1,7 +1,6 @@
 from typing import Self
 from classes.block import Block
 
-# TODO: add father to node
 class AVLNode:
     id: int
     bl: Block
