@@ -69,7 +69,7 @@ class SequenceNodeAsTree:
         if event_type == EventSubTypes.INSERTION_AT_END:
             avl_node.inc_on_same_location(0, event.length)
         elif event_type == EventSubTypes.INSERTION_AT_START:
-            block_item = Block(index_in_predecessor=0,
+            block_item = Block(index_in_predecessor=-1,
                                        copy_sites_count=0,
                                        inserted_seq_count=event.length)
             self.block_tree.insert_block(block_item)
