@@ -7,6 +7,8 @@ class IndelEvent:
         self.is_insertion = is_insertion
         self.place = place
         self.length = length
-        if place < 0:
+        # Support for deletions and insertions that start before the beginning of the sequence, 
+        # is it necessary for insertions?
+        if place < 0: 
             self.length = length - abs(place)
             self.place = 0

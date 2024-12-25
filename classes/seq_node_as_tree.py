@@ -119,6 +119,14 @@ class SequenceNodeAsTree:
         blocks: list[str] = list(map(lambda x: x.get_dto_str(), res_list))
         length: int = self.get_length()
         return {'blocks': blocks, 'length': length}
+    
+    def get_block_list_str(self) -> dict:
+        res_list: list[AVLNode] = []
+        self.block_tree.inorder_traversal(self.block_tree.root, res_list)
+        blocks: list[str] = list(map(lambda x: x.get_block_str(), res_list))
+        length: int = self.get_length()
+        return {'blocks': blocks, 'length': length}
+
 
     def get_clean_dto(self) -> dict:
         res_list: list[AVLNode] = []
