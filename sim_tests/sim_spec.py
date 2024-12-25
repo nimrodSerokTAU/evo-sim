@@ -387,41 +387,41 @@ def test_insertion_at_end_of_inserted():
 ################################################### avl #############################################
 
 
-def tree_search_case_a():
+def test_tree_search_case_a():
     tree = AVLTree(Block(30, 5, 0))
     tree.insert_block(Block(4, 8, 2))
     tree.insert_block(Block(0, 1, 0))
     tree.insert_block(Block(12, 18, 5))
     tree.insert_block(Block(47, 48, 20))
     tree.insert_block(Block(95, 6, 0))
-    node, seq_length_with_block_0 = tree.search_for_insert(tree.root, 0, 0)
-    node, seq_length_with_block_9 = tree.search_for_insert(tree.root, 9, 0)
-    ode, seq_length_with_block_20 = tree.search_for_insert(tree.root, 20, 0)
-    node, seq_length_with_block_37 = tree.search_for_insert(tree.root, 37, 0)
-    node, seq_length_with_block_40 = tree.search_for_insert(tree.root, 40, 0)
-    node, seq_length_with_block_108 = tree.search_for_insert(tree.root, 108, 0)
+    node, seq_length_with_block_0 = tree.search(tree.root, 0)
+    node, seq_length_with_block_9 = tree.search(tree.root, 9)
+    ode, seq_length_with_block_20 = tree.search(tree.root, 20)
+    node, seq_length_with_block_37 = tree.search(tree.root, 37)
+    node, seq_length_with_block_40 = tree.search(tree.root, 40)
+    node, seq_length_with_block_108 = tree.search(tree.root, 108)
     res = {'a': seq_length_with_block_0, 'b': seq_length_with_block_9, 'c': seq_length_with_block_20,
            'd': seq_length_with_block_37, 'e': seq_length_with_block_40, 'f': seq_length_with_block_108}
-    assert res == {'a': 1, 'b': 11, 'c': 34, 'd': 39, 'e': 107, 'f': 113}
+    assert res == {'a': 0, 'b': 8, 'c': 9, 'd': 3, 'e': 1, 'f': 1}
 
 
-def tree_search_case_b():
+def test_tree_search_case_b():
     tree = AVLTree(Block(30, 5, 7))
     tree.insert_block(Block(0, 30, 5))
     tree.insert_block(Block(36, 5, 1))
     tree.insert_block(Block(35, 1, 1))
     tree.insert_block(Block(41, 59, 0))
-    node, seq_length_with_block_1 = tree.search_for_insert(tree.root, 1, 0)
-    node, seq_length_with_block_37 = tree.search_for_insert(tree.root, 37, 0)
-    ode, seq_length_with_block_48 = tree.search_for_insert(tree.root, 48, 0)
-    node, seq_length_with_block_51 = tree.search_for_insert(tree.root, 51, 0)
-    node, seq_length_with_block_110 = tree.search_for_insert(tree.root, 110, 0)
+    node, seq_length_with_block_1 = tree.search(tree.root, 1)
+    node, seq_length_with_block_37 = tree.search(tree.root, 37)
+    ode, seq_length_with_block_48 = tree.search(tree.root, 48)
+    node, seq_length_with_block_51 = tree.search(tree.root, 51)
+    node, seq_length_with_block_110 = tree.search(tree.root, 110)
     res = {'a': seq_length_with_block_1, 'b': seq_length_with_block_37, 'c': seq_length_with_block_48,
            'd': seq_length_with_block_51, 'e': seq_length_with_block_110}
-    assert res == {'a': 35, 'b': 47, 'c': 49, 'd': 55, 'e': 114}
+    assert res == {'a': 1, 'b': 2, 'c': 1, 'd': 2, 'e': 55}
 
 
-def tree_search_case_c():
+def test_tree_search_case_c():
     tree = AVLTree(Block(30, 5, 7))
     tree.insert_block(Block(3, 15, 5))
     tree.insert_block(Block(0, 1, 1))
@@ -453,13 +453,7 @@ def tree_search_case_c():
            'g': seq_length_with_block_50, 'h': seq_length_with_block_54, 'i': seq_length_with_block_67,
            'j': seq_length_with_block_74, 'k': seq_length_with_block_77, 'l': seq_length_with_block_84,
            'm': seq_length_with_block_94}
-    # res = {'a': calc(node_2, True, 22), 'b': calc(node_1, True, 37), 'c': calc(node_0, False, 22),
-    #        'd': calc(node_3, True, 66), 'e': calc(node_5, True, 47), 'f': calc(node_6, False, 37),
-    #        'g': calc(node_4, False, 47), 'h': calc(node_7, False, 0), 'i': calc(node_8, True, 83),
-    #        'j': calc(node_12, False, 73), 'k': calc(node_9, False, 66), 'l': calc(node_10, False, 83),
-    #        'm': calc(node_11, False, 93)}
-    assert res == {'a': 2, 'b': 22, 'c': 34, 'd': 37, 'e': 40, 'f': 47, 'g': 53, 'h': 66, 'i': 73, 'j': 76, 'k': 83,
-                   'l': 93, 'm': 102}
+    assert res == {'a': 1, 'b': 9, 'c': 10, 'd': 1, 'e': 2, 'f': 4, 'g': 3, 'h': 1, 'i': 1, 'j': 1, 'k': 1, 'l': 1, 'm': 1}
 
 
 def test_avl_insertion_elya_a():

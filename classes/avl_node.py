@@ -46,7 +46,6 @@ class AVLNode:
         if self.right is not None:
             self.length_under_including += self.right.length_under_including
 
-
     def update_length_under_including_recursive(self):
         self.update_length_under_including()
         if self.father is not None:
@@ -54,20 +53,6 @@ class AVLNode:
 
     def set_a_father(self, father: Self):
         self.father = father
-
-    def calc_seq_len_for_me(self, father_including_seq_len: int) -> tuple[int, int]:
-        seq_len_including: int = father_including_seq_len
-        is_left_of_father: bool = False
-        if self.father is not None and self.father.left is not None and self.father.left.id == self.id:
-            is_left_of_father = True
-        if is_left_of_father:
-            seq_len_including -= (self.father.bl.inserted_seq_count + self.father.bl.copy_sites_count)
-        else:
-            seq_len_including += self.length_under_including
-        if self.right is not None:
-            seq_len_including -= self.right.length_under_including
-        seq_len_up_to: int  = seq_len_including - self.bl.inserted_seq_count - self.bl.copy_sites_count
-        return seq_len_up_to, seq_len_including
 
     def is_redundant(self) -> bool:
         return self.bl.is_redundant()

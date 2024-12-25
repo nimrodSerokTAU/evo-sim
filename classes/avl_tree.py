@@ -5,16 +5,16 @@ from classes.block import Block
 
 class AVLTree:
     root: AVLNode
-    nodes_count: int
+    running_nodes_count: int
 
     def __init__(self, bl: Block):
         self.root = AVLNode(0, bl)
-        self.nodes_count = 1
+        self.running_nodes_count = 1
 
     def insert_block(self, bl: Block):
         nodes_to_update_val: set[AVLNode] = set()
         self.root = self.insert(self.root, None, bl, nodes_to_update_val)
-        self.nodes_count += 1
+        self.running_nodes_count += 1
         self.update_all_needed_nodes(nodes_to_update_val)
 
     @staticmethod
@@ -49,7 +49,7 @@ class AVLTree:
 
     def insert(self, current_node: AVLNode, father: AVLNode | None, bl: Block, nodes_to_update_val: set[AVLNode]) -> AVLNode:
         if not current_node:
-            new_node = AVLNode(self.nodes_count, bl)
+            new_node = AVLNode(self.running_nodes_count, bl)
             new_node.set_a_father(father)
             nodes_to_update_val.add(current_node)
             return new_node
