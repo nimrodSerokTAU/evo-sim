@@ -14,16 +14,11 @@ class SequenceNodeAsTree:
         self.block_tree = AVLTree(bl = Block(index_in_predecessor=0, copy_sites_count=self.my_length,
                                              inserted_seq_count=0))
 
-    def find_block_item_and_sites_count(self, place: int, is_insertion: bool) -> tuple[AVLNode, int]:
-
-        block_node, position_in_block = self.block_tree.search(self.block_tree.root, place)
-        return block_node, position_in_block
-
     def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, AVLNode, int]:
         if event.length < 0 or event.place > self.block_tree.root.length_under_including or \
                 (not event.is_insertion and event.place == self.block_tree.root.length_under_including):
             return EventSubTypes.OUT_OF_SEQUENCE, None, -1
-        node_at_inx, position_in_block = self.find_block_item_and_sites_count(event.place, event.is_insertion)
+        node_at_inx, position_in_block = self.block_tree.search(self.block_tree.root, event.place)
         if event.is_insertion:
             if event.place == 0:
                 return EventSubTypes.INSERTION_AT_START, node_at_inx, position_in_block
@@ -76,8 +71,6 @@ class SequenceNodeAsTree:
 
     def calculate_deletion_event(self, event: IndelEvent, event_type: EventSubTypes, avl_node: AVLNode,
                                  position_in_block: int):
-        # seq_len_up_to_block: int = (seq_length_with_block - avl_node.bl.inserted_seq_count -
-        #                             avl_node.bl.copy_sites_count)
         if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED:  # this case seems covered
             block_item = Block(
                 index_in_predecessor=avl_node.bl.index_in_predecessor + position_in_block + event.length,
