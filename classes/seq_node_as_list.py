@@ -137,7 +137,11 @@ class SequenceNodeAsList:
         return self.my_length
 
     def get_dto(self) -> dict:
-        blocks: list[str] = list(map(lambda x: x.get_block_str(), self.blck_list))
+        blocks: list[str] = list(map(lambda x: x.get_dto_str(), self.blck_list))
         length: int = self.get_length()
         return {'blocks': blocks, 'length': length}
 
+    def get_blocklist_str(self) -> dict:
+        blocks: list[str] = list(map(lambda x: x.get_block_str(), self.blck_list))
+        length: int = self.get_length()
+        return {'blocks': blocks, 'length': length}
