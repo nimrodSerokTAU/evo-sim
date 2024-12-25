@@ -21,8 +21,10 @@ class SequenceNodeAsList:
                 return i, agg_seq_length
         return -1, agg_seq_length
 
+
     def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, int, int]:
         cb_index, seq_length_with_block = self.find_block_index_and_sites_count(event.place)
+        # cb_index is the index of the current block
         block_at_inx: Block = self.blck_list[cb_index]
         seq_len_up_to_block: int = (seq_length_with_block - block_at_inx.inserted_seq_count -
                                     block_at_inx.copy_sites_count)
@@ -135,7 +137,7 @@ class SequenceNodeAsList:
         return self.my_length
 
     def get_dto(self) -> dict:
-        blocks: list[str] = list(map(lambda x: x.get_dto_str(), self.blck_list))
+        blocks: list[str] = list(map(lambda x: x.get_block_str(), self.blck_list))
         length: int = self.get_length()
         return {'blocks': blocks, 'length': length}
 

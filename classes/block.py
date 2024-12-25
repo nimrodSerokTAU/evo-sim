@@ -28,5 +28,9 @@ class Block:
     def get_dto_str(self) -> str:
         return f"predecessor index: {self.index_in_predecessor}, #copied sites: {self.copy_sites_count}, inserted len: {self.inserted_seq_count}"
 
+    def get_block_str(self) -> str:
+        return f"{self.index_in_predecessor}|{self.copy_sites_count}|{self.inserted_seq_count}"
+
+
     def is_redundant(self):
         return self.copy_sites_count == 0 and self.inserted_seq_count == 0

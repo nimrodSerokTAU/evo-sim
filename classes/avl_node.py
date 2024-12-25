@@ -1,4 +1,4 @@
-from typing import Self
+from typing_extensions import Self
 from classes.block import Block
 
 class AVLNode:
@@ -78,6 +78,10 @@ class AVLNode:
     def get_dto_str(self) -> str:
         return f"id: {self.id}, predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, " + \
             f"inserted len: {self.bl.inserted_seq_count}, length_under_including: {self.length_under_including}"
+
+    def get_block_str(self) -> str:
+        return f"{self.bl.index_in_predecessor}|{self.bl.copy_sites_count}|{self.bl.inserted_seq_count}"
+
 
     def get_clean_dto_str(self) -> str:
         return f"predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, inserted len: {self.bl.inserted_seq_count}"
