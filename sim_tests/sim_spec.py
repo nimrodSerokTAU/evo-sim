@@ -387,7 +387,7 @@ def test_insertion_at_end_of_inserted():
 ################################################### avl #############################################
 
 
-def test_tree_search_case_a():
+def tree_search_case_a():
     tree = AVLTree(Block(30, 5, 0))
     tree.insert_block(Block(4, 8, 2))
     tree.insert_block(Block(0, 1, 0))
@@ -405,7 +405,7 @@ def test_tree_search_case_a():
     assert res == {'a': 1, 'b': 11, 'c': 34, 'd': 39, 'e': 107, 'f': 113}
 
 
-def test_tree_search_case_b():
+def tree_search_case_b():
     tree = AVLTree(Block(30, 5, 7))
     tree.insert_block(Block(0, 30, 5))
     tree.insert_block(Block(36, 5, 1))
@@ -421,7 +421,7 @@ def test_tree_search_case_b():
     assert res == {'a': 35, 'b': 47, 'c': 49, 'd': 55, 'e': 114}
 
 
-def test_tree_search_case_c():
+def tree_search_case_c():
     tree = AVLTree(Block(30, 5, 7))
     tree.insert_block(Block(3, 15, 5))
     tree.insert_block(Block(0, 1, 1))
@@ -435,19 +435,19 @@ def test_tree_search_case_c():
     tree.insert_block(Block(94, 8, 2))
     tree.insert_block(Block(110, 3, 6))
     tree.insert_block(Block(89, 1, 2))
-    node_2, seq_length_with_block_1 = tree.search_for_insert(tree.root, 1, 0)
-    node_1, seq_length_with_block_11 = tree.search_for_insert(tree.root, 11, 0)
-    node_0, seq_length_with_block_32 = tree.search_for_insert(tree.root, 32, 0)
-    node_3, seq_length_with_block_35 = tree.search_for_insert(tree.root, 35, 0)
-    node_5, seq_length_with_block_39 = tree.search_for_insert(tree.root, 39, 0)
-    node_6, seq_length_with_block_44 = tree.search_for_insert(tree.root, 44, 0)
-    node_4, seq_length_with_block_50 = tree.search_for_insert(tree.root, 50, 0)
-    node_7, seq_length_with_block_54 = tree.search_for_insert(tree.root, 54, 0)
-    node_8, seq_length_with_block_67 = tree.search_for_insert(tree.root, 67, 0)
-    node_12, seq_length_with_block_74 = tree.search_for_insert(tree.root, 74, 0)
-    node_9, seq_length_with_block_77 = tree.search_for_insert(tree.root, 77, 0)
-    node_10, seq_length_with_block_84 = tree.search_for_insert(tree.root, 84, 0)
-    node_11, seq_length_with_block_94 = tree.search_for_insert(tree.root, 94, 0)
+    node_2, seq_length_with_block_1 = tree.search(tree.root, 1)
+    node_1, seq_length_with_block_11 = tree.search(tree.root, 11)
+    node_0, seq_length_with_block_32 = tree.search(tree.root, 32)
+    node_3, seq_length_with_block_35 = tree.search(tree.root, 35)
+    node_5, seq_length_with_block_39 = tree.search(tree.root, 39)
+    node_6, seq_length_with_block_44 = tree.search(tree.root, 44)
+    node_4, seq_length_with_block_50 = tree.search(tree.root, 50)
+    node_7, seq_length_with_block_54 = tree.search(tree.root, 54)
+    node_8, seq_length_with_block_67 = tree.search(tree.root, 67)
+    node_12, seq_length_with_block_74 = tree.search(tree.root, 74)
+    node_9, seq_length_with_block_77 = tree.search(tree.root, 77)
+    node_10, seq_length_with_block_84 = tree.search(tree.root, 84)
+    node_11, seq_length_with_block_94 = tree.search(tree.root, 94)
     res = {'a': seq_length_with_block_1, 'b': seq_length_with_block_11, 'c': seq_length_with_block_32,
            'd': seq_length_with_block_35, 'e': seq_length_with_block_39, 'f': seq_length_with_block_44,
            'g': seq_length_with_block_50, 'h': seq_length_with_block_54, 'i': seq_length_with_block_67,

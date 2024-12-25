@@ -1,5 +1,6 @@
 from classes.avl_node import AVLNode
 from classes.block import Block
+# https://visualgo.net/en/bst
 
 
 class AVLTree:
@@ -186,33 +187,19 @@ class AVLTree:
             current = current.left
         return current
 
-    def search_for_delete(self, root: AVLNode, place: int, father_including_seq_len: int) -> tuple[AVLNode, int]:
+    def search(self, root: AVLNode, position_in_block: int) -> tuple[AVLNode, int]:
         if not root:
             return root, 0
-        seq_len_up_to, seq_len_including = root.calc_seq_len_for_me(father_including_seq_len)
-        if seq_len_up_to <= place < seq_len_including:
-            return root, seq_len_including
-        if place < seq_len_up_to:
-            return self.search_for_delete(root.left, place, seq_len_including)
-        if place == seq_len_up_to:
-            return root, seq_len_including
-        if root.right is not None:
-            return self.search_for_delete(root.right, place, seq_len_including)
+        if root.left is not None:
+            if position_in_block < root.left.length_under_including:
+                return self.search(root.left, position_in_block)
+            position_in_block -= root.left.length_under_including
+        if position_in_block < root.get_my_own_length():
+            return root, position_in_block
+        elif root.right is not None:
+            return self.search(root.right, position_in_block - root.get_my_own_length())
         else:
-            return root, seq_len_including
-
-    def search_for_insert(self, root: AVLNode, place: int, father_including_seq_len: int) -> tuple[AVLNode, int]:
-        if not root:
-            return root, 0
-        seq_len_up_to, seq_len_including = root.calc_seq_len_for_me(father_including_seq_len)
-        if seq_len_up_to <= place < seq_len_including:
-            return root, seq_len_including
-        if place < seq_len_up_to:
-            return self.search_for_insert(root.left, place, seq_len_including)
-        if root.right is not None:
-            return self.search_for_insert(root.right, place, seq_len_including)
-        else:
-            return root, seq_len_including
+            return root, position_in_block
 
     def inorder_traversal(self, root: AVLNode, res_list: list[AVLNode]):
         if root:
