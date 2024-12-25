@@ -79,7 +79,7 @@ class SequenceNodeAsList:
             first_block_copy_count = event.place - seq_len_up_to_block
             block_item = Block(index_in_predecessor=block_at_inx.index_in_predecessor + first_block_copy_count,
                                copy_sites_count=block_at_inx.copy_sites_count - first_block_copy_count,
-                               inserted_seq_count=0)
+                               inserted_seq_count=block_at_inx.inserted_seq_count)
             block_at_inx.copy_sites_count = first_block_copy_count
             block_at_inx.update_insert_count(event.length)
             self.blck_list.insert(cb_index + 1, block_item)

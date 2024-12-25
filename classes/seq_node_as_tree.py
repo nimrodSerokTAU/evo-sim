@@ -14,7 +14,7 @@ class SequenceNodeAsTree:
         self.block_tree = AVLTree(bl = Block(index_in_predecessor=0, copy_sites_count=self.my_length,
                                              inserted_seq_count=0))
 
-    def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, AVLNode, int]:
+    def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, AVLNode | None, int]:
         if event.length < 0 or event.place > self.block_tree.root.length_under_including or \
                 (not event.is_insertion and event.place == self.block_tree.root.length_under_including):
             return EventSubTypes.OUT_OF_SEQUENCE, None, -1

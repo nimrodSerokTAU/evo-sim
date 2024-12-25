@@ -384,6 +384,20 @@ def test_insertion_at_end_of_inserted():
         'length': 123}
 
 
+def test_list_case_el_a():
+    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 12, inserted len: 2',
+            'predecessor index: 12, #copied sites: 18, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 0',
+            'predecessor index: 47, #copied sites: 53, inserted len: 0'],
+        'length': 95}
+
 ################################################### avl #############################################
 
 
@@ -919,3 +933,18 @@ def test_avl_insertion_at_end_of_inserted():
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 6'],
         'length': 123}
+
+
+def test_avl_case_el_a():
+    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 12, inserted len: 2',
+            'predecessor index: 12, #copied sites: 18, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 0',
+            'predecessor index: 47, #copied sites: 53, inserted len: 0'],
+        'length': 95}
