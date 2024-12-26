@@ -6,10 +6,12 @@ from enums import EventSubTypes
 
 
 class SequenceNodeAsTree:
+    id: int
     block_tree: AVLTree
     my_length: int
 
-    def __init__(self, original_sequence_length: int):
+    def __init__(self, seq_id: int, original_sequence_length: int):
+        self.id = seq_id
         self.my_length = original_sequence_length
         self.block_tree = AVLTree(bl = Block(index_in_predecessor=0, copy_sites_count=self.my_length,
                                              inserted_seq_count=0))

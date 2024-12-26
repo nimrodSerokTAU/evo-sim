@@ -1,9 +1,9 @@
-from classes.avl_node import AVLNode
 from classes.avl_tree import AVLTree
 from classes.block import Block
 from classes.indel_event import IndelEvent
 from classes.seq_node_as_list import SequenceNodeAsList
 from classes.seq_node_as_tree import SequenceNodeAsTree
+from classes.seq_node_naive import SequenceNodeNaive
 from classes.sim_config import SimConfiguration
 
 basic_config: SimConfiguration = SimConfiguration(
@@ -12,7 +12,7 @@ basic_config: SimConfiguration = SimConfiguration(
 
 
 def test_insertion_including_inside_copied_and_at_end():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -26,7 +26,7 @@ def test_insertion_including_inside_copied_and_at_end():
 
 
 def test_deletion_case_start_on_copy_start_and_contained():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=35))
@@ -40,7 +40,7 @@ def test_deletion_case_start_on_copy_start_and_contained():
 
 
 def test_deletion_case_start_on_copy_mid_and_contained():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=6, place=10))
@@ -55,7 +55,7 @@ def test_deletion_case_start_on_copy_mid_and_contained():
 
 
 def test_deletion_case_start_on_copy_mid_and_not_contained():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=9, place=37))
@@ -69,7 +69,7 @@ def test_deletion_case_start_on_copy_mid_and_not_contained():
 
 
 def test_deletion_case_start_on_copy_mid_and_continue_to_next_block():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=37))
@@ -83,7 +83,7 @@ def test_deletion_case_start_on_copy_mid_and_continue_to_next_block():
 
 
 def test_deletion_case_start_on_insert_contained():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=43))
@@ -97,7 +97,7 @@ def test_deletion_case_start_on_insert_contained():
 
 
 def test_deletion_case_start_on_insert_continue_to_next():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=19, place=42))
@@ -111,7 +111,7 @@ def test_deletion_case_start_on_insert_continue_to_next():
 
 
 def test_insertion_inside_insertion():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
@@ -129,7 +129,7 @@ def test_insertion_inside_insertion():
 
 
 def test_deletion_case_of_deleting_several_blocks():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
@@ -146,7 +146,7 @@ def test_deletion_case_of_deleting_several_blocks():
 
 
 def test_deletion_case_on_copied_more_than_end():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=111))
@@ -160,7 +160,7 @@ def test_deletion_case_on_copied_more_than_end():
 
 
 def test_deletion_case_on_inserted_more_than_end():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=8, place=117))
@@ -175,7 +175,7 @@ def test_deletion_case_on_inserted_more_than_end():
 
 
 def test_deletion_before_start_not_affecting():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=-5))
@@ -189,7 +189,7 @@ def test_deletion_before_start_not_affecting():
 
 
 def test_deletion_before_start_affecting():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=11, place=-5))
@@ -203,7 +203,7 @@ def test_deletion_before_start_affecting():
 
 
 def test_deletion_after_end_not_affecting():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=127))
@@ -217,7 +217,7 @@ def test_deletion_after_end_not_affecting():
 
 
 def test_insertion_before_start():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -233,7 +233,7 @@ def test_insertion_before_start():
 
 
 def test_insertion_before_start_not_affecting():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=-4))
@@ -247,7 +247,7 @@ def test_insertion_before_start_not_affecting():
 
 
 def test_insertion_after_end_not_affecting():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=119))
@@ -261,7 +261,7 @@ def test_insertion_after_end_not_affecting():
 
 
 def test_insertion_at_start():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=42))
@@ -275,7 +275,7 @@ def test_insertion_at_start():
 
 
 def test_deletion_at_start_of_copied():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
     res = new_organism.get_dto()
@@ -287,7 +287,7 @@ def test_deletion_at_start_of_copied():
 
 
 def test_deletion_at_start_insertion_only():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
@@ -301,7 +301,7 @@ def test_deletion_at_start_insertion_only():
 
 
 def test_deletion_at_end_of_copied():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
     res = new_organism.get_dto()
@@ -313,7 +313,7 @@ def test_deletion_at_end_of_copied():
 
 
 def test_deletion_after_end_of_copied():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=105))
     res = new_organism.get_dto()
@@ -325,7 +325,7 @@ def test_deletion_after_end_of_copied():
 
 
 def test_deletion_at_end_of_inserted():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -340,7 +340,7 @@ def test_deletion_at_end_of_inserted():
 
 
 def test_deletion_after_end_of_inserted():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -355,7 +355,7 @@ def test_deletion_after_end_of_inserted():
 
 
 def test_deletion_at_end_of_copied_plus_inserted():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -370,7 +370,7 @@ def test_deletion_at_end_of_copied_plus_inserted():
 
 
 def test_insertion_at_end_of_inserted():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -385,7 +385,7 @@ def test_insertion_at_end_of_inserted():
 
 
 def test_list_case_el_a():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
@@ -471,7 +471,7 @@ def test_tree_search_case_c():
 
 
 def test_avl_insertion_elya_a():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     res = new_organism.get_dto()
     assert res == {
@@ -482,7 +482,7 @@ def test_avl_insertion_elya_a():
 
 
 def test_avl_deletion_elya_b():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     res = new_organism.get_dto()
@@ -495,7 +495,7 @@ def test_avl_deletion_elya_b():
 
 
 def test_avl_deletion_elya_c():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
@@ -510,7 +510,7 @@ def test_avl_deletion_elya_c():
 
 
 def test_avl_deletion_elya_d():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
@@ -527,7 +527,7 @@ def test_avl_deletion_elya_d():
 
 
 def test_avl_deletion_elya_e():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
@@ -545,7 +545,7 @@ def test_avl_deletion_elya_e():
 
 
 def test_avl_deletion_elya_f():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
@@ -564,7 +564,7 @@ def test_avl_deletion_elya_f():
 
 
 def test_avl_insertion_including_inside_copied_and_at_end():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -577,7 +577,7 @@ def test_avl_insertion_including_inside_copied_and_at_end():
         'length': 119}
     
 def test_avl_deletion_case_start_on_copy_start_and_contained():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=35))
@@ -591,7 +591,7 @@ def test_avl_deletion_case_start_on_copy_start_and_contained():
 
 
 def test_avl_deletion_case_start_on_copy_mid_and_contained():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=6, place=10))
@@ -606,7 +606,7 @@ def test_avl_deletion_case_start_on_copy_mid_and_contained():
 
 
 def test_avl_deletion_case_start_on_copy_mid_and_not_contained():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=9, place=37))
@@ -620,7 +620,7 @@ def test_avl_deletion_case_start_on_copy_mid_and_not_contained():
 
 
 def test_avl_deletion_case_start_on_copy_mid_and_continue_to_next_block():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=37))
@@ -634,7 +634,7 @@ def test_avl_deletion_case_start_on_copy_mid_and_continue_to_next_block():
 
 
 def test_avl_deletion_case_start_on_insert_contained():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=43))
@@ -648,7 +648,7 @@ def test_avl_deletion_case_start_on_insert_contained():
 
 
 def test_avl_deletion_case_start_on_insert_continue_to_next():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=19, place=42))
@@ -662,7 +662,7 @@ def test_avl_deletion_case_start_on_insert_continue_to_next():
 
 
 def test_avl_insertion_inside_insertion():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
@@ -680,7 +680,7 @@ def test_avl_insertion_inside_insertion():
 
 
 def test_avl_deletion_case_of_deleting_several_blocks():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=41))
@@ -697,7 +697,7 @@ def test_avl_deletion_case_of_deleting_several_blocks():
 
 
 def test_avl_deletion_case_on_copied_more_than_end():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=111))
@@ -711,7 +711,7 @@ def test_avl_deletion_case_on_copied_more_than_end():
 
 
 def test_avl_deletion_case_on_inserted_more_than_end():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=8, place=117))
@@ -726,7 +726,7 @@ def test_avl_deletion_case_on_inserted_more_than_end():
 
 
 def test_avl_deletion_before_start_not_affecting():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=-5))
@@ -740,7 +740,7 @@ def test_avl_deletion_before_start_not_affecting():
 
 
 def test_avl_deletion_before_start_affecting():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=11, place=-5))
@@ -754,7 +754,7 @@ def test_avl_deletion_before_start_affecting():
 
 
 def test_avl_deletion_after_end_not_affecting():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=127))
@@ -768,7 +768,7 @@ def test_avl_deletion_after_end_not_affecting():
 
 
 def test_avl_insertion_before_start():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -784,7 +784,7 @@ def test_avl_insertion_before_start():
 
 
 def test_avl_insertion_before_start_not_affecting():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=-4))
@@ -798,7 +798,7 @@ def test_avl_insertion_before_start_not_affecting():
 
 
 def test_avl_insertion_after_end_not_affecting():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=119))
@@ -812,7 +812,7 @@ def test_avl_insertion_after_end_not_affecting():
 
 
 def test_avl_insertion_at_start():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=42))
@@ -826,7 +826,7 @@ def test_avl_insertion_at_start():
 
 
 def test_avl_deletion_at_start_of_copied():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
     res = new_organism.get_clean_dto()
@@ -838,7 +838,7 @@ def test_avl_deletion_at_start_of_copied():
 
 
 def test_avl_deletion_at_start_insertion_only():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
@@ -852,7 +852,7 @@ def test_avl_deletion_at_start_insertion_only():
 
 
 def test_avl_deletion_at_end_of_copied():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
     res = new_organism.get_clean_dto()
@@ -864,7 +864,7 @@ def test_avl_deletion_at_end_of_copied():
 
 
 def test_avl_deletion_after_end_of_copied():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=105))
     res = new_organism.get_clean_dto()
@@ -876,7 +876,7 @@ def test_avl_deletion_after_end_of_copied():
 
 
 def test_avl_deletion_at_end_of_inserted():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -891,7 +891,7 @@ def test_avl_deletion_at_end_of_inserted():
 
 
 def test_avl_deletion_after_end_of_inserted():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -906,7 +906,7 @@ def test_avl_deletion_after_end_of_inserted():
 
 
 def test_avl_deletion_at_end_of_copied_plus_inserted():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -921,7 +921,7 @@ def test_avl_deletion_at_end_of_copied_plus_inserted():
 
 
 def test_avl_insertion_at_end_of_inserted():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -936,7 +936,7 @@ def test_avl_insertion_at_end_of_inserted():
 
 
 def test_avl_case_el_a():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
@@ -948,3 +948,24 @@ def test_avl_case_el_a():
             'predecessor index: 30, #copied sites: 5, inserted len: 0',
             'predecessor index: 47, #copied sites: 53, inserted len: 0'],
         'length': 95}
+
+
+################################################### naive #############################################
+
+
+def test_naive_insertion_including_inside_copied_and_at_end():
+    new_organism = SequenceNodeNaive(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    res = new_organism.get_dto()
+    assert res == {
+        'seq': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+                100, 101, 102, 103, 104,
+                30, 31, 32, 33, 34,
+                105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
+                35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+                60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84,
+                85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+                117, 118],
+        'length': 119}
