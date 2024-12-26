@@ -2,10 +2,9 @@ from enum import Enum
 
 
 class SimulationTypes(Enum):
-    JUKES_CANTOR = 'Jukes Cantor'
-    NAIVE_GILLESPIE = 'naive Gillespie'
-    EFFICIENT_GILLESPIE = 'efficient Gillespie'
-    BLOCK_LIST = 'block_list'
+    NAIVE = 0,
+    BLOCK_LIST = 1,
+    BLOCK_TREE = 2,
 
 
 class EventSubTypes(Enum):

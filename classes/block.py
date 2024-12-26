@@ -1,8 +1,3 @@
-import random as rnd
-
-from utils import calc_trunc_zipf
-
-
 class Block:
     index_in_predecessor: int
     copy_sites_count: int
