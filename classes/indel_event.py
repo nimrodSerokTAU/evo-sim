@@ -12,3 +12,5 @@ class IndelEvent:
         if place < 0: 
             self.length = length - abs(place)
             self.place = 0
+
+

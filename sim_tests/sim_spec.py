@@ -7,8 +7,8 @@ from classes.seq_node_naive import SequenceNodeNaive
 from classes.sim_config import SimConfiguration
 
 basic_config: SimConfiguration = SimConfiguration(
-    original_sequence=None, original_sequence_length=100, substitutions_per_site_rate=1, indel_length_alpha=1.7,
-    indel_truncated_length=50, is_use_nucleotides=True, indel_per_sub_ratio=0.01)
+    original_sequence_length=100, indel_length_alpha=1.7, indel_truncated_length=50, deletion_extra_edge_length=49,
+    rate_ins=0.01, rate_del=0.01)
 
 
 def test_insertion_including_inside_copied_and_at_end():
