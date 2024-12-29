@@ -137,3 +137,5 @@ class SequenceNodeAsTree:
         length: int = self.get_length()
         return {'blocks': blocks, 'length': length}
 
+    def blocks_iterator(self):
+        pass #TODO

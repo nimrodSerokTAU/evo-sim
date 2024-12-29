@@ -147,3 +147,6 @@ class SequenceNodeAsList:
         blocks: list[str] = list(map(lambda x: x.get_block_str(), self.blck_list))
         length: int = self.get_length()
         return {'blocks': blocks, 'length': length}
+
+    def blocks_iterator(self):
+        return self.blck_list.__iter__()

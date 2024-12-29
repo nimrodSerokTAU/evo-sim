@@ -10,7 +10,7 @@ from classes.seq_node_as_tree import SequenceNodeAsTree
 
 
 def test_list():
-    new_organism = SequenceNodeAsList(original_sequence_length=100)
+    new_organism = SequenceNodeAsList(seq_id=0 ,original_sequence_length=100)
 
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
@@ -23,7 +23,7 @@ def test_list():
     
 
 def test_tree():
-    new_organism = SequenceNodeAsTree(original_sequence_length=100)
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
 
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
