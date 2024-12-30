@@ -23,27 +23,29 @@ class SuperSequence:
         self._inserted_sequence_counter = root_sequence_size + 1
 
     def reference_position(self, position_ref: sllistnode):
-        if (not position_ref().isColumn):
-            position_ref().isColumn = True
+        print("reference:",position_ref)
+        if (not position_ref()['is_column']):
+            position_ref()['is_column'] = True
             self._msa_seq_length += 1
         
 
     def set_absolute_positions(self):
         i = 0
         for column in self._sequence:
+            print(column)
             if not column.get('is_column', False): 
                 continue
             column['absolute_position'] = i
             i += 1
 
-    def insert_item_at_position(self, ref_position, item, is_to_save):
-        new_column = {'item': item, 'is_column': False}
+    def insert_item_at_position(self, ref_position, position, is_to_save):
+        new_column = {'position': position, 'is_column': False}
 
         if is_to_save:
             new_column['is_column'] = True
             self._msa_seq_length += 1
-
-        return self._sequence.insertafter(new_column, ref_position)
+        self._sequence.insertafter(new_column, ref_position)
+        return ref_position.next
 
 
 
@@ -52,12 +54,19 @@ class SuperSequence:
 
     def increment_num_inserted_positions(self):
         self._inserted_sequence_counter += 1
+        return self._inserted_sequence_counter
+    
+    def increment_leaf_num(self):
+        self._leaf_num += 1
 
     def get_original_seq_size(self):
         return self._original_seq_size
     
-    def get_msa_length(self):
+    def get_msa_length(self) -> int:
         return self._msa_seq_length
+    
+    def get_number_of_sequences(self) -> int:
+        return self._num_sequences
     
     def print_seq(self):
         print(self._sequence)
@@ -67,6 +76,9 @@ class SuperSequence:
     
     def get_iterator(self):
         return self._sequence.iternodes()
+    
+    def __repr__(self):
+        return "·".join([str(node["position"]) for node in self._sequence])
 
 
 # seq = SuperSequence(10, 5)
