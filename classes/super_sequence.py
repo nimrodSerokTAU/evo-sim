@@ -1,9 +1,9 @@
 
-from llist import sllist,sllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllist
+from llist import dllist,dllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllist
 
 
 class SuperSequence:
-    _sequence: sllist
+    _sequence: dllist
     _msa_seq_length: int
     _leaf_num: int
     _original_seq_size: int
@@ -14,16 +14,15 @@ class SuperSequence:
         self._msa_seq_length = 0
         self._leaf_num = 0
         self._num_sequences = num_sequences
-        self._sequence = sllist()
+        self._sequence = dllist()
         
-        for i in range(1, root_sequence_size + 1):
+        for i in range(0, root_sequence_size + 1):
             column = {'position': i, 'is_column': False}
             self._sequence.append(column)
             
         self._inserted_sequence_counter = root_sequence_size + 1
 
-    def reference_position(self, position_ref: sllistnode):
-        print("reference:",position_ref)
+    def reference_position(self, position_ref: dllistnode):
         if (not position_ref()['is_column']):
             position_ref()['is_column'] = True
             self._msa_seq_length += 1
@@ -32,7 +31,6 @@ class SuperSequence:
     def set_absolute_positions(self):
         i = 0
         for column in self._sequence:
-            print(column)
             if not column.get('is_column', False): 
                 continue
             column['absolute_position'] = i
@@ -46,6 +44,15 @@ class SuperSequence:
             self._msa_seq_length += 1
         self._sequence.insertafter(new_column, ref_position)
         return ref_position.next
+    
+    def insert_item_before_position(self, ref_position, position, is_to_save):
+        new_column = {'position': position, 'is_column': False}
+
+        if is_to_save:
+            new_column['is_column'] = True
+            self._msa_seq_length += 1
+        self._sequence.insertbefore(new_column, ref_position)
+
 
 
 
@@ -78,9 +85,15 @@ class SuperSequence:
         return self._sequence.iternodes()
     
     def __repr__(self):
-        return "·".join([str(node["position"]) for node in self._sequence])
+        zip()
+        # positions = [str(node["position"]) for node in self._sequence]
+        # absolute_positions = [str(node["absolute_position"]) for node in self._sequence]
+        # super_seq_str = "\n".join(map(str,zip(positions, absolute_positions)))
 
+        super_seq_str = "·".join([str(node["position"]) for node in self._sequence])
 
-# seq = SuperSequence(10, 5)
-# seq.insert_item_at_position(seq[3], 30, True)
-# seq.print_seq()
+        # super_seq_str += "\n"
+        # super_seq_str += "~".join([str(node["absolute_position"]) for node in self._sequence])
+
+        return super_seq_str
+

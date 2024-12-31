@@ -31,10 +31,24 @@ def test_tree():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
     # new_organism.calculate_event(IndelEvent(is_insertion=False, length=95, place=0))
 
-    res = new_organism.get_block_list_str()
+    res = new_organism.get_blocklist_str()
 
     print(res["blocks"])
     return res["blocks"]
 
 
 assert test_list() == test_tree()
+
+
+def test_insertion_at_0():
+    new_organism = SequenceNodeAsList(seq_id=0 ,original_sequence_length=100)
+
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=0))
+    # new_organism.calculate_event(IndelEvent(is_insertion=False, length=91, place=0))
+
+    res = new_organism.get_blocklist_str()
+    print(res["blocks"])
+    return res["blocks"]
+
+
+test_insertion_at_0()

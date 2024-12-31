@@ -3,7 +3,7 @@ from sequence import Sequence
 
 
 class Msa:
-    _aligned_sequences: list[list[bool]]
+    _aligned_sequences: dict[int, str]
     _substitutions: list[str]
     _msa_length: int
     _number_of_sequences: int
@@ -13,7 +13,7 @@ class Msa:
         self._number_of_sequences = super_seq.get_number_of_sequences()
         self._msa_length = super_seq.get_msa_length()
         super_seq.set_absolute_positions()
-        self._aligned_sequence = {}  # Using dict instead of vector for indexed access
+        self._aligned_sequences = {}
         
     def compute_msa(self, sequences: list[Sequence]):
         """
@@ -22,68 +22,45 @@ class Msa:
         Args:
             sequences: List of Sequence objects
         """
-        for seq in sequences:
-            total_size = 0
-            current_position = 0
-            last_position = 0
-            position_difference = 0
-            cumulated_difference = 1
-            
+        for seq in sequences:            
             sequence_node_id = seq.get_sequence_node_id()
             
             # Initialize the aligned sequence for this ID if not exists
-            if sequence_node_id not in self._aligned_sequence:
-                self._aligned_sequence[sequence_node_id] = []
+            if sequence_node_id not in self._aligned_sequences:
+                self._aligned_sequences[sequence_node_id] = []
             
             # Handle empty sequence (only gaps)
             if len(seq) == 0:
-                self._aligned_sequence[sequence_node_id].append(-self._msa_length)
+                self._aligned_sequences[sequence_node_id].append(-self._msa_length)
                 continue
             
-            # Get first site and handle initial gaps
-            previous_site = seq[0]  # Assuming seq supports indexing
-            last_position = previous_site()
-            print(last_position)
-            last_position = previous_site()['absolute_position']
-            if last_position > 0:
-                self._aligned_sequence[sequence_node_id].append(-last_position)
-                total_size += last_position
-            
-            # Process remaining sites
-            for current_site in seq[1:]:  # Skip first element as it's already processed
-                
-                current_position = current_site()#['absolute_position']
-                print(current_position)
-                current_position = current_site()['absolute_position']
+            previous_absolute_position = 0
+            seq_str = ""
 
-                position_difference = current_position - last_position - 1
-                
-                if position_difference == 0:
-                    cumulated_difference += 1
-                
-                if position_difference > 0:
-                    self._aligned_sequence[sequence_node_id].append(cumulated_difference)
-                    self._aligned_sequence[sequence_node_id].append(-position_difference)
-                    total_size += (cumulated_difference + position_difference)
-                    cumulated_difference = 1
-                
-                if total_size > self._msa_length:
-                    raise ValueError("Sequence lengths mismatch in fill_msa")
-                
-                last_position = current_position
+            # previous_absolute_position = seq[0]()['absolute_position']
+            # if previous_absolute_position > 0:
+            #     seq_str += "-" * previous_absolute_position
+            # else:
+            #     seq_str += "X"
+
+            is_last_site_gap = False
+            for site in seq[1:]:
+                current_absolute_position = site()['absolute_position']
+                if (current_absolute_position-previous_absolute_position) > 1:
+                    seq_str += "-" * ((current_absolute_position - previous_absolute_position)-1)
+                    is_last_site_gap = True
+                else:
+                    seq_str += "XX" if is_last_site_gap else "X"
+                    is_last_site_gap = False
+
+                previous_absolute_position = current_absolute_position
+
             
-            # Handle final positions
-            if cumulated_difference > 0 and (total_size != self._msa_length):
-                self._aligned_sequence[sequence_node_id].append(cumulated_difference)
-                total_size += cumulated_difference
-            
-            if total_size < self._msa_length:
-                self._aligned_sequence[sequence_node_id].append(-(self._msa_length - total_size))
-            
-            # Reset for next sequence
-            cumulated_difference = 1
-            last_position = 0
-            total_size = 0
+            if (self._msa_length - current_absolute_position)  >  0:
+                seq_str += "-" * (self._msa_length - current_absolute_position-1)
+
+
+            self._aligned_sequences[sequence_node_id] = seq_str
     
     def get_aligned_sequence(self):
         """Return the aligned sequence dictionary"""
@@ -107,4 +84,8 @@ class Msa:
         
         return '\n'.join(msa_lines)
 
-
+    def __repr__(self):
+        msa_str = ""
+        for key,val in self._aligned_sequences.items():
+            msa_str += f">{key}\n{val}\n"
+        return msa_str
