@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from llist import dllistnode #https://ajakubek.github.io/python-llist/index.html#llist.dllistnode
+from llist import sllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllistnode
 
 from super_sequence import SuperSequence
 from block import Block
@@ -11,7 +11,7 @@ class Sequence:
     _super_seq: SuperSequence
     _is_save_sequence: bool
     _node_id: int
-    _sequence: list[dllistnode]
+    _sequence: list[sllistnode]
 
     def __init__(self, super_seq: SuperSequence, is_save_seq: bool, node_id: int):
         self._super_seq = super_seq
@@ -88,7 +88,7 @@ class Sequence:
     def get_super_sequence(self) -> SuperSequence:
         return self._super_seq
     
-    def get_ref_to_super_sequence(self, pos) -> dllistnode:
+    def get_ref_to_super_sequence(self, pos) -> sllistnode:
         return self._sequence[pos]
     
     def get_sequence_node_id(self) -> int:
@@ -100,5 +100,5 @@ class Sequence:
     def __len__(self) -> int:
         return len(self._sequence)
     
-    def __getitem__(self, index) -> dllistnode:
+    def __getitem__(self, index) -> sllistnode:
         return self._sequence[index]

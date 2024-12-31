@@ -1,9 +1,9 @@
 
-from llist import dllist,dllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllist
+from llist import sllist,sllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllist
 
 
 class SuperSequence:
-    _sequence: dllist
+    _sequence: sllist
     _msa_seq_length: int
     _leaf_num: int
     _original_seq_size: int
@@ -14,7 +14,7 @@ class SuperSequence:
         self._msa_seq_length = 0
         self._leaf_num = 0
         self._num_sequences = num_sequences
-        self._sequence = dllist()
+        self._sequence = sllist()
         
         for i in range(0, root_sequence_size + 1):
             column = {'position': i, 'is_column': False}
@@ -22,7 +22,7 @@ class SuperSequence:
             
         self._inserted_sequence_counter = root_sequence_size + 1
 
-    def reference_position(self, position_ref: dllistnode):
+    def reference_position(self, position_ref: sllistnode):
         if (not position_ref()['is_column']):
             position_ref()['is_column'] = True
             self._msa_seq_length += 1
