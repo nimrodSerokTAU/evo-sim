@@ -23,10 +23,6 @@ grandchild_seq = Sequence(super_seq, True, 2)
 blocks = [Block(0,5,2),Block(5,15,0),Block(23,8,1)]
 grandchild_seq.generate_sequence(blocks, child_seq)
 
-# print(root_seq)
-# print(child_seq)
-# print(grandchild_seq)
-# print(super_seq)
 
 msa = Msa(super_seq)
 msa.compute_msa([root_seq, child_seq, grandchild_seq])

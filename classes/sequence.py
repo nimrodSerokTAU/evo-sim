@@ -32,7 +32,7 @@ class Sequence:
         Generate a sequence based on a blocklist and parent sequence.
         
         Args:
-            blocklist: List of blocks containing position, length, and insertion info
+            blocks: iterator of blocks containing position, length, and insertion info
             parent_seq: Parent sequence object containing the base sequence
         """
         
