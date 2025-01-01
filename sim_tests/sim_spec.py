@@ -953,7 +953,7 @@ def test_avl_case_el_a():
 ################################################### naive #############################################
 
 
-def test_naive_insertion_including_inside_copied_and_at_end():
+def test_naive_insertion_including_inside_copied_and_at_end_regular_dto():
     new_organism = SequenceNodeNaive(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
@@ -968,4 +968,18 @@ def test_naive_insertion_including_inside_copied_and_at_end():
                 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84,
                 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
                 117, 118],
+        'length': 119}
+
+
+def test_naive_insertion_including_inside_copied_and_at_end_t():
+    new_organism = SequenceNodeNaive(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    res = new_organism.get_block_dto(100)
+    assert res == {
+         'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 5',
+            'predecessor index: 30, #copied sites: 5, inserted len: 12',
+            'predecessor index: 35, #copied sites: 65, inserted len: 2'],
         'length': 119}

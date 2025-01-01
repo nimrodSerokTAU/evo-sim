@@ -42,3 +42,36 @@ class SequenceNodeNaive:
     def get_dto(self) -> dict:
         return {'seq': self.seq, 'length': self.get_length()}
 
+    def get_block_dto(self, orig_seq_count: int) -> dict:
+        res: list[str] = []
+        prev_val: int = -1
+        block_start: int = self.seq[0]
+        copied_sites: int  = 0
+        inserted_len: int = 0
+        is_copied: bool = True
+        for i in self.seq:
+            if i == prev_val + 1:
+                if is_copied:
+                    copied_sites += 1
+                else:
+                    inserted_len += 1
+            elif i < orig_seq_count:
+                res.append(f'predecessor index: {block_start}, #copied sites: {copied_sites}, inserted len: {inserted_len}')
+                copied_sites = 1
+                inserted_len = 0
+                block_start = i
+                is_copied = True
+            elif is_copied:
+                is_copied = False
+                inserted_len += 1
+            else:
+                res.append(
+                    f'predecessor index: {block_start}, #copied sites: {copied_sites}, inserted len: {inserted_len}')
+                copied_sites = 0
+                inserted_len = 0
+                block_start = 0
+            prev_val = i
+        res.append(
+            f'predecessor index: {block_start}, #copied sites: {copied_sites}, inserted len: {inserted_len}')
+        return {'blocks': res, 'length': self.get_length()}
+
