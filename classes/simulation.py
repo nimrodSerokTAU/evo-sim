@@ -25,9 +25,9 @@ class Simulation:
     def __init__(self, input_tree_path: Path):
         self.newick = '(A:1,(B:1,(E:1,D:1):0.5):0.5);'  # TODO: Nimrod, read the file from the path and get it from there
         self.tree = Tree(self.newick)
-        self.config = SimConfiguration(original_sequence_length=100, indel_length_alpha=1.5,
-                                       indel_truncated_length=50, rate_ins=0.01, rate_del=0.01,
-                                       deletion_extra_edge_length=10)
+        self.config = SimConfiguration(original_sequence_length=20, indel_length_alpha=1.5,
+                                       indel_truncated_length=5, rate_ins=0.05, rate_del=0.05,
+                                       deletion_extra_edge_length=5)
         self.nodes_to_align = set()
         self.sim_nodes = [None]
         node: TreeNode = None
@@ -55,16 +55,20 @@ class Simulation:
         
         sequences_to_save = []
         for node in self.sim_nodes[1:]:
-            print(node.id)
             current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
-            current_seq.generate_sequence(node.seq_node_as_tree.blocks_iterator(), sequences[node.parent_id])
+            blocks = node.seq_node_as_tree.blocks_iterator()
+            print([str(block) for block in blocks])
+            print(node.id)
+
+            current_seq.generate_sequence(blocks, sequences[node.parent_id])
             sequences.append(current_seq)
             if node.id in self.nodes_to_align:
                 sequences_to_save.append(current_seq)
 
         self.msa = Msa(super_seq)
-
-        self.msa.compute_msa(sequences)
+        print(super_seq)
+        print("\n".join(str(x) for x in sequences_to_save))
+        self.msa.compute_msa(sequences_to_save)
 
 
     def get_events(self):

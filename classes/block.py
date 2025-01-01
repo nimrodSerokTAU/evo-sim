@@ -29,3 +29,6 @@ class Block:
 
     def is_redundant(self):
         return self.copy_sites_count == 0 and self.inserted_seq_count == 0
+
+    def __repr__(self):
+        return f"{self.index_in_predecessor}|{self.copy_sites_count}|{self.inserted_seq_count}"
