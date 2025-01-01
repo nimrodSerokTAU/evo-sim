@@ -73,7 +73,7 @@ def test_case_b():
 # assert test_insertion_at_0_list() == test_insertion_at_0_tree()
 
 
-def test_deletion_at_0_list():
+def deletion_at_0_list():
     new_organism = SequenceNodeAsList(seq_id=0 ,original_sequence_length=100)
 
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=5, place=0))
@@ -83,7 +83,7 @@ def test_deletion_at_0_list():
     print(res["blocks"])
     return res["blocks"]
 
-def test_deletion_at_0_tree():
+def deletion_at_0_tree():
     new_organism = SequenceNodeAsTree(seq_id=0 ,original_sequence_length=100)
 
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=5, place=0))
@@ -93,5 +93,7 @@ def test_deletion_at_0_tree():
     print(res["blocks"])
     return res["blocks"]
 
-
-assert test_deletion_at_0_list() == test_deletion_at_0_tree()
+def test_case_c():
+    list_res = deletion_at_0_list()
+    tree_res = deletion_at_0_tree()
+    assert list_res == tree_res
