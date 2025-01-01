@@ -138,4 +138,8 @@ class SequenceNodeAsTree:
         return {'blocks': blocks, 'length': length}
 
     def blocks_iterator(self):
-        pass #TODO
+        res_list: list[AVLNode] = []
+        self.block_tree.inorder_traversal(self.block_tree.root, res_list)
+        blocks: list[Block] = list(map(lambda x: x.bl, res_list))
+
+        return blocks
