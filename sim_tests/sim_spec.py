@@ -225,7 +225,7 @@ def test_insertion_before_start():
     res = new_organism.get_dto()
     assert res == {
         'blocks': [
-            'predecessor index: 0, #copied sites: 0, inserted len: 7',
+            'predecessor index: -1, #copied sites: 0, inserted len: 7',
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 2'],
@@ -268,7 +268,7 @@ def test_insertion_at_start():
     res = new_organism.get_dto()
     assert res == {
         'blocks': [
-            'predecessor index: 0, #copied sites: 0, inserted len: 12',
+            'predecessor index: -1, #copied sites: 0, inserted len: 12',
             'predecessor index: 0, #copied sites: 30, inserted len: 8',
             'predecessor index: 30, #copied sites: 70, inserted len: 0'],
         'length': 120}
@@ -294,7 +294,7 @@ def test_deletion_at_start_insertion_only():
     res = new_organism.get_dto()
     assert res == {
         'blocks': [
-            'predecessor index: 0, #copied sites: 0, inserted len: 9',
+            'predecessor index: -1, #copied sites: 0, inserted len: 9',
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 70, inserted len: 0'],
         'length': 114}
