@@ -56,4 +56,11 @@ def calc_msa_from_naive_nodes(sequences: list[list[int]], ancestors: list[int]) 
     return msa
 
 
+def get_msa_as_str_list(msa: list[list[int]], padding: int) -> list[str]:
+    res: list[str] = []
+    for seq in msa:
+        res.append(','.join([str(i).rjust(padding, ' ') for i in seq]))
+    return res
+
+
 
