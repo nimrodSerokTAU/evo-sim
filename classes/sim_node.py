@@ -17,11 +17,18 @@ class SimulatedNode:
     seq_node_as_list: SequenceNodeAsList
     seq_node_as_tree: SequenceNodeAsTree
 
-    def __init__(self, node_id: int, branch_length: float, config: SimConfiguration, father_seq_length: int):
+    def __init__(self, node_id: int, parent_id: int, branch_length: float, config: SimConfiguration, father_seq_length: int):
 
         self.id = node_id
+        self.parent_id = parent_id
+
         self.branch_length = branch_length
+        self.length_of_sequence_before = father_seq_length
+        self.length_of_sequence_after_events = -1
+        rnd.seed(config.random_seed)
+        np.random.seed(config.random_seed)
         self.list_of_events = self.create_events(config, father_seq_length)
+        config.random_seed += 1
 
     def create_events(self, config: SimConfiguration, father_seq_length: int) -> list[IndelEvent]:
         events: list[IndelEvent] = []
@@ -44,7 +51,20 @@ class SimulatedNode:
                 if event is not None:
                     events.append(event)
                     current_running_length -= event.length
+        self.length_of_sequence_after_events = current_running_length
         return events
+    
+    def apply_events_with_tree(self):
+        self.seq_node_as_tree = SequenceNodeAsTree(self.id, self.length_of_sequence_before)
+        
+        for event in self.list_of_events:
+            self.seq_node_as_tree.calculate_event(event)
+        
+
+    
+    def __repr__(self):
+        return str(self.id) + "\n" + "\n".join(str(x) for x in self.list_of_events)
+
 
 
 def insertion_event(config: SimConfiguration, current_running_length: int) -> IndelEvent:
@@ -57,6 +77,6 @@ def deletion_event(config: SimConfiguration, current_running_length: int) -> Ind
     place: int = rnd.randint(start, current_running_length - 1)
     deletion_size: int = calc_trunc_zipf(config.indel_length_alpha, config.indel_truncated_length)
     if place + deletion_size > 0:
-        return IndelEvent(True, place, deletion_size)
+        return IndelEvent(False, place, deletion_size)
     return None
 

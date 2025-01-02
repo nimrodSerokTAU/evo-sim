@@ -21,11 +21,16 @@ class Block:
         self.copy_sites_count += copied_length
 
     def get_dto_str(self) -> str:
-        return f"predecessor index: {self.index_in_predecessor}, #copied sites: {self.copy_sites_count}, inserted len: {self.inserted_seq_count}"
+        index_in_predecessor: int = -1 if self.index_in_predecessor == 0 and self.copy_sites_count == 0 else self.index_in_predecessor
+        return f"predecessor index: {index_in_predecessor}, #copied sites: {self.copy_sites_count}, inserted len: {self.inserted_seq_count}"
 
     def get_block_str(self) -> str:
-        return f"{self.index_in_predecessor}|{self.copy_sites_count}|{self.inserted_seq_count}"
+        index_in_predecessor: int = -1 if self.index_in_predecessor == 0 and self.copy_sites_count == 0 else self.index_in_predecessor
+        return f"{index_in_predecessor}|{self.copy_sites_count}|{self.inserted_seq_count}"
 
 
     def is_redundant(self):
         return self.copy_sites_count == 0 and self.inserted_seq_count == 0
+
+    def __repr__(self):
+        return f"{self.index_in_predecessor}|{self.copy_sites_count}|{self.inserted_seq_count}"
