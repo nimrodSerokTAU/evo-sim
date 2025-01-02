@@ -149,4 +149,4 @@ class SequenceNodeAsList:
         return {'blocks': blocks, 'length': length}
 
     def blocks_iterator(self):
-        return self.blck_list.__iter__()
+        return self.blck_list

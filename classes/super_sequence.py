@@ -23,6 +23,8 @@ class SuperSequence:
         self._inserted_sequence_counter = root_sequence_size + 1
 
     def reference_position(self, position_ref: sllistnode):
+        if position_ref()['position'] == 0:
+            return
         if (not position_ref()['is_column']):
             position_ref()['is_column'] = True
             self._msa_seq_length += 1

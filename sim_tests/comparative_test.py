@@ -4,6 +4,8 @@ print(pathlib.Path.cwd())
 print(sys.path)
 sys.path.append(str(pathlib.Path.cwd()))
 
+
+
 from classes.indel_event import IndelEvent
 from classes.seq_node_as_list import SequenceNodeAsList
 from classes.seq_node_as_tree import SequenceNodeAsTree
@@ -97,3 +99,40 @@ def test_case_c():
     list_res = deletion_at_0_list()
     tree_res = deletion_at_0_tree()
     assert list_res == tree_res
+
+
+def test_zero_length_block_case_list():
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=20, place=10))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 10, inserted len: 5',
+            'predecessor index: 30, #copied sites: 69, inserted len: 0'],
+        'length': 84}
+
+def test_zero_length_block_case_tree():
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=20, place=10))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 10, inserted len: 5',
+            'predecessor index: 30, #copied sites: 69, inserted len: 0'],
+        'length': 84}
+
+def test_2_insertions_at_zero():
+    new_organism = SequenceNodeAsList(seq_id=3, original_sequence_length=76)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    res = new_organism.get_dto()
+    print(res)
+    assert res == {
+        'blocks': [
+            'predecessor index: -1, #copied sites: 0, inserted len: 24',
+            'predecessor index: 0, #copied sites: 84, inserted len: 0'],
+        'length': 100}

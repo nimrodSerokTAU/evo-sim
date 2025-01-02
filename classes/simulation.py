@@ -25,8 +25,8 @@ class Simulation:
     def __init__(self, input_tree_path: Path):
         self.newick = '(A:1,(B:1,(E:1,D:1):0.5):0.5);'  # TODO: Nimrod, read the file from the path and get it from there
         self.tree = Tree(self.newick)
-        self.config = SimConfiguration(original_sequence_length=10, indel_length_alpha=1.5,
-                                       indel_truncated_length=5, rate_ins=0.05, rate_del=0.05,
+        self.config = SimConfiguration(original_sequence_length=50, indel_length_alpha=1.5,
+                                       indel_truncated_length=5, rate_ins=0.1, rate_del=0.1,
                                        deletion_extra_edge_length=5, seed=4)
         self.nodes_to_align = set()
         self.sim_nodes = [None]
