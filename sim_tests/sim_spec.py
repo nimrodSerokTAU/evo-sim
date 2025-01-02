@@ -12,9 +12,9 @@ from classes.seq_node_as_list import SequenceNodeAsList
 from classes.seq_node_as_tree import SequenceNodeAsTree
 from classes.seq_node_naive import SequenceNodeNaive
 from classes.sim_config import SimConfiguration
-from classes.super_sequence import SuperSequence
-from classes.sequence import Sequence
-from classes.msa import Msa
+# from classes.super_sequence import SuperSequence
+# from classes.sequence import Sequence
+# from classes.msa import Msa
 
 basic_config: SimConfiguration = SimConfiguration(
     original_sequence_length=100, indel_length_alpha=1.7, indel_truncated_length=50, deletion_extra_edge_length=49,

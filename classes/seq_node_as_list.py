@@ -45,7 +45,7 @@ class SequenceNodeAsList:
                 return EventSubTypes.OUT_OF_SEQUENCE, cb_index, seq_length_with_block
             position_in_block: int = event.place - seq_len_up_to_block
             if position_in_block <= block_at_inx.copy_sites_count:
-                if position_in_block + event.length <= block_at_inx.copy_sites_count:  # contained in copy_sites_count
+                if position_in_block + event.length < block_at_inx.copy_sites_count:  # contained in copy_sites_count
                     if position_in_block > 0:
                         return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED, cb_index, seq_length_with_block
                     return EventSubTypes.DELETION_OF_COPIED, cb_index, seq_length_with_block

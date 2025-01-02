@@ -31,7 +31,7 @@ class SequenceNodeAsTree:
             if node_at_inx.bl is None and position_in_block == event.place:
                 return EventSubTypes.OUT_OF_SEQUENCE, node_at_inx, position_in_block
             if position_in_block <= node_at_inx.bl.copy_sites_count:
-                if position_in_block + event.length <= node_at_inx.bl.copy_sites_count:  # contained in copy_sites_count
+                if position_in_block + event.length < node_at_inx.bl.copy_sites_count:  # contained in copy_sites_count
                     if position_in_block > 0:
                         return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED, node_at_inx, position_in_block
                     return EventSubTypes.DELETION_OF_COPIED, node_at_inx, position_in_block
