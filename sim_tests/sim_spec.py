@@ -1,3 +1,9 @@
+import sys
+import pathlib
+print(pathlib.Path.cwd())
+print(sys.path)
+sys.path.append(str(pathlib.Path.cwd()))
+
 import utils
 from classes.avl_tree import AVLTree
 from classes.block import Block
@@ -6,10 +12,13 @@ from classes.seq_node_as_list import SequenceNodeAsList
 from classes.seq_node_as_tree import SequenceNodeAsTree
 from classes.seq_node_naive import SequenceNodeNaive
 from classes.sim_config import SimConfiguration
+from classes.super_sequence import SuperSequence
+from classes.sequence import Sequence
+from classes.msa import Msa
 
 basic_config: SimConfiguration = SimConfiguration(
     original_sequence_length=100, indel_length_alpha=1.7, indel_truncated_length=50, deletion_extra_edge_length=49,
-    rate_ins=0.01, rate_del=0.01)
+    rate_ins=0.01, rate_del=0.01, seed=1)
 
 
 def test_insertion_including_inside_copied_and_at_end():
@@ -1016,3 +1025,31 @@ def test_naive_super_sequence():
     ]
 
 
+def test_blocklist_super_sequence():
+    original_sequence_length: int = 100
+    organism_a = SequenceNodeAsTree(seq_id=0, original_sequence_length=original_sequence_length)
+    organism_b = SequenceNodeAsTree(seq_id=1, original_sequence_length=original_sequence_length)
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=4, place=119))
+    organism_b.calculate_event(IndelEvent(is_insertion=False, length=4, place=3))
+    organism_c = SequenceNodeAsTree(seq_id=2, original_sequence_length=original_sequence_length)
+    organism_c.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    organism_c.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
+    organism_c.calculate_event(IndelEvent(is_insertion=False, length=20, place=10))
+    organism_d = SequenceNodeAsTree(seq_id=3, original_sequence=organism_b.get_length())
+    organism_d.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    organism_d.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    organism_d.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
+
+    super_seq = SuperSequence(original_sequence_length, 3)
+    root_seq = Sequence(super_seq, is_save_seq=False, node_id=organism_a.id)
+    root_seq = Sequence(super_seq, is_save_seq=False, node_id=organism_a.id)
+
+    msa: list[list[int]] = utils.calc_msa_from_naive_nodes([organism_a.seq, organism_b.seq, organism_c.seq,
+                                                            organism_d.seq], [-1, 0, 0, 1])
+    res: list[str] = utils.get_msa_as_str_list(msa, 3)
+    print(res)
+
+test_blocklist_super_sequence()
