@@ -50,20 +50,19 @@ class Sequence:
         length = block.copy_sites_count
         insertion = block.inserted_seq_count
 
-        if position == 0:
-            position += 1
-            length -= 1
         if position == -1:
             length = 0
+        if length == 0 and insertion == 0:
+            return
         # Copy parent sequence elements
         i = 0
         for i in range(length):
             if self._is_save_sequence:
-                self._super_seq.reference_position(parent_seq._sequence[position + i])
-            self._sequence.append(parent_seq._sequence[position + i])
+                self._super_seq.reference_position(parent_seq._sequence[position + i + 1])
+            self._sequence.append(parent_seq._sequence[position + i + 1])
         
         # Get iterator position
-        super_seq_iterator = parent_seq._sequence[position + i]
+        super_seq_iterator = parent_seq._sequence[position + i + 1]
         if position == -1:
             super_seq_iterator = parent_seq._sequence[0]
         if insertion == 0:

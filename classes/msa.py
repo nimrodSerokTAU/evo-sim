@@ -34,30 +34,23 @@ class Msa:
                 self._aligned_sequences[sequence_node_id].append(-self._msa_length)
                 continue
             
-            previous_absolute_position = 0
+            previous_absolute_position = -1
             seq_str = ""
-
-            # previous_absolute_position = seq[0]()['absolute_position']
-            # if previous_absolute_position > 0:
-            #     seq_str += "-" * previous_absolute_position
-            # else:
-            #     seq_str += "X"
-
-            is_last_site_gap = False
             for site in seq[1:]:
                 current_absolute_position = site()['absolute_position']
-                if (current_absolute_position-previous_absolute_position) > 1:
-                    seq_str += "-" * ((current_absolute_position - previous_absolute_position)-1)
-                    is_last_site_gap = True
+                position_difference = current_absolute_position-previous_absolute_position
+                    
+                if (position_difference) > 1:
+                    seq_str += "-" * ((position_difference) - 1)
+                    seq_str += "X"
                 else:
-                    seq_str += "XX" if is_last_site_gap else "X"
-                    is_last_site_gap = False
+                    seq_str += "X"
 
                 previous_absolute_position = current_absolute_position
-
-            
-            if (self._msa_length - current_absolute_position)  >  0:
-                seq_str += "-" * (self._msa_length - current_absolute_position-1)
+            # print()
+            # print(self._msa_length, len(seq_str))
+            if (self._msa_length - len(seq_str))  >  0:
+                seq_str += "-" * (self._msa_length - len(seq_str))
 
 
             self._aligned_sequences[sequence_node_id] = seq_str

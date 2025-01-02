@@ -25,9 +25,9 @@ class Simulation:
     def __init__(self, input_tree_path: Path):
         self.newick = '(A:1,(B:1,(E:1,D:1):0.5):0.5);'  # TODO: Nimrod, read the file from the path and get it from there
         self.tree = Tree(self.newick)
-        self.config = SimConfiguration(original_sequence_length=20, indel_length_alpha=1.5,
+        self.config = SimConfiguration(original_sequence_length=10, indel_length_alpha=1.5,
                                        indel_truncated_length=5, rate_ins=0.05, rate_del=0.05,
-                                       deletion_extra_edge_length=5)
+                                       deletion_extra_edge_length=5, seed=4)
         self.nodes_to_align = set()
         self.sim_nodes = [None]
         node: TreeNode = None
@@ -38,6 +38,7 @@ class Simulation:
                 continue # nothing to simulated in root node
             if node.is_leaf():
                 self.nodes_to_align.add(node.id)
+
             simulatedNode = SimulatedNode(node.id, node.up.id, node.dist, self.config, node.up.sequence_length)
             simulatedNode.apply_events_with_tree()
             node.add_features(sequence_length=simulatedNode.length_of_sequence_after_events)
@@ -46,19 +47,17 @@ class Simulation:
             self.sim_nodes.append(simulatedNode)
 
 
-    def generate_alignement(self):
+    def generate_alignement_from_blocks(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, 7)
         sequences = []
-        parent_seq = Sequence(super_seq, True, 0)
+        parent_seq = Sequence(super_seq, False, 0)
         parent_seq.init_root_seq()
         sequences.append(parent_seq)
-        
+
         sequences_to_save = []
         for node in self.sim_nodes[1:]:
             current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
             blocks = node.seq_node_as_tree.blocks_iterator()
-            print([str(block) for block in blocks])
-            print(node.id)
 
             current_seq.generate_sequence(blocks, sequences[node.parent_id])
             sequences.append(current_seq)
@@ -66,8 +65,6 @@ class Simulation:
                 sequences_to_save.append(current_seq)
 
         self.msa = Msa(super_seq)
-        print(super_seq)
-        print("\n".join(str(x) for x in sequences_to_save))
         self.msa.compute_msa(sequences_to_save)
 
 
@@ -79,6 +76,7 @@ class Simulation:
 
 events = Simulation("")
 
-events.generate_alignement()
+events.generate_alignement_from_blocks()
 
+print(events)
 print(events.msa)
