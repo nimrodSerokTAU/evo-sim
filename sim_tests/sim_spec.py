@@ -1,3 +1,4 @@
+import utils
 from classes.avl_tree import AVLTree
 from classes.block import Block
 from classes.indel_event import IndelEvent
@@ -954,7 +955,8 @@ def test_avl_case_el_a():
 
 
 def test_naive_insertion_including_inside_copied_and_at_end_regular_dto():
-    new_organism = SequenceNodeNaive(seq_id=0, original_sequence_length=100)
+    original_sequence_length: int = 100
+    new_organism = SequenceNodeNaive(seq_id=0, original_sequence=[i for i in range(original_sequence_length)])
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
@@ -972,14 +974,49 @@ def test_naive_insertion_including_inside_copied_and_at_end_regular_dto():
 
 
 def test_naive_insertion_including_inside_copied_and_at_end_t():
-    new_organism = SequenceNodeNaive(seq_id=0, original_sequence_length=100)
+    original_sequence_length: int = 100
+    new_organism = SequenceNodeNaive(seq_id=0, original_sequence=[i for i in range(original_sequence_length)])
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
-    res = new_organism.get_block_dto(100)
+    res = new_organism.get_block_dto_from_single_branch(original_sequence_length)
     assert res == {
          'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 2'],
         'length': 119}
+
+
+def test_naive_super_sequence():
+    original_sequence_length: int = 100
+    organism_a = SequenceNodeNaive(seq_id=0, original_sequence=[i for i in range(original_sequence_length)])
+    organism_b = SequenceNodeNaive(seq_id=1, original_sequence=organism_a.seq)
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
+    organism_b.calculate_event(IndelEvent(is_insertion=True, length=4, place=119))
+    organism_b.calculate_event(IndelEvent(is_insertion=False, length=4, place=3))
+    organism_c = SequenceNodeNaive(seq_id=2, original_sequence=organism_a.seq)
+    organism_c.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    organism_c.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
+    organism_c.calculate_event(IndelEvent(is_insertion=False, length=20, place=10))
+    organism_d = SequenceNodeNaive(seq_id=3, original_sequence=organism_b.seq)
+    organism_d.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    organism_d.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    organism_d.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
+    msa: list[list[int]] = utils.calc_msa_from_naive_nodes([organism_a.seq, organism_b.seq, organism_c.seq,
+                                                            organism_d.seq], [-1, 0, 0, 1])
+    res: list[str] = get_msa_as_atr_list(msa, 3)
+    assert res == [
+        ' -1, -1, -1, -1, -1, -1, -1, -1, -1,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 30, 31, 32, 33, 34, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, -1, -1, -1, -1, -1, -1',
+        ' -1, -1, -1, -1, -1, -1, -1, -1, -1,  0,  1,  2, -1, -1, -1, -1,  7,  8,  9,  -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,100,101,102,103, -1, -1, -1, -1, -1,104, 30, 31, 32, 33, 34,105,106,107,108,109,110,111,112,113,114,115,116, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,117,118,119,120,121,122',
+        ' -1, -1, -1, -1, -1, -1, -1, -1, -1,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 100,101,102,103,104, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 30, 31, 32, 33, 34, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, -1, -1, -1, -1, -1, -1, -1',
+        '131,132,133,134,135,136,137,138,139,  0,  1,  2, -1, -1, -1, -1,  7,  8,  9,  -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,100,101,102,103,123,124,125,126,127,104, 30, 31, 32, 33, 34,105,106,107,108,109,110,111,112,113,114,115,116, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,117,118,119,120,121,122',
+    ]
+
+def get_msa_as_atr_list(msa: list[list[int]], padding: int) -> list[str]:
+    res: list[str] = []
+    for seq in msa:
+        res.append(','.join([str(i).rjust(padding, ' ') for i in seq]))
+    return res

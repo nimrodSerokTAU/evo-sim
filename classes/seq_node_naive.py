@@ -6,12 +6,10 @@ class SequenceNodeNaive:
     seq: list[int]
     max_count: int
 
-    def __init__(self, seq_id: int, original_sequence_length: int):
+    def __init__(self, seq_id: int, original_sequence: list[int]):
         self.id = seq_id
-        self.seq: list[int] = [i for i in range(original_sequence_length)]
-        self.max_count = original_sequence_length
-        # for i in range(original_sequence_length):
-        #     self.seq.append(i)
+        self.seq: list[int] = original_sequence.copy()
+        self.max_count = max(original_sequence)
 
     def calculate_event(self, event: IndelEvent):
         if event.length < 0 or event.place > self.get_length():
@@ -32,8 +30,8 @@ class SequenceNodeNaive:
     def calc_inserted_seq(self, length) -> list[int]:
         insertion: list[int] = []
         for i in range(length):
-            insertion.append(self.max_count)
             self.max_count += 1
+            insertion.append(self.max_count)
         return insertion
 
     def get_length(self) -> int:
@@ -42,7 +40,7 @@ class SequenceNodeNaive:
     def get_dto(self) -> dict:
         return {'seq': self.seq, 'length': self.get_length()}
 
-    def get_block_dto(self, orig_seq_count: int) -> dict:
+    def get_block_dto_from_single_branch(self, orig_seq_count: int) -> dict:
         res: list[str] = []
         prev_val: int = -1
         block_start: int = self.seq[0]

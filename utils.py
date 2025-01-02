@@ -1,15 +1,8 @@
-from collections import Counter
-
-# from sklearn.metrics import precision_recall_curve
-# from sklearn.metrics import auc
-
 import math
-import numpy as np
-# import pandas as pd
-import random as rnd
-import matplotlib.pyplot as plt
+from operator import indexOf
 
-from classes.indel_event import IndelEvent
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 def random_zipf(a: float, max_int: int) -> int:
@@ -44,12 +37,23 @@ def plot_distribution(distribution_list: list[float], bins: int, density: bool, 
     plt.show()
 
 
-def calc_sequence_log_prob(sequence: list[int], prob_array: list[float]) -> float:  # task 2 / st 1
-    prob = 0
-    for digit in sequence:
-        prob += math.log10(prob_array[digit - 1])
-    return round(prob, 4)
-
+def calc_msa_from_naive_nodes(sequences: list[list[int]], ancestors: list[int]) -> list[list[int]]:
+    msa: list[list[int]] = [sequences[0]]
+    for seq_inx in range(1, len(sequences)):
+        msa.append([-1] * len(sequences[0]))
+        ancestor_inx: int = ancestors[seq_inx]
+        last_msa_inx: int = -1
+        for char_inx in sequences[seq_inx]:
+            try:
+                char_inx_on_msa: int = msa[ancestor_inx].index(char_inx)
+                last_msa_inx = char_inx_on_msa
+            except ValueError:
+                char_inx_on_msa: int = last_msa_inx + 1
+                for s in msa:
+                    s[char_inx_on_msa:char_inx_on_msa] = [-1]
+                last_msa_inx = char_inx_on_msa
+            msa[seq_inx][char_inx_on_msa] = char_inx
+    return msa
 
 
 
