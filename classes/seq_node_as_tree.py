@@ -23,6 +23,9 @@ class SequenceNodeAsTree:
         node_at_inx, position_in_block = self.block_tree.search(self.block_tree.root, event.place)
         if event.is_insertion:
             if event.place == 0:
+                first_node, position_in_block_b = self.block_tree.search(self.block_tree.root, -1)
+                if first_node.bl.copy_sites_count == 0:
+                    return EventSubTypes.INSERTION_AT_START_ADDITION, node_at_inx, position_in_block
                 return EventSubTypes.INSERTION_AT_START, node_at_inx, position_in_block
             if position_in_block < node_at_inx.bl.copy_sites_count:
                 return EventSubTypes.INSERTION_INSIDE_COPIED, node_at_inx, position_in_block
@@ -60,6 +63,8 @@ class SequenceNodeAsTree:
                                        copy_sites_count=0,
                                        inserted_seq_count=event.length)
             self.block_tree.insert_block(block_item)
+        elif event_type == EventSubTypes.INSERTION_AT_START_ADDITION:  # this case seems covered
+            self.block_tree.inc_on_same_location(avl_node, None, event.length)
         elif event_type == EventSubTypes.INSERTION_INSIDE_COPIED:  # this case seems covered
             first_block_copy_count = position_in_block
             block_item = Block(index_in_predecessor=avl_node.bl.index_in_predecessor + first_block_copy_count,

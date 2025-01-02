@@ -72,9 +72,6 @@ def test_case_b():
     assert list_res == tree_res
 
 
-# assert test_insertion_at_0_list() == test_insertion_at_0_tree()
-
-
 def deletion_at_0_list():
     new_organism = SequenceNodeAsList(seq_id=0 ,original_sequence_length=100)
 
@@ -113,6 +110,7 @@ def test_zero_length_block_case_list():
             'predecessor index: 30, #copied sites: 69, inserted len: 0'],
         'length': 84}
 
+
 def test_zero_length_block_case_tree():
     new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
@@ -125,7 +123,8 @@ def test_zero_length_block_case_tree():
             'predecessor index: 30, #copied sites: 69, inserted len: 0'],
         'length': 84}
 
-def test_2_insertions_at_zero():
+
+def test_2_insertions_at_zero_list():
     new_organism = SequenceNodeAsList(seq_id=3, original_sequence_length=76)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
@@ -134,5 +133,18 @@ def test_2_insertions_at_zero():
     assert res == {
         'blocks': [
             'predecessor index: -1, #copied sites: 0, inserted len: 24',
-            'predecessor index: 0, #copied sites: 84, inserted len: 0'],
+            'predecessor index: 0, #copied sites: 76, inserted len: 0'],
+        'length': 100}
+
+
+def test_2_insertions_at_zero_tree():
+    new_organism = SequenceNodeAsTree(seq_id=3, original_sequence_length=76)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
+    res = new_organism.get_clean_dto()
+    print(res)
+    assert res == {
+        'blocks': [
+            'predecessor index: -1, #copied sites: 0, inserted len: 24',
+            'predecessor index: 0, #copied sites: 76, inserted len: 0'],
         'length': 100}

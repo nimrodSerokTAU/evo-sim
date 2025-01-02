@@ -36,6 +36,8 @@ class SequenceNodeAsList:
             if cb_index == - 1:
                 return EventSubTypes.INSERTION_AT_END, cb_index, seq_length_with_block
             if event.place == 0:
+                if block_at_inx.copy_sites_count == 0:
+                    return EventSubTypes.INSERTION_AT_START_ADDITION, cb_index, seq_length_with_block
                 return EventSubTypes.INSERTION_AT_START, cb_index, seq_length_with_block
             if event.place < seq_len_up_to_block + block_at_inx.copy_sites_count:
                 return EventSubTypes.INSERTION_INSIDE_COPIED, cb_index, seq_length_with_block
@@ -77,6 +79,8 @@ class SequenceNodeAsList:
                                copy_sites_count=0,
                                inserted_seq_count=event.length)
             self.blck_list.insert(0, block_item)
+        elif event_type == EventSubTypes.INSERTION_AT_START_ADDITION:
+            block_at_inx.inc_insert_count(event.length)
         elif event_type == EventSubTypes.INSERTION_INSIDE_COPIED:
             first_block_copy_count = event.place - seq_len_up_to_block
             block_item = Block(index_in_predecessor=block_at_inx.index_in_predecessor + first_block_copy_count,
