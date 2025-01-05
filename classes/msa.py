@@ -39,7 +39,6 @@ class Msa:
             for site in seq[1:]:
                 current_absolute_position = site()['absolute_position']
                 position_difference = current_absolute_position-previous_absolute_position
-                    
                 if (position_difference) > 1:
                     seq_str += "-" * ((position_difference) - 1)
                     seq_str += "X"
@@ -47,8 +46,6 @@ class Msa:
                     seq_str += "X"
 
                 previous_absolute_position = current_absolute_position
-            # print()
-            # print(self._msa_length, len(seq_str))
             if (self._msa_length - len(seq_str))  >  0:
                 seq_str += "-" * (self._msa_length - len(seq_str))
 
@@ -76,9 +73,12 @@ class Msa:
             msa_lines.append(line)
         
         return '\n'.join(msa_lines)
-
-    def __repr__(self):
+    
+    def msa_str_rep(self):
         msa_str = ""
         for key,val in self._aligned_sequences.items():
             msa_str += f">{key}\n{val}\n"
         return msa_str
+
+    def __repr__(self):
+        return self.msa_str_rep()

@@ -15,5 +15,4 @@ class IndelEvent:
 
 
     def __repr__(self):
-
-        return f"{int(self.is_insertion)}|{self.place}|{self.length}"
+        return f"IndelEvent(is_insertion={(self.is_insertion)}, length={self.length}, place={self.place})"

@@ -54,11 +54,18 @@ class SimulatedNode:
         self.length_of_sequence_after_events = current_running_length
         return events
     
-    def apply_events_with_tree(self):
+    def apply_events_with_blocktree(self):
         self.seq_node_as_tree = SequenceNodeAsTree(self.id, self.length_of_sequence_before)
         
         for event in self.list_of_events:
             self.seq_node_as_tree.calculate_event(event)
+    
+    def apply_events_with_blocklist(self):
+        self.seq_node_as_list = SequenceNodeAsList(self.id, self.length_of_sequence_before)
+        
+        for event in self.list_of_events:
+            self.seq_node_as_list.calculate_event(event)
+
         
 
     

@@ -13,6 +13,11 @@ from super_sequence import SuperSequence
 from sequence import Sequence
 from msa import Msa
 
+from classes.seq_node_as_list import SequenceNodeAsList
+from classes.seq_node_as_tree import SequenceNodeAsTree
+from classes.seq_node_naive import SequenceNodeNaive
+
+
 from block import Block
 
 class Simulation:
@@ -27,7 +32,7 @@ class Simulation:
         self.tree = Tree(self.newick)
         self.config = SimConfiguration(original_sequence_length=50, indel_length_alpha=1.5,
                                        indel_truncated_length=5, rate_ins=0.1, rate_del=0.1,
-                                       deletion_extra_edge_length=5, seed=4)
+                                       deletion_extra_edge_length=5, seed=1)
         self.nodes_to_align = set()
         self.sim_nodes = [None]
         node: TreeNode = None
@@ -40,14 +45,13 @@ class Simulation:
                 self.nodes_to_align.add(node.id)
 
             simulatedNode = SimulatedNode(node.id, node.up.id, node.dist, self.config, node.up.sequence_length)
-            simulatedNode.apply_events_with_tree()
             node.add_features(sequence_length=simulatedNode.length_of_sequence_after_events)
 
 
             self.sim_nodes.append(simulatedNode)
 
 
-    def generate_alignement_from_blocks(self):
+    def msa_from_blocklist(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, 7)
         sequences = []
         parent_seq = Sequence(super_seq, False, 0)
@@ -56,10 +60,16 @@ class Simulation:
 
         sequences_to_save = []
         for node in self.sim_nodes[1:]:
-            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
-            blocks = node.seq_node_as_tree.blocks_iterator()
+            node.seq_node_as_list = SequenceNodeAsList(node.id, node.length_of_sequence_before)
+        
+            for event in node.list_of_events:
+                node.seq_node_as_list.calculate_event(event)
 
+            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
+            blocks = node.seq_node_as_list.blocks_iterator()
+            print(node.id, blocks, node.length_of_sequence_before)
             current_seq.generate_sequence(blocks, sequences[node.parent_id])
+
             sequences.append(current_seq)
             if node.id in self.nodes_to_align:
                 sequences_to_save.append(current_seq)
@@ -76,7 +86,7 @@ class Simulation:
 
 events = Simulation("")
 
-events.generate_alignement_from_blocks()
+events.msa_from_blocklist()
 
-print(events)
+# print(events)
 print(events.msa)

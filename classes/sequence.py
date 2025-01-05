@@ -38,7 +38,6 @@ class Sequence:
         
         #insert anchor site
         self._sequence.append(parent_seq._sequence[0])
-
         for block in blocks:
             self.apply_block(block, parent_seq)
 
@@ -54,6 +53,8 @@ class Sequence:
             length = 0
         if length == 0 and insertion == 0:
             return
+        if position == 0 and length == 0:
+            position = -1
         # Copy parent sequence elements
         i = 0
         for i in range(length):
@@ -63,6 +64,9 @@ class Sequence:
         
         # Get iterator position
         super_seq_iterator = parent_seq._sequence[position + i + 1]
+        if position > 0 and length == 0:
+            super_seq_iterator = parent_seq._sequence[position + i]
+            print(super_seq_iterator)
         if position == -1:
             super_seq_iterator = parent_seq._sequence[0]
         if insertion == 0:

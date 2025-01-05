@@ -9,8 +9,7 @@ sys.path.append(str(pathlib.Path.cwd()))
 from classes.indel_event import IndelEvent
 from classes.seq_node_as_list import SequenceNodeAsList
 from classes.seq_node_as_tree import SequenceNodeAsTree
-
-
+from classes.seq_node_naive import SequenceNodeNaive
 # Test 1
 
 def list_test_case_a():
@@ -148,3 +147,19 @@ def test_2_insertions_at_zero_tree():
             'predecessor index: -1, #copied sites: 0, inserted len: 24',
             'predecessor index: 0, #copied sites: 76, inserted len: 0'],
         'length': 100}
+    
+
+def test_insertion_at_boundary_event():
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=11)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=3))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=5))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=1, place=10))
+    res = new_organism.get_dto()
+    print(res)
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 3, inserted len: 2',
+            'predecessor index: 3, #copied sites: 1, inserted len: 4',
+            'predecessor index: 4, #copied sites: 7, inserted len: 0'],
+        'length': 16}
+    
