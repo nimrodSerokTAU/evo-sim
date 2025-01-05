@@ -48,7 +48,6 @@ class Sequence:
         position = block.index_in_predecessor
         length = block.copy_sites_count
         insertion = block.inserted_seq_count
-
         if position == -1:
             length = 0
         if length == 0 and insertion == 0:
@@ -66,7 +65,6 @@ class Sequence:
         super_seq_iterator = parent_seq._sequence[position + i + 1]
         if position > 0 and length == 0:
             super_seq_iterator = parent_seq._sequence[position + i]
-            print(super_seq_iterator)
         if position == -1:
             super_seq_iterator = parent_seq._sequence[0]
         if insertion == 0:
