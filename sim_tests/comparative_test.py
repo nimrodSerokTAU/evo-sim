@@ -149,7 +149,7 @@ def test_2_insertions_at_zero_tree():
         'length': 100}
     
 
-def test_insertion_at_boundary_event():
+def test_insertion_at_boundary_event_list():
     new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=11)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=3))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=5))
@@ -158,8 +158,21 @@ def test_insertion_at_boundary_event():
     print(res)
     assert res == {
         'blocks': [
-            'predecessor index: 0, #copied sites: 3, inserted len: 2',
-            'predecessor index: 3, #copied sites: 1, inserted len: 4',
+            'predecessor index: 0, #copied sites: 3, inserted len: 7',
             'predecessor index: 4, #copied sites: 7, inserted len: 0'],
-        'length': 16}
+        'length': 17}
+
+
+def test_insertion_at_boundary_event_tree():
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=11)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=3))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=5))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=1, place=10))
+    res = new_organism.get_clean_dto()
+    print(res)
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 3, inserted len: 7',
+            'predecessor index: 4, #copied sites: 7, inserted len: 0'],
+        'length': 17}
     

@@ -14,18 +14,18 @@ class SequenceNodeAsList:
         self.blck_list = [Block(index_in_predecessor=0, copy_sites_count=self.my_length,
                                 inserted_seq_count=0)]
 
-    def find_block_index_and_sites_count(self, place: int) -> tuple[int, int]:
+    def find_block_index_and_sites_count(self, place: int, is_insertion: bool) -> tuple[int, int]:
         agg_seq_length: int = 0
         for i in range(len(self.blck_list)):
             this_block: Block = self.blck_list[i]
             agg_seq_length += this_block.inserted_seq_count + this_block.copy_sites_count
-            if place < agg_seq_length:
+            if (place < agg_seq_length and not is_insertion) or (place <= agg_seq_length and is_insertion):
                 return i, agg_seq_length
         return -1, agg_seq_length
 
 
     def find_event_sub_type(self, event: IndelEvent) -> tuple[EventSubTypes, int, int]:
-        cb_index, seq_length_with_block = self.find_block_index_and_sites_count(event.place)
+        cb_index, seq_length_with_block = self.find_block_index_and_sites_count(event.place, event.is_insertion)
         # cb_index is the index of the current block
         block_at_inx: Block = self.blck_list[cb_index]
         seq_len_up_to_block: int = (seq_length_with_block - block_at_inx.inserted_seq_count -

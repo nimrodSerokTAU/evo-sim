@@ -20,10 +20,10 @@ class SequenceNodeAsTree:
         if event.length < 0 or event.place > self.block_tree.root.length_under_including or \
                 (not event.is_insertion and event.place == self.block_tree.root.length_under_including):
             return EventSubTypes.OUT_OF_SEQUENCE, None, -1
-        node_at_inx, position_in_block = self.block_tree.search(self.block_tree.root, event.place)
+        node_at_inx, position_in_block = self.block_tree.search(self.block_tree.root, event.place, event.is_insertion)
         if event.is_insertion:
             if event.place == 0:
-                first_node, position_in_block_b = self.block_tree.search(self.block_tree.root, -1)
+                first_node, position_in_block_b = self.block_tree.search(self.block_tree.root, -1, event.is_insertion)
                 if first_node.bl.copy_sites_count == 0:
                     return EventSubTypes.INSERTION_AT_START_ADDITION, node_at_inx, position_in_block
                 return EventSubTypes.INSERTION_AT_START, node_at_inx, position_in_block

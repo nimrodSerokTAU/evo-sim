@@ -187,17 +187,18 @@ class AVLTree:
             current = current.left
         return current
 
-    def search(self, root: AVLNode, position_in_block: int) -> tuple[AVLNode, int]:
+    def search(self, root: AVLNode, position_in_block: int, is_insertion: bool) -> tuple[AVLNode, int]:
         if not root:
             return root, 0
         if root.left is not None:
             if position_in_block < root.left.length_under_including:
-                return self.search(root.left, position_in_block)
+                return self.search(root.left, position_in_block, is_insertion)
             position_in_block -= root.left.length_under_including
-        if position_in_block < root.get_my_own_length():
+        if ((position_in_block < root.get_my_own_length() and not is_insertion) or
+                (position_in_block <= root.get_my_own_length() and is_insertion)):
             return root, position_in_block
         elif root.right is not None:
-            return self.search(root.right, position_in_block - root.get_my_own_length())
+            return self.search(root.right, position_in_block - root.get_my_own_length(), is_insertion)
         else:
             return root, position_in_block
 
