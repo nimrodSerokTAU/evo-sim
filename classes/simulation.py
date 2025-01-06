@@ -119,15 +119,12 @@ class Simulation:
 
         msa: list[list[int]] = utils.calc_msa_from_naive_nodes(sequences, parent_ids_to_save)
 
-        res: list[str] = utils.get_msa_as_str_list(msa, 1)[1:]
-        msa = []
-        for id,seq in zip(ids_to_save , res):
-            seq = re.sub(r"\s*\-1\,*\s*", "-", seq)
-            seq = re.sub(r"\d+\,*\s*", "X", seq)
-            msa.append(f">{id}\n{seq}")
-
-        msa: str = "\n".join(msa) + "\n"
-        self.msa = msa
+        msa_str = ""
+        for id, seq in zip(ids_to_save, msa[1:]):
+            seq_str = f">{id}\n" + "".join(["X" if (site != -1) else "-" for site in seq])
+            msa_str += f"{seq_str}\n"
+        
+        self.msa = msa_str
 
     def get_events(self):
         return self.sim_nodes
