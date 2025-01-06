@@ -1,5 +1,6 @@
 import sys
 import pathlib
+import random
 print(pathlib.Path.cwd())
 print(sys.path)
 sys.path.append(str(pathlib.Path.cwd()))
@@ -176,3 +177,56 @@ def test_insertion_at_boundary_event_tree():
             'predecessor index: 4, #copied sites: 7, inserted len: 0'],
         'length': 17}
     
+def event_creator(previous_length: int) -> tuple[IndelEvent, int]:
+    event_type = random.choice([True, False])
+    if previous_length == 0 :
+        event_type = True
+
+    event_size = random.randint(1,20)
+
+    event_position = random.randint(0, previous_length -1 + event_type)
+
+    if not event_type and (event_size + event_position > previous_length): # handle deletion bleeding out
+        event_size = previous_length - event_position
+
+    if event_type:
+        previous_length += event_size
+    else:
+        previous_length -= event_size
+
+    final_event = IndelEvent(event_type, event_position, event_size)
+    return final_event, previous_length
+
+def ordinal(n: int):
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    else:
+        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+    return str(n) + suffix
+
+def test_random_events_tree_vs_list():
+    seed = random.randint(1, 2147483647)
+    random.seed(seed)
+    current_sequence_length = 100
+    blocklist = SequenceNodeAsList(0, current_sequence_length)
+    blocktree = SequenceNodeAsTree(0, current_sequence_length)
+
+    for event_number in range(10000):
+        if current_sequence_length == 0:
+            break
+        current_event, current_sequence_length = event_creator(current_sequence_length)
+        print(f"the {ordinal(event_number)} event is: ", current_event)
+        blocklist.calculate_event(current_event)
+        blocktree.calculate_event(current_event)
+        if blocklist.get_dto() != blocktree.get_clean_dto():
+            print(blocklist.blocks_iterator())
+            print(blocktree.blocks_iterator())
+            print(f"the seed for this run was: {seed}")
+
+        assert blocklist.get_dto() == blocktree.get_clean_dto()
+    print("Sequence length is 0, halting\n")
+    assert True
+
+
+
+test_random_events_tree_vs_list()
