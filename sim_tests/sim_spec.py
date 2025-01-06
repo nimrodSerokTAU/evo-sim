@@ -64,7 +64,7 @@ def test_deletion_case_start_on_copy_mid_and_contained():
         'length': 111}
 
 
-def test_deletion_case_start_on_copy_start_and_remove_all():   # TODO: this is one
+def test_deletion_case_start_on_copy_start_and_remove_all():
     new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
@@ -77,7 +77,7 @@ def test_deletion_case_start_on_copy_start_and_remove_all():   # TODO: this is o
         'length': 112}
 
 
-def test_deletion_case_start_on_copy_start_and_remove_all_not_contained():   # TODO: this is one
+def test_deletion_case_start_on_copy_start_and_remove_all_not_contained():
     new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
@@ -984,6 +984,32 @@ def test_avl_case_el_a():
             'predecessor index: 30, #copied sites: 5, inserted len: 0',
             'predecessor index: 47, #copied sites: 53, inserted len: 0'],
         'length': 95}
+
+
+def test_avl_deletion_case_start_on_copy_start_and_remove_all():
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=5, place=35))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 17',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 112}
+
+
+def test_avl_deletion_case_start_on_copy_start_and_remove_all_not_contained():
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=7, place=35))
+    res = new_organism.get_clean_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 15',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 110}
 
 
 ################################################### naive #############################################

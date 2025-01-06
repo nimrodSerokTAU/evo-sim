@@ -191,7 +191,8 @@ class AVLTree:
         if not root:
             return root, 0
         if root.left is not None:
-            if position_in_block < root.left.length_under_including:
+            if ((position_in_block <= root.left.length_under_including and is_insertion) or
+                    (position_in_block < root.left.length_under_including and not is_insertion)):
                 return self.search(root.left, position_in_block, is_insertion)
             position_in_block -= root.left.length_under_including
         if ((position_in_block < root.get_my_own_length() and not is_insertion) or

@@ -119,14 +119,13 @@ class SequenceNodeAsList:
             if cb_index > 0:
                 self.blck_list[cb_index - 1].inc_insert_count(block_at_inx.inserted_seq_count)
                 del self.blck_list[cb_index]
-                self.my_length -= event.length
             else:
                 block_item = Block(
                     index_in_predecessor=block_at_inx.index_in_predecessor + position_in_block + event.length,
                     copy_sites_count=block_at_inx.copy_sites_count - (position_in_block + event.length),
                     inserted_seq_count=block_at_inx.inserted_seq_count)
                 self.blck_list[cb_index] = block_item
-                self.my_length -= event.length
+            self.my_length -= event.length
         elif event_type == EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED:
             deleted_from_insertion = min((event.length - block_at_inx.copy_sites_count), block_at_inx.inserted_seq_count)
             deleted_from_copied = block_at_inx.copy_sites_count
