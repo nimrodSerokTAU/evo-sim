@@ -226,7 +226,3 @@ def test_random_events_tree_vs_list():
         assert blocklist.get_dto() == blocktree.get_clean_dto()
     print("Sequence length is 0, halting\n")
     assert True
-
-
-
-test_random_events_tree_vs_list()

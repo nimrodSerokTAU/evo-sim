@@ -19,15 +19,15 @@ ROOT_SEQUENCE_LENGTH = 1000
 
 sim_config = SimConfiguration(original_sequence_length=ROOT_SEQUENCE_LENGTH, indel_length_alpha=1.5,
                               indel_truncated_length=5, rate_ins=0.03, rate_del=0.09,
-                              deletion_extra_edge_length=5, seed=123)
+                              deletion_extra_edge_length=5, seed=420)
 
 sim = Simulation(input_tree="benchmark/normalbranches_nLeaves100.treefile", config=sim_config)
 
 blocklist_time = timeit.timeit(sim.msa_from_blocklist, number=10)
 print("blocklist_time","is", blocklist_time, "sec")
-
+blocklist_msa = sim.msa.msa_str_rep()
 with open("blocklist_msa.fasta", 'w') as f:
-    f.write(sim.msa.msa_str_rep())
+    f.write(blocklist_msa)
 
 blocktree_time = timeit.timeit(sim.msa_from_blocktree, number=10)
 print("blocktree_time","is", blocktree_time, "sec")

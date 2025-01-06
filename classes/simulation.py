@@ -29,6 +29,7 @@ class Simulation:
         self.tree = Tree(input_tree)
         self.config = config
         self.nodes_to_align = set()
+        self.nodes_to_align.add(0)
         self.sim_nodes = [None]
         node: TreeNode = None
         for idx, node in enumerate(self.tree.traverse("preorder")):
@@ -114,12 +115,11 @@ class Simulation:
             if node.id in self.nodes_to_align:
                 sequences_to_save.append(current_seq)
                 ids_to_save.append(node.id)
-            parent_ids_to_save.append(node.parent_id)
+                parent_ids_to_save.append(node.parent_id)
 
         msa: list[list[int]] = utils.calc_msa_from_naive_nodes(sequences, parent_ids_to_save)
 
-        res: list[str] = utils.get_msa_as_str_list(msa, 4)
-
+        res: list[str] = utils.get_msa_as_str_list(msa, 1)[1:]
         msa = []
         for id,seq in zip(ids_to_save , res):
             seq = re.sub(r"\s*\-1\,*\s*", "-", seq)
