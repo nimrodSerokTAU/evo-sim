@@ -49,7 +49,11 @@ class SequenceNodeAsList:
             if position_in_block <= block_at_inx.copy_sites_count:
                 if position_in_block + event.length < block_at_inx.copy_sites_count:  # contained in copy_sites_count
                     if position_in_block > 0:
-                        return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED, cb_index, seq_length_with_block
+                        return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_MID, cb_index, seq_length_with_block
+                    return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_START, cb_index, seq_length_with_block
+                if position_in_block == 0:
+                    return EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED, cb_index, seq_length_with_block
+                if position_in_block + event.length == block_at_inx.copy_sites_count and position_in_block == 0:  # contained in copy_sites_count
                     return EventSubTypes.DELETION_OF_COPIED, cb_index, seq_length_with_block
                 return EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED, cb_index, seq_length_with_block
             if position_in_block + event.length <= block_at_inx.inserted_seq_count:  # contained in inserted
@@ -98,7 +102,7 @@ class SequenceNodeAsList:
         seq_len_up_to_block: int = (seq_length_with_block - block_at_inx.inserted_seq_count -
                                     block_at_inx.copy_sites_count)
         position_in_block: int = event.place - seq_len_up_to_block
-        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED:
+        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_MID:
             block_item = Block(
                 index_in_predecessor=block_at_inx.index_in_predecessor + position_in_block + event.length,
                 copy_sites_count=block_at_inx.copy_sites_count - (position_in_block + event.length),
@@ -107,13 +111,35 @@ class SequenceNodeAsList:
             block_at_inx.update_insert_count(0)
             self.blck_list.insert(cb_index + 1, block_item)
             self.my_length -= event.length
-        elif event_type == EventSubTypes.DELETION_OF_COPIED:
-            block_item = Block(
-                index_in_predecessor=block_at_inx.index_in_predecessor + position_in_block + event.length,
-                copy_sites_count=block_at_inx.copy_sites_count - (position_in_block + event.length),
-                inserted_seq_count=block_at_inx.inserted_seq_count)
-            self.blck_list[cb_index] = block_item
+        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_START:
+            block_at_inx.inc_copy_sites_count(-event.length)
+            block_at_inx.index_in_predecessor += position_in_block + event.length
             self.my_length -= event.length
+        elif event_type == EventSubTypes.DELETION_OF_COPIED:
+            if cb_index > 0:
+                self.blck_list[cb_index - 1].inc_insert_count(block_at_inx.inserted_seq_count)
+                del self.blck_list[cb_index]
+                self.my_length -= event.length
+            else:
+                block_item = Block(
+                    index_in_predecessor=block_at_inx.index_in_predecessor + position_in_block + event.length,
+                    copy_sites_count=block_at_inx.copy_sites_count - (position_in_block + event.length),
+                    inserted_seq_count=block_at_inx.inserted_seq_count)
+                self.blck_list[cb_index] = block_item
+                self.my_length -= event.length
+        elif event_type == EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED:
+            deleted_from_insertion = min((event.length - block_at_inx.copy_sites_count), block_at_inx.inserted_seq_count)
+            deleted_from_copied = block_at_inx.copy_sites_count
+            self.my_length -= deleted_from_copied
+            block_at_inx.update_copy_sites_count(0)
+            if cb_index > 0:
+                seq_len_up_to_block -= self.blck_list[cb_index - 1].get_my_length()
+                self.blck_list[cb_index - 1].inc_insert_count(block_at_inx.inserted_seq_count)
+                del self.blck_list[cb_index]
+                block_at_inx = self.blck_list[cb_index - 1]
+            else:
+                block_at_inx.index_in_predecessor = 0
+            self.delete_from_insertion_part(block_at_inx, event.length - deleted_from_copied, deleted_from_insertion, seq_len_up_to_block)
         elif event_type == EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED:
             removed_from_copied: int = block_at_inx.copy_sites_count - position_in_block
             deleted_from_insertion = min((event.length - removed_from_copied), block_at_inx.inserted_seq_count)

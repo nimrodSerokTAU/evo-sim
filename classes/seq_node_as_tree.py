@@ -36,7 +36,7 @@ class SequenceNodeAsTree:
             if position_in_block <= node_at_inx.bl.copy_sites_count:
                 if position_in_block + event.length < node_at_inx.bl.copy_sites_count:  # contained in copy_sites_count
                     if position_in_block > 0:
-                        return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED, node_at_inx, position_in_block
+                        return EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_MID, node_at_inx, position_in_block
                     return EventSubTypes.DELETION_OF_COPIED, node_at_inx, position_in_block
                 return EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED, node_at_inx, position_in_block
             if position_in_block + event.length <= node_at_inx.bl.inserted_seq_count:  # contained in inserted
@@ -78,7 +78,7 @@ class SequenceNodeAsTree:
 
     def calculate_deletion_event(self, event: IndelEvent, event_type: EventSubTypes, avl_node: AVLNode,
                                  position_in_block: int):
-        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED:  # this case seems covered
+        if event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_MID or event_type == EventSubTypes.DELETION_INSIDE_COPIED_CONTAINED_AT_START:  # this case seems covered
             block_item = Block(
                 index_in_predecessor=avl_node.bl.index_in_predecessor + position_in_block + event.length,
                 copy_sites_count=avl_node.bl.copy_sites_count - (position_in_block + event.length),

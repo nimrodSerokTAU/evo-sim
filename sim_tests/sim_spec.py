@@ -64,6 +64,32 @@ def test_deletion_case_start_on_copy_mid_and_contained():
         'length': 111}
 
 
+def test_deletion_case_start_on_copy_start_and_remove_all():   # TODO: this is one
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=5, place=35))
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 17',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 112}
+
+
+def test_deletion_case_start_on_copy_start_and_remove_all_not_contained():   # TODO: this is one
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
+    new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=7, place=35))
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 30, inserted len: 15',
+            'predecessor index: 35, #copied sites: 65, inserted len: 0'],
+        'length': 110}
+
+
 def test_deletion_case_start_on_copy_mid_and_not_contained():
     new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
@@ -1024,3 +1050,41 @@ def test_naive_super_sequence():
         ' -1, -1, -1, -1, -1, -1, -1, -1, -1,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 100,101,102,103,104, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 30, 31, 32, 33, 34, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, -1, -1, -1, -1, -1, -1, -1',
         '131,132,133,134,135,136,137,138,139,  0,  1,  2, -1, -1, -1, -1,  7,  8,  9,  -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,100,101,102,103,123,124,125,126,127,104, 30, 31, 32, 33, 34,105,106,107,108,109,110,111,112,113,114,115,116, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,117,118,119,120,121,122',
     ]
+
+
+    # other:
+
+def test_deletion_case_of_all_copied_on_a_block_list():
+    new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
+    new_organism.blck_list = [
+        Block(index_in_predecessor=0, copy_sites_count=6, inserted_seq_count=36),
+        Block(index_in_predecessor=6, copy_sites_count=7, inserted_seq_count=0),
+        Block(index_in_predecessor=16, copy_sites_count=1, inserted_seq_count=0),
+        Block(index_in_predecessor=28, copy_sites_count=1, inserted_seq_count=3),
+        Block(index_in_predecessor=29, copy_sites_count=1, inserted_seq_count=7),
+        Block(index_in_predecessor=30, copy_sites_count=3, inserted_seq_count=9),
+        Block(index_in_predecessor=59, copy_sites_count=13, inserted_seq_count=1),
+        Block(index_in_predecessor=72, copy_sites_count=1, inserted_seq_count=1),
+        Block(index_in_predecessor=73, copy_sites_count=10, inserted_seq_count=21),
+        Block(index_in_predecessor=83, copy_sites_count=2, inserted_seq_count=1),
+        Block(index_in_predecessor=86, copy_sites_count=1, inserted_seq_count=2),
+        Block(index_in_predecessor=87, copy_sites_count=1, inserted_seq_count=4),
+        Block(index_in_predecessor=89, copy_sites_count=8, inserted_seq_count=0),
+    ]
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=10, place=115))
+
+    res = new_organism.get_dto()
+    assert res == {
+        'blocks': [
+            'predecessor index: 0, #copied sites: 6, inserted len: 36',
+            'predecessor index: 6, #copied sites: 7, inserted len: 0',
+            'predecessor index: 16, #copied sites: 1, inserted len: 0',
+            'predecessor index: 28, #copied sites: 1, inserted len: 3',
+            'predecessor index: 29, #copied sites: 1, inserted len: 7',
+            'predecessor index: 30, #copied sites: 3, inserted len: 9',
+            'predecessor index: 59, #copied sites: 13, inserted len: 1',
+            'predecessor index: 72, #copied sites: 1, inserted len: 1',
+            'predecessor index: 73, #copied sites: 10, inserted len: 17',
+            'predecessor index: 87, #copied sites: 1, inserted len: 4',
+            'predecessor index: 89, #copied sites: 8, inserted len: 0'],
+        'length': 90}
