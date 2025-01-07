@@ -54,6 +54,9 @@ class AVLNode:
     def set_a_father(self, father: Self):
         self.father = father
 
+    def update_key_to_insert_only(self):
+        self.bl.index_in_predecessor = -1
+
     def is_redundant(self) -> bool:
         return self.bl.is_redundant()
 

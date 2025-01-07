@@ -213,11 +213,8 @@ def test_random_events_tree_vs_list():
     blocktree = SequenceNodeAsTree(0, current_sequence_length)
 
     for event_number in range(10000):
-        if event_number == 23:
+        if event_number == 27:
             stop = True
-        for bl in blocklist.blck_list:
-            if bl.copy_sites_count == 0 and bl.index_in_predecessor > -1:
-                stop = True
         if current_sequence_length == 0:
             break
         current_event, current_sequence_length = event_creator(current_sequence_length)
