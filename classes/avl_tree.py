@@ -25,6 +25,10 @@ class AVLTree:
     def inc_on_same_location(avl_node: AVLNode, delta_copied_count: int | None, delta_inserted_count: int | None):
         avl_node.inc_on_same_location(delta_copied_count, delta_inserted_count)
 
+    @staticmethod
+    def update_key_to_insert_only(avl_node: AVLNode):
+        avl_node.update_key_to_insert_only()
+
     def update_to_new_location(self, node_to_update: AVLNode, new_bl: Block):  # TODO: can improve
         nodes_to_update_val: set[AVLNode] = set()
         self.root = self.delete(self.root, node_to_update.bl.index_in_predecessor, nodes_to_update_val)
@@ -191,7 +195,8 @@ class AVLTree:
         if not root:
             return root, 0
         if root.left is not None:
-            if position_in_block < root.left.length_under_including:
+            if ((position_in_block <= root.left.length_under_including and is_insertion) or
+                    (position_in_block < root.left.length_under_including and not is_insertion)):
                 return self.search(root.left, position_in_block, is_insertion)
             position_in_block -= root.left.length_under_including
         if ((position_in_block < root.get_my_own_length() and not is_insertion) or

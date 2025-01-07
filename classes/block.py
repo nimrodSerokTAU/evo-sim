@@ -20,6 +20,9 @@ class Block:
     def inc_copy_sites_count(self, copied_length: int):
         self.copy_sites_count += copied_length
 
+    def get_my_length(self) -> int:
+        return self.copy_sites_count + self.inserted_seq_count
+
     def get_dto_str(self) -> str:
         index_in_predecessor: int = -1 if self.index_in_predecessor == 0 and self.copy_sites_count == 0 else self.index_in_predecessor
         return f"predecessor index: {index_in_predecessor}, #copied sites: {self.copy_sites_count}, inserted len: {self.inserted_seq_count}"
