@@ -41,6 +41,8 @@ class SequenceNodeAsTree:
                 if position_in_block + event.length == node_at_inx.bl.copy_sites_count and position_in_block == 0:
                     return EventSubTypes.DELETION_OF_COPIED, node_at_inx, position_in_block
                 if position_in_block == 0:
+                    if event.place == 0 and node_at_inx.left is None:
+                        return EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED_AT_START, node_at_inx, position_in_block
                     return EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED, node_at_inx, position_in_block
                 return EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED, node_at_inx, position_in_block
             if position_in_block + event.length <= node_at_inx.bl.inserted_seq_count:  # contained in inserted
@@ -112,23 +114,32 @@ class SequenceNodeAsTree:
                 self.block_tree.update_to_new_location(avl_node, block_item)
             self.my_length -= event.length
         elif event_type == EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED:
+            # There are cases of delete all copied with still insertions or all deleted or no insertions at all + is remove all block or not + is going forward to a new block
             deleted_from_insertion = min((event.length - avl_node.bl.copy_sites_count), avl_node.bl.inserted_seq_count)
             deleted_from_copied = avl_node.bl.copy_sites_count
-            self.my_length -= deleted_from_copied
-            if avl_node.bl.inserted_seq_count > 0:
-                self.block_tree.update_on_same_location(avl_node, 0, None)
-                if avl_node.bl.index_in_predecessor > 0 or (avl_node.bl.index_in_predecessor == 0 and avl_node.left is not None):
-                    to_insert = avl_node.bl.inserted_seq_count
-                    self.block_tree.delete_node(avl_node)
-                    avl_node, position_in_block = self.block_tree.search(self.block_tree.root, event.place, True)
-                    self.block_tree.inc_on_same_location(avl_node, 0, to_insert)
-                else:
-                    self.block_tree.update_key_to_insert_only(avl_node)
-                self.delete_from_insertion_part(avl_node, event.length - deleted_from_copied, deleted_from_insertion, event.place)
-            else:
+            self.my_length -= (deleted_from_copied + deleted_from_insertion)
+            if avl_node.bl.inserted_seq_count - deleted_from_insertion > 0:  # there are still insertions on this block
+                to_insert = avl_node.bl.inserted_seq_count - deleted_from_insertion
                 self.block_tree.delete_node(avl_node)
-                deletion_event = IndelEvent(is_insertion=False, place=event.place, length=event.length - deleted_from_copied)
-                self.calculate_event(deletion_event)
+                avl_node, position_in_block = self.block_tree.search(self.block_tree.root, event.place, True)
+                self.block_tree.inc_on_same_location(avl_node, 0, to_insert)
+            else:  # no more insertions on this block
+                self.block_tree.delete_node(avl_node)
+                if event.length - deleted_from_copied - deleted_from_insertion > 0:
+                    deletion_event = IndelEvent(is_insertion=False, place=event.place, length=event.length - deleted_from_copied - deleted_from_insertion)
+                    self.calculate_event(deletion_event)
+        elif event_type == EventSubTypes.DELETION_ALL_COPIED_UNCONTAINED_AT_START:
+            deleted_from_insertion = min((event.length - avl_node.bl.copy_sites_count), avl_node.bl.inserted_seq_count)
+            deleted_from_copied = avl_node.bl.copy_sites_count
+            self.my_length -= (deleted_from_copied + deleted_from_insertion)
+            if avl_node.bl.inserted_seq_count - deleted_from_insertion > 0:  # there are still insertions on this block
+                self.block_tree.update_on_same_location(avl_node, 0, avl_node.bl.inserted_seq_count - deleted_from_insertion)
+                self.block_tree.update_key_to_insert_only(avl_node)
+            else:  # no more insertions on this block
+                self.block_tree.delete_node(avl_node)
+                if event.length - deleted_from_copied - deleted_from_insertion > 0:
+                    deletion_event = IndelEvent(is_insertion=False, place=event.place, length=event.length - deleted_from_copied - deleted_from_insertion)
+                    self.calculate_event(deletion_event)
         elif event_type == EventSubTypes.DELETION_INSIDE_COPIED_UNCONTAINED:
             removed_from_copied: int = avl_node.bl.copy_sites_count - position_in_block
             deleted_from_insertion = min((event.length - removed_from_copied), avl_node.bl.inserted_seq_count)

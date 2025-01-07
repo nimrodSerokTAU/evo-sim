@@ -205,15 +205,15 @@ def ordinal(n: int):
     return str(n) + suffix
 
 def test_random_events_tree_vs_list():
-    # seed = random.randint(1, 2147483647)
-    seed = 1604692881
+    seed = random.randint(1, 2147483647)
+    # seed = 841039037
     random.seed(seed)
     current_sequence_length = 100
     blocklist = SequenceNodeAsList(0, current_sequence_length)
     blocktree = SequenceNodeAsTree(0, current_sequence_length)
-
+    print(f"the seed for this run was: {seed}")
     for event_number in range(10000):
-        if event_number == 27:
+        if event_number == 181:
             stop = True
         if current_sequence_length == 0:
             break
