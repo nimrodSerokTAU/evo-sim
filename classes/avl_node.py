@@ -74,3 +74,18 @@ class AVLNode:
     def get_clean_dto_str(self) -> str:
         return f"predecessor index: {self.bl.index_in_predecessor}, #copied sites: {self.bl.copy_sites_count}, inserted len: {self.bl.inserted_seq_count}"
 
+    def debug_node_structure(self) -> bool:
+        k: int = self.bl.inserted_seq_count + self.bl.copy_sites_count
+        if self.left is not None:
+            if self.left.bl.index_in_predecessor > self.bl.index_in_predecessor:
+                return False
+            k += self.left.length_under_including
+            if not self.left.debug_node_structure():
+                return False
+        if self.right is not None:
+            if self.right.bl.index_in_predecessor < self.bl.index_in_predecessor:
+                return False
+            k += self.right.length_under_including
+            if not self.right.debug_node_structure():
+                return False
+        return self.length_under_including == k

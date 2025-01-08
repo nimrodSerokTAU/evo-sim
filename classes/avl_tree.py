@@ -32,8 +32,9 @@ class AVLTree:
     def update_to_new_location(self, node_to_update: AVLNode, new_bl: Block):  # TODO: can improve
         nodes_to_update_val: set[AVLNode] = set()
         self.root = self.delete(self.root, node_to_update.bl.index_in_predecessor, nodes_to_update_val)
-        self.insert_block(new_bl)
         self.update_all_needed_nodes(nodes_to_update_val)
+        self.insert_block(new_bl)
+
 
     def delete_node(self, node_to_delete: AVLNode):
         nodes_to_update_val: set[AVLNode] = set()
@@ -220,3 +221,9 @@ class AVLTree:
         nodes_list = sorted([n for n in nodes_to_update_val if n is not None], key=lambda x: x.height)
         for n in nodes_list:
             n.update_length_under_including()
+
+
+    def debug_tree_structure(self):
+        if self.root is None:
+            return True
+        return self.root.debug_node_structure()

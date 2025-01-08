@@ -40,7 +40,7 @@ class SequenceNodeAsList:
                     return EventSubTypes.INSERTION_AT_START_ADDITION, cb_index, seq_length_with_block
                 return EventSubTypes.INSERTION_AT_START, cb_index, seq_length_with_block
             if event.place < seq_len_up_to_block + block_at_inx.copy_sites_count:
-                return EventSubTypes.INSERTION_INSIDE_COPIED, cb_index, seq_length_with_block
+                return EventSubTypes.INSERTION_INSIDE_COPIED, cb_index, seq_length_with_block  # TODO: issue here
             return EventSubTypes.INSERTION_INSIDE_INSERTED, cb_index, seq_length_with_block
         else:
             if cb_index == -1 and seq_length_with_block == event.place:

@@ -478,9 +478,9 @@ def test_list_deletion_of_copy_with_no_insert_not_contained():
         'length': 90}
 
 
-def test_avl_deletion_of_all_copied_some_insertion():
+def test_deletion_of_all_copied_some_insertion():
     new_organism = SequenceNodeAsList(seq_id=0, original_sequence_length=100)
-    new_organism.block_tree = [
+    new_organism.blck_list = [
         Block(index_in_predecessor=7, copy_sites_count=1, inserted_seq_count=62)
     ]
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=0))
@@ -567,11 +567,12 @@ def test_avl_insertion_elya_a():
     new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     res = new_organism.get_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'id: 0, predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 105',
             'id: 1, predecessor index: 30, #copied sites: 70, inserted len: 0, length_under_including: 70'],
-        'length': 105}
+        'length': 105, 'is_valid': True}
 
 
 def test_avl_deletion_elya_b():
@@ -579,12 +580,13 @@ def test_avl_deletion_elya_b():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     res = new_organism.get_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'id: 0, predecessor index: 0, #copied sites: 30, inserted len: 5, length_under_including: 35',
             'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 93',
             'id: 2, predecessor index: 47, #copied sites: 53, inserted len: 0, length_under_including: 53'],
-        'length': 93}
+        'length': 93, 'is_valid': True}
 
 
 def test_avl_deletion_elya_c():
@@ -593,13 +595,14 @@ def test_avl_deletion_elya_c():
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
     res = new_organism.get_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'id: 0, predecessor index: 0, #copied sites: 12, inserted len: 2, length_under_including: 37',
             'id: 3, predecessor index: 12, #copied sites: 18, inserted len: 5, length_under_including: 23',
             'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 95',
             'id: 2, predecessor index: 47, #copied sites: 53, inserted len: 0, length_under_including: 53'],
-        'length': 95}
+        'length': 95, 'is_valid': True}
 
 
 def test_avl_deletion_elya_d():
@@ -609,6 +612,7 @@ def test_avl_deletion_elya_d():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=20, place=90))
     res = new_organism.get_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'id: 0, predecessor index: 0, #copied sites: 12, inserted len: 2, length_under_including: 37',
@@ -616,7 +620,7 @@ def test_avl_deletion_elya_d():
             'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 115',
             'id: 2, predecessor index: 47, #copied sites: 48, inserted len: 20, length_under_including: 73',
             'id: 4, predecessor index: 95, #copied sites: 5, inserted len: 0, length_under_including: 5'],
-        'length': 115}
+        'length': 115, 'is_valid': True}
 
 
 def test_avl_deletion_elya_e():
@@ -627,6 +631,7 @@ def test_avl_deletion_elya_e():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=20, place=90))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=0))
     res = new_organism.get_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'id: 5, predecessor index: 4, #copied sites: 8, inserted len: 2, length_under_including: 10',
@@ -634,7 +639,7 @@ def test_avl_deletion_elya_e():
             'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 111',
             'id: 2, predecessor index: 47, #copied sites: 48, inserted len: 20, length_under_including: 73',
             'id: 4, predecessor index: 95, #copied sites: 5, inserted len: 0, length_under_including: 5'],
-        'length': 111}
+        'length': 111, 'is_valid': True}
 
 
 def test_avl_deletion_elya_f():
@@ -646,6 +651,7 @@ def test_avl_deletion_elya_f():
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=10))
     res = new_organism.get_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'id: 5, predecessor index: 4, #copied sites: 8, inserted len: 2, length_under_including: 16',
@@ -653,7 +659,7 @@ def test_avl_deletion_elya_f():
             'id: 1, predecessor index: 30, #copied sites: 5, inserted len: 0, length_under_including: 94',
             'id: 2, predecessor index: 47, #copied sites: 48, inserted len: 20, length_under_including: 73',
             'id: 4, predecessor index: 95, #copied sites: 5, inserted len: 0, length_under_including: 5'],
-        'length': 94}
+        'length': 94, 'is_valid': True}
 
 
 def test_avl_insertion_including_inside_copied_and_at_end():
@@ -662,12 +668,13 @@ def test_avl_insertion_including_inside_copied_and_at_end():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 2'],
-        'length': 119}
+        'length': 119, 'is_valid': True}
     
 def test_avl_deletion_case_start_on_copy_start_and_contained():
     new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=100)
@@ -675,12 +682,13 @@ def test_avl_deletion_case_start_on_copy_start_and_contained():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=35))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 33, #copied sites: 2, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 114}
+        'length': 114, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_copy_mid_and_contained():
@@ -689,13 +697,14 @@ def test_avl_deletion_case_start_on_copy_mid_and_contained():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=6, place=10))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 10, inserted len: 0',
             'predecessor index: 16, #copied sites: 14, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 111}
+        'length': 111, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_copy_mid_and_not_contained():
@@ -704,12 +713,13 @@ def test_avl_deletion_case_start_on_copy_mid_and_not_contained():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=9, place=37))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 2, inserted len: 6',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 108}
+        'length': 108, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_copy_mid_and_continue_to_next_block():
@@ -718,12 +728,13 @@ def test_avl_deletion_case_start_on_copy_mid_and_continue_to_next_block():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=37))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 2, inserted len: 0',
             'predecessor index: 37, #copied sites: 63, inserted len: 0'],
-        'length': 100}
+        'length': 100, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_insert_contained():
@@ -732,12 +743,13 @@ def test_avl_deletion_case_start_on_insert_contained():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=4, place=43))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 8',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 113}
+        'length': 113, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_insert_continue_to_next():
@@ -746,12 +758,13 @@ def test_avl_deletion_case_start_on_insert_continue_to_next():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=19, place=42))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 2',
             'predecessor index: 44, #copied sites: 56, inserted len: 0'],
-        'length': 98}
+        'length': 98, 'is_valid': True}
 
 
 def test_avl_insertion_inside_insertion():
@@ -762,6 +775,7 @@ def test_avl_insertion_inside_insertion():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=48))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=54))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
@@ -769,7 +783,7 @@ def test_avl_insertion_inside_insertion():
             'predecessor index: 35, #copied sites: 1, inserted len: 1',
             'predecessor index: 36, #copied sites: 5, inserted len: 1',
             'predecessor index: 41, #copied sites: 59, inserted len: 0'],
-        'length': 114}
+        'length': 114, 'is_valid': True}
 
 
 def test_avl_deletion_case_of_deleting_several_blocks():
@@ -781,12 +795,13 @@ def test_avl_deletion_case_of_deleting_several_blocks():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=1, place=54))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=21, place=37))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 2, inserted len: 0',
             'predecessor index: 44, #copied sites: 56, inserted len: 0'],
-        'length': 93}
+        'length': 93, 'is_valid': True}
 
 
 def test_avl_deletion_case_on_copied_more_than_end():
@@ -795,12 +810,13 @@ def test_avl_deletion_case_on_copied_more_than_end():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=111))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 59, inserted len: 0'],
-        'length': 111}
+        'length': 111, 'is_valid': True}
 
 
 def test_avl_deletion_case_on_inserted_more_than_end():
@@ -810,12 +826,13 @@ def test_avl_deletion_case_on_inserted_more_than_end():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=8, place=117))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=17, place=120))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 3'],
-        'length': 120}
+        'length': 120, 'is_valid': True}
 
 
 def test_avl_deletion_before_start_not_affecting():
@@ -824,12 +841,13 @@ def test_avl_deletion_before_start_not_affecting():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=-5))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 117}
+        'length': 117, 'is_valid': True}
 
 
 def test_avl_deletion_before_start_affecting():
@@ -838,12 +856,13 @@ def test_avl_deletion_before_start_affecting():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=11, place=-5))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 6, #copied sites: 24, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 111}
+        'length': 111, 'is_valid': True}
 
 
 def test_avl_deletion_after_end_not_affecting():
@@ -852,12 +871,13 @@ def test_avl_deletion_after_end_not_affecting():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=127))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 117}
+        'length': 117, 'is_valid': True}
 
 
 def test_avl_insertion_before_start():
@@ -867,13 +887,14 @@ def test_avl_insertion_before_start():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=10, place=-3))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: -1, #copied sites: 0, inserted len: 7',
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 2'],
-        'length': 126}
+        'length': 126, 'is_valid': True}
 
 
 def test_avl_insertion_before_start_not_affecting():
@@ -882,12 +903,13 @@ def test_avl_insertion_before_start_not_affecting():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=-4))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 117}
+        'length': 117, 'is_valid': True}
 
 
 def test_avl_insertion_after_end_not_affecting():
@@ -896,12 +918,13 @@ def test_avl_insertion_after_end_not_affecting():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=119))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 117}
+        'length': 117, 'is_valid': True}
 
 
 def test_avl_insertion_at_start():
@@ -910,12 +933,13 @@ def test_avl_insertion_at_start():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=3, place=42))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: -1, #copied sites: 0, inserted len: 12',
             'predecessor index: 0, #copied sites: 30, inserted len: 8',
             'predecessor index: 30, #copied sites: 70, inserted len: 0'],
-        'length': 120}
+        'length': 120, 'is_valid': True}
 
 
 def test_avl_deletion_at_start_of_copied():
@@ -923,11 +947,12 @@ def test_avl_deletion_at_start_of_copied():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 3, #copied sites: 27, inserted len: 5',
             'predecessor index: 30, #copied sites: 70, inserted len: 0'],
-        'length': 102}
+        'length': 102, 'is_valid': True}
 
 
 def test_avl_deletion_at_start_insertion_only():
@@ -936,12 +961,13 @@ def test_avl_deletion_at_start_insertion_only():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=0))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=0))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: -1, #copied sites: 0, inserted len: 9',
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 70, inserted len: 0'],
-        'length': 114}
+        'length': 114, 'is_valid': True}
 
 
 def test_avl_deletion_at_end_of_copied():
@@ -949,11 +975,12 @@ def test_avl_deletion_at_end_of_copied():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=104))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 69, inserted len: 0'],
-        'length': 104}
+        'length': 104, 'is_valid': True}
 
 
 def test_avl_deletion_after_end_of_copied():
@@ -961,11 +988,12 @@ def test_avl_deletion_after_end_of_copied():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=5, place=30))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=3, place=105))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 70, inserted len: 0'],
-        'length': 105}
+        'length': 105, 'is_valid': True}
 
 
 def test_avl_deletion_at_end_of_inserted():
@@ -975,12 +1003,13 @@ def test_avl_deletion_at_end_of_inserted():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=2, place=118))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 1'],
-        'length': 118}
+        'length': 118, 'is_valid': True}
 
 
 def test_avl_deletion_after_end_of_inserted():
@@ -990,12 +1019,13 @@ def test_avl_deletion_after_end_of_inserted():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=2, place=119))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 2'],
-        'length': 119}
+        'length': 119, 'is_valid': True}
 
 
 def test_avl_deletion_at_end_of_copied_plus_inserted():
@@ -1005,12 +1035,13 @@ def test_avl_deletion_at_end_of_copied_plus_inserted():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=2, place=117))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 117}
+        'length': 117, 'is_valid': True}
 
 
 def test_avl_insertion_at_end_of_inserted():
@@ -1020,12 +1051,13 @@ def test_avl_insertion_at_end_of_inserted():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=117))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=4, place=119))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 12',
             'predecessor index: 35, #copied sites: 65, inserted len: 6'],
-        'length': 123}
+        'length': 123, 'is_valid': True}
 
 
 def test_avl_case_el_a():
@@ -1034,13 +1066,14 @@ def test_avl_case_el_a():
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=2, place=12))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 12, inserted len: 2',
             'predecessor index: 12, #copied sites: 18, inserted len: 5',
             'predecessor index: 30, #copied sites: 5, inserted len: 0',
             'predecessor index: 47, #copied sites: 53, inserted len: 0'],
-        'length': 95}
+        'length': 95, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_copy_start_and_remove_all():
@@ -1049,11 +1082,12 @@ def test_avl_deletion_case_start_on_copy_start_and_remove_all():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=5, place=35))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 17',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 112}
+        'length': 112, 'is_valid': True}
 
 
 def test_avl_deletion_case_start_on_copy_start_and_remove_all_not_contained():
@@ -1062,11 +1096,12 @@ def test_avl_deletion_case_start_on_copy_start_and_remove_all_not_contained():
     new_organism.calculate_event(IndelEvent(is_insertion=True, length=12, place=40))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=7, place=35))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 30, inserted len: 15',
             'predecessor index: 35, #copied sites: 65, inserted len: 0'],
-        'length': 110}
+        'length': 110, 'is_valid': True}
 
 
 def test_avl_deletion_at_insertion_start():
@@ -1077,11 +1112,12 @@ def test_avl_deletion_at_insertion_start():
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=18, place=61))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=5, place=0))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: -1, #copied sites: 0, inserted len: 125',
             'predecessor index: 3, #copied sites: 2, inserted len: 59'],
-        'length': 186}
+        'length': 186, 'is_valid': True}
 
 
 def test_avl_deletion_of_copy_with_no_insert_not_contained():
@@ -1099,6 +1135,7 @@ def test_avl_deletion_of_copy_with_no_insert_not_contained():
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=10, place=68))
 
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: 0, #copied sites: 3, inserted len: 6',
@@ -1108,7 +1145,7 @@ def test_avl_deletion_of_copy_with_no_insert_not_contained():
             'predecessor index: 72, #copied sites: 1, inserted len: 1',
             'predecessor index: 73, #copied sites: 10, inserted len: 17',
         ],
-        'length': 90}
+        'length': 90, 'is_valid': True}
 
 
 def test_avl_deletion_of_all_copied_some_insertion():
@@ -1117,11 +1154,42 @@ def test_avl_deletion_of_all_copied_some_insertion():
                                                inserted_seq_count=62))
     new_organism.calculate_event(IndelEvent(is_insertion=False, length=12, place=0))
     res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
     assert res == {
         'blocks': [
             'predecessor index: -1, #copied sites: 0, inserted len: 51',
         ],
-        'length': 88}
+        'length': 88, 'is_valid': True}
+
+
+def test_avl_deletion_case_c():
+    new_organism = SequenceNodeAsTree(seq_id=0, original_sequence_length=1000)
+    new_organism.block_tree = AVLTree(bl=Block(index_in_predecessor=0, copy_sites_count=45,
+                                       inserted_seq_count=0))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=48, copy_sites_count=69, inserted_seq_count=0))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=150, copy_sites_count=37, inserted_seq_count=4))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=187, copy_sites_count=80, inserted_seq_count=0))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=268, copy_sites_count=10, inserted_seq_count=20))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=278, copy_sites_count=137, inserted_seq_count=0))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=416, copy_sites_count=21, inserted_seq_count=0))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=441, copy_sites_count=245, inserted_seq_count=0))
+    new_organism.block_tree.insert_block(Block(index_in_predecessor=701, copy_sites_count=18, inserted_seq_count=1))
+    new_organism.calculate_event(IndelEvent(is_insertion=False, length=18, place=419))
+
+    res = new_organism.get_clean_dto()
+    res['is_valid'] = new_organism.block_tree.debug_tree_structure()
+    assert res == {
+        'blocks': ['predecessor index: 0, #copied sites: 45, inserted len: 0',
+            'predecessor index: 48, #copied sites: 69, inserted len: 0',
+            'predecessor index: 150, #copied sites: 37, inserted len: 4',
+            'predecessor index: 187, #copied sites: 80, inserted len: 0',
+            'predecessor index: 268, #copied sites: 10, inserted len: 20',
+            'predecessor index: 278, #copied sites: 137, inserted len: 0',
+            'predecessor index: 416, #copied sites: 17, inserted len: 0',
+            'predecessor index: 455, #copied sites: 231, inserted len: 0',
+            'predecessor index: 701, #copied sites: 18, inserted len: 1'],
+        'length': 982, 'is_valid': True}
+
 
 ################################################### naive #############################################
 

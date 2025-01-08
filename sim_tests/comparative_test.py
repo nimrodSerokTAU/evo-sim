@@ -205,18 +205,16 @@ def ordinal(n: int):
     return str(n) + suffix
 
 def test_random_events_tree_vs_list():
-    seed = random.randint(1, 2147483647)
-    # error_seeds = [2307484, 1492962813, 1184690792, 1038172753,
-    #                1316264661, 829668539, 687632047, 70894728,
-    #                1384919955, 925964523, 652893926, 2092545342]
-
+    # seed = random.randint(1, 2147483647)
+    # error_seeds = []
+    seed = 2092545342
     random.seed(seed)
     current_sequence_length = 10000
     blocklist = SequenceNodeAsList(0, current_sequence_length)
     blocktree = SequenceNodeAsTree(0, current_sequence_length)
     print(f"the seed for this run was: {seed}")
     for event_number in range(10000):
-        # if event_number == 181:
+        # if event_number == 163:
         #     stop = True
         if current_sequence_length == 0:
             break
@@ -224,11 +222,16 @@ def test_random_events_tree_vs_list():
         print(f"the {ordinal(event_number)} event is: ", current_event)
         blocklist.calculate_event(current_event)
         blocktree.calculate_event(current_event)
+        if not blocktree.block_tree.debug_tree_structure():
+            stop = True
         if blocklist.get_dto() != blocktree.get_clean_dto():
+            print('len:', len(blocklist.blck_list))
             print(blocklist.blocks_iterator())
             print(blocktree.blocks_iterator())
             print(f"the seed for this run was: {seed}")
 
-        assert blocklist.get_dto() == blocktree.get_clean_dto()
+        ok: bool = blocklist.get_dto() == blocktree.get_clean_dto() and blocktree.block_tree.debug_tree_structure()
+
+        assert ok
     print("Sequence length is 0, halting\n")
     assert True
