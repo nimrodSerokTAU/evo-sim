@@ -205,9 +205,9 @@ def ordinal(n: int):
     return str(n) + suffix
 
 def test_random_events_tree_vs_list():
-    # seed = random.randint(1, 2147483647)
+    seed = random.randint(1, 2147483647)
     # error_seeds = []
-    seed = 2092545342
+    # seed = 2092545342
     random.seed(seed)
     current_sequence_length = 10000
     blocklist = SequenceNodeAsList(0, current_sequence_length)
@@ -233,5 +233,5 @@ def test_random_events_tree_vs_list():
         ok: bool = blocklist.get_dto() == blocktree.get_clean_dto() and blocktree.block_tree.debug_tree_structure()
 
         assert ok
-    print("Sequence length is 0, halting\n")
+    print("Sequence length is 0 or loop is done, halting\n")
     assert True
