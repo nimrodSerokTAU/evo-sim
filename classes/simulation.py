@@ -126,6 +126,34 @@ class Simulation:
         
         self.msa = msa_str
 
+    def msa_from_hybrid(self):
+        super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
+        parent_seq = Sequence(super_seq, True, 0)
+        parent_seq.init_root_seq()
+        sequences = [parent_seq]
+
+        sequences_to_save = []
+        for node in self.sim_nodes[1:]:
+            if len(node.list_of_events) > 500:
+                node.seq_node_as_list = SequenceNodeAsTree(node.id, node.length_of_sequence_before)
+            else:
+                node.seq_node_as_list = SequenceNodeAsList(node.id, node.length_of_sequence_before)
+ 
+            for event in node.list_of_events:
+                node.seq_node_as_list.calculate_event(event)
+
+            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
+            blocks = node.seq_node_as_list.blocks_iterator()
+            current_seq.generate_sequence(blocks, sequences[node.parent_id])
+
+            sequences.append(current_seq)
+            if node.id in self.nodes_to_align:
+                sequences_to_save.append(current_seq)
+
+        self.msa = Msa(super_seq)
+        self.msa.compute_msa(sequences_to_save)
+
+
     def get_events(self):
         return self.sim_nodes
     

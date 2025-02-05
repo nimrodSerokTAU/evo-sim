@@ -27,6 +27,11 @@ for RATE_MULTIPLIER in range(1,16):#[0.5, 1,2,4,8,16]:
     sim = Simulation(input_tree="benchmark/normalbranches_nLeaves100.treefile", config=sim_config)
     print(f"Events for MULTIPLIER {RATE_MULTIPLIER} are ready!")
 
+    hybrid_time = timeit.timeit(sim.msa_from_hybrid, number=1)
+    print("Hybrid time","is", hybrid_time, "sec")
+    hybrid_msa = sim.msa.msa_str_rep()
+
+
     blocktree_time = timeit.timeit(sim.msa_from_blocktree, number=1)
     print("Blocktree time","is", blocktree_time, "sec")
     blocktree_msa = sim.msa.msa_str_rep()
