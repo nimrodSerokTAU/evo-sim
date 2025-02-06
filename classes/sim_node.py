@@ -34,7 +34,8 @@ class SimulatedNode:
         events: list[IndelEvent] = []
         current_time: float = 0
         current_running_length: int = father_seq_length
-        self.hybrid_factor = self.branch_length * (config.rate_ins + config.rate_del) * father_seq_length
+        total_rate_across_entire_sequence = config.rate_ins * (current_running_length + 1) + config.rate_del * (current_running_length)
+        self.hybrid_factor = self.branch_length * total_rate_across_entire_sequence
         # print(self.hybrid_factor)
         self.hybrid_switch = False if self.hybrid_factor < config.switch_factor else True
         while True:
@@ -55,7 +56,6 @@ class SimulatedNode:
                     events.append(event)
                     current_running_length -= event.length
         self.length_of_sequence_after_events = current_running_length
-
         return events
     
     def apply_events_with_blocktree(self):
