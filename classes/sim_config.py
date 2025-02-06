@@ -5,10 +5,11 @@ class SimConfiguration:
     rate_ins: float
     rate_del: float
     deletion_extra_edge_length: int
+    switch_factor: float
     random_seed: int
 
     def __init__(self, original_sequence_length: int, indel_length_alpha: float, indel_truncated_length: int,
-                 rate_ins: float, rate_del: float, deletion_extra_edge_length: int, seed: int):
+                 rate_ins: float, rate_del: float, deletion_extra_edge_length: int, switch_factor: float, seed: int):
 
         self.rate_ins = rate_ins
         self.rate_del = rate_del
@@ -16,4 +17,5 @@ class SimConfiguration:
         self.indel_length_alpha = indel_length_alpha
         self.indel_truncated_length = indel_truncated_length
         self.deletion_extra_edge_length = deletion_extra_edge_length
+        self.switch_factor = switch_factor
         self.random_seed = seed

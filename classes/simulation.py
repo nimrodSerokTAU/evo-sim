@@ -1,11 +1,6 @@
-import re
 from pathlib import Path
 from ete3 import Tree, TreeNode
 
-import sys
-print(Path.cwd())
-print(sys.path)
-sys.path.append(str(Path.cwd()))
 
 from sim_config import SimConfiguration
 from sim_node import SimulatedNode
@@ -134,7 +129,7 @@ class Simulation:
 
         sequences_to_save = []
         for node in self.sim_nodes[1:]:
-            if len(node.list_of_events) > 500:
+            if node.hybrid_switch:
                 node.seq_node_as_list = SequenceNodeAsTree(node.id, node.length_of_sequence_before)
             else:
                 node.seq_node_as_list = SequenceNodeAsList(node.id, node.length_of_sequence_before)

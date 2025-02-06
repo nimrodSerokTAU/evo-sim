@@ -22,7 +22,7 @@ for RATE_MULTIPLIER in range(1,16):#[0.5, 1,2,4,8,16]:
     sim_config = SimConfiguration(original_sequence_length=ROOT_SEQUENCE_LENGTH, indel_length_alpha=1.5,
                                 indel_truncated_length=5,
                                 rate_ins=0.03 * RATE_MULTIPLIER, rate_del=0.09 * RATE_MULTIPLIER,
-                                deletion_extra_edge_length=5, seed=420)
+                                deletion_extra_edge_length=5, switch_factor=0.5, seed=420)
 
     sim = Simulation(input_tree="benchmark/normalbranches_nLeaves100.treefile", config=sim_config)
     print(f"Events for MULTIPLIER {RATE_MULTIPLIER} are ready!")

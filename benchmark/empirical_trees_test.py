@@ -1,4 +1,4 @@
-
+#%%
 import timeit
 from pathlib import Path
 
@@ -8,6 +8,7 @@ print(Path.cwd())
 print(sys.path)
 sys.path.append(str(Path.cwd()))
 sys.path.append(str(Path.cwd() / "classes"))
+print(sys.path)
 
 
 from sim_config import SimConfiguration
@@ -22,6 +23,9 @@ ROOT_SEQUENCE_LENGTH = 1000
 TREES_PATH = Path("benchmark/TRUE_TREES")
 # RATE_MULTIPLIER = 15
 time_winners = []
+measured_times: list[list[float]] = []
+time_labels = ["hybrid", "blocktree", "blocklist", "naive"]
+
 
 for tree_path in list(TREES_PATH.iterdir())[:100]:#[0.5, 1,2,4,8,16]:
 
@@ -53,21 +57,16 @@ for tree_path in list(TREES_PATH.iterdir())[:100]:#[0.5, 1,2,4,8,16]:
     print("Naive_time","is", naive_time, "sec")
     # with open("naive_msa.fasta", 'w') as f:
     #     f.write(sim.msa)
-    time_labels = ["hybrid_time", "blocktree_time", "blocklist_time", "naive_time"]
 
     time_measures = [hybrid_time, blocktree_time, blocklist_time, naive_time]
-
-    min_time = argmin(time_measures)
-    time_winners.append(min_time)
-
-    if blocktree_time < blocklist_time:
-        print(f"tree is faster than list on the tree {tree_path}")
-
-
-for i in range(4):
-    print(time_labels[i], time_winners.count(i))
+    measured_times.append(time_measures)
 
 
 
 
 
+
+
+
+
+# %%
