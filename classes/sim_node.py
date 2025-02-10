@@ -39,13 +39,15 @@ class SimulatedNode:
         # print(self.hybrid_factor)
         self.hybrid_switch = False if self.hybrid_factor < config.switch_factor else True
         while True:
-            total_rate_across_entire_sequence = config.rate_ins * (current_running_length + 1) + config.rate_del * current_running_length
+            total_rate_across_entire_sequence = config.rate_ins * (current_running_length + 1) + config.rate_del * (current_running_length + config.deletion_extra_edge_length)
             event_time = np.random.exponential(1.0/ total_rate_across_entire_sequence)
             current_time += event_time
             if current_time > self.branch_length:
                 break
             insertion_prob = config.rate_ins * (current_running_length + 1) / total_rate_across_entire_sequence
-            is_insert = insertion_prob < rnd.uniform(0, 1)
+            sampled_uniform = rnd.uniform(0, 1)
+            is_insert = sampled_uniform < insertion_prob
+            # print(is_insert, insertion_prob, sampled_uniform)
             if is_insert:
                 event: IndelEvent = insertion_event(config, current_running_length)
                 events.append(event)
