@@ -34,6 +34,9 @@ class SimulatedNode:
         events: list[IndelEvent] = []
         current_time: float = 0
         current_running_length: int = father_seq_length
+        # print("node id:", self.id)
+
+        # print("length before events:", current_running_length)
         total_rate_across_entire_sequence = config.rate_ins * (current_running_length) + config.rate_del * (current_running_length)
         self.hybrid_factor = self.branch_length * total_rate_across_entire_sequence
         # print(self.hybrid_factor)
@@ -57,7 +60,11 @@ class SimulatedNode:
                 if event is not None:
                     events.append(event)
                     current_running_length -= event.length
+                if current_running_length < 0:
+                    raise "Negative sequence length"
         self.length_of_sequence_after_events = current_running_length
+        # print("length after events:", current_running_length)
+
         return events
     
     def apply_events_with_blocktree(self):
@@ -89,6 +96,8 @@ def deletion_event(config: SimConfiguration, current_running_length: int) -> Ind
     start: int = -config.deletion_extra_edge_length
     place: int = rnd.randint(start, current_running_length - 1)
     deletion_size: int = calc_trunc_zipf(config.indel_length_alpha, config.indel_truncated_length)
+    if place + deletion_size > current_running_length:
+        deletion_size = current_running_length - place
     if place + deletion_size > 0:
         return IndelEvent(False, place, deletion_size)
     return None
