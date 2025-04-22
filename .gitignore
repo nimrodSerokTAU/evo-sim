@@ -4,5 +4,4 @@ __pycache__/
 *.pyc
 classes/__pycache__/
 
-*.fasta
 .venv
