@@ -33,6 +33,7 @@ setup(
         "matplotlib>=3.5.0",
         "ete3>=3.1.2",
         "llist>=0.7.1",
+        "typing_extensions>=4.14.0",
     ],
     license="Academic Free License v. 3.0",
     entry_points={
