@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 500"
+   version="1.1"
+   id="svg136"
+   sodipodi:docname="simulator_tree_example.svg"
+   inkscape:version="1.4.1 (1:1.4.1+202503302257+93de688d07)"
+   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/simulator_tree_example.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs140" />
+  <sodipodi:namedview
+     id="namedview138"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.73646332"
+     inkscape:cx="405.3155"
+     inkscape:cy="249.84272"
+     inkscape:window-width="1366"
+     inkscape:window-height="696"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg136"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Title texts -->
+  <text
+     x="10.690759"
+     y="30"
+     font-family="monospace"
+     id="text2"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+     inkscape:export-filename="simulator_tree_example.png"
+     inkscape:export-xdpi="300"
+     inkscape:export-ydpi="300">A. Indel simulation</text>
+  <text
+     x="287.74088"
+     y="30"
+     font-family="monospace"
+     id="text4"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">B. Substitution simulation</text>
+  <text
+     x="566"
+     y="30"
+     font-family="monospace"
+     id="text6"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+     inkscape:export-filename="simulator_tree_example.png"
+     inkscape:export-xdpi="300"
+     inkscape:export-ydpi="300">C. Combining simulations</text>
+  <!-- Left tree (Indel) -->
+  <path
+     d="M 125.09957,100 45.960617,189.26433 M 125.09957,100 l 51.45022,50 m 0,0 -51.45022,50 M 176.54979,150 228,200"
+     fill="none"
+     stroke="#4169e1"
+     stroke-width="2.0288"
+     id="path8"
+     sodipodi:nodetypes="cccccccc" />
+  <circle
+     cx="128"
+     cy="100"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle10" />
+  <circle
+     cx="178"
+     cy="150"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle12" />
+  <circle
+     cx="44.402817"
+     cy="200"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle14" />
+  <circle
+     cx="132"
+     cy="200"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle16" />
+  <circle
+     cx="228"
+     cy="200"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle18" />
+  <text
+     x="128"
+     y="105"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text20">1</text>
+  <text
+     x="178"
+     y="155"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text22">2</text>
+  <text
+     x="44.402817"
+     y="205"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text24">3</text>
+  <text
+     x="132"
+     y="205"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text26">4</text>
+  <text
+     x="228"
+     y="205"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text28">5</text>
+  <rect
+     x="98"
+     y="64"
+     width="65"
+     height="20"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect30"
+     rx="7" />
+  <text
+     x="130"
+     y="79"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text32">NNNNNNNN</text>
+  <rect
+     x="192.6669"
+     y="132.6669"
+     width="73.905067"
+     height="21.088173"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect34"
+     rx="7.9590077"
+     style="stroke-width:1.09493" />
+  <text
+     x="230"
+     y="151"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text36"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle"><tspan
+       sodipodi:role="line"
+       id="tspan144914"
+       x="230"
+       y="151">N<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:monospace;-inkscape-font-specification:'monospace, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan317502">N̊</tspan>NNNNNNN</tspan></text>
+  <rect
+     x="10.455841"
+     y="214.05302"
+     width="71.893066"
+     height="22.120943"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect38"
+     rx="7.7423296"
+     style="stroke-width:1.10606" />
+  <g
+     id="g247428"
+     transform="translate(2)">
+    <g
+       id="g247423">
+      <text
+         x="44.402817"
+         y="231"
+         text-anchor="middle"
+         font-family="monospace"
+         id="text40"
+         style="font-family:monospace;text-anchor:middle">NNNN<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan314074">N̄N̄</tspan><tspan
+   id="tspan312548"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">N</tspan>N</text>
+    </g>
+  </g>
+  <rect
+     x="96.576111"
+     y="214.04749"
+     width="73.908066"
+     height="21.089025"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect42"
+     rx="7.9593296"
+     style="stroke-width:1.09498" />
+  <text
+     x="133.27789"
+     y="231"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text44"
+     style="font-family:monospace;text-anchor:middle">NNNNNNNN<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan322232">N̄</tspan></text>
+  <rect
+     x="194.04749"
+     y="214.04749"
+     width="73.908073"
+     height="21.089025"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect46"
+     rx="7.9593296"
+     style="stroke-width:1.09498" />
+  <text
+     x="230.85193"
+     y="231"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text48"
+     style="font-family:monospace;text-anchor:middle"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan323920">N̄</tspan>NNNNNNNN</text>
+  <!-- Right tree (Substitution) -->
+  <path
+     d="m 400,100 -69.44415,87.93827 M 400,100 l 50,50 m 0,0 -50,50 m 50,-50 50,50"
+     fill="none"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="path52"
+     sodipodi:nodetypes="cccccccc" />
+  <circle
+     cx="400"
+     cy="100"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle54" />
+  <circle
+     cx="450"
+     cy="150"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle56" />
+  <circle
+     cx="326"
+     cy="200"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle58" />
+  <circle
+     cx="410"
+     cy="200"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle60" />
+  <circle
+     cx="500"
+     cy="200"
+     r="12"
+     fill="#ffffff"
+     stroke="#4169e1"
+     stroke-width="2"
+     id="circle62" />
+  <text
+     x="400"
+     y="105"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text64">1</text>
+  <text
+     x="450.63602"
+     y="154.11211"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text66">2</text>
+  <text
+     x="326"
+     y="205"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text68">3</text>
+  <text
+     x="410"
+     y="205"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text70">4</text>
+  <text
+     x="500"
+     y="205"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text72">5</text>
+  <rect
+     x="366"
+     y="64"
+     width="70"
+     height="20"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect74"
+     rx="7" />
+  <text
+     x="400"
+     y="79"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text76">ATGCTCAGA</text>
+  <rect
+     x="465.40872"
+     y="134.78929"
+     width="73.943665"
+     height="21.12676"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect78"
+     rx="7.3943663"
+     style="stroke-width:1.05633" />
+  <text
+     x="502"
+     y="151"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text80"
+     style="font-family:monospace;text-anchor:middle">ATG<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan38171">G̃</tspan>TCAGA</text>
+  <rect
+     x="288.04227"
+     y="214.04227"
+     width="75.915497"
+     height="21.690142"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect82"
+     rx="7.5915499"
+     style="stroke-width:1.0845" />
+  <text
+     x="326"
+     y="231"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text84"
+     style="font-family:monospace;text-anchor:middle">A<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan34987">C̃</tspan>GCTC<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan36339">T̃</tspan>GA</text>
+  <rect
+     x="374.02112"
+     y="214.64058"
+     width="72.957748"
+     height="20.84507"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect86"
+     rx="7.2957745"
+     style="stroke-width:1.04225" />
+  <text
+     x="410"
+     y="231"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text88"
+     style="font-family:monospace;text-anchor:middle">ATGGTCA<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan39355">Ã</tspan>A</text>
+  <rect
+     x="464.77521"
+     y="214.77519"
+     width="71.971832"
+     height="20.563381"
+     fill="#ffffff"
+     stroke="#000000"
+     id="rect90"
+     rx="7.1971831"
+     style="stroke-width:1.02817" />
+  <text
+     x="500"
+     y="231"
+     text-anchor="middle"
+     font-family="monospace"
+     id="text92"
+     style="font-family:monospace;text-anchor:middle">ATG<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan40755">T̃</tspan>TCAGA</text>
+  <!-- Alignment sections -->
+  <g
+     id="g10943"
+     transform="matrix(1.459388,0,0,1.459388,2.756045,-175.57928)">
+    <text
+       x="50"
+       y="330"
+       font-family="monospace"
+       id="text98">1: N-NNNNNNN</text>
+    <text
+       x="50"
+       y="350"
+       font-family="monospace"
+       id="text100">2: NNNNNNNNN</text>
+    <text
+       x="50"
+       y="370"
+       font-family="monospace"
+       id="text102">3: N-NNN--NN</text>
+    <text
+       x="50"
+       y="390"
+       font-family="monospace"
+       id="text104">4: NNNNNNNN-</text>
+    <text
+       x="50"
+       y="410"
+       font-family="monospace"
+       id="text106">5: -NNNNNNNN</text>
+  </g>
+  <text
+     x="349.72812"
+     y="306.21512"
+     font-family="monospace"
+     id="text112"
+     style="font-size:17.4661px;stroke-width:1.4555">1: ATGCTCAGA</text>
+  <text
+     x="349.72812"
+     y="335.3252"
+     font-family="monospace"
+     id="text114"
+     style="font-size:17.4661px;stroke-width:1.4555">2: ATGGTCAGA</text>
+  <text
+     x="349.72812"
+     y="364.4353"
+     font-family="monospace"
+     id="text116"
+     style="font-size:17.4661px;stroke-width:1.4555">3: ACGCTCTGA</text>
+  <text
+     x="349.72812"
+     y="393.54538"
+     font-family="monospace"
+     id="text118"
+     style="font-size:17.4661px;stroke-width:1.4555">4: ATGGTCAAA</text>
+  <text
+     x="349.72812"
+     y="422.65549"
+     font-family="monospace"
+     id="text120"
+     style="font-size:17.4661px;stroke-width:1.4555">5: ATGTTCAGA</text>
+  <!-- Combined simulations -->
+  <g
+     transform="matrix(1.4555048,0,0,1.4555048,618.29195,52.26282)"
+     id="g134">
+    <text
+       x="0"
+       y="30"
+       font-family="monospace"
+       id="text124">1: A-GCTCAGA</text>
+    <text
+       x="0"
+       y="50"
+       font-family="monospace"
+       id="text126">2: ATGGTCAGA</text>
+    <text
+       x="0"
+       y="70"
+       font-family="monospace"
+       id="text128">3: A-GCT--GA</text>
+    <text
+       x="0"
+       y="90"
+       font-family="monospace"
+       id="text130">4: ATGGTCAA-</text>
+    <text
+       x="0"
+       y="110"
+       font-family="monospace"
+       id="text132">5: -TGTTCAGA</text>
+  </g>
+  <path
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.964683;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:7.71749, 3.85874;stroke-dashoffset:0;stroke-opacity:0.450164;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     d="M 274.77439,16.601427 V 436.60143"
+     id="path10145" />
+  <path
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.964684;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:7.71747, 3.85873;stroke-dashoffset:0;stroke-opacity:0.450164;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     d="M 552.77439,16.601427 V 436.60143"
+     id="path11223" />
+</svg>

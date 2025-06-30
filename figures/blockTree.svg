@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 1122.5197 793.70081"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="blockTree.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="false"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.2000995"
+     inkscape:cx="544.53816"
+     inkscape:cy="386.63459"
+     inkscape:window-width="1920"
+     inkscape:window-height="1008"
+     inkscape:window-x="1366"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="a83660-0"
+     inkscape:snap-global="true"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path83923" />
+    </marker>
+    <linearGradient
+       id="linearGradient87621"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop87619" />
+    </linearGradient>
+    <marker
+       style="overflow:visible"
+       id="marker84149"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(-6,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path84147" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="EmptyTriangleOutM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(-4.5,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path83944" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="EmptyTriangleOutL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(-6,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path83941" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="EmptyDiamondLstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="EmptyDiamondLstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(7,0)"
+         style="fill-rule:evenodd;fill:context-fill;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         id="path83896" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path83808" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker84107"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path84105" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path83790" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DotL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DotL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(7.4, 1)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         id="path83842" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DotS"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DotS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) translate(7.4, 1)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         id="path83848" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Tail"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Tail"
+       inkscape:isstock="true">
+      <g
+         transform="scale(-1.2)"
+         id="g83829">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -3.8048674,-3.9585227 L 0.54352094,0"
+           id="path83817" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -1.2866832,-3.9585227 L 3.0617053,0"
+           id="path83819" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M 1.3053582,-3.9585227 L 5.6537466,0"
+           id="path83821" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -3.8048674,4.1775838 L 0.54352094,0.21974226"
+           id="path83823" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -1.2866832,4.1775838 L 3.0617053,0.21974226"
+           id="path83825" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M 1.3053582,4.1775838 L 5.6537466,0.21974226"
+           id="path83827" />
+      </g>
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path83784" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect83336"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect83320"
+       is_visible="true"
+       lpeversion="1"
+       pattern="M 0,18.867925 C 0,8.4528305 8.4528305,0 18.867925,0 29.28302,0 37.735851,8.4528305 37.735851,18.867925 c 0,10.415095 -8.452831,18.867926 -18.867926,18.867926 C 8.4528305,37.735851 0,29.28302 0,18.867925 Z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="powerstroke"
+       id="path-effect83316"
+       is_visible="true"
+       lpeversion="1"
+       offset_points="0,18.8679"
+       not_jump="false"
+       sort_points="true"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       scale_width="1"
+       end_linecap_type="zerowidth"
+       message="" />
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mend-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path83808-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mend-2-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path83808-9-0" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+       x="462.25244"
+       y="95.41716"
+       id="text4824"><tspan
+         sodipodi:role="line"
+         id="tspan4822"
+         x="462.25244"
+         y="95.41716" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="477.53903"
+       y="109.32298"
+       id="text29746"><tspan
+         sodipodi:role="line"
+         id="tspan29744"
+         x="477.53903"
+         y="109.32298" /></text>
+    <a
+       id="a83660-0"
+       transform="translate(206.12937,206.54352)"
+       inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/baseTree.png"
+       inkscape:export-xdpi="299.94"
+       inkscape:export-ydpi="299.94">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
+         x="225.72092"
+         y="45.989254"
+         id="text40046-9"><tspan
+           x="225.72092"
+           y="45.989254"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
+           sodipodi:role="line"
+           id="tspan1">*Length of the sequence under and including this block</tspan></text>
+    </a>
+    <g
+       id="g13910"
+       transform="translate(20,1.4218318)"
+       inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/exampleTree.png"
+       inkscape:export-xdpi="299.94"
+       inkscape:export-ydpi="299.94">
+      <g
+         id="g14078"
+         transform="matrix(0.52464387,0,0,0.64894988,74.299721,218.83518)"
+         inkscape:export-filename="tree_block.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:#4b4b4b;stroke-width:1.34123;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect846"
+           width="147.50771"
+           height="85.683289"
+           x="454.24545"
+           y="117.64322" />
+        <path
+           style="fill:none;stroke:#656565;stroke-width:1.04787;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 472.96489,144.12205 h 112.7731"
+           id="path9609" />
+        <path
+           style="fill:none;stroke:#656565;stroke-width:1.04424;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1"
+           d="M 472.96308,173.4375 H 585.30947"
+           id="path9609-6" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="317.27408"
+         y="307.42209"
+         id="text61115"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/baseTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan61113"
+           x="317.27408"
+           y="307.42209"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">[start,length]</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;baseline-shift:baseline"
+         x="328.15463"
+         y="344.77661"
+         id="text64983"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/baseTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan64981"
+           x="328.15463"
+           y="344.77661"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;baseline-shift:baseline">size<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;baseline-shift:super"
+   id="tspan45151">1</tspan>, ⇨<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;baseline-shift:super"
+   id="tspan47993">2</tspan> </tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="328.44202"
+         y="325.92081"
+         id="text76513"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/baseTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan76511"
+           x="328.44202"
+           y="325.92081"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">insertion</tspan></text>
+    </g>
+    <g
+       id="g13898"
+       inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/exampleTree.png"
+       inkscape:export-xdpi="299.94"
+       inkscape:export-ydpi="299.94">
+      <g
+         id="g14078-5"
+         transform="matrix(0.43165891,0,0,0.63473879,359.89705,221.91932)"
+         inkscape:export-filename="exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:#4b4b4b;stroke-width:1.34123;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect846-0"
+           width="147.50771"
+           height="85.683289"
+           x="454.24545"
+           y="117.64322" />
+        <path
+           style="fill:none;stroke:#656565;stroke-width:1.04787;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 472.96489,144.12205 h 112.7731"
+           id="path9609-3" />
+        <path
+           style="fill:none;stroke:#656565;stroke-width:1.04424;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1"
+           d="M 472.96308,173.4375 H 585.30947"
+           id="path9609-6-6" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="586.73932"
+         y="327.83151"
+         id="text61115-1"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan61113-0"
+           x="586.73932"
+           y="327.83151">j</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="574.90564"
+         y="348.23163"
+         id="text64983-6"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan64981-3"
+           x="574.90564"
+           y="348.23163">k, ⇨</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="574.53271"
+         y="309.37585"
+         id="text76513-0"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan76511-6"
+           x="574.53271"
+           y="309.37585">[x,y]</tspan></text>
+      <path
+         id="path205848"
+         style="fill:none;stroke:#000000;stroke-width:1.13386;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:transform-center-x="1.0586953e-05"
+         inkscape:transform-center-y="-13.119207"
+         d="m 565.6724,472.86915 -116.77677,-10e-6 m 0,0 30.49619,-74.9561 86.28058,74.95611"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         id="path205848-5"
+         style="fill:none;stroke:#000000;stroke-width:1.13386;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:transform-center-x="-1.5308105e-05"
+         inkscape:transform-center-y="-13.118148"
+         d="m 694.14232,397.91657 -87.48405,74.95009 118.40563,-1e-5 z"
+         sodipodi:nodetypes="cccc" />
+      <path
+         style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.13386;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+         d="m 555.97615,338.27805 -43.47282,19.7899"
+         id="path206807"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"
+         inkscape:connection-end="#g14078-5-5"
+         inkscape:connection-start="#g14078-5" />
+      <path
+         style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.13386;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 619.64916,338.28769 43.40112,19.77041"
+         id="path206809"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#g14078-5"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"
+         inkscape:connection-end="#g14078-5-5-3" />
+      <g
+         id="g14078-5-5-3"
+         transform="matrix(0.43165891,0,0,0.61578956,443.55295,309.61034)"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:#4b4b4b;stroke-width:1.34123;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect846-0-5-6"
+           width="147.50771"
+           height="85.683289"
+           x="508.49716"
+           y="59.385109" />
+        <path
+           style="fill:none;stroke:#656565;stroke-width:1.04787;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 527.21659,85.863942 h 112.7731"
+           id="path9609-3-4-7" />
+        <path
+           style="fill:none;stroke:#656565;stroke-width:1.04424;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1"
+           d="M 527.21478,115.17939 H 639.56117"
+           id="path9609-6-6-7-5" />
+      </g>
+      <g
+         id="g14078-5-5"
+         transform="matrix(0.43165891,0,0,0.61578956,252.75122,273.73581)"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"
+         style="fill:#ffffff;fill-opacity:1;paint-order:markers fill stroke">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:#4b4b4b;stroke-width:1.34123;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           id="rect846-0-5"
+           width="147.50771"
+           height="85.683289"
+           x="454.24545"
+           y="117.64322" />
+        <path
+           style="fill:#ffffff;fill-opacity:1;stroke:#656565;stroke-width:1.04787;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+           d="m 472.96489,144.12205 h 112.7731"
+           id="path9609-3-4" />
+        <path
+           style="fill:#ffffff;fill-opacity:1;stroke:#656565;stroke-width:1.04424;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4.1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           d="M 472.96308,173.4375 H 585.30947"
+           id="path9609-6-6-7" />
+      </g>
+      <path
+         d="m 563.75145,473.01647 -116.77677,-1e-5"
+         style="fill:none;stroke:#606060;stroke-width:3.36756;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:3.36756, 6.73512;stroke-dashoffset:0;stroke-opacity:1"
+         id="path1"
+         sodipodi:nodetypes="cc" />
+      <path
+         d="M 603.64408,473.01714 H 566.52163"
+         style="fill:none;stroke:#606060;stroke-width:3.36756;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:3.36756, 6.73512;stroke-dashoffset:0;stroke-opacity:1"
+         id="path1-83"
+         sodipodi:nodetypes="cc" />
+      <path
+         d="m 723.08289,473.01715 -116.77677,-1e-5"
+         style="fill:none;stroke:#606060;stroke-width:3.36756;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:3.36756, 6.73512;stroke-dashoffset:0;stroke-opacity:1"
+         id="path1-8"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;fill-opacity:0.649518;stroke:#000000;stroke-width:0.755906;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         d="m 448.06911,476.74785 c 32.9454,21.02642 53.45446,-13.49992 58.90901,13.61938 6.54543,-27.35823 25.52722,7.64597 58.25445,-11.11055"
+         id="path2"
+         sodipodi:nodetypes="ccc" />
+      <path
+         style="fill:none;fill-opacity:0.649518;stroke:#000000;stroke-width:0.755906;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         d="m 723.84929,477.67869 c -32.79808,21.02902 -53.21543,-13.50157 -58.64558,13.62106 -6.51616,-27.3616 -25.41307,7.64692 -57.99395,-11.11192"
+         id="path2-8"
+         sodipodi:nodetypes="ccc" />
+      <path
+         style="fill:none;fill-opacity:0.649518;stroke:#000000;stroke-width:0.755906;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         d="m 606.93251,468.29548 c -11.28251,-7.20073 -18.30606,4.62319 -20.17403,-4.66411 -2.24155,9.36913 -8.74207,-2.61844 -19.94987,3.80493"
+         id="path2-1"
+         sodipodi:nodetypes="ccc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.755906;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         x="576.90479"
+         y="459.40607"
+         id="text2"><tspan
+           sodipodi:role="line"
+           id="tspan2"
+           x="576.90479"
+           y="459.40607"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">y+j</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.755906;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         x="501.01086"
+         y="502.5033"
+         id="text2-9"><tspan
+           sodipodi:role="line"
+           id="tspan2-6"
+           x="501.01086"
+           y="502.5033"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">k'</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.755906;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         x="658.24286"
+         y="502.5014"
+         id="text2-4"><tspan
+           sodipodi:role="line"
+           id="tspan2-3"
+           x="658.24286"
+           y="502.5014"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">k''</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="477.90683"
+         y="375.33051"
+         id="text3"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan3"
+           x="477.90683"
+           y="375.33051">j'</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="466.19315"
+         y="395.73059"
+         id="text4"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan4"
+           x="466.19315"
+           y="395.73059">k', ⇨</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="464.02689"
+         y="358.87485"
+         id="text5"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan5"
+           x="464.02689"
+           y="358.87485">[x',y']</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="690.4801"
+         y="375.33032"
+         id="text6"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan6"
+           x="690.4801"
+           y="375.33032">j''</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="678.76642"
+         y="395.73041"
+         id="text7"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan7"
+           x="678.76642"
+           y="395.73041">k'', ⇨</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="674.95349"
+         y="358.87466"
+         id="text8"
+         inkscape:export-filename="/home/elyalab/Documents/Phd/teaching/phyloExercises/exampleTree.png"
+         inkscape:export-xdpi="299.94"
+         inkscape:export-ydpi="299.94"><tspan
+           sodipodi:role="line"
+           id="tspan8"
+           x="674.95349"
+           y="358.87466">[x'',y'']</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="313.67807"
+       y="306.85846"
+       id="text23106"
+       inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/exampleTree.png"
+       inkscape:export-xdpi="299.94"
+       inkscape:export-ydpi="299.94"><tspan
+         sodipodi:role="line"
+         id="tspan23104"
+         x="313.67807"
+         y="306.85846">A.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="429.66928"
+       y="306.85846"
+       id="text23106-0"
+       inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/exampleTree.png"
+       inkscape:export-xdpi="299.94"
+       inkscape:export-ydpi="299.94"><tspan
+         sodipodi:role="line"
+         id="tspan23104-8"
+         x="429.66928"
+         y="306.85846">B.</tspan></text>
+  </g>
+</svg>
