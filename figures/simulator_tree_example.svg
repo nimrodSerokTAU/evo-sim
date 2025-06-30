@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    viewBox="0 0 800 500"
-   style="background-color: white;"
    version="1.1"
    id="svg136"
+   style="background-color: white;"
    sodipodi:docname="simulator_tree_example.svg"
-   inkscape:version="1.4.1 (1:1.4.1+202503302257+93de688d07)"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/simulator_tree_example.png"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   inkscape:export-filename="simulator_tree_example.svg"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -25,16 +25,23 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:zoom="0.73646332"
-     inkscape:cx="405.3155"
-     inkscape:cy="249.84272"
-     inkscape:window-width="1366"
-     inkscape:window-height="696"
+     inkscape:cx="395.81062"
+     inkscape:cy="246.44812"
+     inkscape:window-width="1920"
+     inkscape:window-height="1008"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg136"
      inkscape:showpageshadow="2"
      inkscape:deskcolor="#d1d1d1" />
+  <rect
+     style="fill:#ffffff;stroke-width:2;stroke-dasharray:4, 2"
+     id="rect1"
+     width="959.99347"
+     height="754.95953"
+     x="-76.039085"
+     y="-118.13216" />
   <!-- Title texts -->
   <text
      x="10.690759"

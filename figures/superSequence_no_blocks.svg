@@ -5,11 +5,36 @@
    width="140.12808mm"
    height="106.24173mm"
    viewBox="0 0 529.61796 401.54355"
-   style="background-color: white;"
    version="1.1"
    id="svg5"
+   sodipodi:docname="superSequence_no_blocks.svg"
+   inkscape:export-filename="superSequence_no_blocks.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.192988"
+     inkscape:cx="240.15329"
+     inkscape:cy="190.69764"
+     inkscape:window-width="1920"
+     inkscape:window-height="1008"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
   <defs
      id="defs2">
     <marker
@@ -58,6 +83,13 @@
          id="path8528-9" />
     </marker>
   </defs>
+  <rect
+     style="fill:#ffffff;stroke-width:2;stroke-dasharray:4, 2"
+     id="rect1"
+     width="637.8941"
+     height="513.83582"
+     x="-43.588032"
+     y="-40.235107" />
   <g
      id="layer1"
      style="display:inline"

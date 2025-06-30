@@ -40,17 +40,8 @@ The core innovation lies in our **block-based bookkeeping method** that efficien
 
 **Figure 2:** Example of the processing of the data structure used for bookkeeping indel events along a branch of a phylogenetic tree. Each row corresponds to a block: (A) The initial data structure.
 
-### MSA Reconstruction Example
 
-<div style="background-color: white; padding: 10px; border-radius: 5px;">
-
-![Block Update](figures/superSequence_no_blocks.svg)
-
-</div>
-
-**Figure 3:** An illustrated example of updating the block list structure following an indel event. The current sequence is represented as a block list in (A). Consider an insertion event of four characters that occurred at position 15 of the sequence represented by the block list in A. The resulting block list is updated, by splitting the first block in (A) into two blocks. The resulting block list is shown in (B).
-
-### Super-sequence Generation
+### Super-sequence Generation and MSA Reconstruction
 
 <div style="background-color: white; padding: 10px; border-radius: 5px;">
 
@@ -58,7 +49,7 @@ The core innovation lies in our **block-based bookkeeping method** that efficien
 
 </div>
 
-**Figure 4:** Evolution of the sequence alignment through indel events. (A) Phylogenetic tree showing three species and five nodes (numbered 1-5) with indel events (represented by stars) along the branches. Each event is labeled with its type, position, and length. (B) The final super-sequence after pre-order tree traversal. (C) Alongside updating the super-sequence, the sequences at each node are updated, accounting for deletions. (D) The final template alignment.
+**Figure 3:** Evolution of the sequence alignment through indel events. (A) Phylogenetic tree showing three species and five nodes (numbered 1-5) with indel events (represented by stars) along the branches. Each event is labeled with its type, position, and length. (B) The final super-sequence after pre-order tree traversal. (C) Alongside updating the super-sequence, the sequences at each node are updated, accounting for deletions. (D) The final template alignment.
 <!-- ## Citation
 
 If you use this tool in your research, please cite:

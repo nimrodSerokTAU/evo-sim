@@ -11,42 +11,8 @@
    stroke-linejoin="round"
    xml:space="preserve"
    id="svg1123"
-   sodipodi:docname="blocklist_diagram.svg"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
-   id="namedview1125"
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1.0"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   inkscape:pagecheckerboard="0"
-   inkscape:document-units="mm"
-   showgrid="false"
-   inkscape:zoom="0.55577523"
-   inkscape:cx="235.7068"
-   inkscape:cy="410.23779"
-   inkscape:window-width="1920"
-   inkscape:window-height="1008"
-   inkscape:window-x="1366"
-   inkscape:window-y="0"
-   inkscape:window-maximized="1"
-   inkscape:current-layer="g1115"
-   inkscape:showpageshadow="2"
-   inkscape:deskcolor="#d1d1d1"><inkscape:page
-     x="0"
-     y="0"
-     width="18173"
-     height="13754.999"
-     id="page2"
-     margin="0"
-     bleed="0" /></sodipodi:namedview>
+   xmlns:svg="http://www.w3.org/2000/svg">
  <defs
    class="ClipPathGroup"
    id="defs8"><clipPath
@@ -399,7 +365,14 @@
    id="g1119">
    <g
    id="container-id1">
-    <g
+    <rect
+   style="background-color:white;fill:#ffffff;stroke:none;stroke-width:1016.85;stroke-dasharray:2033.69, 1016.85;fill-opacity:1"
+   id="rect1"
+   width="202513.81"
+   height="159311.88"
+   x="-7812.7236"
+   y="-3172.5488"
+   transform="translate(8.031481e-6)" /><g
    id="id1"
    class="Slide"
    clip-path="url(#presentation_clip_path)">
@@ -408,10 +381,7 @@
    id="g1115">
       <g
    class="com.sun.star.drawing.TableShape"
-   id="g254"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g254">
        <g
    id="g252">
         <rect
@@ -602,10 +572,7 @@
       </g>
       <g
    class="TextShape"
-   id="g267"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g267">
        <g
    id="id3">
         <rect
@@ -637,10 +604,7 @@
       </g>
       <g
    class="TextShape"
-   id="g280"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g280">
        <g
    id="id4">
         <rect
@@ -672,10 +636,7 @@
       </g>
       <g
    class="com.sun.star.drawing.TableShape"
-   id="g392"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g392">
        <g
    id="g390">
         <rect
@@ -936,10 +897,7 @@
       </g>
       <g
    class="TextShape"
-   id="g405"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g405">
        <g
    id="id5">
         <rect
@@ -971,10 +929,7 @@
       </g>
       <g
    class="com.sun.star.drawing.TableShape"
-   id="g549"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g549">
        <g
    id="g547">
         <rect
@@ -1305,10 +1260,7 @@
       </g>
       <g
    class="com.sun.star.drawing.TableShape"
-   id="g725"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g725">
        <g
    id="g723">
         <rect
@@ -1709,10 +1661,7 @@
       </g>
       <g
    class="TextShape"
-   id="g738"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g738">
        <g
    id="id6">
         <rect
@@ -1744,10 +1693,7 @@
       </g>
       <g
    class="com.sun.star.drawing.TableShape"
-   id="g946"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g946">
        <g
    id="g944">
         <rect
@@ -2218,10 +2164,7 @@
       </g>
       <g
    class="TextShape"
-   id="g959"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_diagram.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g959">
        <g
    id="id7">
         <rect
@@ -2285,10 +2228,7 @@
       </g>
       <g
    class="TextShape"
-   id="g985"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g985">
        <g
    id="id9">
         <rect
@@ -2320,10 +2260,7 @@
       </g>
       <g
    class="TextShape"
-   id="g998"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g998">
        <g
    id="id10">
         <rect
@@ -2355,10 +2292,7 @@
       </g>
       <g
    class="TextShape"
-   id="g1011"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1011">
        <g
    id="id11">
         <rect
@@ -2390,10 +2324,7 @@
       </g>
       <g
    class="TextShape"
-   id="g1024"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1024">
        <g
    id="id12">
         <rect
@@ -2425,10 +2356,7 @@
       </g>
       <g
    class="TextShape"
-   id="g1037"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1037">
        <g
    id="id13">
         <rect
@@ -2460,10 +2388,7 @@
       </g>
       <g
    class="com.sun.star.drawing.ConnectorShape"
-   id="g1056"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1056">
        <g
    id="id14">
         <rect
@@ -2515,10 +2440,7 @@
       </g>
       <g
    class="com.sun.star.drawing.ConnectorShape"
-   id="g1075"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1075">
        <g
    id="id15">
         <rect
@@ -2570,10 +2492,7 @@
       </g>
       <g
    class="com.sun.star.drawing.ConnectorShape"
-   id="g1094"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1094">
        <g
    id="id16">
         <rect
@@ -2625,10 +2544,7 @@
       </g>
       <g
    class="com.sun.star.drawing.ConnectorShape"
-   id="g1113"
-   inkscape:export-filename="/home/elyalab/Documents/Phd/block_tree/drafts/assets/blocklist_branch.png"
-   inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   id="g1113">
        <g
    id="id17">
         <rect
