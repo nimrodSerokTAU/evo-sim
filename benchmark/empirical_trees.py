@@ -7,7 +7,7 @@ import sys
 print(Path.cwd())
 print(sys.path)
 sys.path.append(str(Path.cwd()))
-sys.path.append(str(Path.cwd() / "classes"))
+sys.path.append(str(Path.cwd() / "indelsim"))
 print(sys.path)
 
 

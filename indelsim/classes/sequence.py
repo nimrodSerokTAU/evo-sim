@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from llist import sllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllistnode
 
-from super_sequence import SuperSequence
-from block import Block
+from indelsim.classes.super_sequence import SuperSequence
+from indelsim.classes.block import Block
 
 
 

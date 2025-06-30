@@ -2,6 +2,6 @@
 
 __pycache__/
 *.pyc
-classes/__pycache__/
+indelsim/__pycache__/
 
 .venv

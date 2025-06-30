@@ -1,5 +1,5 @@
-from super_sequence import SuperSequence
-from sequence import Sequence
+from indelsim.classes.super_sequence import SuperSequence
+from indelsim.classes.sequence import Sequence
 
 
 class Msa:
