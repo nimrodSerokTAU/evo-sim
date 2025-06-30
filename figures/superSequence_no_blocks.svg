@@ -1,0 +1,2237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="140.12808mm"
+   height="106.24173mm"
+   viewBox="0 0 529.61796 401.54355"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path8528" />
+    </marker>
+    <linearGradient
+       id="linearGradient9105">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop9103" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient178462">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop178460" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient177932">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop177930" />
+    </linearGradient>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL-2"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path8528-9" />
+    </marker>
+  </defs>
+  <g
+     id="layer1"
+     style="display:inline"
+     transform="translate(-270.68321,-404.29972)">
+    <g
+       id="g4129"
+       transform="matrix(0.4396905,0,0,0.4396905,293.61867,695.27872)">
+      <g
+         id="g4127"
+         transform="translate(28.492655)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <rect
+           style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4121"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text4125"
+           transform="translate(-5.9792407e-6)"><tspan
+             id="tspan4123"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">1</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g4169"
+       transform="matrix(0.4396905,0,0,0.4396905,297.13621,695.27872)">
+      <g
+         id="g4167"
+         transform="translate(176.98544)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text4163"><tspan
+             id="tspan4161"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">2</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4165"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g4189"
+       transform="matrix(0.4396905,0,0,0.4396905,298.89499,695.27872)">
+      <g
+         id="g4187"
+         transform="translate(251.2318)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text4183"><tspan
+             id="tspan4181"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">4</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4185"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g4199"
+       transform="matrix(0.4396905,0,0,0.4396905,300.65377,695.27872)">
+      <g
+         id="g4197"
+         transform="translate(279.94343,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text4193"><tspan
+             id="tspan4191"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">19</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4195"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g4209"
+       transform="matrix(0.4396905,0,0,0.4396905,301.53313,695.27872)">
+      <g
+         id="g4207"
+         transform="translate(317.06669,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text4203"><tspan
+             id="tspan4201"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">20</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4205"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g4249"
+       transform="matrix(0.4396905,0,0,0.4396905,305.0507,695.27872)">
+      <g
+         id="g4247"
+         transform="translate(465.55941,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text4243"><tspan
+             id="tspan4241"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">5</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4245"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g4259"
+       transform="matrix(0.4396905,0,0,0.4396905,305.93005,695.27872)">
+      <g
+         id="g4257"
+         transform="translate(502.68267,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text4253"><tspan
+             id="tspan4251"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">21</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect4255"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g4309"
+       transform="matrix(0.4396905,0,0,0.4396905,299.77438,695.27872)"
+       style="paint-order:stroke fill markers">
+      <g
+         id="g4307"
+         transform="translate(242.82024,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers">
+        <rect
+           style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+           id="rect4301"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke-width:0.62212;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+           x="392.02161"
+           y="144.96988"
+           id="text4305"><tspan
+             id="tspan4303"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.62212;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers">18</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g4323"
+       transform="matrix(0.74713231,0,0,0.74713231,157.89613,247.88783)">
+      <circle
+         style="fill:#e9e9e9;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.11831;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         id="circle4313"
+         cx="545.14398"
+         cy="235.20236"
+         r="25.293564" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:23.5257px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="538.79633"
+         y="243.56175"
+         id="text4317"><tspan
+           id="tspan4315"
+           x="538.79633"
+           y="243.56175">1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:52.2836px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.546341;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:8.03071, 8.03071;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         x="335.14041"
+         y="181.99806"
+         id="text4321"><tspan
+           id="tspan4319"
+           style="stroke-width:0.546341"
+           x="335.14041"
+           y="181.99806" /></text>
+    </g>
+    <g
+       id="g4331"
+       transform="matrix(0.637128,0,0,0.637128,96.034489,344.90548)"
+       style="display:inline">
+      <circle
+         style="fill:#e9e9e9;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.53781;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         id="circle4325"
+         cx="545.14398"
+         cy="235.20236"
+         r="29.660662" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.5875px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="538.22992"
+         y="243.4641"
+         id="text4329"><tspan
+           id="tspan4327"
+           x="538.22992"
+           y="243.4641">2</tspan></text>
+    </g>
+    <g
+       id="g4339"
+       transform="matrix(0.637128,0,0,0.637128,20.626859,447.9168)"
+       style="display:inline">
+      <circle
+         style="fill:#e9e9e9;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.53781;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         id="circle4333"
+         cx="545.14398"
+         cy="235.20236"
+         r="29.660662" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.5875px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="538.57495"
+         y="243.27528"
+         id="text4337"><tspan
+           id="tspan4335"
+           x="538.57495"
+           y="243.27528">3</tspan></text>
+    </g>
+    <g
+       id="g4347"
+       transform="matrix(0.637128,0,0,0.637128,171.44208,447.9168)"
+       style="display:inline">
+      <circle
+         style="fill:#e9e9e9;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.53781;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         id="circle4341"
+         cx="545.14398"
+         cy="235.20236"
+         r="29.660662" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.5875px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="538.47083"
+         y="243.2818"
+         id="text4345"><tspan
+           id="tspan4343"
+           x="538.47083"
+           y="243.2818">4</tspan></text>
+    </g>
+    <g
+       id="g4355"
+       transform="matrix(0.637128,0,0,0.637128,339.69423,344.90548)"
+       style="display:inline">
+      <circle
+         style="fill:#e9e9e9;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.53781;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         id="circle4349"
+         cx="545.14398"
+         cy="235.20236"
+         r="29.660662" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.5875px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="538.72473"
+         y="243.38597"
+         id="text4353"><tspan
+           id="tspan4351"
+           x="538.72473"
+           y="243.38597">5</tspan></text>
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 548.872,433.14473 -89.1922,52.08514"
+       id="path4357" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 432.19872,510.00781 -53.0831,72.51468"
+       id="path4359" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 581.50963,433.14472 89.19228,52.08516"
+       id="path4361" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 454.52324,510.00781 53.08308,72.51468"
+       id="path4363" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="288.72827"
+       y="427.0676"
+       id="text4707"><tspan
+         id="tspan4705"
+         x="288.72827"
+         y="427.0676">A.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="327.40457"
+       y="745.19543"
+       id="text4711"><tspan
+         id="tspan4709"
+         x="327.40457"
+         y="745.19543">5.</tspan></text>
+    <path
+       style="fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path4737"
+       d="m 301.67912,295.57632 -8.23598,3.69184 4.94262,-9.22674 -9.46706,-4.10382 11.51481,-0.45228 -0.41755,-10.35086 3.99531,9.30702 9.19806,-6.52951 -3.88054,8.98616 7.44072,5.0924 -9.37301,0.45228 0.30212,9.59943 z"
+       transform="matrix(0.85743782,0,0,0.85743782,265.4451,197.19858)" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path4737-7"
+       transform="matrix(0.81742696,0.36795093,-0.36795093,0.81742696,265.04538,196.89554)"
+       d="m 301.63589,295.64399 -8.2211,3.61346 4.98635,-9.25734 -9.5352,-4.05128 11.63337,-0.43766 -0.44633,-10.39028 3.89834,9.38774 9.24734,-6.64031 -3.85347,9.00072 7.37377,5.10576 -9.34879,0.43767 0.32321,9.58875 z" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path4737-6"
+       transform="matrix(-0.85651383,0,0,0.85651383,753.61759,216.71167)"
+       d="m 301.67912,295.57632 -8.23598,3.69184 4.94262,-9.22674 -9.46706,-4.10382 11.51481,-0.45228 -0.41755,-10.35086 3.99531,9.30702 9.19806,-6.52951 -3.88054,8.98616 7.44072,5.0924 -9.37301,0.45228 0.30212,9.59943 z" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path4737-6-6"
+       transform="matrix(-0.79354517,0,0,0.79354517,869.80842,231.73309)"
+       d="m 301.80878,295.37332 -8.28059,3.92697 4.81142,-9.13494 -9.26263,-4.26146 11.15913,-0.49613 -0.33121,-10.23259 4.28619,9.06486 9.05027,-6.19711 -3.96176,8.94248 7.64156,5.05232 -9.44569,0.49613 0.23887,9.63145 z" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path5255"
+       transform="matrix(0,-0.8492554,-0.8492554,0,715.27295,788.7534)"
+       d="m 301.67912,295.57632 -8.23598,3.69184 4.94262,-9.22674 -9.46706,-4.10382 11.51481,-0.45228 -0.41755,-10.35086 3.99531,9.30702 9.19806,-6.52951 -3.88054,8.98616 7.44072,5.0924 -9.37301,0.45228 0.30212,9.59943 z" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path5255-55"
+       transform="matrix(0.8492554,0,0,-0.8492554,231.30312,803.40795)"
+       d="m 301.67912,295.57632 -8.23598,3.69184 4.94262,-9.22674 -9.46706,-4.10382 11.51481,-0.45228 -0.41755,-10.35086 3.99531,9.30702 9.19806,-6.52951 -3.88054,8.98616 7.44072,5.0924 -9.37301,0.45228 0.30212,9.59943 z" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path5255-5"
+       transform="matrix(0,-0.80195911,-0.80195911,0,832.499,687.75475)"
+       d="m 301.76556,295.44099 -8.26572,3.84859 4.85516,-9.16554 -9.33078,-4.20891 11.27769,-0.48152 -0.35999,-10.27201 4.18923,9.14558 9.09954,-6.30791 -3.9347,8.95704 7.57462,5.06568 -9.42147,0.48151 0.25996,9.62078 z" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL);paint-order:markers stroke fill"
+       d="m 522.69013,433.10927 c -5.80716,-14.61592 -17.84808,-20.72562 -37.75955,-20.80712"
+       id="path7619" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL-2);paint-order:markers stroke fill"
+       d="M 485.34946,454.74712 C 479.5423,440.1312 467.50138,434.0215 447.58991,433.94"
+       id="path7619-6" />
+    <path
+       style="display:inline;fill:#787878;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.978898;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke;stop-color:#000000"
+       id="path8384"
+       transform="matrix(-0.86110393,0,0,0.86110393,915.23745,225.15673)"
+       d="m 301.80878,295.37332 -8.28059,3.92697 4.81142,-9.13494 -9.26263,-4.26146 11.15913,-0.49613 -0.33121,-10.23259 4.28619,9.06486 9.05027,-6.19711 -3.96176,8.94248 7.64156,5.05232 -9.44569,0.49613 0.23887,9.63145 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic'"
+       x="386.29605"
+       y="414.57294"
+       id="text11589"><tspan
+         id="tspan11587"
+         x="386.29605"
+         y="414.57294"
+         style="font-size:10.6667px">(insertion, 2, 2)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic';display:inline"
+       x="350.50601"
+       y="437.09576"
+       id="text11589-1"><tspan
+         id="tspan11587-0"
+         x="350.50601"
+         y="437.09576"
+         style="font-size:10.6667px">(insertion, 7, 3)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL);paint-order:markers stroke fill"
+       d="m 598.3093,433.63748 c 5.80716,-14.61592 17.84808,-20.72562 37.75955,-20.80712"
+       id="path41884" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic'"
+       x="646.29608"
+       y="414.57294"
+       id="text41904"><tspan
+         id="tspan41902"
+         x="646.29608"
+         y="414.57294"
+         style="font-size:10.6667px">(deletion, 3, 1)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL);paint-order:markers stroke fill"
+       d="m 635.21343,454.33572 c 5.80716,-14.61592 17.84808,-20.72562 37.75955,-20.80712"
+       id="path56594" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic'"
+       x="677.55182"
+       y="435.70288"
+       id="text56598"><tspan
+         id="tspan56596"
+         x="677.55182"
+         y="435.70288"
+         style="font-size:10.6667px">(insertion, 4, 3)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic';display:inline"
+       x="523.06787"
+       y="504.2066"
+       id="text56598-2"><tspan
+         id="tspan56596-9"
+         x="523.06787"
+         y="504.2066"
+         style="font-size:10.6667px">(insertion, 4, 1)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic';display:inline"
+       x="710.33826"
+       y="451.9696"
+       id="text56598-4"><tspan
+         id="tspan56596-2"
+         x="710.33826"
+         y="451.9696"
+         style="font-size:10.6667px">(insertion, 8, 1)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL);paint-order:markers stroke fill"
+       d="m 666.31213,471.34969 c 5.80716,-14.61592 17.84808,-20.72562 37.75955,-20.80712"
+       id="path62276" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL-2);paint-order:markers stroke fill"
+       d="M 485.34946,454.74712 C 479.5423,440.1312 467.50138,434.0215 447.58991,433.94"
+       id="path114861" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL-2);paint-order:markers stroke fill"
+       d="m 403.95203,537.84284 c -5.80716,-14.61592 -17.84808,-20.72562 -37.75955,-20.80712"
+       id="path114960" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic';display:inline"
+       x="269.12589"
+       y="519.4776"
+       id="text114964"><tspan
+         id="tspan114962"
+         x="269.12589"
+         y="519.4776"
+         style="font-size:10.6667px">(insertion, 1, 6)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL);paint-order:markers stroke fill"
+       d="m 479.25471,522.75868 c 5.80716,-14.61592 17.84808,-20.72562 37.75955,-20.80712"
+       id="path122973" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00157;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.00157, 1.00157;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutL);paint-order:markers stroke fill"
+       d="m 496.10705,552.87773 c 5.80716,-14.61592 17.84808,-20.72562 37.75955,-20.80712"
+       id="path122975" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono Italic'"
+       x="541.62231"
+       y="534.10406"
+       id="text132748"><tspan
+         id="tspan132746"
+         x="541.62231"
+         y="534.10406"
+         style="font-size:10.6667px">(deletion, 5, 3)</tspan></text>
+    <g
+       id="g148746"
+       transform="matrix(0.4396905,0,0,0.4396905,293.61867,635.27872)">
+      <g
+         id="g148744"
+         transform="translate(28.492655)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <rect
+           style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148738"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text148742"
+           transform="translate(-5.9792407e-6)"><tspan
+             id="tspan148740"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">1</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g148756"
+       transform="matrix(0.4396905,0,0,0.4396905,294.49805,635.27872)">
+      <g
+         id="g148754"
+         transform="translate(65.615851)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text148750"><tspan
+             id="tspan148748"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">6</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148752"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g148766"
+       transform="matrix(0.4396905,0,0,0.4396905,295.37745,635.27872)">
+      <g
+         id="g148764"
+         transform="translate(102.73905)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text148760"><tspan
+             id="tspan148758"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">7</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148762"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g148786"
+       transform="matrix(0.4396905,0,0,0.4396905,297.13621,635.27872)">
+      <g
+         id="g148784"
+         transform="translate(176.98544)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text148780"><tspan
+             id="tspan148778"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">2</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148782"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g148796"
+       transform="matrix(0.4396905,0,0,0.4396905,298.01562,635.27872)">
+      <g
+         id="g148794"
+         transform="translate(214.1086)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text148790"><tspan
+             id="tspan148788"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">3</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148792"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g148806"
+       transform="matrix(0.4396905,0,0,0.4396905,298.89499,635.27872)">
+      <g
+         id="g148804"
+         transform="translate(251.2318)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text148800"><tspan
+             id="tspan148798"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">4</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148802"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g148836"
+       transform="matrix(0.4396905,0,0,0.4396905,302.41254,635.27872)">
+      <g
+         id="g148834"
+         transform="translate(354.18983,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text148830"><tspan
+             id="tspan148828"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">8</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148832"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g148846"
+       transform="matrix(0.4396905,0,0,0.4396905,303.29193,635.27872)">
+      <g
+         id="g148844"
+         transform="translate(391.31302,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text148840"><tspan
+             id="tspan148838"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">9</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148842"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g148856"
+       transform="matrix(0.4396905,0,0,0.4396905,304.17131,635.27872)">
+      <g
+         id="g148854"
+         transform="translate(428.43622,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text148850"><tspan
+             id="tspan148848"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">10</tspan></text>
+        <rect
+           style="display:inline;fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148852"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g148866"
+       transform="matrix(0.4396905,0,0,0.4396905,305.0507,635.27872)">
+      <g
+         id="g148864"
+         transform="translate(465.55941,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text148860"><tspan
+             id="tspan148858"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">5</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect148862"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="327.40457"
+       y="685.19543"
+       id="text148932"><tspan
+         id="tspan148930"
+         x="327.40457"
+         y="685.19543">2.</tspan></text>
+    <g
+       id="g149367"
+       transform="matrix(0.4396905,0,0,0.4396905,291.85988,655.27872)">
+      <g
+         id="g149365"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         transform="translate(-45.753706)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149361"><tspan
+             id="tspan149359"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">15</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149363"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149377"
+       transform="matrix(0.4396905,0,0,0.4396905,292.73927,655.27872)">
+      <g
+         id="g149375"
+         transform="translate(-8.6305104)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149371"><tspan
+             id="tspan149369"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">16</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149373"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149387"
+       transform="matrix(0.4396905,0,0,0.4396905,293.61867,655.27872)">
+      <g
+         id="g149385"
+         transform="translate(28.492655)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <rect
+           style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149379"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149383"
+           transform="translate(-5.9792407e-6)"><tspan
+             id="tspan149381"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">1</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g149397"
+       transform="matrix(0.4396905,0,0,0.4396905,294.49805,655.27872)">
+      <g
+         id="g149395"
+         transform="translate(65.615851)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149391"><tspan
+             id="tspan149389"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">6</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149393"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149407"
+       transform="matrix(0.4396905,0,0,0.4396905,295.37745,655.27872)">
+      <g
+         id="g149405"
+         transform="translate(102.73905)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149401"><tspan
+             id="tspan149399"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">7</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149403"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149427"
+       transform="matrix(0.4396905,0,0,0.4396905,297.13621,655.27872)">
+      <g
+         id="g149425"
+         transform="translate(176.98544)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149421"><tspan
+             id="tspan149419"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">2</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149423"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149437"
+       transform="matrix(0.4396905,0,0,0.4396905,298.01562,655.27872)">
+      <g
+         id="g149435"
+         transform="translate(214.1086)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149431"><tspan
+             id="tspan149429"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">3</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149433"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149447"
+       transform="matrix(0.4396905,0,0,0.4396905,298.89499,655.27872)">
+      <g
+         id="g149445"
+         transform="translate(251.2318)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text149441"><tspan
+             id="tspan149439"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">4</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149443"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g149477"
+       transform="matrix(0.4396905,0,0,0.4396905,302.41254,655.27872)">
+      <g
+         id="g149475"
+         transform="translate(354.18983,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149471"><tspan
+             id="tspan149469"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">8</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149473"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149487"
+       transform="matrix(0.4396905,0,0,0.4396905,303.29193,655.27872)">
+      <g
+         id="g149485"
+         transform="translate(391.31302,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149481"><tspan
+             id="tspan149479"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">9</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149483"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149497"
+       transform="matrix(0.4396905,0,0,0.4396905,304.17131,655.27872)">
+      <g
+         id="g149495"
+         transform="translate(428.43622,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149491"><tspan
+             id="tspan149489"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">10</tspan></text>
+        <rect
+           style="display:inline;fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149493"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149507"
+       transform="matrix(0.4396905,0,0,0.4396905,305.0507,655.27872)">
+      <g
+         id="g149505"
+         transform="translate(465.55941,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149501"><tspan
+             id="tspan149499"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">5</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149503"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149527"
+       transform="matrix(0.4396905,0,0,0.4396905,290.10111,655.27872)">
+      <g
+         id="g149525"
+         transform="translate(-165.53486,-34.60508)"
+         style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149521"><tspan
+             id="tspan149519"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">13</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149523"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149537"
+       transform="matrix(0.4396905,0,0,0.4396905,290.9805,655.27872)">
+      <g
+         id="g149535"
+         transform="translate(-128.41166,-34.605072)"
+         style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149531"><tspan
+             id="tspan149529"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">14</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149533"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149547"
+       transform="matrix(0.4396905,0,0,0.4396905,288.34234,655.27872)">
+      <g
+         id="g149545"
+         transform="translate(-239.78125,-34.605072)"
+         style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149541"><tspan
+             id="tspan149539"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">11</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149543"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g149557"
+       transform="matrix(0.4396905,0,0,0.4396905,289.22172,655.27872)">
+      <g
+         id="g149555"
+         transform="translate(-202.65804,-34.605072)"
+         style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text149551"><tspan
+             id="tspan149549"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">12</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect149553"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="327.40457"
+       y="705.19543"
+       id="text149573"><tspan
+         id="tspan149571"
+         x="327.40457"
+         y="705.19543">3.</tspan></text>
+    <g
+       id="g163878"
+       transform="matrix(0.4396905,0,0,0.4396905,293.61867,675.27872)">
+      <g
+         id="g163876"
+         transform="translate(28.492655)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <rect
+           style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163870"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text163874"
+           transform="translate(-5.9792407e-6)"><tspan
+             id="tspan163872"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">1</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g163888"
+       transform="matrix(0.4396905,0,0,0.4396905,294.49805,675.27872)">
+      <g
+         id="g163886"
+         transform="translate(65.615851)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text163882"><tspan
+             id="tspan163880"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">6</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163884"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g163898"
+       transform="matrix(0.4396905,0,0,0.4396905,295.37745,675.27872)">
+      <g
+         id="g163896"
+         transform="translate(102.73905)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text163892"><tspan
+             id="tspan163890"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">7</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163894"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g163908"
+       transform="matrix(0.4396905,0,0,0.4396905,296.25682,675.27872)">
+      <g
+         id="g163906"
+         transform="translate(139.86227)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text163902"><tspan
+             id="tspan163900"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">17</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163904"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g163968"
+       transform="matrix(0.4396905,0,0,0.4396905,302.41254,675.27872)">
+      <g
+         id="g163966"
+         transform="translate(354.18983,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text163962"><tspan
+             id="tspan163960"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">8</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163964"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g163978"
+       transform="matrix(0.4396905,0,0,0.4396905,303.29193,675.27872)">
+      <g
+         id="g163976"
+         transform="translate(391.31302,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text163972"><tspan
+             id="tspan163970"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">9</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163974"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g163988"
+       transform="matrix(0.4396905,0,0,0.4396905,304.17131,675.27872)">
+      <g
+         id="g163986"
+         transform="translate(428.43622,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text163982"><tspan
+             id="tspan163980"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">10</tspan></text>
+        <rect
+           style="display:inline;fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163984"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <g
+       id="g163998"
+       transform="matrix(0.4396905,0,0,0.4396905,305.0507,675.27872)">
+      <g
+         id="g163996"
+         transform="translate(465.55941,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text163992"><tspan
+             id="tspan163990"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">5</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect163994"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="327.40457"
+       y="725.19543"
+       id="text164064"><tspan
+         id="tspan164062"
+         x="327.40457"
+         y="725.19543">4.</tspan></text>
+    <g
+       id="g168158"
+       transform="translate(-1.3135717,220)">
+      <g
+         id="g167956"
+         transform="matrix(0.4396905,0,0,0.4396905,293.17345,375.27872)">
+        <g
+           id="g167954"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           transform="translate(-45.753706)">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text167950"><tspan
+               id="tspan167948"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">15</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect167952"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g167966"
+         transform="matrix(0.4396905,0,0,0.4396905,294.05284,375.27872)">
+        <g
+           id="g167964"
+           transform="translate(-8.6305104)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text167960"><tspan
+               id="tspan167958"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">16</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect167962"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g167976"
+         transform="matrix(0.4396905,0,0,0.4396905,294.93224,375.27872)">
+        <g
+           id="g167974"
+           transform="translate(28.492655)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <rect
+             style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect167968"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text167972"
+             transform="translate(-5.9792407e-6)"><tspan
+               id="tspan167970"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">1</tspan></text>
+        </g>
+      </g>
+      <g
+         id="g167986"
+         transform="matrix(0.4396905,0,0,0.4396905,295.81162,375.27872)">
+        <g
+           id="g167984"
+           transform="translate(65.615851)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text167980"><tspan
+               id="tspan167978"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">6</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect167982"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g167996"
+         transform="matrix(0.4396905,0,0,0.4396905,296.69102,375.27872)">
+        <g
+           id="g167994"
+           transform="translate(102.73905)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text167990"><tspan
+               id="tspan167988"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">7</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect167992"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g168006"
+         transform="matrix(0.4396905,0,0,0.4396905,297.57039,375.27872)">
+        <g
+           id="g168004"
+           transform="translate(139.86227)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text168000"><tspan
+               id="tspan167998"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">17</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168002"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g168016"
+         transform="matrix(0.4396905,0,0,0.4396905,298.44978,375.27872)">
+        <g
+           id="g168014"
+           transform="translate(176.98544)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text168010"><tspan
+               id="tspan168008"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">2</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168012"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g168026"
+         transform="matrix(0.4396905,0,0,0.4396905,299.32919,375.27872)">
+        <g
+           id="g168024"
+           transform="translate(214.1086)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text168020"><tspan
+               id="tspan168018"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">3</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168022"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g168036"
+         transform="matrix(0.4396905,0,0,0.4396905,300.20856,375.27872)">
+        <g
+           id="g168034"
+           transform="translate(251.2318)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="346.71902"
+             y="110.3503"
+             id="text168030"><tspan
+               id="tspan168028"
+               x="346.71902"
+               y="110.3503"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">4</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168032"
+             width="29.497574"
+             height="31.361647"
+             x="332.15891"
+             y="85.687378" />
+        </g>
+      </g>
+      <g
+         id="g168046"
+         transform="matrix(0.4396905,0,0,0.4396905,301.96734,375.27872)">
+        <g
+           id="g168044"
+           transform="translate(279.94343,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168040"><tspan
+               id="tspan168038"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">19</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168042"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168056"
+         transform="matrix(0.4396905,0,0,0.4396905,302.8467,375.27872)">
+        <g
+           id="g168054"
+           transform="translate(317.06669,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168050"><tspan
+               id="tspan168048"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">20</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168052"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168066"
+         transform="matrix(0.4396905,0,0,0.4396905,303.72611,375.27872)">
+        <g
+           id="g168064"
+           transform="translate(354.18983,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168060"><tspan
+               id="tspan168058"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">8</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168062"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168076"
+         transform="matrix(0.4396905,0,0,0.4396905,304.6055,375.27872)">
+        <g
+           id="g168074"
+           transform="translate(391.31302,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168070"><tspan
+               id="tspan168068"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">9</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168072"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168086"
+         transform="matrix(0.4396905,0,0,0.4396905,305.48488,375.27872)">
+        <g
+           id="g168084"
+           transform="translate(428.43622,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168080"><tspan
+               id="tspan168078"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">10</tspan></text>
+          <rect
+             style="display:inline;fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168082"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168096"
+         transform="matrix(0.4396905,0,0,0.4396905,306.36427,375.27872)">
+        <g
+           id="g168094"
+           transform="translate(465.55941,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168090"><tspan
+               id="tspan168088"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">5</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168092"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168106"
+         transform="matrix(0.4396905,0,0,0.4396905,307.24362,375.27872)">
+        <g
+           id="g168104"
+           transform="translate(502.68267,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168100"><tspan
+               id="tspan168098"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">21</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168102"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168116"
+         transform="matrix(0.4396905,0,0,0.4396905,291.41468,375.27872)">
+        <g
+           id="g168114"
+           transform="translate(-165.53486,-34.60508)"
+           style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168110"><tspan
+               id="tspan168108"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">13</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168112"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168126"
+         transform="matrix(0.4396905,0,0,0.4396905,292.29407,375.27872)">
+        <g
+           id="g168124"
+           transform="translate(-128.41166,-34.605072)"
+           style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168120"><tspan
+               id="tspan168118"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">14</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168122"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168136"
+         transform="matrix(0.4396905,0,0,0.4396905,289.65591,375.27872)">
+        <g
+           id="g168134"
+           transform="translate(-239.78125,-34.605072)"
+           style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168130"><tspan
+               id="tspan168128"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">11</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168132"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168146"
+         transform="matrix(0.4396905,0,0,0.4396905,290.53529,375.27872)">
+        <g
+           id="g168144"
+           transform="translate(-202.65804,-34.605072)"
+           style="display:inline;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+             x="392.02161"
+             y="144.96988"
+             id="text168140"><tspan
+               id="tspan168138"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">12</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+             id="rect168142"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+        </g>
+      </g>
+      <g
+         id="g168156"
+         transform="matrix(0.4396905,0,0,0.4396905,301.08795,375.27872)"
+         style="paint-order:stroke fill markers">
+        <g
+           id="g168154"
+           transform="translate(242.82024,-34.605072)"
+           style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers">
+          <rect
+             style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             id="rect168148"
+             width="29.497574"
+             height="31.361647"
+             x="377.69366"
+             y="120.29246" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke-width:0.62212;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+             x="392.02161"
+             y="144.96988"
+             id="text168152"><tspan
+               id="tspan168150"
+               x="392.02161"
+               y="144.96988"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.62212;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers">18</tspan></text>
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="287.40457"
+       y="645.19543"
+       id="text168162"><tspan
+         id="tspan168160"
+         x="287.40457"
+         y="645.19543">B.</tspan></text>
+    <g
+       id="g184423"
+       transform="matrix(0.4396905,0,0,0.4396905,293.61867,615.27872)">
+      <g
+         id="g184421"
+         transform="translate(28.492655)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <rect
+           style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect184415"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text184419"
+           transform="translate(-5.9792407e-6)"><tspan
+             id="tspan184417"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">1</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g184453"
+       transform="matrix(0.4396905,0,0,0.4396905,297.13621,615.27872)">
+      <g
+         id="g184451"
+         transform="translate(176.98544)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text184447"><tspan
+             id="tspan184445"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">2</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect184449"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g184463"
+       transform="matrix(0.4396905,0,0,0.4396905,298.01562,615.27872)">
+      <g
+         id="g184461"
+         transform="translate(214.1086)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text184457"><tspan
+             id="tspan184455"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">3</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect184459"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g184473"
+       transform="matrix(0.4396905,0,0,0.4396905,298.89499,615.27872)">
+      <g
+         id="g184471"
+         transform="translate(251.2318)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="346.71902"
+           y="110.3503"
+           id="text184467"><tspan
+             id="tspan184465"
+             x="346.71902"
+             y="110.3503"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">4</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect184469"
+           width="29.497574"
+           height="31.361647"
+           x="332.15891"
+           y="85.687378" />
+      </g>
+    </g>
+    <g
+       id="g184513"
+       transform="matrix(0.4396905,0,0,0.4396905,305.0507,615.27872)">
+      <g
+         id="g184511"
+         transform="translate(465.55941,-34.605072)"
+         style="stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           x="392.02161"
+           y="144.96988"
+           id="text184507"><tspan
+             id="tspan184505"
+             x="392.02161"
+             y="144.96988"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.623622;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal">5</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:0.997482;fill-rule:evenodd;stroke:#000000;stroke-width:0.623622;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect184509"
+           width="29.497574"
+           height="31.361647"
+           x="377.69366"
+           y="120.29246" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="327.40457"
+       y="665.19543"
+       id="text184517"><tspan
+         id="tspan184515"
+         x="327.40457"
+         y="665.19543">1.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="287.40457"
+       y="665.19543"
+       id="text1"><tspan
+         id="tspan1"
+         x="287.40457"
+         y="665.19543">C.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif"
+       x="287.40457"
+       y="781.84326"
+       id="text2"><tspan
+         id="tspan2"
+         x="287.40457"
+         y="781.84326">D.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:11.85px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.71213;paint-order:stroke fill markers"
+       x="353.62408"
+       y="781.84326"
+       id="text3"><tspan
+         id="tspan3"
+         x="353.62408"
+         y="781.84326"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:11.85px">NNNNNNNNN-NNN---NNNN-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:11.85px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.71213;paint-order:stroke fill markers"
+       x="353.62408"
+       y="793.84326"
+       id="text4"><tspan
+         id="tspan4"
+         x="353.62408"
+         y="793.84326"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:11.85px">------NNNN------NNNN-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:11.85px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.71213;paint-order:stroke fill markers"
+       x="353.62408"
+       y="805.84326"
+       id="text5"><tspan
+         id="tspan5"
+         x="353.62408"
+         y="805.84326"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:11.85px">------N---N-NNNN---NN</tspan></text>
+  </g>
+</svg>
