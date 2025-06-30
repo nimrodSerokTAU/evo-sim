@@ -4,6 +4,61 @@ A high-performance command-line tool for simulating insertion and deletion (inde
 
 Based on the research paper: **"Efficient algorithms for simulating sequences along a phylogenetic tree"** by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Omer Israeli, Itsik Pe'er, and Tal Pupko.
 
+## Abstract
+
+**Motivation:** Sequence simulations along phylogenetic trees play an important role in numerous molecular evolution studies such as benchmarking algorithms for ancestral sequence reconstruction, multiple sequence alignment, and phylogeny inference. They are also used in phylogenetic model-selection tasks, including the inference of selective forces. Recently, Approximate Bayesian Computation (ABC)-based approaches have been developed for inferring parameters of complex evolutionary models, which rely on massive generation of simulated data. For all these applications, computationally efficient sequence simulators are essential.
+
+**Results:** In this study, we investigate fast algorithms for simulating sequences along a phylogenetic tree, focusing on accelerating the speed-limiting component of the simulation process: handling insertion and deletion (indel) events. We demonstrate that data structures which efficiently store indel events along a tree can substantially accelerate the simulation process compared to a naive approach. To illustrate the utility of this efficient simulator, we integrated it into an ABC-based algorithm for inferring indel model parameters and applied it to study indel dynamics within Chiroptera.
+
+**Availability and Implementation:** The source code for the different simulation algorithms, alongside the data used, is available at: https://github.com/nimrodSerokTAU/evo-sim. The simulator has also been integrated into SpartaABC, a website for the inference of indel parameters, accessible at: https://spartaabc.tau.ac.il/
+
+---
+
+## Novel Bookkeeping Methods
+
+### Simulation Strategy Overview
+
+Our approach separates indel and substitution simulations for enhanced efficiency:
+
+<div style="background-color: white; padding: 10px; border-radius: 5px;">
+
+![Simulation Strategy](figures/simulator_tree_example.svg)
+
+</div>
+
+**Figure 1:** Separation of indel and substitution simulations and their merger. (A) Simulation of indel events while disregarding the sequence content, creating a template for the resulting alignment; (B) The resulting alignment size is used to simulate the sequence content and substitution events; (C) The indel template and sequence content are combined for the final alignment.
+
+### Novel Bookkeeping Data Structure
+
+The core innovation lies in our **block-based bookkeeping method** that efficiently tracks indel events:
+
+<div style="background-color: white; padding: 10px; border-radius: 5px;">
+
+![Block Structure](figures/blocklist_diagram.svg)
+
+</div>
+
+**Figure 2:** Example of the processing of the data structure used for bookkeeping indel events along a branch of a phylogenetic tree. Each row corresponds to a block: (A) The initial data structure.
+
+### MSA Reconstruction Example
+
+<div style="background-color: white; padding: 10px; border-radius: 5px;">
+
+![Block Update](figures/superSequence_no_blocks.svg)
+
+</div>
+
+**Figure 3:** An illustrated example of updating the block list structure following an indel event. The current sequence is represented as a block list in (A). Consider an insertion event of four characters that occurred at position 15 of the sequence represented by the block list in A. The resulting block list is updated, by splitting the first block in (A) into two blocks. The resulting block list is shown in (B).
+
+### Super-sequence Generation
+
+<div style="background-color: white; padding: 10px; border-radius: 5px;">
+
+![Super-sequence Evolution](figures/superSequence_no_blocks.svg)
+
+</div>
+
+**Figure 4:** Evolution of the sequence alignment through indel events. (A) Phylogenetic tree showing three species and five nodes (numbered 1-5) with indel events (represented by stars) along the branches. Each event is labeled with its type, position, and length. (B) The final super-sequence after pre-order tree traversal. (C) Alongside updating the super-sequence, the sequences at each node are updated, accounting for deletions. (D) The final template alignment.
 <!-- ## Citation
 
 If you use this tool in your research, please cite:
@@ -108,15 +163,15 @@ python indel_simulator.py \
 
 For a single branch:
 
-| Algorithm | Time Complexity | Memory Usage | Best Use Case |
-|-----------|----------------|--------------|---------------|
-| Naive     | O(k×n)         | O(n)         | Small sequences, few events |
-| Block List| O(k×b)         | O(b)         | Large sequences, moderate events |
-| Block Tree| O(k×log(b))    | O(b)         | Large sequences, many events |
+| Method | Time Complexity | Description |
+|--------|----------------|-------------|
+| **Naive** | O(k×n') | Applies each event directly on sequence copy |
+| **Block List** | O(k×b + n') | Linear search through block list |
+| **Block Tree** | O(k×log(b) + n') | Binary search using AVL tree structure |
 
 Where:
 - k = number of indel events
-- n = sequence length  
+- n' = maximum sequence length during evolution
 - b = number of blocks (≤ min(k,n))
 
 ## Output Formats
