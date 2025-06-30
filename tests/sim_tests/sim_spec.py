@@ -1,20 +1,15 @@
 import sys
 import pathlib
-print(pathlib.Path.cwd())
-print(sys.path)
-sys.path.append(str(pathlib.Path.cwd()))
 
-import utils
-from classes.avl_tree import AVLTree
-from classes.block import Block
-from classes.indel_event import IndelEvent
-from classes.seq_node_as_list import SequenceNodeAsList
-from classes.seq_node_as_tree import SequenceNodeAsTree
-from classes.seq_node_naive import SequenceNodeNaive
-from classes.sim_config import SimConfiguration
-# from classes.super_sequence import SuperSequence
-# from classes.sequence import Sequence
-# from classes.msa import Msa
+from indelsim import utils
+from indelsim.classes.avl_tree import AVLTree
+from indelsim.classes.block import Block
+from indelsim.classes.indel_event import IndelEvent
+from indelsim.classes.seq_node_as_list import SequenceNodeAsList
+from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
+from indelsim.classes.seq_node_naive import SequenceNodeNaive
+from indelsim.classes.sim_config import SimConfiguration
+
 
 basic_config: SimConfiguration = SimConfiguration(
     original_sequence_length=100, indel_length_alpha=1.7, indel_truncated_length=50, deletion_extra_edge_length=49,

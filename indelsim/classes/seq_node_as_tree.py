@@ -1,8 +1,8 @@
-from classes.avl_node import AVLNode
-from classes.avl_tree import AVLTree
-from classes.block import Block
-from classes.indel_event import IndelEvent
-from enums import EventSubTypes
+from indelsim.classes.avl_node import AVLNode
+from indelsim.classes.avl_tree import AVLTree
+from indelsim.classes.block import Block
+from indelsim.classes.indel_event import IndelEvent
+from indelsim.enums import EventSubTypes
 
 
 class SequenceNodeAsTree:

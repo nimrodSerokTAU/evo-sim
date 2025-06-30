@@ -1,6 +1,6 @@
-from classes.block import Block
-from classes.indel_event import IndelEvent
-from enums import EventSubTypes
+from indelsim.classes.block import Block
+from indelsim.classes.indel_event import IndelEvent
+from indelsim.enums import EventSubTypes
 
 
 class SequenceNodeAsList:

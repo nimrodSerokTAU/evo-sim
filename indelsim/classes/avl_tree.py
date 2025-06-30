@@ -1,5 +1,5 @@
-from classes.avl_node import AVLNode
-from classes.block import Block
+from indelsim.classes.avl_node import AVLNode
+from indelsim.classes.block import Block
 # https://visualgo.net/en/bst
 
 

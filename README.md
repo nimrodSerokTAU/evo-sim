@@ -4,14 +4,14 @@ A high-performance command-line tool for simulating insertion and deletion (inde
 
 Based on the research paper: **"Efficient algorithms for simulating sequences along a phylogenetic tree"** by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Omer Israeli, Itsik Pe'er, and Tal Pupko.
 
-## Citation
+<!-- ## Citation
 
 If you use this tool in your research, please cite:
 
 ```
 Wygoda, E., Moshe, A., Serok, N., Dotan, E., Ecker, N., Israeli, O., Pe'er, I., & Pupko, T. 
 Efficient algorithms for simulating sequences along a phylogenetic tree. 
-```
+``` -->
 
 ## Features
 
@@ -61,10 +61,8 @@ python indel_simulator.py \
     --type tree \
     --insertion_rate 0.03 \
     --deletion_rate 0.09 \
-    --insertion_length_distribution zipf \
     --insertion_length_distribution_parameter 2.0 \
     --insertion_length_truncation 50 \
-    --deletion_length_distribution zipf \
     --deletion_length_distribution_parameter 2.0 \
     --deletion_length_truncation 50 \
     --original_sequence_length 1000 \
@@ -87,18 +85,15 @@ python indel_simulator.py \
 
 ### Length Distribution Arguments
 
-- `--insertion_length_distribution {zipf,geometric}`: Distribution for insertion lengths (default: zipf)
-- `--insertion_length_distribution_parameter FLOAT`: Parameter for insertion length distribution (default: 2.0)
+- `--insertion_length_distribution_parameter FLOAT`: Parameter for Zipf insertion length distribution (default: 2.0)
 - `--insertion_length_truncation INT`: Maximum insertion length (default: 50)
-- `--deletion_length_distribution {zipf,geometric}`: Distribution for deletion lengths (default: zipf)
-- `--deletion_length_distribution_parameter FLOAT`: Parameter for deletion length distribution (default: 2.0)
+- `--deletion_length_distribution_parameter FLOAT`: Parameter for Zipf deletion length distribution (default: 2.0)
 - `--deletion_length_truncation INT`: Maximum deletion length (default: 50)
 
 ### Simulation Parameters
 
 - `--original_sequence_length INT`: Length of the root sequence (default: 1000)
 - `--deletion_extra_edge_length INT`: Extra positions before sequence start for deletion events (default: 49)
-- `--switch_factor FLOAT`: Threshold for switching between list and tree methods in hybrid mode (default: 100.0)
 - `--number_of_simulations INT`: Number of independent simulation runs (default: 1)
 - `--seed INT`: Random seed for reproducibility (default: 42)
 
@@ -106,16 +101,17 @@ python indel_simulator.py \
 
 - `--output_type {drop_output,multiple_files,single_file}`: Output format (default: single_file)
 - `--output_directory PATH`: Directory to save simulation results (default: ./simulation_results)
-- `--output_format {fasta}`: Output file format (always FASTA)
 - `--verbose`: Enable verbose output
 - `--benchmark`: Run benchmarking and report performance statistics
 
 ## Algorithm Comparison
 
+For a single branch:
+
 | Algorithm | Time Complexity | Memory Usage | Best Use Case |
 |-----------|----------------|--------------|---------------|
 | Naive     | O(k×n)         | O(n)         | Small sequences, few events |
-| Block List| O(k×b)         | O(b)         | Medium sequences, moderate events |
+| Block List| O(k×b)         | O(b)         | Large sequences, moderate events |
 | Block Tree| O(k×log(b))    | O(b)         | Large sequences, many events |
 
 Where:
@@ -136,25 +132,17 @@ Where:
 >1
 ATGCGATCGATCG--ATCGATCG
 >2
-ATGC--TCGATCGATCGATCG
+ATGC--TCGATCGATCGATCG--
 ```
 
 The simulator outputs multiple sequence alignments in FASTA format with header comments containing simulation metadata.
 
-## Examples
-
-See the example scripts in the repository:
-- `example_usage.sh`: Basic usage examples
-- `performance_comparison.py`: Algorithm performance comparison
-- `batch_simulations.sh`: Batch processing with different parameters
-
 ## Performance Tips
 
-1. **For small sequences (< 500 bp)**: Use `--type naive` for simplicity
-2. **For medium sequences (500-5000 bp)**: Use `--type list` for good performance
-3. **For large sequences (> 5000 bp) or many events**: Use `--type tree` for best performance
-4. **For benchmarking**: Use `--benchmark` flag to get detailed timing information
-5. **For reproducibility**: Always set `--seed` to a fixed value
+1. **For small tree branches (< 1.0) and insertion rate up to 0.1**: Use `--type list` for good performance
+1. **For large tree branches (> 1.0) and insertion rate higher than 0.05**: Use `--type tree` for best performance
+1. **For benchmarking**: Use `--benchmark` flag to get detailed timing information
+1. **For reproducibility**: Always set `--seed` to a fixed value
 
 ## Tree File Format
 
@@ -168,11 +156,8 @@ Branch lengths represent evolutionary time in substitutions per site.
 
 ## Integration with SpartaABC
 
-This simulator can be integrated with SpartaABC for Approximate Bayesian Computation-based inference of indel parameters. Visit [https://spartaabc.tau.ac.il/](https://spartaabc.tau.ac.il/) for more information.
+A similar simulator was integrated with SpartaABC for Approximate Bayesian Computation-based inference of indel parameters. Visit [https://spartaabc.tau.ac.il/](https://spartaabc.tau.ac.il/) for more information.
 
-## Contributing
-
-We welcome contributions! Please see our contributing guidelines and submit pull requests via GitHub.
 
 ## License
 
@@ -181,7 +166,7 @@ This project is licensed under the Academic Free License v. 3.0. See the LICENSE
 ## Contact
 
 For questions or support, please contact:
-- Tal Pupko: talp@tauex.tau.ac.il
+- Elya Wygoda: elyawygoda@mail.tau.ac.il
 - GitHub Issues: [https://github.com/nimrodSerokTAU/evo-sim/issues](https://github.com/nimrodSerokTAU/evo-sim/issues)
 
 ## Acknowledgments
@@ -191,3 +176,9 @@ For questions or support, please contact:
 - Department of Computer Science, Columbia University
 
 This research was supported by the Israel Science Foundation (ISF) [2818/21 to T.P.].
+
+E.W., N.S., A.M., and N.E. were supported in part by a fellowship from the Edmond J. Safra
+Center for Bioinformatics at Tel Aviv University. The list-based, tree-based, and super
+sequence algorithms were developed by A.M. and are described in his PhD thesis.
+
+The code in this repository was mostly written  by Nimrod Serok and Elya Wygoda.

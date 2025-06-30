@@ -26,12 +26,9 @@ from typing import List, Dict, Any
 import time
 from datetime import datetime
 
-# Add the classes directory to the path
-sys.path.append(str(pathlib.Path(__file__).parent / "classes"))
-
-from classes.simulation import Simulation
-from classes.sim_config import SimConfiguration
-from enums import SimulationTypes
+from indelsim.classes.simulation import Simulation
+from indelsim.classes.sim_config import SimConfiguration
+from indelsim.enums import SimulationTypes
 
 
 class IndelSimulatorCLI:
@@ -91,13 +88,6 @@ Examples:
         
         # Length distribution arguments
         parser.add_argument(
-            "--insertion_length_distribution",
-            choices=["zipf", "geometric"],
-            default="zipf",
-            help="Distribution for insertion lengths (default: zipf)"
-        )
-        
-        parser.add_argument(
             "--insertion_length_distribution_parameter",
             type=float,
             default=2.0,
@@ -111,12 +101,6 @@ Examples:
             help="Maximum insertion length (default: 50)"
         )
         
-        parser.add_argument(
-            "--deletion_length_distribution",
-            choices=["zipf", "geometric"],
-            default="zipf",
-            help="Distribution for deletion lengths (default: zipf)"
-        )
         
         parser.add_argument(
             "--deletion_length_distribution_parameter",
@@ -148,13 +132,6 @@ Examples:
         )
         
         parser.add_argument(
-            "--switch_factor",
-            type=float,
-            default=100.0,
-            help="Threshold for switching between list and tree methods in hybrid mode (default: 100.0)"
-        )
-        
-        parser.add_argument(
             "--number_of_simulations",
             type=int,
             default=1,
@@ -173,7 +150,7 @@ Examples:
             "--output_type",
             choices=["drop_output", "multiple_files", "single_file"],
             default="single_file",
-            help="Output format: drop_output (no files), multiple_files (one per sim), single_file (combined)"
+            help="Output format: drop_output (no files), multiple_files (one fasta per sim), single_file (combined fastas)"
         )
         
         parser.add_argument(
@@ -181,13 +158,6 @@ Examples:
             type=str,
             default="./simulation_results",
             help="Directory to save simulation results (default: ./simulation_results)"
-        )
-        
-        parser.add_argument(
-            "--output_format",
-            choices=["fasta"],
-            default="fasta",
-            help="Output file format (default: fasta)"
         )
         
         parser.add_argument(

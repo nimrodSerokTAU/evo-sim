@@ -2,16 +2,15 @@ from pathlib import Path
 from ete3 import Tree, TreeNode
 
 
-from sim_config import SimConfiguration
-from sim_node import SimulatedNode
-from super_sequence import SuperSequence
-from sequence import Sequence
-from msa import Msa
-import utils
-
-from classes.seq_node_as_list import SequenceNodeAsList
-from classes.seq_node_as_tree import SequenceNodeAsTree
-from classes.seq_node_naive import SequenceNodeNaive
+from indelsim.classes.sim_config import SimConfiguration
+from indelsim.classes.sim_node import SimulatedNode
+from indelsim.classes.super_sequence import SuperSequence
+from indelsim.classes.sequence import Sequence
+from indelsim.classes.msa import Msa
+from indelsim.utils import calc_msa_from_naive_nodes
+from indelsim.classes.seq_node_as_list import SequenceNodeAsList
+from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
+from indelsim.classes.seq_node_naive import SequenceNodeNaive
 
 class Simulation:
     tree: Tree

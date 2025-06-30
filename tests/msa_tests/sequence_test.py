@@ -1,13 +1,7 @@
-import sys
-import pathlib
-print(pathlib.Path.cwd())
-print(sys.path)
-sys.path.append(str(pathlib.Path.cwd() / "classes"))
 
-
-from super_sequence import SuperSequence
-from block import Block
-from sequence import Sequence
+from indelsim.classes.super_sequence import SuperSequence
+from indelsim.classes.block import Block
+from indelsim.classes.sequence import Sequence
 
 
 super_seq = SuperSequence(50,3)

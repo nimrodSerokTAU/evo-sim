@@ -1,4 +1,4 @@
-from classes.indel_event import IndelEvent
+from indelsim.classes.indel_event import IndelEvent
 
 
 class SequenceNodeNaive:

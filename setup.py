@@ -38,7 +38,7 @@ setup(
     license="Academic Free License v. 3.0",
     entry_points={
         "console_scripts": [
-            "indel-simulator=indel_simulator:main",
+            "indel-simulator=indelsim.indel_simulator:main",
         ],
     },
 )

@@ -1,12 +1,12 @@
 import numpy as np
 import random as rnd
 
-from classes.indel_event import IndelEvent
-from classes.seq_node_as_list import SequenceNodeAsList
-from classes.seq_node_as_tree import SequenceNodeAsTree
-from classes.seq_node_naive import SequenceNodeNaive
-from classes.sim_config import SimConfiguration
-from utils import calc_trunc_zipf
+from indelsim.classes.indel_event import IndelEvent
+from indelsim.classes.seq_node_as_list import SequenceNodeAsList
+from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
+from indelsim.classes.seq_node_naive import SequenceNodeNaive
+from indelsim.classes.sim_config import SimConfiguration
+from indelsim.utils import calc_trunc_zipf
 
 
 class SimulatedNode:

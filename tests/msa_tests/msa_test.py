@@ -1,22 +1,15 @@
-import sys
-import pathlib
 import re
 
-print(pathlib.Path.cwd())
-print(sys.path)
-sys.path.append(str(pathlib.Path.cwd()))
-sys.path.append(str(pathlib.Path.cwd() / "classes"))
+from indelsim import utils
 
-print(sys.path)
+from indelsim.classes.super_sequence import SuperSequence
+from indelsim.classes.block import Block
+from indelsim.classes.sequence import Sequence
+from indelsim.classes.msa import Msa
+from indelsim.classes.indel_event import IndelEvent
+from indelsim.classes.seq_node_as_list import SequenceNodeAsList
+from indelsim.classes.seq_node_naive import SequenceNodeNaive
 
-from super_sequence import SuperSequence
-from block import Block
-from sequence import Sequence
-from msa import Msa
-from indel_event import IndelEvent
-from seq_node_as_list import SequenceNodeAsList
-from seq_node_naive import SequenceNodeNaive
-import utils
 
 def root_to_leaf_alignment():
     super_seq = SuperSequence(20,3)

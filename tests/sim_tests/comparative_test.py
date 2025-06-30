@@ -1,16 +1,9 @@
-import sys
-import pathlib
 import random
-print(pathlib.Path.cwd())
-print(sys.path)
-sys.path.append(str(pathlib.Path.cwd()))
 
-
-
-from classes.indel_event import IndelEvent
-from classes.seq_node_as_list import SequenceNodeAsList
-from classes.seq_node_as_tree import SequenceNodeAsTree
-from classes.seq_node_naive import SequenceNodeNaive
+from indelsim.classes.indel_event import IndelEvent
+from indelsim.classes.seq_node_as_list import SequenceNodeAsList
+from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
+from indelsim.classes.seq_node_naive import SequenceNodeNaive
 # Test 1
 
 def list_test_case_a():

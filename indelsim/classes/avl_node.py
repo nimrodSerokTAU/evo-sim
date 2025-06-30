@@ -1,5 +1,5 @@
 from typing_extensions import Self
-from classes.block import Block
+from indelsim.classes.block import Block
 
 class AVLNode:
     id: int
