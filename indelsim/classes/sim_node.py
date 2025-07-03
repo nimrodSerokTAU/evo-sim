@@ -39,8 +39,6 @@ class SimulatedNode:
         # print("length before events:", current_running_length)
         total_rate_across_entire_sequence = config.rate_ins * (current_running_length) + config.rate_del * (current_running_length)
         self.hybrid_factor = self.branch_length * total_rate_across_entire_sequence
-        # print(self.hybrid_factor)
-        self.hybrid_switch = False if self.hybrid_factor < config.switch_factor else True
         while True:
             total_rate_across_entire_sequence = config.rate_ins * (current_running_length + 1) + config.rate_del * (current_running_length + config.deletion_extra_edge_length)
             event_time = np.random.exponential(1.0/ total_rate_across_entire_sequence)

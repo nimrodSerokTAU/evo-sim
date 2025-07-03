@@ -113,7 +113,7 @@ class Simulation:
                 ids_to_save.append(node.id)
                 parent_ids_to_save.append(node.parent_id)
 
-        msa: list[list[int]] = utils.calc_msa_from_naive_nodes(sequences, parent_ids_to_save)
+        msa: list[list[int]] = calc_msa_from_naive_nodes(sequences, parent_ids_to_save)
 
         msa_str = ""
         for id, seq in zip(ids_to_save, msa[1:]):

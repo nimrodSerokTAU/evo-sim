@@ -212,7 +212,6 @@ Examples:
             deletion_extra_edge_length=args.deletion_extra_edge_length,
             rate_ins=args.insertion_rate,
             rate_del=args.deletion_rate,
-            switch_factor=args.switch_factor,
             seed=args.seed
         )
     
