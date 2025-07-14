@@ -3,6 +3,10 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+with open("requirements.txt", "r", encoding="utf-8") as fh:
+    requirements = fh.readlines()
+
+
 setup(
     name="indel-simulator",
     version="1.0.0",
@@ -28,13 +32,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     python_requires=">=3.8",
-    install_requires=[
-        "numpy>=1.21.0",
-        "matplotlib>=3.5.0",
-        "ete3>=3.1.2",
-        "llist>=0.7.1",
-        "typing_extensions>=4.14.0",
-    ],
+    install_requires=requirements,
     license="Academic Free License v. 3.0",
     entry_points={
         "console_scripts": [

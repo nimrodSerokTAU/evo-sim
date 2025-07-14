@@ -35,7 +35,6 @@ def run_indel_simulator(tree_file: Path, indel_rate: Tuple[float, float],
         "--original_sequence_length", str(root_seq_length),
         "--output_type", "drop_output",  # Don't write files
         "--seed", "42",
-        "--benchmark"
     ]
     
     # Measure memory and time
@@ -45,7 +44,7 @@ def run_indel_simulator(tree_file: Path, indel_rate: Tuple[float, float],
     # Monitor memory usage
     max_memory_mb = 0
     try:
-        while process.is_running():
+        while process.poll() is None:
             try:
                 mem_info = process.memory_info()
                 current_memory_mb = mem_info.rss / 1024 / 1024  # Convert to MB
@@ -55,6 +54,14 @@ def run_indel_simulator(tree_file: Path, indel_rate: Tuple[float, float],
                 break
     except psutil.NoSuchProcess:
         pass
+
+    try:
+        mem_info = process.memory_info()
+        current_memory_mb = mem_info.rss / 1024 / 1024
+        max_memory_mb = max(max_memory_mb, current_memory_mb)
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
+        pass
+
     
     stdout, stderr = process.communicate()
     end_time = time.time()
@@ -89,23 +96,25 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
     
     output_prefix = temp_dir / "alisim_output"
     
-    # Create a model that prevents substitutions but allows indels
+    # AliSim is part of IQ-TREE. For indel-only simulation, we need to use a model
+    # that prevents substitutions but allows indels. The model syntax is:
+    # --alisim <output_prefix> -t <tree> -m <model> --length <seq_length>
     ins_rate = model_params.get('insertion_rate', 0.01)
     del_rate = model_params.get('deletion_rate', 0.01)
-    
-    # Use invariable sites close to 1 to prevent substitutions
+    # Use invariable sites to prevent substitutions and specify indel rates
     # Format: model+I{proportion}+INDEL{ins_rate,del_rate}
-    model_str = f"JC+I{{0.9999999999}}+INDEL{{{ins_rate},{del_rate}}}"
+    model_str = f"JC+I{{0.999999}}"
     
-    # Build AliSim command
+    # Build AliSim command (part of iqtree)
     cmd = [
-        "alisim",
-        "--root-seq", str(root_seq_length),
+        "iqtree2",
+        "--alisim", str(output_prefix),
         "-t", str(tree_file),
         "-m", model_str,
         "--length", str(root_seq_length),
-        "--output-format", "FASTA",
-        str(output_prefix)
+        "--indel", f"{ins_rate},{del_rate}",
+        "--indel-size", "POW{2.0/50},POW{2.0/50}",
+        "--seed", "42"
     ]
     
     start_time = time.time()
@@ -114,15 +123,22 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
     # Monitor memory usage
     max_memory_mb = 0
     try:
-        while process.is_running():
+        while process.poll() is None:
             try:
                 mem_info = process.memory_info()
-                current_memory_mb = mem_info.rss / 1024 / 1024
+                current_memory_mb = mem_info.rss / 1024 / 1024  # Convert to MB
                 max_memory_mb = max(max_memory_mb, current_memory_mb)
-                time.sleep(0.01)
+                time.sleep(0.01)  # Check every 10ms
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 break
     except psutil.NoSuchProcess:
+        pass
+
+    try:
+        mem_info = process.memory_info()
+        current_memory_mb = mem_info.rss / 1024 / 1024
+        max_memory_mb = max(max_memory_mb, current_memory_mb)
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
         pass
     
     stdout, stderr = process.communicate()
@@ -151,20 +167,24 @@ def run_phastsim(tree_file: Path, model_params: Dict, root_seq_length: int = 100
     if temp_dir is None:
         temp_dir = Path(tempfile.mkdtemp())
     
-    output_file = temp_dir / "phastsim_output.fa"
+    output_dir = temp_dir / "phastsim_output"
+    output_dir.mkdir(exist_ok=True)
     
     ins_rate = model_params.get('insertion_rate', 0.01)
     del_rate = model_params.get('deletion_rate', 0.01)
     
-    # Build PhastSim command with no substitutions (adjust based on actual PhastSim parameters)
+    # Build PhastSim command - it has specific parameters for indels
     cmd = [
-        "phastsim",
-        "--tree", str(tree_file),
-        "--rootSeqLen", str(root_seq_length),
-        "--insertionRate", str(ins_rate),
-        "--deletionRate", str(del_rate),
-        "--substitutionRate", "0.0",  # No substitutions
-        "--output", str(output_file)
+        "phastSim",
+        "--outpath", str(output_dir),
+        "--treeFile", str(tree_file),
+        "--seed", "42",
+        "--indels",  # Enable indel simulation
+        "--insertionRate", "CONSTANT", str(ins_rate),
+        "--deletionRate", "CONSTANT", str(del_rate),
+        "--insertionLength", "GEOMETRIC", "0.9",  # Mean length ~1.11
+        "--deletionLength", "GEOMETRIC", "0.9",   # Mean length ~1.11
+        "--mutationRates", "JC69", "0.0000001", "0.0000001", "0.25", "0.25", "0.25", "0.25"  # Very low sub rates
     ]
     
     start_time = time.time()
@@ -173,24 +193,32 @@ def run_phastsim(tree_file: Path, model_params: Dict, root_seq_length: int = 100
     # Monitor memory usage
     max_memory_mb = 0
     try:
-        while process.is_running():
+        while process.poll() is None:
             try:
                 mem_info = process.memory_info()
-                current_memory_mb = mem_info.rss / 1024 / 1024
+                current_memory_mb = mem_info.rss / 1024 / 1024  # Convert to MB
                 max_memory_mb = max(max_memory_mb, current_memory_mb)
-                time.sleep(0.01)
+                time.sleep(0.01)  # Check every 10ms
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 break
     except psutil.NoSuchProcess:
+        pass
+
+    try:
+        mem_info = process.memory_info()
+        current_memory_mb = mem_info.rss / 1024 / 1024
+        max_memory_mb = max(max_memory_mb, current_memory_mb)
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
         pass
     
     stdout, stderr = process.communicate()
     end_time = time.time()
     runtime_seconds = end_time - start_time
     
-    # Clean up output file
-    if output_file.exists():
-        output_file.unlink()
+    # Clean up output files
+    if output_dir.exists():
+        import shutil
+        shutil.rmtree(output_dir)
     
     return {
         'runtime_seconds': runtime_seconds,
@@ -213,9 +241,9 @@ def check_simulator_availability() -> Dict[str, bool]:
     except (subprocess.TimeoutExpired, FileNotFoundError):
         simulators['indel-simulator'] = False
     
-    # Check AliSim
+    # Check AliSim (part of IQ-TREE)
     try:
-        result = subprocess.run(['alisim', '--version'], 
+        result = subprocess.run(['iqtree2', '--help'], 
                               capture_output=True, timeout=10)
         simulators['alisim'] = result.returncode == 0
     except (subprocess.TimeoutExpired, FileNotFoundError):
@@ -223,7 +251,7 @@ def check_simulator_availability() -> Dict[str, bool]:
     
     # Check PhastSim
     try:
-        result = subprocess.run(['phastsim', '--help'], 
+        result = subprocess.run(['phastSim', '--help'], 
                               capture_output=True, timeout=10)
         simulators['phastsim'] = result.returncode == 0
     except (subprocess.TimeoutExpired, FileNotFoundError):
@@ -386,82 +414,17 @@ def main():
     results_df.to_csv("simulator_comparison.csv", index=False)
     print(f"\nResults saved to simulator_comparison.csv")
     
-    # Create comparison plots
-    create_comparison_plots(results_df)
+    # Optionally create plots
+    try:
+        print("Creating comparison plots...")
+        import subprocess
+        subprocess.run([sys.executable, "plot_comparison_results.py"], check=True)
+        print("Plots created successfully!")
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"Note: Could not create plots automatically. Run 'python plot_comparison_results.py' manually.")
+        print(f"Error: {e}")
     
     return results_df
-
-
-def create_comparison_plots(results_df: pd.DataFrame):
-    """Create comparison plots similar to switch_factor.py."""
-    
-    # Time comparison plots
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    
-    for i, (branch_scale, group_data) in enumerate(results_df.groupby("branch_scale")):
-        ax = axes[i]
-        
-        # Plot time comparisons
-        if 'indel_list_time' in group_data.columns:
-            ax.plot(group_data['insertion_rate'], group_data['indel_list_time'], 
-                   'o-', label='Indel (list)', markersize=6)
-        
-        if 'indel_tree_time' in group_data.columns:
-            ax.plot(group_data['insertion_rate'], group_data['indel_tree_time'], 
-                   's-', label='Indel (tree)', markersize=6)
-        
-        if 'alisim_time' in group_data.columns and group_data['alisim_time'].notna().any():
-            ax.plot(group_data['insertion_rate'], group_data['alisim_time'], 
-                   '^-', label='AliSim', markersize=6)
-        
-        if 'phastsim_time' in group_data.columns and group_data['phastsim_time'].notna().any():
-            ax.plot(group_data['insertion_rate'], group_data['phastsim_time'], 
-                   'D-', label='PhastSim', markersize=6)
-        
-        ax.set_title(f"Runtime Comparison (Scale: {branch_scale})", size=14)
-        ax.set_xlabel("Insertion Rate", size=12)
-        ax.set_ylabel("Runtime (seconds)", size=12)
-        ax.legend()
-        ax.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.savefig("assets/simulator_runtime_comparison.png", dpi=300, bbox_inches="tight")
-    plt.savefig("assets/simulator_runtime_comparison.svg", bbox_inches="tight")
-    plt.show()
-    
-    # Memory comparison plots
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    
-    for i, (branch_scale, group_data) in enumerate(results_df.groupby("branch_scale")):
-        ax = axes[i]
-        
-        # Plot memory comparisons
-        if 'indel_list_memory' in group_data.columns:
-            ax.plot(group_data['insertion_rate'], group_data['indel_list_memory'], 
-                   'o-', label='Indel (list)', markersize=6)
-        
-        if 'indel_tree_memory' in group_data.columns:
-            ax.plot(group_data['insertion_rate'], group_data['indel_tree_memory'], 
-                   's-', label='Indel (tree)', markersize=6)
-        
-        if 'alisim_memory' in group_data.columns and group_data['alisim_memory'].notna().any():
-            ax.plot(group_data['insertion_rate'], group_data['alisim_memory'], 
-                   '^-', label='AliSim', markersize=6)
-        
-        if 'phastsim_memory' in group_data.columns and group_data['phastsim_memory'].notna().any():
-            ax.plot(group_data['insertion_rate'], group_data['phastsim_memory'], 
-                   'D-', label='PhastSim', markersize=6)
-        
-        ax.set_title(f"Memory Usage Comparison (Scale: {branch_scale})", size=14)
-        ax.set_xlabel("Insertion Rate", size=12)
-        ax.set_ylabel("Max Memory (MB)", size=12)
-        ax.legend()
-        ax.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.savefig("assets/simulator_memory_comparison.png", dpi=300, bbox_inches="tight")
-    plt.savefig("assets/simulator_memory_comparison.svg", bbox_inches="tight")
-    plt.show()
 
 
 if __name__ == "__main__":
