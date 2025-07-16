@@ -14,8 +14,6 @@ from datetime import datetime
 
 from indelsim.classes.simulation import Simulation
 from indelsim.classes.sim_config import SimConfiguration
-from indelsim.classes.substitution import SubstitutionEvolver
-from indelsim.enums import amino_acid_to_index, index_to_amino_acid
 
 
 class SubstitutionSimulatorCLI:
@@ -218,7 +216,7 @@ Examples:
         
         filename = output_dir / f"substitution_simulations_{timestamp}.fasta"
         with open(filename, 'w') as f:
-            for i, result in enumerate(results):
+            for result in results:
                 f.write(f"# Substitution Simulation {result['simulation_number']}\n")
                 f.write(f"# Runtime: {result['runtime_seconds']:.3f}s\n")
                 f.write(f"# Algorithm: {result['algorithm']}\n")

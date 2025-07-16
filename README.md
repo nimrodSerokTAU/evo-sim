@@ -1,6 +1,9 @@
-# Indel Simulator CLI Tool
+# Evolution Simulator CLI Tools
 
-A high-performance command-line tool for simulating insertion and deletion (indel) events along phylogenetic trees. This tool implements three different algorithms with varying computational complexities for handling indel events efficiently.
+High-performance command-line tools for simulating evolutionary events along phylogenetic trees. This package includes:
+
+1. **Indel Simulator**: Simulates insertion and deletion (indel) events with three different algorithms
+2. **Substitution Simulator**: Simulates amino acid substitutions using the JTT model with Gillespie or matrix methods
 
 Based on the research paper: **"Efficient algorithms for simulating sequences along a phylogenetic tree"** by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Omer Israeli, Itsik Pe'er, and Tal Pupko.
 
@@ -89,10 +92,10 @@ pip install -e .
 
 ## Quick Start
 
-### Basic Usage
+### Indel Simulator - Basic Usage
 
 ```bash
-python indel_simulator.py \
+python -m indelsim.indel_simulator \
     --type list \
     --insertion_rate 0.01 \
     --deletion_rate 0.01 \
@@ -100,10 +103,19 @@ python indel_simulator.py \
     --output_directory ./results
 ```
 
-### Advanced Usage
+### Substitution Simulator - Basic Usage
 
 ```bash
-python indel_simulator.py \
+python -m indelsim.substitution_simulator \
+    --substitution_rate 1.0 \
+    --tree_file tree.newick \
+    --output_directory ./substitution_results
+```
+
+### Indel Simulator - Advanced Usage
+
+```bash
+python -m indelsim.indel_simulator \
     --type tree \
     --insertion_rate 0.03 \
     --deletion_rate 0.09 \
@@ -120,37 +132,82 @@ python indel_simulator.py \
     --verbose
 ```
 
+### Substitution Simulator - Advanced Usage
+
+```bash
+python -m indelsim.substitution_simulator \
+    --substitution_rate 2.5 \
+    --algorithm matrix \
+    --original_sequence_length 500 \
+    --number_of_simulations 50 \
+    --output_type single_file \
+    --output_directory ./substitution_results \
+    --benchmark \
+    --verbose \
+    --seed 123
+```
+
 ## Command Line Arguments
 
-### Required Arguments
+### Indel Simulator Arguments
+
+#### Required Arguments
 
 - `--type {naive,list,tree}`: Simulation algorithm type
 - `--insertion_rate FLOAT`: Insertion rate per site per unit time
 - `--deletion_rate FLOAT`: Deletion rate per site per unit time
 - `--tree_file PATH`: Path to Newick format phylogenetic tree file
 
-### Length Distribution Arguments
+#### Length Distribution Arguments
 
 - `--insertion_length_distribution_parameter FLOAT`: Parameter for Zipf insertion length distribution (default: 2.0)
 - `--insertion_length_truncation INT`: Maximum insertion length (default: 50)
 - `--deletion_length_distribution_parameter FLOAT`: Parameter for Zipf deletion length distribution (default: 2.0)
 - `--deletion_length_truncation INT`: Maximum deletion length (default: 50)
 
-### Simulation Parameters
+#### Simulation Parameters
 
 - `--original_sequence_length INT`: Length of the root sequence (default: 1000)
 - `--deletion_extra_edge_length INT`: Extra positions before sequence start for deletion events (default: 49)
 - `--number_of_simulations INT`: Number of independent simulation runs (default: 1)
 - `--seed INT`: Random seed for reproducibility (default: 42)
 
-### Output Options
+#### Output Options
 
 - `--output_type {drop_output,multiple_files,single_file}`: Output format (default: single_file)
 - `--output_directory PATH`: Directory to save simulation results (default: ./simulation_results)
 - `--verbose`: Enable verbose output
 - `--benchmark`: Run benchmarking and report performance statistics
 
+### Substitution Simulator Arguments
+
+#### Required Arguments
+
+- `--substitution_rate FLOAT`: Substitution rate per site per unit time
+- `--tree_file PATH`: Path to Newick format phylogenetic tree file
+
+#### Algorithm Selection
+
+- `--algorithm {gillespie,matrix}`: Substitution algorithm (default: gillespie)
+  - `gillespie`: Exact CTMC simulation using Gillespie algorithm
+  - `matrix`: Matrix exponentiation method (faster for long sequences)
+
+#### Simulation Parameters
+
+- `--original_sequence_length INT`: Length of the root amino acid sequence (default: 1000)
+- `--number_of_simulations INT`: Number of independent simulation runs (default: 1)
+- `--seed INT`: Random seed for reproducibility (default: 42)
+
+#### Output Options
+
+- `--output_type {drop_output,multiple_files,single_file}`: Output format (default: single_file)
+- `--output_directory PATH`: Directory to save simulation results (default: ./substitution_results)
+- `--verbose`: Enable verbose output
+- `--benchmark`: Run benchmarking and report performance statistics
+
 ## Algorithm Comparison
+
+### Indel Simulation Algorithms
 
 For a single branch:
 
@@ -165,9 +222,21 @@ Where:
 - n' = maximum sequence length during evolution
 - b = number of blocks (≤ min(k,n))
 
+### Substitution Simulation Algorithms
+
+| Method | Time Complexity | Description | Best Use Case |
+|--------|----------------|-------------|---------------|
+| **Gillespie** | O(s×L) | Exact CTMC simulation | High accuracy, small rates |
+| **Matrix** | O(L + 20³) | Matrix exponentiation | Long sequences, moderate rates |
+
+Where:
+- s = number of substitution events
+- L = sequence length
+- 20³ = JTT matrix exponentiation cost
+
 ## Output Formats
 
-### FASTA Format
+### Indel Simulator FASTA Format
 ```
 # Simulation 1
 # Runtime: 0.123s
@@ -181,24 +250,57 @@ ATGCGATCGATCG--ATCGATCG
 ATGC--TCGATCGATCGATCG--
 ```
 
-The simulator outputs multiple sequence alignments in FASTA format with header comments containing simulation metadata.
+### Substitution Simulator FASTA Format
+```
+# Substitution Simulation 1
+# Runtime: 0.001s
+# Algorithm: gillespie
+# Substitution rate: 1.0
+# Seed: 42
+>0
+ARNDCQEGHILKMFPSTWYV
+>1
+AWSECQETYINKTFPAHWYL
+>2
+NKNACKEGPIFETFPSTWYV
+```
+
+Both simulators output sequences in FASTA format with header comments containing simulation metadata. The substitution simulator produces amino acid sequences using standard single-letter codes.
 
 ## Performance Tips
 
+### Indel Simulator
+
 1. **For small tree branches (< 1.0) and insertion rate up to 0.1**: Use `--type list` for good performance
-1. **For large tree branches (> 1.0) and insertion rate higher than 0.05**: Use `--type tree` for best performance
+2. **For large tree branches (> 1.0) and insertion rate higher than 0.05**: Use `--type tree` for best performance
+
+### Substitution Simulator
+
+1. **For high accuracy and small substitution rates (< 1.0)**: Use `--algorithm gillespie` for exact simulation
+2. **For long sequences (> 1000 sites) and moderate rates**: Use `--algorithm matrix` for better performance
+3. **For very fast approximation**: Use `--algorithm matrix` with any sequence length
+
+### General Tips
+
 1. **For benchmarking**: Use `--benchmark` flag to get detailed timing information
-1. **For reproducibility**: Always set `--seed` to a fixed value
+2. **For reproducibility**: Always set `--seed` to a fixed value
+3. **For testing**: Start with small sequence lengths and low simulation counts
 
 ## Tree File Format
 
-The tool accepts phylogenetic trees in Newick format:
+Both simulators accept phylogenetic trees in Newick format:
 
 ```
 ((A:0.1,B:0.1):0.05,(C:0.08,D:0.12):0.05);
 ```
 
-Branch lengths represent evolutionary time in substitutions per site.
+Branch lengths represent evolutionary time:
+- **For indel simulation**: Time units for indel rate calculations
+- **For substitution simulation**: Time units in expected substitutions per site under the JTT model
+
+Example tree files are provided in the `examples/` directory:
+- `examples/simple_tree.newick`: Four-species tree for testing
+- `examples/test_tree.newick`: Simple two-species tree for quick tests
 
 ## Integration with SpartaABC
 
