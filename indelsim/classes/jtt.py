@@ -25,6 +25,26 @@ from scipy.linalg import expm
 import warnings
 from functools import lru_cache
 
+# -------------------------------------------------------------------------- #
+# Global singleton helper                                                    #
+# -------------------------------------------------------------------------- #
+
+__all__ = ["JTTConfig", "JTTModel", "JTTModelError", "get_jtt_model"]
+
+# Cache a single computed model so multiple SubstitutionEvolver instances
+# don’t redo the expensive eigendecomposition.
+_GLOBAL_MODEL: "JTTModel | None" = None
+
+
+def get_jtt_model() -> "JTTModel":
+    """Return a globally shared, pre-computed JTTModel instance."""
+    global _GLOBAL_MODEL
+    if _GLOBAL_MODEL is None:
+        _GLOBAL_MODEL = JTTModel()
+        _GLOBAL_MODEL.compute_model()
+    return _GLOBAL_MODEL
+
+# -------------------------------------------------------------------------- #
 
 @dataclass(frozen=True)
 class JTTConfig:
