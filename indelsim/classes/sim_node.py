@@ -6,6 +6,7 @@ from indelsim.classes.seq_node_as_list import SequenceNodeAsList
 from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
 from indelsim.classes.seq_node_naive import SequenceNodeNaive
 from indelsim.classes.sim_config import SimConfiguration
+from indelsim.classes.substitution import SubstitutionEvolver
 from indelsim.utils import calc_trunc_zipf
 
 
@@ -16,8 +17,11 @@ class SimulatedNode:
     seq_node_naive: SequenceNodeNaive
     seq_node_as_list: SequenceNodeAsList
     seq_node_as_tree: SequenceNodeAsTree
+    substitution_evolver: SubstitutionEvolver | None
+    parent_sequence: list[int] | None  # Store parent amino acid sequence
+    evolved_sequence: list[int] | None  # Store evolved amino acid sequence
 
-    def __init__(self, node_id: int, parent_id: int, branch_length: float, config: SimConfiguration, father_seq_length: int):
+    def __init__(self, node_id: int, parent_id: int, branch_length: float, config: SimConfiguration, father_seq_length: int, parent_sequence: list[int] | None = None):
 
         self.id = node_id
         self.parent_id = parent_id
@@ -25,6 +29,33 @@ class SimulatedNode:
         self.branch_length = branch_length
         self.length_of_sequence_before = father_seq_length
         self.length_of_sequence_after_events = -1
+        
+        # Store parent sequence for substitution simulation
+        self.parent_sequence = parent_sequence
+        self.evolved_sequence = None
+        
+        # Initialize substitution evolver if enabled
+        if config.enable_substitutions:
+            self.substitution_evolver = SubstitutionEvolver(
+                substitution_rate=config.substitution_rate,
+                seed=None  # Will use its own RNG
+            )
+            # Override with shared RNG from config
+            self.substitution_evolver.rng = config.rng
+            # Apply substitutions to the sequence
+            if parent_sequence is not None:
+                if config.substitution_algorithm == "gillespie":
+                    self.evolved_sequence = self.substitution_evolver.evolve_branch_substitutions_gillespie(
+                        parent_sequence, branch_length
+                    )
+                else:  # matrix
+                    self.evolved_sequence = self.substitution_evolver.evolve_branch_substitutions_jtt(
+                        parent_sequence, branch_length
+                    )
+        else:
+            self.substitution_evolver = None
+            self.evolved_sequence = parent_sequence.copy() if parent_sequence else None
+        
         rnd.seed(config.random_seed)
         np.random.seed(config.random_seed)
         self.list_of_events = self.create_events(config, father_seq_length)
@@ -39,8 +70,16 @@ class SimulatedNode:
         # print("length before events:", current_running_length)
         total_rate_across_entire_sequence = config.rate_ins * (current_running_length) + config.rate_del * (current_running_length)
         self.hybrid_factor = self.branch_length * total_rate_across_entire_sequence
+        
+        # Skip indel simulation if both rates are zero
+        if config.rate_ins == 0.0 and config.rate_del == 0.0:
+            self.length_of_sequence_after_events = father_seq_length
+            return events
+            
         while True:
             total_rate_across_entire_sequence = config.rate_ins * (current_running_length + 1) + config.rate_del * (current_running_length + config.deletion_extra_edge_length)
+            if total_rate_across_entire_sequence <= 0:
+                break
             event_time = np.random.exponential(1.0/ total_rate_across_entire_sequence)
             current_time += event_time
             if current_time > self.branch_length:
