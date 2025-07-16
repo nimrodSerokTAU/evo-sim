@@ -11,6 +11,7 @@ from indelsim.utils import calc_msa_from_naive_nodes
 from indelsim.classes.seq_node_as_list import SequenceNodeAsList
 from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
 from indelsim.classes.seq_node_naive import SequenceNodeNaive
+from indelsim.enums import index_to_amino_acid
 
 class Simulation:
     tree: Tree
@@ -34,7 +35,19 @@ class Simulation:
             # if node.is_leaf():
             self.nodes_to_align.add(node.id)
 
-            simulatedNode = SimulatedNode(node.id, node.up.id, node.dist, self.config, node.up.sequence_length)
+            # Create parent amino acid sequence for substitution simulation
+            parent_sequence = None
+            if self.config.enable_substitutions:
+                # Initialize root sequence with amino acid indices 0-19 repeated
+                if node.up.id == 0:  # Parent is root
+                    # Create a root sequence of amino acids (cycling through 0-19)
+                    parent_sequence = [i % 20 for i in range(node.up.sequence_length)]
+                else:
+                    # Get the evolved sequence from parent node
+                    parent_node = self.sim_nodes[node.up.id]
+                    parent_sequence = parent_node.evolved_sequence
+            
+            simulatedNode = SimulatedNode(node.id, node.up.id, node.dist, self.config, node.up.sequence_length, parent_sequence)
             node.add_features(sequence_length=simulatedNode.length_of_sequence_after_events)
 
 
@@ -94,33 +107,59 @@ class Simulation:
     def msa_from_naive(self):
         original_sequence_length: int = self.config.original_sequence_length
 
-        root = SequenceNodeNaive(seq_id=0, original_sequence=[i for i in range(original_sequence_length)])
-        sequences = [root.seq]
+        # Handle substitution-only simulation vs indel simulation differently
+        if self.config.enable_substitutions and self.config.rate_ins == 0.0 and self.config.rate_del == 0.0:
+            # Substitution-only simulation - use amino acid sequences directly
+            root_aa_seq = [i % 20 for i in range(original_sequence_length)]
+            aa_sequences = [root_aa_seq]
+            
+            sequences_to_save = []
+            ids_to_save = [0]  # Include root
+            
+            for node in self.sim_nodes[1:]:
+                # Use the evolved amino acid sequence from substitution simulation
+                aa_sequences.append(node.evolved_sequence)
+                
+                if node.id in self.nodes_to_align:
+                    sequences_to_save.append(node.evolved_sequence)
+                    ids_to_save.append(node.id)
+            
+            # Create MSA string from amino acid sequences
+            msa_str = ""
+            for node_id, seq in zip(ids_to_save, [root_aa_seq] + sequences_to_save):
+                aa_chars = "".join([index_to_amino_acid(aa_idx) for aa_idx in seq])
+                msa_str += f">{node_id}\n{aa_chars}\n"
+            
+            self.msa = msa_str
+        else:
+            # Original indel simulation code
+            root = SequenceNodeNaive(seq_id=0, original_sequence=[i for i in range(original_sequence_length)])
+            sequences = [root.seq]
 
-        sequences_to_save = []
-        ids_to_save = []
-        parent_ids_to_save = [-1]
-        for node in self.sim_nodes[1:]:
-            node.seq_node_naive = SequenceNodeNaive(node.id, sequences[node.parent_id])
-        
-            for event in node.list_of_events:
-                node.seq_node_naive.calculate_event(event)
-            current_seq = node.seq_node_naive.seq
-            sequences.append(current_seq)
+            sequences_to_save = []
+            ids_to_save = []
+            parent_ids_to_save = [-1]
+            for node in self.sim_nodes[1:]:
+                node.seq_node_naive = SequenceNodeNaive(node.id, sequences[node.parent_id])
+            
+                for event in node.list_of_events:
+                    node.seq_node_naive.calculate_event(event)
+                current_seq = node.seq_node_naive.seq
+                sequences.append(current_seq)
 
-            if node.id in self.nodes_to_align:
-                sequences_to_save.append(current_seq)
-                ids_to_save.append(node.id)
-                parent_ids_to_save.append(node.parent_id)
+                if node.id in self.nodes_to_align:
+                    sequences_to_save.append(current_seq)
+                    ids_to_save.append(node.id)
+                    parent_ids_to_save.append(node.parent_id)
 
-        msa: list[list[int]] = calc_msa_from_naive_nodes(sequences, parent_ids_to_save)
+            msa: list[list[int]] = calc_msa_from_naive_nodes(sequences, parent_ids_to_save)
 
-        msa_str = ""
-        for id, seq in zip(ids_to_save, msa[1:]):
-            seq_str = f">{id}\n" + "".join(["X" if (site != -1) else "-" for site in seq])
-            msa_str += f"{seq_str}\n"
-        
-        self.msa = msa_str
+            msa_str = ""
+            for id, seq in zip(ids_to_save, msa[1:]):
+                seq_str = f">{id}\n" + "".join(["X" if (site != -1) else "-" for site in seq])
+                msa_str += f"{seq_str}\n"
+            
+            self.msa = msa_str
 
     def msa_from_hybrid(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
