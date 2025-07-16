@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
-CLI tool to simulate substitutions in a sequence.
+Implements both a Gillespie–style CTMC sampler (`evolve_branch_substitutions_gillespie`)
+and a matrix-exponential sampler (`evolve_branch_substitutions_jtt`)
+under the JTT model.
 
 """
 
-import numpy as np
+from __future__ import annotations
 from typing import List, Optional
-from indelsim.classes.jtt import JTTModel
+
+
+import numpy as np
+from indelsim.classes.jtt import get_jtt_model
 from indelsim.enums import AminoAcid, amino_acid_to_index, index_to_amino_acid
 
 # Constants for validation
@@ -15,20 +20,23 @@ MIN_SUBSTITUTION_RATE = 1e-10
 
 class SubstitutionEvolver:
     """
-    Evolver for amino acid substitutions using the JTT model.
+    Evolves amino-acid sequences along a branch under the JTT model.
     
-    This class simulates substitution-only evolution along phylogenetic branches,
-    maintaining constant sequence length while applying amino acid changes based
-    on the JTT substitution model using the Gillespie algorithm.
+    Parameters
+    ----------
+    substitution_rate
+        Scalar multiplier applied to JTT’s normalised rate matrix.
+    seed
+        If given, a NumPy PCG64 RNG is created with this seed;
+        otherwise a fresh unpredictable RNG is used.
     """
     
     def __init__(self, substitution_rate: float = 1.0, seed: Optional[int] = None):
         if substitution_rate < MIN_SUBSTITUTION_RATE:
             raise ValueError(f"substitution_rate must be >= {MIN_SUBSTITUTION_RATE}")
             
-        self.substitution_rate = substitution_rate
-        self.jtt_model = JTTModel()
-        self.jtt_model.compute_model()
+        self.substitution_rate = float(substitution_rate)
+        self.jtt_model = get_jtt_model()
 
         if seed is not None:
             self.rng = np.random.default_rng(seed)
@@ -41,58 +49,55 @@ class SubstitutionEvolver:
         branch_length: float
     ) -> List[int]:
         """
-        Evolve a sequence along a branch using substitution-only evolution.
-        
-        Args:
-            sequence: List of amino acid indices (0-19)
-            branch_length: Length of the phylogenetic branch
-            
-        Returns:
-            Evolved sequence with substitutions applied
+        Simulate substitutions along a branch with the Gillespie algorithm.
+
+        Parameters
+        ----------
+        sequence
+            List of length L with integer amino-acid codes 0–19.
+        branch_length
+            Time units for this branch (must be non-negative).
+
+        Returns
+        -------
+        list[int]
+            New list (length L) after substitutions.
         """
-        if branch_length < 0:
-            raise ValueError("branch_length must be non-negative")
-        if branch_length > MAX_BRANCH_LENGTH:
-            raise ValueError(f"branch_length {branch_length} exceeds maximum {MAX_BRANCH_LENGTH}")
-        if sequence is None or len(sequence) == 0:
-            raise ValueError("sequence cannot be empty")
+        self._validate_inputs(sequence, branch_length)
 
-        # local copies for speed
+        Q: np.ndarray = self.jtt_model.rate_matrix * self.substitution_rate
+        L: int = len(sequence)
+        seq: list[int] = sequence.copy()
+
+        # Pre-compute exit rates λ_i = −Q_ii
+        exit_rates = np.asarray([-Q[aa, aa] for aa in seq], dtype=float)
+        total_rate: float = exit_rates.sum()
+
+        t: float = 0.0
         rng = self.rng
-        Q = self.jtt_model.rate_matrix * self.substitution_rate
 
-        seq = sequence.copy()
-        L = len(seq)
-        # Exit rates per site
-        exit_r = np.asarray([-Q[aa, aa] for aa in seq], dtype=float)
-        total_r = exit_r.sum()
-
-        t = 0.0
-        while t < branch_length and total_r > 0.0:
-            # 1. waiting time
-            t += rng.exponential(1.0 / total_r)
+        while t < branch_length and total_rate > 0.0:
+            # 1. waiting time to next event
+            t += rng.exponential(1.0 / total_rate)
             if t >= branch_length:
                 break
 
-            # 2. choose site
-            site = rng.choice(L, p=exit_r / total_r)
+            # 2. choose site, proportional to exit rate
+            site = rng.choice(L, p=exit_rates / total_rate)
 
             old_aa = seq[site]
-            if exit_r[site] == 0.0:  # should never happen if Q is valid
-                continue
 
-            # 3. choose new aa from chain
+            # 3. draw target residue conditional on leaving old_aa
             probs = Q[old_aa].copy()
-            probs[old_aa] = 0.0 # remove diagonal
-            probs /= exit_r[site]  # normalise
+            probs[old_aa] = 0.0
+            probs /= exit_rates[site]          # normalise row
             new_aa = rng.choice(20, p=probs)
 
-            # 4. update seq and rates
+            # 4. update sequence and rates
             seq[site] = new_aa
-
             new_exit = -Q[new_aa, new_aa]
-            total_r += new_exit - exit_r[site]
-            exit_r[site] = new_exit
+            total_rate += new_exit - exit_rates[site]
+            exit_rates[site] = new_exit
 
         return seq
     
@@ -102,52 +107,34 @@ class SubstitutionEvolver:
         branch_length: float
     ) -> List[int]:
         """
-        Evolve a protein sequence along a single tree branch under the
-        Jones–Taylor–Thornton (JTT) substitution model using matrix exponentiation.
+        Simulate substitutions via pre-computed transition matrix exp(Q t).
 
-        Args:
-            sequence: List of amino acid indices (0-19)
-            branch_length: Length of the phylogenetic branch
-            
-        Returns:
-            Evolved sequence with substitutions applied
+        Faster for long sequences / many sites, but incurs one matrix
+        exponential per distinct branch length.
+
+        Returns a fresh list with evolved residues.
         """
-        if branch_length < 0:
+        self._validate_inputs(sequence, branch_length)
+
+        eff_time = branch_length * self.substitution_rate
+        P_t: np.ndarray = self.jtt_model.transition_probability(eff_time)
+
+        probs = P_t[np.asarray(sequence, dtype=np.uint8)]          # shape (L, 20)
+        cumprob = np.cumsum(probs, axis=1)
+        u = self.rng.random((len(sequence), 1))
+        evolved = np.argmax(u < cumprob, axis=1).astype(np.uint8)
+        return evolved.tolist()
+    
+    def evolve_sequence_chars(self, sequence_chars: List[str], branch_length: float) -> List[str]:
+        """Same as gillespie method, but with ACDE.. chars"""
+        indices = [amino_acid_to_index(aa) for aa in sequence_chars]
+        evolved_indices = self.evolve_branch_substitutions_gillespie(indices, branch_length)
+        return [index_to_amino_acid(idx) for idx in evolved_indices]
+
+    def _validate_inputs(self, sequence: List[int], branch_length: float) -> None:
+        if branch_length < 0.0:
             raise ValueError("branch_length must be non-negative")
         if branch_length > MAX_BRANCH_LENGTH:
             raise ValueError(f"branch_length {branch_length} exceeds maximum {MAX_BRANCH_LENGTH}")
-        if sequence is None or len(sequence) == 0:
+        if not sequence:
             raise ValueError("sequence cannot be empty")
-
-        effective_time = branch_length * self.substitution_rate
-
-        # Vectorized approach using cumulative probabilities
-        P_t = self.jtt_model.transition_probability(effective_time) # (20, 20)
-        probs = P_t[np.asarray(sequence, dtype=np.uint8)]
-
-        cumprob = np.cumsum(probs, axis=1)
-        u = self.rng.random((len(sequence), 1))
-
-        evolved_sequence = np.argmax(u < cumprob, axis=1).astype(np.uint8)
-
-        return evolved_sequence.tolist()
-    
-    def evolve_sequence_chars(self, sequence_chars: List[str], branch_length: float) -> List[str]:
-        """
-        Convenience method for evolving character sequences.
-        
-        Args:
-            sequence_chars: List of amino acid characters
-            branch_length: Length of the phylogenetic branch
-            
-        Returns:
-            Evolved sequence as list of amino acid characters
-        """
-        # Convert to indices
-        indices = [amino_acid_to_index(aa) for aa in sequence_chars]
-        
-        # Evolve using Gillespie algorithm
-        evolved_indices = self.evolve_branch_substitutions_gillespie(indices, branch_length)
-        
-        # Convert back to characters
-        return [index_to_amino_acid(idx) for idx in evolved_indices]
