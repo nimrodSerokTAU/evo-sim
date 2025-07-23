@@ -4,7 +4,7 @@ from indelsim.classes.sequence import Sequence
 
 class Msa:
     _aligned_sequences: dict[int, str]
-    _substitutions: list[str]
+    _substitutions: list[str] # dict[int, list[int]]
     _msa_length: int
     _number_of_sequences: int
     _sequences_to_save: list[int]
