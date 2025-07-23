@@ -37,6 +37,8 @@ setup(
     entry_points={
         "console_scripts": [
             "indel-simulator=indelsim.indel_simulator:main",
+            "substitution-simulator=indelsim.substitution_simulator:main",
+
         ],
     },
 )

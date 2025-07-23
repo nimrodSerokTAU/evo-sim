@@ -69,7 +69,7 @@ class SubstitutionEvolver:
         seq: list[int] = sequence.copy()
 
         # Pre-compute exit rates λ_i = −Q_ii
-        exit_rates = np.asarray([-Q[aa, aa] for aa in seq], dtype=float)
+        exit_rates = -Q[seq, seq]
         total_rate: float = exit_rates.sum()
 
         t: float = 0.0

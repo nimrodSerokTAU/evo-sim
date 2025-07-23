@@ -5,4 +5,5 @@ llist>=0.7.1
 typing_extensions>=4.14.0
 legacy-cgi; python_version >= '3.13'
 pandas
+scipy
 psutil
