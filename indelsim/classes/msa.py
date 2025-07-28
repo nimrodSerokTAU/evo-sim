@@ -4,16 +4,19 @@ from indelsim.classes.sequence import Sequence
 
 class Msa:
     _aligned_sequences: dict[int, str]
+    _id_to_name: dict[int,str]
     _substitutions: list[str] # dict[int, list[int]]
     _msa_length: int
     _number_of_sequences: int
     _sequences_to_save: list[int]
 
-    def __init__(self, super_seq: SuperSequence):
-        self._number_of_sequences = super_seq.get_number_of_sequences()
-        self._msa_length = super_seq.get_msa_length()
-        super_seq.set_absolute_positions()
+    def __init__(self, super_seq: SuperSequence=None):
+        if super_seq is not None:
+            self._number_of_sequences = super_seq.get_number_of_sequences()
+            self._msa_length = super_seq.get_msa_length()
+            super_seq.set_absolute_positions()
         self._aligned_sequences = {}
+        self._id_to_name = {}
         
     def compute_msa(self, sequences: list[Sequence]):
         """
@@ -77,7 +80,7 @@ class Msa:
     def msa_str_rep(self):
         msa_str = ""
         for key,val in self._aligned_sequences.items():
-            msa_str += f">{key}\n{val}\n"
+            msa_str += f">{self.id_to_name[key]}\n{val}\n"
         return msa_str
 
     def __repr__(self):

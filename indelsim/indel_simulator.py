@@ -262,7 +262,7 @@ Examples:
                 "seed": config.random_seed
             },
             "msa": simulation.msa,
-            "events": [str(node) for node in simulation.get_events()]
+            # "events": [str(node) for node in simulation.get_events()]
         }
         
         if args.verbose:

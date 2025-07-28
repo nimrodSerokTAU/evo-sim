@@ -190,9 +190,10 @@ Examples:
         # Add root sequence (if tree has a name for root)
         if hasattr(tree, 'name') and tree.name:
             sequences[tree.name] = [index_to_amino_acid(aa) for aa in root_sequence]
-        
+        self.id_to_name = {}
         # Traverse tree and evolve sequences
-        for node in tree.traverse("preorder"):
+        for idx, node in enumerate(tree.traverse("preorder")):
+            self.id_to_name[idx] = node.name
             if node.is_root():
                 # Set root sequence
                 node.sequence = root_sequence
@@ -215,8 +216,7 @@ Examples:
                 
                 # If this is a leaf node, store the sequence
                 if node.is_leaf():
-                    node_name = node.name if node.name else f"leaf_{id(node)}"
-                    sequences[node_name] = [index_to_amino_acid(aa) for aa in evolved_sequence]
+                    sequences[idx] = [index_to_amino_acid(aa) for aa in evolved_sequence]
         
         # Verify all sequences have equal length
         self._verify_sequence_lengths(sequences, args.original_sequence_length)
@@ -310,7 +310,7 @@ Examples:
                 # Write MSA sequences
                 msa = result["msa"]
                 for species_name, sequence in msa.items():
-                    f.write(f">{species_name}_sim{result['simulation_number']}\n")
+                    f.write(f">{self.id_to_name[species_name]}_sim{result['simulation_number']}\n")
                     f.write("".join(sequence))
                     f.write("\n")
                 f.write("\n")
@@ -322,7 +322,7 @@ Examples:
         """Write MSA in FASTA format."""
         with open(filename, 'w') as f:
             for species_name, sequence in msa.items():
-                f.write(f">{species_name}\n")
+                f.write(f">{self.id_to_name[species_name]}\n")
                 f.write("".join(sequence))
                 f.write("\n")
     
