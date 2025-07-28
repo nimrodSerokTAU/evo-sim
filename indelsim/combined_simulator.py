@@ -6,9 +6,6 @@ This tool combines indel and substitution simulations in a two-step process:
 1. First performs indel simulation to create the MSA template
 2. Then performs substitution simulation on the resulting MSA length
 3. Finally replaces X placeholders with actual amino acid sequences
-
-Authors: Based on work by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, 
-         Noa Ecker, Omer Israeli, Itsik Pe'er, and Tal Pupko
 """
 
 import argparse
@@ -81,7 +78,7 @@ Examples:
                     'default': action.default,
                     'help': action.help,
                     'choices': action.choices,
-                    'required': action.dest == 'substitution_rate'  # Make substitution_rate required
+                    'required': action.required
                 })
         
         # Add common arguments (from either parser, avoiding duplicates)
@@ -397,7 +394,10 @@ Examples:
         if args.verbose:
             print(f"\nCompleted {len(results)} combined simulations successfully!")
 
-
-if __name__ == "__main__":
+def main():
     cli = CombinedSimulatorCLI()
     cli.run()
+
+if __name__ == "__main__":
+    main()
+

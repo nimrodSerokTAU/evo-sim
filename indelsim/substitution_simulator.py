@@ -70,7 +70,7 @@ Examples:
         parser.add_argument(
             "--algorithm",
             choices=["gillespie", "matrix"],
-            default="gillespie",
+            default="matrix",
             help="Substitution algorithm: gillespie (exact CTMC) or matrix (exponentiation)"
         )
         

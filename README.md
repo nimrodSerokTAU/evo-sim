@@ -2,7 +2,7 @@
 
 A high-performance command-line tool for simulating insertion and deletion (indel) events along phylogenetic trees. This tool implements three different algorithms with varying computational complexities for handling indel events efficiently.
 
-Based on the research paper: **"Efficient algorithms for simulating sequences along a phylogenetic tree"** by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Omer Israeli, Itsik Pe'er, and Tal Pupko.
+Based on the research paper: **"Efficient algorithms for simulating sequences along a phylogenetic tree"** by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Naiel Jabareen, Omer Israeli, Itsik Pe'er, and Tal Pupko.
 
 ## Abstract
 
@@ -225,12 +225,20 @@ Where:
 
 | Method | Algorithm | Description |
 |--------|-----------|-------------|
-| **Gillespie** | Exact CTMC | Simulates exact substitution events using continuous-time Markov chain |
-| **Matrix** | Matrix Exponentiation | Uses pre-computed transition matrices for faster computation |
+| **Gillespie** | Event-based CTMC | Simulates individual substitution events with exact timing information |
+| **Matrix** | Matrix Exponentiation | Computes final sequences using transition probability matrices exp(Qt) |
 
-**Performance recommendations:**
-- Use `gillespie` for exact results and moderate sequence lengths
-- Use `matrix` for large sequences or when speed is prioritized over exact timing
+**Both methods are mathematically exact and produce statistically identical results.**
+
+## Performance Tips
+
+### Substitution Simulation
+1. **For very short branch lengths**: Use `--algorithm gillespie` for optimal performance
+2. **For moderate to long branch lengths**: Use `--algorithm matrix` for better computational efficiency  
+3. **For large sequences (> 10,000 sites)**: Use `--algorithm matrix` regardless of branch length
+4. **For high-throughput simulations**: Use `--algorithm matrix` for faster batch processing
+
+**Key performance insight:** The Gillespie algorithm becomes computationally expensive as the number of expected substitutions increases (longer branches × higher rates), while the matrix method has consistent performance regardless of the number of substitution events that occur.
 
 ## Output Formats
 
@@ -321,4 +329,4 @@ E.W., N.S., A.M., and N.E. were supported in part by a fellowship from the Edmon
 Center for Bioinformatics at Tel Aviv University. The list-based, tree-based, and super
 sequence algorithms were developed by A.M. and are described in his PhD thesis.
 
-The code in this repository was mostly written  by Nimrod Serok and Elya Wygoda.
+The code in this repository was mostly written by Nimrod Serok, Naiel Jabareen and Elya Wygoda.

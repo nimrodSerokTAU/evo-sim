@@ -38,7 +38,7 @@ setup(
         "console_scripts": [
             "indel-simulator=indelsim.indel_simulator:main",
             "substitution-simulator=indelsim.substitution_simulator:main",
-
+            "msa-simulator=indelsim.combined_simulator:main",
         ],
     },
 )

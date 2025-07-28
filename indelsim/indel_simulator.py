@@ -9,8 +9,8 @@ This tool implements the algorithms described in:
 by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Omer Israeli, 
 Itsik Pe'er, and Tal Pupko.
 
-Authors: Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, 
-         Omer Israeli, Itsik Pe'er, Tal Pupko
+Based on work by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, 
+         Noa Ecker, Naiel Jabareen, Omer Israeli, Itsik Pe'er, and Tal Pupko
 Contact: talp@tauex.tau.ac.il
 License: Academic Free License v. 3.0
 Repository: https://github.com/nimrodSerokTAU/evo-sim
