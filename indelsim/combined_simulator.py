@@ -90,13 +90,16 @@ Examples:
                 required = action.dest == 'tree_file'
                 default_dir = "./combined_simulation_results" if action.dest == 'output_directory' else action.default
                 
-                parser.add_argument(*action.option_strings, **{
-                    'type': action.type,
-                    'default': default_dir,
-                    'help': action.help,
-                    'choices': action.choices,
-                    'required': required
-                })
+                kwargs = {'default': default_dir, 'help': action.help, 'required': required}
+                if hasattr(action, 'choices') and action.choices:
+                    kwargs['choices'] = action.choices
+                if isinstance(action, argparse._StoreTrueAction):
+                    kwargs['action'] = 'store_true'
+                elif isinstance(action, argparse._StoreFalseAction):
+                    kwargs['action'] = 'store_false'
+                elif action.type is not None:
+                    kwargs['type'] = action.type
+                parser.add_argument(*action.option_strings, **kwargs)
         
         return parser
     

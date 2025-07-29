@@ -17,8 +17,10 @@ from typing import Dict, List, Tuple, Optional
 import pandas as pd
 from matplotlib import pyplot as plt
 
+IQTREE_EXE_NAME = "iqtree3_intel"
 
-def run_indel_simulator(tree_file: Path, indel_rate: Tuple[float, float], 
+
+def run_msa_simulator(tree_file: Path, indel_rate: Tuple[float, float], 
                        sim_type: str, root_seq_length: int = 10000, 
                        temp_dir: Optional[Path] = None) -> Dict:
     """Run our indel simulator using the CLI tool and measure performance."""
@@ -27,14 +29,14 @@ def run_indel_simulator(tree_file: Path, indel_rate: Tuple[float, float],
     
     # Build command using the CLI tool
     cmd = [
-        "indel-simulator",
+        "msa-simulator",
         "--type", sim_type,
         "--insertion_rate", str(indel_rate[0]),
         "--deletion_rate", str(indel_rate[1]),
         "--tree_file", str(tree_file),
         "--original_sequence_length", str(root_seq_length),
         "--output_type", "drop_output",  # Don't write files
-        "--seed", "42",
+        "--seed", "42", "--verbose"
     ]
     
     # Measure memory and time
@@ -102,12 +104,12 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
     ins_rate = model_params.get('insertion_rate', 0.01)
     del_rate = model_params.get('deletion_rate', 0.01)
     # Use invariable sites to prevent substitutions and specify indel rates
-    # Format: model+I{proportion}+INDEL{ins_rate,del_rate}
-    model_str = f"JC+I{{0.999999}}"
+    # Format: model
+    model_str = "JTT"
     
     # Build AliSim command (part of iqtree)
     cmd = [
-        "iqtree2",
+        IQTREE_EXE_NAME,
         "--alisim", str(output_prefix),
         "-t", str(tree_file),
         "-m", model_str,
@@ -233,17 +235,17 @@ def check_simulator_availability() -> Dict[str, bool]:
     """Check which external simulators are available."""
     simulators = {}
     
-    # Check indel-simulator (our CLI tool)
+    # Check msa-simulator (our CLI tool)
     try:
-        result = subprocess.run(['indel-simulator', '--help'], 
+        result = subprocess.run(['msa-simulator', '--help'], 
                               capture_output=True, timeout=10)
-        simulators['indel-simulator'] = result.returncode == 0
+        simulators['msa-simulator'] = result.returncode == 0
     except (subprocess.TimeoutExpired, FileNotFoundError):
-        simulators['indel-simulator'] = False
+        simulators['msa-simulator'] = False
     
     # Check AliSim (part of IQ-TREE)
     try:
-        result = subprocess.run(['iqtree2', '--help'], 
+        result = subprocess.run([IQTREE_EXE_NAME, '--help'], 
                               capture_output=True, timeout=10)
         simulators['alisim'] = result.returncode == 0
     except (subprocess.TimeoutExpired, FileNotFoundError):
@@ -263,15 +265,15 @@ def check_simulator_availability() -> Dict[str, bool]:
 def main():
     """Main comparison function following switch_factor.py pattern."""
     
-    ROOT_SEQUENCE_LENGTH = 10000
+    ROOT_SEQUENCE_LENGTH = 100000
     SCALED_TREES_PATH = Path.cwd() / "benchmark" / "scaled_trees"
     
     # Check available simulators
     available_simulators = check_simulator_availability()
     print("Available simulators:", available_simulators)
     
-    if not available_simulators.get('indel-simulator', False):
-        print("ERROR: indel-simulator CLI tool not found. Please install it first.")
+    if not available_simulators.get('msa-simulator', False):
+        print("ERROR: msa-simulator CLI tool not found. Please install it first.")
         return None
     
     # Same rates as switch_factor.py
@@ -309,7 +311,7 @@ def main():
                 
                 # Run our indel simulator (list version)
                 try:
-                    indel_list_result = run_indel_simulator(
+                    indel_list_result = run_msa_simulator(
                         scaled_tree_path, indel_rate, "list", 
                         ROOT_SEQUENCE_LENGTH, temp_dir
                     )
@@ -330,7 +332,7 @@ def main():
                 
                 # Run our indel simulator (tree version)
                 try:
-                    indel_tree_result = run_indel_simulator(
+                    indel_tree_result = run_msa_simulator(
                         scaled_tree_path, indel_rate, "tree", 
                         ROOT_SEQUENCE_LENGTH, temp_dir
                     )
