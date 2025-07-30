@@ -33,14 +33,14 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
             if mask.any():
                 ax.plot(group_data.loc[mask, 'insertion_rate'], 
                        group_data.loc[mask, 'indel_list_time'], 
-                       'o-', label='Indel (list)', markersize=6, linewidth=2)
+                       'o-', label='Block list', markersize=6, linewidth=2)
         
         if 'indel_tree_time' in group_data.columns:
             mask = group_data['indel_tree_time'].notna()
             if mask.any():
                 ax.plot(group_data.loc[mask, 'insertion_rate'], 
                        group_data.loc[mask, 'indel_tree_time'], 
-                       's-', label='Indel (tree)', markersize=6, linewidth=2)
+                       's-', label='Block tree', markersize=6, linewidth=2)
         
         if 'alisim_time' in group_data.columns:
             mask = group_data['alisim_time'].notna()
@@ -66,7 +66,6 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
     plt.tight_layout()
     plt.savefig(output_dir / "simulator_runtime_comparison.png", dpi=300, bbox_inches="tight")
     plt.savefig(output_dir / "simulator_runtime_comparison.svg", bbox_inches="tight")
-    plt.show()
     
     # Memory comparison plots
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
@@ -112,7 +111,6 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
     plt.tight_layout()
     plt.savefig(output_dir / "simulator_memory_comparison.png", dpi=300, bbox_inches="tight")
     plt.savefig(output_dir / "simulator_memory_comparison.svg", bbox_inches="tight")
-    plt.show()
 
 
 def create_summary_statistics(results_df: pd.DataFrame) -> pd.DataFrame:
@@ -125,7 +123,7 @@ def create_summary_statistics(results_df: pd.DataFrame) -> pd.DataFrame:
         stats = {'branch_scale': branch_scale}
         
         # Calculate average times
-        for sim_type in ['indel_list', 'indel_tree', 'alisim', 'phastsim']:
+        for sim_type in ['indel_list', 'indel_tree', 'alisim']:
             time_col = f'{sim_type}_time'
             memory_col = f'{sim_type}_memory'
             success_col = f'{sim_type}_success'
@@ -211,28 +209,17 @@ Examples:
     parser.add_argument(
         "--input", "-i",
         type=str,
-        default="simulator_comparison.csv",
+        default="benchmark/assets/data/simulator_comparison.csv",
         help="Input CSV file with comparison results (default: simulator_comparison.csv)"
     )
     
     parser.add_argument(
         "--output", "-o",
         type=str,
-        default="assets",
+        default="benchmark/assets/plots/vs_alisim",
         help="Output directory for plots (default: assets/)"
     )
     
-    parser.add_argument(
-        "--stats-only",
-        action="store_true",
-        help="Only generate summary statistics, don't create plots"
-    )
-    
-    parser.add_argument(
-        "--no-display",
-        action="store_true",
-        help="Don't display plots interactively (only save to files)"
-    )
     
     args = parser.parse_args()
     
@@ -253,41 +240,10 @@ Examples:
     output_dir = Path(args.output)
     output_dir.mkdir(exist_ok=True)
     
-    # Generate summary statistics
-    print("\n" + "="*60)
-    print("SUMMARY STATISTICS")
-    print("="*60)
     
-    summary_stats = create_summary_statistics(results_df)
-    print(summary_stats.round(4))
-    
-    # Save summary statistics
-    summary_file = output_dir / "summary_statistics.csv"
-    summary_stats.to_csv(summary_file, index=False)
-    print(f"\nSummary statistics saved to: {summary_file}")
-    
-    # Generate speedup analysis
-    speedup_df = create_speedup_analysis(results_df)
-    if not speedup_df.empty:
-        print("\n" + "="*60)
-        print("SPEEDUP ANALYSIS (relative to indel_tree)")
-        print("="*60)
-        print(speedup_df.round(4))
-        
-        speedup_file = output_dir / "speedup_analysis.csv"
-        speedup_df.to_csv(speedup_file, index=False)
-        print(f"\nSpeedup analysis saved to: {speedup_file}")
-    
-    # Create plots unless stats-only mode
-    if not args.stats_only:
-        if args.no_display:
-            # Set matplotlib to non-interactive backend
-            import matplotlib
-            matplotlib.use('Agg')
-        
-        print(f"\nCreating comparison plots in: {output_dir}")
-        create_comparison_plots(results_df, output_dir)
-        print("Plots created successfully!")
+    print(f"\nCreating comparison plots in: {output_dir}")
+    create_comparison_plots(results_df, output_dir)
+    print("Plots created successfully!")
     
     print(f"\nAll outputs saved to: {output_dir}")
 
