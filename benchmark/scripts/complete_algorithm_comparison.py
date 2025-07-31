@@ -3,16 +3,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Load both datasets from algorithm_comparison directory
-naive_df = pd.read_csv('algorithm_comparison/naive_comparison.csv')
-optimized_df = pd.read_csv('algorithm_comparison/tree_list_comparison.csv')
+naive_df = pd.read_csv('benchmark/assets/data/naive_comparison.csv')
+optimized_df = pd.read_csv('benchmark/assets/data/tree_list_comparison.csv')
 
 # Add algorithm column to naive data and combine
 naive_df['algorithm'] = 'naive'
 combined_df = pd.concat([naive_df, optimized_df], ignore_index=True)
 
+combined_df['actual_total_time'] = combined_df['substitution_time'] + combined_df['indel_time']
 # Calculate fractions
-combined_df['substitution_fraction'] = combined_df['substitution_time'] / combined_df['total_time']
-combined_df['indel_fraction'] = combined_df['indel_time'] / combined_df['total_time']
+combined_df['substitution_fraction'] = combined_df['substitution_time'] / combined_df['actual_total_time']
+combined_df['indel_fraction'] = combined_df['indel_time'] / combined_df['actual_total_time']
 
 # Set up the plotting style to match the reference
 plt.style.use('default')  # Use default style instead of seaborn
@@ -102,8 +103,8 @@ fig.patch.set_facecolor('white')
 plt.tight_layout()
 
 # Save the plot in both SVG and PNG formats
-plt.savefig("algorithm_comparison/plots/full_comparison.svg", bbox_inches="tight", dpi=300)
-plt.savefig("algorithm_comparison/plots/full_comparison.png", bbox_inches="tight", dpi=300)
+plt.savefig("benchmark/assets/plots/indels_vs_substitutions/full_comparison.svg", bbox_inches="tight", dpi=300)
+plt.savefig("benchmark/assets/plots/indels_vs_substitutions/full_comparison.png", bbox_inches="tight", dpi=300)
 
 # Print summary
 print("ALGORITHM COMPARISON SUMMARY")
