@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-Plotting Script for Simulator Comparison Results
-Creates comparison plots from the CSV output of simulator_comparison.py
+Plotting Script for Dual-Mode Simulator Comparison Results
+Creates comparison plots from the CSV output of the dual-mode simulator_comparison.py
 """
 
-import argparse
 import sys
 from pathlib import Path
 from typing import Optional
@@ -14,116 +13,169 @@ from matplotlib import pyplot as plt
 
 
 def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path] = None):
-    """Create comparison plots from simulator results DataFrame."""
+    """Create comparison plots from dual-mode simulator results DataFrame."""
     
     if output_dir is None:
         output_dir = Path("assets")
     
     output_dir.mkdir(exist_ok=True)
     
-    # Time comparison plots
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+    # First, create a standalone legend
+    create_standalone_legend(output_dir)
     
+    # Time comparison plots - using your exact style
     for i, (branch_scale, group_data) in enumerate(results_df.groupby("branch_scale")):
-        ax = axes[i]
         
-        # Plot time comparisons
-        if 'indel_list_time' in group_data.columns:
-            mask = group_data['indel_list_time'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'indel_list_time'], 
-                       'o-', label='Block list', markersize=6, linewidth=2)
+        # Create figure for this branch scale
+        fig, ax = plt.subplots(figsize=(8, 6))
         
-        if 'indel_tree_time' in group_data.columns:
-            mask = group_data['indel_tree_time'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'indel_tree_time'], 
-                       's-', label='Block tree', markersize=6, linewidth=2)
+        # Define styles for different simulators and modes
+        styles = ['C0s-', 'C1D-', 'C2^-', 'C3v-']  # Different colors and markers
         
-        if 'alisim_time' in group_data.columns:
-            mask = group_data['alisim_time'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'alisim_time'], 
-                       '^-', label='AliSim', markersize=6, linewidth=2)
+        plot_data = []
+        labels = []
         
-        if 'phastsim_time' in group_data.columns:
-            mask = group_data['phastsim_time'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'phastsim_time'], 
-                       'D-', label='PhastSim', markersize=6, linewidth=2)
+        # Collect data for our simulator (both modes)
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
+            mode_data = group_data[group_data['mode'] == mode]
+            if 'our_sim_time' in mode_data.columns:
+                mask = mode_data['our_sim_time'].notna()
+                if mask.any():
+                    plot_data.append({
+                        'x': mode_data.loc[mask, 'insertion_rate'].values,
+                        'y': mode_data.loc[mask, 'our_sim_time'].values,
+                        'style': styles[mode_idx],
+                        'label': f'Our Sim ({"with" if mode == "with_substitutions" else "no"} subs)'
+                    })
         
-        ax.set_title(f"Runtime Comparison (Scale: {branch_scale})", size=14)
-        ax.set_xlabel("Insertion Rate", size=12)
-        ax.set_ylabel("Runtime (seconds)", size=12)
-        ax.legend()
-        ax.grid(True, alpha=0.3)
+        # Collect data for AliSim (both modes)
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
+            mode_data = group_data[group_data['mode'] == mode]
+            if 'alisim_time' in mode_data.columns:
+                mask = mode_data['alisim_time'].notna()
+                if mask.any():
+                    plot_data.append({
+                        'x': mode_data.loc[mask, 'insertion_rate'].values,
+                        'y': mode_data.loc[mask, 'alisim_time'].values,
+                        'style': styles[mode_idx + 2],
+                        'label': f'AliSim ({"with" if mode == "with_substitutions" else "no"} subs)'
+                    })
+        
+        # Plot all data WITHOUT legend
+        for data in plot_data:
+            ax.plot(data['x'], data['y'], data['style'], markersize=9)
+        
+        # Apply your exact styling (no legend)
+        ax.set_title(f"Multiplication factor: {branch_scale}", size=18)
+        ax.set_xlabel("Insertion rate", size=16)
+        ax.set_ylabel("Runtime (seconds)", size=16)
+        ax.tick_params(axis='both', which='major', labelsize=14)
         ax.set_yscale('log')  # Log scale for better visualization
+        
+        plt.tight_layout()
+        plt.savefig(output_dir / f"simulator_runtime_comparison_factor_{branch_scale}.svg", 
+                   bbox_inches="tight", dpi=300)
+        plt.savefig(output_dir / f"simulator_runtime_comparison_factor_{branch_scale}.png", 
+                   bbox_inches="tight", dpi=300)
+        plt.close()
     
-    plt.tight_layout()
-    plt.savefig(output_dir / "simulator_runtime_comparison.png", dpi=300, bbox_inches="tight")
-    plt.savefig(output_dir / "simulator_runtime_comparison.svg", bbox_inches="tight")
-    
-    # Memory comparison plots
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    
+    # Memory comparison plots - same style, no legends
     for i, (branch_scale, group_data) in enumerate(results_df.groupby("branch_scale")):
-        ax = axes[i]
         
-        # Plot memory comparisons
-        if 'indel_list_memory' in group_data.columns:
-            mask = group_data['indel_list_memory'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'indel_list_memory'], 
-                       'o-', label='Indel (list)', markersize=6, linewidth=2)
+        # Create figure for this branch scale
+        fig, ax = plt.subplots(figsize=(8, 6))
         
-        if 'indel_tree_memory' in group_data.columns:
-            mask = group_data['indel_tree_memory'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'indel_tree_memory'], 
-                       's-', label='Indel (tree)', markersize=6, linewidth=2)
+        # Define styles for different simulators and modes
+        styles = ['C0s-', 'C1D-', 'C2^-', 'C3v-']
         
-        if 'alisim_memory' in group_data.columns:
-            mask = group_data['alisim_memory'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'alisim_memory'], 
-                       '^-', label='AliSim', markersize=6, linewidth=2)
+        plot_data = []
         
-        if 'phastsim_memory' in group_data.columns:
-            mask = group_data['phastsim_memory'].notna()
-            if mask.any():
-                ax.plot(group_data.loc[mask, 'insertion_rate'], 
-                       group_data.loc[mask, 'phastsim_memory'], 
-                       'D-', label='PhastSim', markersize=6, linewidth=2)
+        # Collect data for our simulator memory (both modes)
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
+            mode_data = group_data[group_data['mode'] == mode]
+            if 'our_sim_memory' in mode_data.columns:
+                mask = mode_data['our_sim_memory'].notna()
+                if mask.any():
+                    plot_data.append({
+                        'x': mode_data.loc[mask, 'insertion_rate'].values,
+                        'y': mode_data.loc[mask, 'our_sim_memory'].values,
+                        'style': styles[mode_idx],
+                        'label': f'Our Sim ({"with" if mode == "with_substitutions" else "no"} subs)'
+                    })
         
-        ax.set_title(f"Memory Usage Comparison (Scale: {branch_scale})", size=14)
-        ax.set_xlabel("Insertion Rate", size=12)
-        ax.set_ylabel("Max Memory (MB)", size=12)
-        ax.legend()
-        ax.grid(True, alpha=0.3)
+        # Collect data for AliSim memory (both modes)
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
+            mode_data = group_data[group_data['mode'] == mode]
+            if 'alisim_memory' in mode_data.columns:
+                mask = mode_data['alisim_memory'].notna()
+                if mask.any():
+                    plot_data.append({
+                        'x': mode_data.loc[mask, 'insertion_rate'].values,
+                        'y': mode_data.loc[mask, 'alisim_memory'].values,
+                        'style': styles[mode_idx + 2],
+                        'label': f'AliSim ({"with" if mode == "with_substitutions" else "no"} subs)'
+                    })
+        
+        # Plot all data WITHOUT legend
+        for data in plot_data:
+            ax.plot(data['x'], data['y'], data['style'], markersize=9)
+        
+        # Apply your exact styling (no legend)
+        ax.set_title(f"Multiplication factor: {branch_scale}", size=18)
+        ax.set_xlabel("Insertion rate", size=16)
+        ax.set_ylabel("Max Memory (MB)", size=16)
+        ax.tick_params(axis='both', which='major', labelsize=14)
+
+        plt.tight_layout()
+        plt.savefig(output_dir / f"simulator_memory_comparison_factor_{branch_scale}.svg", 
+                   bbox_inches="tight", dpi=300)
+        plt.savefig(output_dir / f"simulator_memory_comparison_factor_{branch_scale}.png", 
+                   bbox_inches="tight", dpi=300)
+        plt.close()
+
+
+def create_standalone_legend(output_dir: Path):
+    """Create a standalone legend plot."""
     
-    plt.tight_layout()
-    plt.savefig(output_dir / "simulator_memory_comparison.png", dpi=300, bbox_inches="tight")
-    plt.savefig(output_dir / "simulator_memory_comparison.svg", bbox_inches="tight")
+    # Create a figure just for the legend with minimal size
+    fig, ax = plt.subplots(figsize=(8, 1.5))
+    
+    # Define the same styles and labels
+    styles = ['C0s-', 'C1D-', 'C2^-', 'C3v-']
+    labels = ['Block tree (with substitutions)', 'Block tree (no substitutions)', 'AliSim (with substitutions)', 'AliSim (no substitutions)']
+    
+    # Create invisible plots just to generate legend entries
+    for style, label in zip(styles, labels):
+        ax.plot([], [], style, markersize=9, label=label)
+    
+    # Hide the axes completely
+    ax.axis('off')
+    
+    # Create the legend with tight spacing
+    legend = ax.legend(loc='center', ncol=2, frameon=True, fontsize=14, 
+                      columnspacing=1.0, handletextpad=0.5)
+    
+    # Set tight layout with minimal padding
+    plt.tight_layout(pad=0.1)
+    
+    # Save with minimal bounding box
+    plt.savefig(output_dir / "simulator_comparison_legend.svg", bbox_inches="tight", 
+               dpi=300, pad_inches=0.05)
+    plt.savefig(output_dir / "simulator_comparison_legend.png", bbox_inches="tight", 
+               dpi=300, pad_inches=0.05)
+    plt.close()
 
 
 def create_summary_statistics(results_df: pd.DataFrame) -> pd.DataFrame:
     """Create summary statistics from the results."""
     
-    # Group by branch scale and calculate means
     summary_stats = []
     
-    for branch_scale, group in results_df.groupby('branch_scale'):
-        stats = {'branch_scale': branch_scale}
+    for (branch_scale, mode), group in results_df.groupby(['branch_scale', 'mode']):
+        stats = {'branch_scale': branch_scale, 'mode': mode}
         
         # Calculate average times
-        for sim_type in ['indel_list', 'indel_tree', 'alisim']:
+        for sim_type in ['our_sim', 'alisim']:
             time_col = f'{sim_type}_time'
             memory_col = f'{sim_type}_memory'
             success_col = f'{sim_type}_success'
@@ -151,101 +203,42 @@ def create_summary_statistics(results_df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(summary_stats)
 
 
-def create_speedup_analysis(results_df: pd.DataFrame) -> pd.DataFrame:
-    """Create speedup analysis comparing different simulators."""
-    
-    speedup_analysis = []
-    
-    for (branch_scale, ins_rate), group in results_df.groupby(['branch_scale', 'insertion_rate']):
-        if len(group) != 1:
-            continue  # Skip if multiple rows for same condition
-        
-        row = group.iloc[0]
-        analysis = {
-            'branch_scale': branch_scale,
-            'insertion_rate': ins_rate,
-            'deletion_rate': row.get('deletion_rate', None)
-        }
-        
-        # Use indel_tree as baseline for speedup calculations
-        baseline_time = row.get('indel_tree_time', None)
-        
-        if baseline_time and pd.notna(baseline_time):
-            for sim_type in ['indel_list', 'alisim', 'phastsim']:
-                time_col = f'{sim_type}_time'
-                sim_time = row.get(time_col, None)
-                
-                if sim_time and pd.notna(sim_time):
-                    speedup = sim_time / baseline_time
-                    analysis[f'{sim_type}_vs_tree_ratio'] = speedup
-                    analysis[f'{sim_type}_faster_than_tree'] = speedup < 1.0
-        
-        speedup_analysis.append(analysis)
-    
-    return pd.DataFrame(speedup_analysis)
-
-
 def main():
     """Main function for the plotting script."""
-    parser = argparse.ArgumentParser(
-        description="Create comparison plots from simulator results",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Plot results from default CSV file
-  python plot_comparison_results.py
-  
-  # Plot results from specific CSV file
-  python plot_comparison_results.py --input my_results.csv
-  
-  # Save plots to specific directory
-  python plot_comparison_results.py --output plots/
-  
-  # Generate summary statistics only
-  python plot_comparison_results.py --stats-only
-        """
-    )
     
-    parser.add_argument(
-        "--input", "-i",
-        type=str,
-        default="benchmark/assets/data/simulator_comparison.csv",
-        help="Input CSV file with comparison results (default: simulator_comparison.csv)"
-    )
+    input_file = Path("benchmark/assets/data/simulator_comparison_dual_mode.csv")
+    plots_output_dir = Path("benchmark/assets/plots/vs_alisim")
+    data_output_dir = Path("benchmark/assets/data")
     
-    parser.add_argument(
-        "--output", "-o",
-        type=str,
-        default="benchmark/assets/plots/vs_alisim",
-        help="Output directory for plots (default: assets/)"
-    )
-    
-    
-    args = parser.parse_args()
-    
-    # Load results
-    input_file = Path(args.input)
+    # Check if input file exists
     if not input_file.exists():
-        print(f"Error: Input file '{input_file}' not found.")
-        sys.exit(1)
+        print(f"Error: Input file not found: {input_file}")
+        print("Please run the dual-mode simulator_comparison.py script first.")
+        return
     
+    # Load and process data
     try:
         results_df = pd.read_csv(input_file)
-        print(f"Loaded {len(results_df)} results from {input_file}")
     except Exception as e:
-        print(f"Error loading CSV file: {e}")
-        sys.exit(1)
+        print(f"Error loading data: {e}")
+        return
     
-    # Set up output directory
-    output_dir = Path(args.output)
-    output_dir.mkdir(exist_ok=True)
+    print(f"Loaded {len(results_df)} comparison results")
+    print("Creating comparison plots...")
     
+    # Create plots output directory
+    plots_output_dir.mkdir(parents=True, exist_ok=True)
+    data_output_dir.mkdir(parents=True, exist_ok=True)
     
-    print(f"\nCreating comparison plots in: {output_dir}")
-    create_comparison_plots(results_df, output_dir)
-    print("Plots created successfully!")
+    # Create plots
+    create_comparison_plots(results_df, plots_output_dir)
     
-    print(f"\nAll outputs saved to: {output_dir}")
+    # Create summary statistics
+    summary_stats = create_summary_statistics(results_df)
+    summary_stats.to_csv(data_output_dir / "summary_statistics.csv", index=False)
+    
+    print(f"Plots saved to {plots_output_dir}")
+    print(f"Summary statistics saved to {data_output_dir / 'summary_statistics.csv'}")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,11 @@
 {
     "python.analysis.extraPaths": [
         "./indelsim"
+    ],
+    "spellright.language": [],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
     ]
 }

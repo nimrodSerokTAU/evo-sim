@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Simulator Comparison Script
-Compares the indel simulator (list/tree) with external simulators like AliSim.
-Uses the same setup as switch_factor.py for consistency.
+Simulator Comparison Script - Dual Mode Version
+Compares the indel simulator with external simulators like AliSim in two modes:
+1. With substitutions (default AliSim, msa-simulator endpoint)
+2. Without substitutions (AliSim +I{0.9999999}, indel-simulator endpoint)
 """
 
 import subprocess
@@ -61,16 +62,24 @@ def process_monitor(cmd: list[str]):
         stderr.decode() if stderr else ""
     )
 
-def run_msa_simulator(tree_file: Path, indel_rate: Tuple[float, float], 
-                       sim_type: str, root_seq_length: int = 10000, 
-                       temp_dir: Optional[Path] = None) -> Dict:
-    """Run our indel simulator using the CLI tool and measure performance."""
+
+def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float], 
+                      sim_type: str, root_seq_length: int = 10000, 
+                      temp_dir: Optional[Path] = None, with_substitutions: bool = True) -> Dict:
+    """Run our simulator using the appropriate CLI tool and measure performance."""
     if temp_dir is None:
         temp_dir = Path(tempfile.mkdtemp())
     
-    # Build command using the CLI tool
+    # Choose the appropriate CLI tool based on mode
+    if with_substitutions:
+        # Mode 1: With substitutions - use msa-simulator (combined indel + substitution)
+        cli_tool = "msa-simulator"
+    else:
+        # Mode 2: Without substitutions - use indel-simulator (indel only)
+        cli_tool = "indel-simulator"
+    
     cmd = [
-        "msa-simulator",
+        cli_tool,
         "--type", sim_type,
         "--insertion_rate", str(indel_rate[0]),
         "--deletion_rate", str(indel_rate[1]),
@@ -80,7 +89,7 @@ def run_msa_simulator(tree_file: Path, indel_rate: Tuple[float, float],
         "--seed", "42", "--verbose"
     ]
     
-    runtime_seconds, max_memory_mb, returncode, stdout, stderr   = process_monitor(cmd=cmd)
+    runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
 
     # Parse benchmark results from stdout if available
     benchmark_time = None
@@ -104,21 +113,22 @@ def run_msa_simulator(tree_file: Path, indel_rate: Tuple[float, float],
 
 
 def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000,
-               temp_dir: Optional[Path] = None) -> Dict:
+               temp_dir: Optional[Path] = None, with_substitutions: bool = True) -> Dict:
     """Run AliSim simulator and measure performance."""
     if temp_dir is None:
         temp_dir = Path(tempfile.mkdtemp())
     
     output_prefix = temp_dir / "alisim_output"
     
-    # AliSim is part of IQ-TREE. For indel-only simulation, we need to use a model
-    # that prevents substitutions but allows indels. The model syntax is:
-    # --alisim <output_prefix> -t <tree> -m <model> --length <seq_length>
     ins_rate = model_params.get('insertion_rate', 0.01)
     del_rate = model_params.get('deletion_rate', 0.01)
-    # Use invariable sites to prevent substitutions and specify indel rates
-    # Format: model
-    model_str = "JTT"
+    
+    if with_substitutions:
+        # Mode 1: With substitutions (default AliSim behavior)
+        model_str = "JTT"
+    else:
+        # Mode 2: Without substitutions - use invariant sites
+        model_str = "JTT+I{0.9999999}"
     
     # Build AliSim command (part of iqtree)
     cmd = [
@@ -132,9 +142,8 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
         "--seed", "42"
     ]
     
-    runtime_seconds, max_memory_mb, returncode, stdout, stderr   = process_monitor(cmd=cmd)
+    runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
 
-    
     # Clean up output files
     for output_file in temp_dir.glob("alisim_output*"):
         try:
@@ -155,13 +164,21 @@ def check_simulator_availability() -> Dict[str, bool]:
     """Check which external simulators are available."""
     simulators = {}
     
-    # Check msa-simulator (our CLI tool)
+    # Check msa-simulator (our combined CLI tool)
     try:
         result = subprocess.run(['msa-simulator', '--help'], 
                               capture_output=True, timeout=10)
         simulators['msa-simulator'] = result.returncode == 0
     except (subprocess.TimeoutExpired, FileNotFoundError):
         simulators['msa-simulator'] = False
+    
+    # Check indel-simulator (our indel-only CLI tool)
+    try:
+        result = subprocess.run(['indel-simulator', '--help'], 
+                              capture_output=True, timeout=10)
+        simulators['indel-simulator'] = result.returncode == 0
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        simulators['indel-simulator'] = False
     
     # Check AliSim (part of IQ-TREE)
     try:
@@ -171,14 +188,13 @@ def check_simulator_availability() -> Dict[str, bool]:
     except (subprocess.TimeoutExpired, FileNotFoundError):
         simulators['alisim'] = False
     
-    
     return simulators
 
 
 def main():
-    """Main comparison function following switch_factor.py pattern."""
+    """Main comparison function with dual-mode support."""
     
-    ROOT_SEQUENCE_LENGTH = 2000
+    ROOT_SEQUENCE_LENGTH = 10000
     SCALED_TREES_PATH = Path.cwd() / "benchmark" / "scaled_trees"
     
     # Check available simulators
@@ -186,13 +202,19 @@ def main():
     print("Available simulators:", available_simulators)
     
     if not available_simulators.get('msa-simulator', False):
-        print("ERROR: msa-simulator CLI tool not found. Please install it first.")
+        print("WARNING: msa-simulator CLI tool not found. Mode 1 (with substitutions) will be skipped.")
+    
+    if not available_simulators.get('indel-simulator', False):
+        print("WARNING: indel-simulator CLI tool not found. Mode 2 (without substitutions) will be skipped.")
+    
+    if not any([available_simulators.get('msa-simulator', False), 
+                available_simulators.get('indel-simulator', False)]):
+        print("ERROR: Neither msa-simulator nor indel-simulator CLI tools found. Please install them first.")
         return None
     
     # Same rates as switch_factor.py
     rates = [i * 0.01 for i in range(1, 10)]
     rates = list(zip(rates, rates[::-1]))
-    # rates = [(1.,.5)]
 
     all_results = []
     
@@ -201,7 +223,7 @@ def main():
         temp_dir = Path(temp_dir)
         
         for RATE_MULTIPLIER in [1, 5, 10]:  # Same as switch_factor.py
-            print(f"RATE_MULTIPLIER: {RATE_MULTIPLIER}")
+            print(f"\nRATE_MULTIPLIER: {RATE_MULTIPLIER}")
             
             # Use pre-scaled tree files
             scaled_tree_path = SCALED_TREES_PATH / f"scaled_{RATE_MULTIPLIER}.tree"
@@ -217,103 +239,108 @@ def main():
             for indel_rate in rates:
                 print(f"Testing rates: ins={indel_rate[0]:.2f}, del={indel_rate[1]:.2f}")
                 
-                result_row = {
-                    'branch_scale': RATE_MULTIPLIER,
-                    'insertion_rate': indel_rate[0],
-                    'deletion_rate': indel_rate[1]
-                }
-                
-                # Run our indel simulator (tree version)
-                try:
-                    indel_tree_result = run_msa_simulator(
-                        scaled_tree_path, indel_rate, "tree", 
-                        ROOT_SEQUENCE_LENGTH, temp_dir
+                # Run both modes for each rate combination
+                for mode_idx, (with_substitutions, mode_name) in enumerate([
+                    (True, "with_substitutions"),
+                    (False, "without_substitutions")
+                ]):
+                    print(f"  Mode: {mode_name}")
+                    
+                    result_row = {
+                        'branch_scale': RATE_MULTIPLIER,
+                        'insertion_rate': indel_rate[0],
+                        'deletion_rate': indel_rate[1],
+                        'mode': mode_name,
+                        'with_substitutions': with_substitutions
+                    }
+                    
+                    # Run our simulator (tree version) for the current mode
+                    simulator_available = (
+                        available_simulators.get('msa-simulator', False) if with_substitutions 
+                        else available_simulators.get('indel-simulator', False)
                     )
-                    result_row.update({
-                        'indel_tree_time': indel_tree_result['runtime_seconds'],
-                        'indel_tree_memory': indel_tree_result['max_memory_mb'],
-                        'indel_tree_success': indel_tree_result['returncode'] == 0
-                    })
-                    print(f"  Indel (tree): {indel_tree_result['runtime_seconds']:.3f}s, "
-                          f"{indel_tree_result['max_memory_mb']:.1f}MB")
-                except Exception as e:
-                    print(f"  Indel (tree) failed: {e}")
-                    result_row.update({
-                        'indel_tree_time': None,
-                        'indel_tree_memory': None,
-                        'indel_tree_success': False
-                    })
-
-                # Run AliSim if available
-                if available_simulators.get('alisim', False):
-                    try:
-                        alisim_result = run_alisim(
-                            scaled_tree_path, 
-                            {'insertion_rate': indel_rate[0], 'deletion_rate': indel_rate[1]},
-                            ROOT_SEQUENCE_LENGTH, temp_dir
-                        )
+                    
+                    if simulator_available:
+                        try:
+                            our_sim_result = run_our_simulator(
+                                scaled_tree_path, indel_rate, "tree", 
+                                ROOT_SEQUENCE_LENGTH, temp_dir, with_substitutions
+                            )
+                            result_row.update({
+                                'our_sim_time': our_sim_result['runtime_seconds'],
+                                'our_sim_memory': our_sim_result['max_memory_mb'],
+                                'our_sim_success': our_sim_result['returncode'] == 0
+                            })
+                            print(f"    Our simulator: {our_sim_result['runtime_seconds']:.3f}s, "
+                                  f"{our_sim_result['max_memory_mb']:.1f}MB")
+                        except Exception as e:
+                            print(f"    Our simulator failed: {e}")
+                            result_row.update({
+                                'our_sim_time': None,
+                                'our_sim_memory': None,
+                                'our_sim_success': False
+                            })
+                    else:
                         result_row.update({
-                            'alisim_time': alisim_result['runtime_seconds'],
-                            'alisim_memory': alisim_result['max_memory_mb'],
-                            'alisim_success': alisim_result['returncode'] == 0
+                            'our_sim_time': None,
+                            'our_sim_memory': None,
+                            'our_sim_success': False
                         })
-                        print(f"  AliSim: {alisim_result['runtime_seconds']:.3f}s, "
-                              f"{alisim_result['max_memory_mb']:.1f}MB")
-
-                    except Exception as e:
-                        print(f"  AliSim failed: {e}")
+                    
+                    # Run AliSim if available
+                    if available_simulators.get('alisim', False):
+                        try:
+                            alisim_result = run_alisim(
+                                scaled_tree_path, 
+                                {'insertion_rate': indel_rate[0], 'deletion_rate': indel_rate[1]},
+                                ROOT_SEQUENCE_LENGTH, temp_dir, with_substitutions
+                            )
+                            result_row.update({
+                                'alisim_time': alisim_result['runtime_seconds'],
+                                'alisim_memory': alisim_result['max_memory_mb'],
+                                'alisim_success': alisim_result['returncode'] == 0
+                            })
+                            print(f"    AliSim: {alisim_result['runtime_seconds']:.3f}s, "
+                                  f"{alisim_result['max_memory_mb']:.1f}MB")
+                        except Exception as e:
+                            print(f"    AliSim failed: {e}")
+                            result_row.update({
+                                'alisim_time': None,
+                                'alisim_memory': None,
+                                'alisim_success': False
+                            })
+                    else:
                         result_row.update({
                             'alisim_time': None,
                             'alisim_memory': None,
                             'alisim_success': False
                         })
-                else:
-                    result_row.update({
-                        'alisim_time': None,
-                        'alisim_memory': None,
-                        'alisim_success': False
-                    })
-                
-                # Run our indel simulator (list version)
-                try:
-                    indel_list_result = run_msa_simulator(
-                        scaled_tree_path, indel_rate, "list", 
-                        ROOT_SEQUENCE_LENGTH, temp_dir
-                    )
-                    result_row.update({
-                        'indel_list_time': indel_list_result['runtime_seconds'],
-                        'indel_list_memory': indel_list_result['max_memory_mb'],
-                        'indel_list_success': indel_list_result['returncode'] == 0
-                    })
-                    print(f"  Indel (list): {indel_list_result['runtime_seconds']:.3f}s, "
-                          f"{indel_list_result['max_memory_mb']:.1f}MB")
-                except Exception as e:
-                    print(f"  Indel (list) failed: {e}")
-                    result_row.update({
-                        'indel_list_time': None,
-                        'indel_list_memory': None,
-                        'indel_list_success': False
-                    })
-                
-
-                
-
-                                
-                all_results.append(result_row)
+                    
+                    all_results.append(result_row)
     
     # Convert to DataFrame and save
     results_df = pd.DataFrame(all_results)
-    results_df.to_csv("benchmark/assets/data/simulator_comparison.csv", index=False)
-    print(f"\nResults saved to simulator_comparison.csv")
+    results_df.to_csv("benchmark/assets/data/simulator_comparison_dual_mode.csv", index=False)
+    print(f"\nResults saved to simulator_comparison_dual_mode.csv")
     
-    # Optionally create plots - run the "plot_comparison_results.py" script
+    # Print summary
+    print(f"\nComparison completed!")
+    print(f"Shape of results: {results_df.shape}")
+    print(f"\nModes tested:")
+    for mode in results_df['mode'].unique():
+        count = len(results_df[results_df['mode'] == mode])
+        print(f"  {mode}: {count} experiments")
+    
+    print("\nSample results:")
+    print(results_df.head())
     
     return results_df
 
 
 if __name__ == "__main__":
     results = main()
-    print("\nComparison completed!")
-    print(f"Shape of results: {results.shape}")
-    print("\nSample results:")
-    print(results.head())
+    if results is not None:
+        print("\nDual-mode comparison completed successfully!")
+    else:
+        print("\nComparison failed!")
+        sys.exit(1)
