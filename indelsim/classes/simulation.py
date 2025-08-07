@@ -1,5 +1,7 @@
 from pathlib import Path
+import random as rnd
 from ete3 import Tree, TreeNode
+import numpy as np
 
 
 from indelsim.classes.sim_config import SimConfiguration
@@ -29,6 +31,9 @@ class Simulation:
         self.sim_nodes = [None]
         node: TreeNode = None
         self.id_to_name = {}
+        rnd.seed(config.random_seed)
+        np.random.seed(config.random_seed)
+
 
         for idx, node in enumerate(self.tree.traverse("preorder")):
             node.add_features(id=idx)  # Assigning an ID based on index
@@ -71,8 +76,10 @@ class Simulation:
                 sequences_to_save.append(current_seq)
 
         self.msa = Msa(super_seq)
-        self.msa.id_to_name = self.id_to_name
-        self.msa.compute_msa(sequences_to_save)
+        self.msa._id_to_name = self.id_to_name
+        self.msa._sequences_to_save = sequences_to_save
+
+        # self.msa.compute_msa(sequences_to_save)
     
     def msa_from_blocktree(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
@@ -95,8 +102,9 @@ class Simulation:
                 sequences_to_save.append(current_seq)
 
         self.msa = Msa(super_seq)
-        self.msa.id_to_name = self.id_to_name
-        self.msa.compute_msa(sequences_to_save)
+        self.msa._id_to_name = self.id_to_name
+        self.msa._sequences_to_save = sequences_to_save
+        # self.msa.compute_msa(sequences_to_save)
 
     def msa_from_naive(self):
         original_sequence_length: int = self.config.original_sequence_length
@@ -123,43 +131,17 @@ class Simulation:
         msa = {idx:seq for idx,seq in enumerate(msa) if idx in (self.nodes_to_align - {0})}
         # Create MSA object instead of string
         self.msa = Msa()  # Use alternative constructor
-        self.msa._aligned_sequences = {}
-
-        for idx, seq in msa.items():
-            seq_str = "".join(["X" if (site != -1) else "-" for site in seq])
-            self.msa._aligned_sequences[idx] = seq_str
+        self.msa._aligned_sequences = msa
         
+        for seq in msa.items():
+            msa_len = sum([1 if (site != -1) else 0 for site in seq])
+            break
+
         # Set MSA length
-        self.msa._msa_length = len(seq_str)
-        self.msa.id_to_name = self.id_to_name
+        self.msa._msa_length = msa_len
+        self.msa._id_to_name = self.id_to_name
         self.msa._number_of_sequences = len(ids_to_save)
 
-    def msa_from_hybrid(self):
-        super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
-        parent_seq = Sequence(super_seq, True, 0)
-        parent_seq.init_root_seq()
-        sequences = [parent_seq]
-
-        sequences_to_save = []
-        for node in self.sim_nodes[1:]:
-            if node.hybrid_switch:
-                node.seq_node_as_list = SequenceNodeAsTree(node.id, node.length_of_sequence_before)
-            else:
-                node.seq_node_as_list = SequenceNodeAsList(node.id, node.length_of_sequence_before)
- 
-            for event in node.list_of_events:
-                node.seq_node_as_list.calculate_event(event)
-
-            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
-            blocks = node.seq_node_as_list.blocks_iterator()
-            current_seq.generate_sequence(blocks, sequences[node.parent_id])
-
-            sequences.append(current_seq)
-            if node.id in self.nodes_to_align:
-                sequences_to_save.append(current_seq)
-
-        self.msa = Msa(super_seq)
-        self.msa.compute_msa(sequences_to_save)
 
 
     def get_events(self):

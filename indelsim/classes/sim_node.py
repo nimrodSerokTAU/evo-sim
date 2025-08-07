@@ -25,10 +25,9 @@ class SimulatedNode:
         self.branch_length = branch_length
         self.length_of_sequence_before = father_seq_length
         self.length_of_sequence_after_events = -1
-        rnd.seed(config.random_seed)
-        np.random.seed(config.random_seed)
+        # rnd.seed(config.random_seed)
+        # np.random.seed(config.random_seed)
         self.list_of_events = self.create_events(config, father_seq_length)
-        config.random_seed += 1
 
     def create_events(self, config: SimConfiguration, father_seq_length: int) -> list[IndelEvent]:
         events: list[IndelEvent] = []
