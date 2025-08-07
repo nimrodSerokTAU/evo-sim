@@ -11,7 +11,7 @@ from typing import List, Optional
 
 import numpy as np
 from indelsim.classes.jtt import get_jtt_model
-from indelsim.enums import AminoAcid, amino_acid_to_index, index_to_amino_acid
+from indelsim.enums import amino_acid_to_index, index_to_amino_acid
 
 # Constants for validation
 MAX_BRANCH_LENGTH = 1000.0
@@ -46,7 +46,7 @@ class SubstitutionEvolver:
         self,
         sequence: List[int],
         branch_length: float
-    ) -> List[int]:
+    ) -> np.ndarray:
         """
         Simulate substitutions along a branch with the Gillespie algorithm.
 
@@ -102,9 +102,9 @@ class SubstitutionEvolver:
     
     def evolve_branch_substitutions_jtt(
         self,
-        sequence: List[int],
+        sequence: np.ndarray,
         branch_length: float
-    ) -> List[int]:
+    ) -> np.ndarray:
         """
         Simulate substitutions via pre-computed transition matrix exp(Q t).
 
@@ -113,16 +113,16 @@ class SubstitutionEvolver:
 
         Returns a fresh list with evolved residues.
         """
+
         self._validate_inputs(sequence, branch_length)
 
         eff_time = branch_length * self.substitution_rate
         P_t: np.ndarray = self.jtt_model.transition_probability(eff_time)
-
-        probs = P_t[np.asarray(sequence, dtype=np.uint8)]          # shape (L, 20)
+        probs = P_t[sequence]          # shape (L, 20)
         cumprob = np.cumsum(probs, axis=1)
         u = self.rng.random((len(sequence), 1))
         evolved = np.argmax(u < cumprob, axis=1).astype(np.uint8)
-        return evolved.tolist()
+        return evolved
     
     def evolve_sequence_chars(self, sequence_chars: List[str], branch_length: float) -> List[str]:
         """Same as gillespie method, but with ACDE.. chars"""
@@ -130,10 +130,10 @@ class SubstitutionEvolver:
         evolved_indices = self.evolve_branch_substitutions_gillespie(indices, branch_length)
         return [index_to_amino_acid(idx) for idx in evolved_indices]
 
-    def _validate_inputs(self, sequence: List[int], branch_length: float) -> None:
+    def _validate_inputs(self, sequence: np.ndarray, branch_length: float) -> None:
         if branch_length < 0.0:
             raise ValueError("branch_length must be non-negative")
         if branch_length > MAX_BRANCH_LENGTH:
             raise ValueError(f"branch_length {branch_length} exceeds maximum {MAX_BRANCH_LENGTH}")
-        if not sequence:
+        if sequence.size == 0:
             raise ValueError("sequence cannot be empty")

@@ -30,7 +30,7 @@ from indelsim.classes.simulation import Simulation
 from indelsim.classes.sim_config import SimConfiguration
 from indelsim.enums import SimulationTypes
 
-TEMP_FILE_NAME = "_temp.fasta"
+TEMP_FILE_NAME = "_temp_indels.fasta"
 
 class IndelSimulatorCLI:
     """Command-line interface for the indel simulator."""
@@ -248,11 +248,12 @@ Examples:
         if args.verbose:
             print(f"Running simulation {sim_num + 1}/{args.number_of_simulations}...")
         
+        print(args)
         # Create configuration with incremented seed for each simulation
         config = self._create_sim_config(args)
         config.random_seed = args.seed + sim_num
         
-        start_time = time.time()
+        start_time = time.perf_counter()
         # Create and run simulation
         simulation = Simulation(args.tree_file, config)
         
@@ -271,7 +272,7 @@ Examples:
             temp_output_path = pathlib.Path(args.output_directory) / TEMP_FILE_NAME
             simulation.msa.compute_msa_to_disk(temp_output_path)
         
-        end_time = time.time()
+        end_time = time.perf_counter()
         runtime = end_time - start_time
 
             
@@ -371,7 +372,7 @@ Examples:
             
             # Run simulations
             results = []
-            total_start_time = time.time()
+            total_start_time = time.perf_counter()
 
             output_dir = pathlib.Path(args.output_directory)
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -396,7 +397,7 @@ Examples:
             (output_dir / TEMP_FILE_NAME).unlink(missing_ok=True)
 
 
-            total_end_time = time.time()
+            total_end_time = time.perf_counter()
                         
             # Print benchmark results if requested
             if args.benchmark or args.verbose:

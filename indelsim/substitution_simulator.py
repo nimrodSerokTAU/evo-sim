@@ -19,8 +19,11 @@ from indelsim.classes.simulation import Simulation
 from indelsim.classes.sim_config import SimConfiguration
 from indelsim.classes.substitution import SubstitutionEvolver
 from indelsim.classes.jtt import get_jtt_model
-from indelsim.enums import index_to_amino_acid
+from indelsim.enums import PROTEIN_ALPHABET
 from ete3 import Tree
+
+TEMP_FILE_NAME = "_temp_subs.fasta"
+AMINO_ACID_CHARS = np.array(PROTEIN_ALPHABET)
 
 
 class SubstitutionSimulatorCLI:
@@ -122,6 +125,12 @@ Examples:
             action="store_true",
             help="Run benchmarking and report performance statistics"
         )
+
+        parser.add_argument(
+            "--keep_in_memory",
+            action="store_true",
+            help="Keep the MSA in memory till the end of the simulation"
+        )
         
         return parser
     
@@ -142,6 +151,10 @@ Examples:
         # Validate number of simulations
         if args.number_of_simulations <= 0:
             raise ValueError("Number of simulations must be positive")
+        
+        args.output_directory = pathlib.Path(args.output_directory)
+        args.output_directory.mkdir(parents=True, exist_ok=True)
+
     
     def _create_sim_config(self, args: argparse.Namespace) -> SimConfiguration:
         """Create simulation configuration from arguments."""
@@ -158,6 +171,15 @@ Examples:
             substitution_algorithm=args.algorithm
         )
     
+    def _init_output_file(self, args: argparse.Namespace) -> None:
+        """Save simulation results to files."""
+        if args.output_type == "drop_output":
+            return
+        # Create output directory
+        with open(args.output_directory / TEMP_FILE_NAME, 'w') as f:
+            f.write("")
+
+    
     def _generate_root_sequence(self, length: int, seed: int) -> List[int]:
         """Generate random amino acid sequence using JTT equilibrium frequencies."""
         jtt_model = get_jtt_model()
@@ -168,7 +190,7 @@ Examples:
         
         # Sample amino acids according to equilibrium frequencies
         root_sequence = rng.choice(20, size=length, p=equilibrium_freqs)
-        return root_sequence.tolist()
+        return root_sequence
     
     def _simulate_substitutions(self, args: argparse.Namespace, seed: int) -> Dict[str, List[str]]:
         """Run the complete substitution simulation workflow."""
@@ -188,12 +210,13 @@ Examples:
         sequences = {}
         
         # Add root sequence (if tree has a name for root)
-        if hasattr(tree, 'name') and tree.name:
-            sequences[tree.name] = [index_to_amino_acid(aa) for aa in root_sequence]
+        # if hasattr(tree, 'name') and tree.name:
+        #     sequences[tree.name] = [index_to_amino_acid(aa) for aa in root_sequence]
         self.id_to_name = {}
         # Traverse tree and evolve sequences
         for idx, node in enumerate(tree.traverse("preorder")):
             self.id_to_name[idx] = node.name
+            node.references = len(node.children)
             if node.is_root():
                 # Set root sequence
                 node.sequence = root_sequence
@@ -213,13 +236,20 @@ Examples:
                     )
                 
                 node.sequence = evolved_sequence
-                
                 # If this is a leaf node, store the sequence
                 if node.is_leaf():
-                    sequences[idx] = [index_to_amino_acid(aa) for aa in evolved_sequence]
-        
+                    if args.keep_in_memory:
+                        sequences[idx] = AMINO_ACID_CHARS[evolved_sequence]
+                    else:
+                        with open(args.output_directory / TEMP_FILE_NAME, 'a') as f:
+                            f.write(f">{node.name}\n")
+                            f.write(''.join(AMINO_ACID_CHARS[evolved_sequence]))
+                            f.write("\n")
+                node.up.references -= 1
+                if node.up.references == 0:
+                    del node.up.sequence
         # Verify all sequences have equal length
-        self._verify_sequence_lengths(sequences, args.original_sequence_length)
+        # self._verify_sequence_lengths(sequences, args.original_sequence_length)
         
         return sequences
     
@@ -269,54 +299,43 @@ Examples:
         
         return results
     
-    def _save_results(self, results: List[Dict[str, Any]], args: argparse.Namespace) -> None:
-        """Save simulation results to files."""
-        if args.output_type == "drop_output":
-            return
-        
-        # Create output directory
-        output_dir = pathlib.Path(args.output_directory)
-        output_dir.mkdir(parents=True, exist_ok=True)
-        
-        if args.output_type == "multiple_files":
-            self._save_multiple_files(results, args, output_dir)
-        elif args.output_type == "single_file":
-            self._save_single_file(results, args, output_dir)
     
-    def _save_multiple_files(self, results: List[Dict[str, Any]], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
+    def _save_multiple_files(self, result: Dict[str, Any], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
         """Save each simulation to a separate file."""
-        for result in results:
-            sim_num = result["simulation_number"]
-            
-            filename = output_dir / f"substitution_sim_{sim_num:04d}.fasta"
-            self._write_fasta(result["msa"], filename)
-            
-            if args.verbose:
-                print(f"Saved simulation {sim_num} to {filename}")
-    
-    def _save_single_file(self, results: List[Dict[str, Any]], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
-        """Save all simulations to a single file."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        sim_num = result["simulation_number"]
         
-        filename = output_dir / f"substitution_simulations_{timestamp}.fasta"
-        with open(filename, 'w') as f:
-            for result in results:
-                f.write(f"# Substitution Simulation {result['simulation_number']}\n")
-                f.write(f"# Runtime: {result['runtime_seconds']:.3f}s\n")
-                f.write(f"# Algorithm: {result['algorithm']}\n")
-                f.write(f"# Substitution rate: {result['config']['substitution_rate']}\n")
-                f.write(f"# Seed: {result['config']['seed']}\n")
-                
-                # Write MSA sequences
+        output_msa_path = output_dir / f"substitution_sim_{sim_num:04d}.fasta"
+        (output_dir / TEMP_FILE_NAME).rename(output_msa_path)
+
+        if args.keep_in_memory:
+            self._write_fasta(result["msa"], output_msa_path)
+        
+        if args.verbose:
+            print(f"Saved simulation {sim_num} to {output_msa_path}")
+    
+    def _save_single_file(self, result: Dict[str, Any], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
+        """Save all simulations to a single file."""
+
+        temp_path = output_dir / TEMP_FILE_NAME
+
+        with open(temp_path, 'a') as f:
+            if args.keep_in_memory:
                 msa = result["msa"]
                 for species_name, sequence in msa.items():
                     f.write(f">{self.id_to_name[species_name]}_sim{result['simulation_number']}\n")
-                    f.write("".join(sequence))
-                    f.write("\n")
-                f.write("\n")
+                    f.write(''.join(sequence))
+
+            f.write(f"# Substitution Simulation {result['simulation_number']}\n")
+            f.write(f"# Runtime: {result['runtime_seconds']:.3f}s\n")
+            f.write(f"# Algorithm: {result['algorithm']}\n")
+            f.write(f"# Substitution rate: {result['config']['substitution_rate']}\n")
+            f.write(f"# Seed: {result['config']['seed']}\n")
+            
+            # Write MSA sequences
+            f.write("\n\n")
         
         if args.verbose:
-            print(f"Saved {len(results)} simulations to {filename}")
+            print(f"Saved {len(result)} simulations to {temp_path}")
     
     def _write_fasta(self, msa: Dict[str, List[str]], filename: pathlib.Path) -> None:
         """Write MSA in FASTA format."""
@@ -363,15 +382,28 @@ Examples:
             results = []
             total_start_time = time.perf_counter()
             
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            self._init_output_file(args)
+            combined_file_path = args.output_directory / f"combined_simulations_{timestamp}.fasta"
+
             for i in range(args.number_of_simulations):
                 result = self._run_single_simulation(args, i)
                 results.append(result)
+                if args.output_type == "multiple_files":
+                    self._save_multiple_files(result, args, args.output_directory)
+                    self._init_output_file(args)
+
+                elif args.output_type == "single_file":
+                    self._save_single_file(result, args, args.output_directory)
+                
+            
+            if args.output_type == "single_file":
+                (args.output_directory / TEMP_FILE_NAME).rename(combined_file_path)
+            (args.output_directory / TEMP_FILE_NAME).unlink(missing_ok=True)
+
             
             total_end_time = time.perf_counter()
-            
-            # Save results
-            self._save_results(results, args)
-            
+                        
             # Print benchmark results if requested
             if args.benchmark or args.verbose:
                 self._print_benchmark_results(results, args)
