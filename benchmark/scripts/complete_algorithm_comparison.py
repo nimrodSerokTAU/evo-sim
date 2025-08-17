@@ -3,12 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Load both datasets from algorithm_comparison directory
-naive_df = pd.read_csv('benchmark/assets/data/naive_comparison.csv')
-optimized_df = pd.read_csv('benchmark/assets/data/tree_list_comparison.csv')
+combined_df = pd.read_csv('benchmark/assets/data/naive_list_tree_comparison.csv')
 
-# Add algorithm column to naive data and combine
-naive_df['algorithm'] = 'naive'
-combined_df = pd.concat([naive_df, optimized_df], ignore_index=True)
 
 combined_df['actual_total_time'] = combined_df['substitution_time'] + combined_df['indel_time']
 # Calculate fractions

@@ -84,8 +84,8 @@ class Msa:
                     seq_str = "".join(["X" if (site != -1) else "-" for site in seq])
                     fasta_line_str = f">{self._id_to_name[idx]}\n{seq_str}\n"
                     f.write(fasta_line_str)
-
-            
+            self._msa_length = len(seq_str)
+            self._number_of_sequences = len(self._aligned_sequences)
             self._aligned_sequences.clear()
             return
         
@@ -125,7 +125,9 @@ class Msa:
                 f.write(seq_str + "\n")
                 # seq_str goes out of scope and gets garbage collected
                 self._sequences_to_save[idx] = 0
+
             self._sequences_to_save.clear()
+            self._aligned_sequences.clear()
         return output_path
 
     def get_aligned_sequence(self):

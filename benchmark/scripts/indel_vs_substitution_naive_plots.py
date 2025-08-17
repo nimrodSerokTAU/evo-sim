@@ -4,8 +4,9 @@ import seaborn as sns
 import numpy as np
 
 # Load and process data
-df = pd.read_csv('benchmark/assets/data/naive_comparison.csv')
+df = pd.read_csv('benchmark/assets/data/naive_list_tree_comparison.csv')
 
+df = df[df["algorithm"] == "naive"]
 # First, let's validate the data - check if time fractions sum to 1.0
 print("DATA VALIDATION ANALYSIS")
 print("=" * 60)

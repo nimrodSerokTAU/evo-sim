@@ -65,32 +65,32 @@ def process_monitor(cmd: list[str]):
 
 def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float], 
                       sim_type: str, root_seq_length: int = 10000, 
-                      temp_dir: Optional[Path] = None, with_substitutions: bool = True) -> Dict:
+                      temp_dir: Optional[Path] = None, with_indels: bool = True) -> Dict:
     """Run our simulator using the appropriate CLI tool and measure performance."""
     if temp_dir is None:
         temp_dir = Path(tempfile.mkdtemp())
     
     # Choose the appropriate CLI tool based on mode
-    if with_substitutions:
+    added_cmds = []
+    if with_indels:
         # Mode 1: With substitutions - use msa-simulator (combined indel + substitution)
         cli_tool = "msa-simulator"
+        added_cmds = ["--type", sim_type,
+                      "--insertion_rate", str(indel_rate[0]),
+                      "--deletion_rate", str(indel_rate[1])]
     else:
         # Mode 2: Without substitutions - use indel-simulator (indel only)
-        cli_tool = "indel-simulator"
+        cli_tool = "substitution-simulator"
     
     cmd = [
         cli_tool,
-        "--type", sim_type,
-        "--insertion_rate", str(indel_rate[0]),
-        "--deletion_rate", str(indel_rate[1]),
         "--tree_file", str(tree_file),
         "--original_sequence_length", str(root_seq_length),
-        "--output_type", "drop_output",  # Don't write files
-        "--seed", "42", "--verbose"
-    ]
+        # "--output_type", "drop_output",  # Don't write files
+        "--seed", "10"
+    ] + added_cmds
     
     runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
-
     # Parse benchmark results from stdout if available
     benchmark_time = None
     if stdout:
@@ -113,7 +113,7 @@ def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float],
 
 
 def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000,
-               temp_dir: Optional[Path] = None, with_substitutions: bool = True) -> Dict:
+               temp_dir: Optional[Path] = None, with_indels: bool = True) -> Dict:
     """Run AliSim simulator and measure performance."""
     if temp_dir is None:
         temp_dir = Path(tempfile.mkdtemp())
@@ -123,12 +123,15 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
     ins_rate = model_params.get('insertion_rate', 0.01)
     del_rate = model_params.get('deletion_rate', 0.01)
     
-    if with_substitutions:
-        # Mode 1: With substitutions (default AliSim behavior)
+    added_cmds = []
+    if with_indels:
+        # Mode 1: With indels 
         model_str = "JTT"
+        added_cmds = ["--indel", f"{ins_rate},{del_rate}",
+                      "--indel-size", "POW{2.0/50},POW{2.0/50}"]
     else:
-        # Mode 2: Without substitutions - use invariant sites
-        model_str = "JTT+I{0.9999999}"
+        # Mode 2: Without indels (default AliSim behavior)
+        model_str = "JTT"
     
     # Build AliSim command (part of iqtree)
     cmd = [
@@ -137,10 +140,8 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
         "-t", str(tree_file),
         "-m", model_str,
         "--length", str(root_seq_length),
-        "--indel", f"{ins_rate},{del_rate}",
-        "--indel-size", "POW{2.0/50},POW{2.0/50}",
-        "--seed", "42"
-    ]
+        "--seed", "10"
+    ] + added_cmds
     
     runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
 
@@ -174,11 +175,11 @@ def check_simulator_availability() -> Dict[str, bool]:
     
     # Check indel-simulator (our indel-only CLI tool)
     try:
-        result = subprocess.run(['indel-simulator', '--help'], 
+        result = subprocess.run(['substitution-simulator', '--help'], 
                               capture_output=True, timeout=10)
-        simulators['indel-simulator'] = result.returncode == 0
+        simulators['substitution-simulator'] = result.returncode == 0
     except (subprocess.TimeoutExpired, FileNotFoundError):
-        simulators['indel-simulator'] = False
+        simulators['substitution-simulator'] = False
     
     # Check AliSim (part of IQ-TREE)
     try:
@@ -204,11 +205,11 @@ def main():
     if not available_simulators.get('msa-simulator', False):
         print("WARNING: msa-simulator CLI tool not found. Mode 1 (with substitutions) will be skipped.")
     
-    if not available_simulators.get('indel-simulator', False):
+    if not available_simulators.get('substitution-simulator', False):
         print("WARNING: indel-simulator CLI tool not found. Mode 2 (without substitutions) will be skipped.")
     
     if not any([available_simulators.get('msa-simulator', False), 
-                available_simulators.get('indel-simulator', False)]):
+                available_simulators.get('substitution-simulator', False)]):
         print("ERROR: Neither msa-simulator nor indel-simulator CLI tools found. Please install them first.")
         return None
     
@@ -222,7 +223,7 @@ def main():
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_dir = Path(temp_dir)
         
-        for RATE_MULTIPLIER in [1, 5, 10]:  # Same as switch_factor.py
+        for RATE_MULTIPLIER in [1,5,10]:  # Same as switch_factor.py
             print(f"\nRATE_MULTIPLIER: {RATE_MULTIPLIER}")
             
             # Use pre-scaled tree files
@@ -240,9 +241,9 @@ def main():
                 print(f"Testing rates: ins={indel_rate[0]:.2f}, del={indel_rate[1]:.2f}")
                 
                 # Run both modes for each rate combination
-                for mode_idx, (with_substitutions, mode_name) in enumerate([
-                    (True, "with_substitutions"),
-                    (False, "without_substitutions")
+                for mode_idx, (with_indels, mode_name) in enumerate([
+                    (True, "with_indels"),
+                    (False, "without_indels")
                 ]):
                     print(f"  Mode: {mode_name}")
                     
@@ -251,20 +252,20 @@ def main():
                         'insertion_rate': indel_rate[0],
                         'deletion_rate': indel_rate[1],
                         'mode': mode_name,
-                        'with_substitutions': with_substitutions
+                        'with_indels': with_indels
                     }
                     
                     # Run our simulator (tree version) for the current mode
                     simulator_available = (
-                        available_simulators.get('msa-simulator', False) if with_substitutions 
-                        else available_simulators.get('indel-simulator', False)
+                        available_simulators.get('msa-simulator', False) if with_indels 
+                        else available_simulators.get('substitution-simulator', False)
                     )
                     
                     if simulator_available:
                         try:
                             our_sim_result = run_our_simulator(
                                 scaled_tree_path, indel_rate, "tree", 
-                                ROOT_SEQUENCE_LENGTH, temp_dir, with_substitutions
+                                ROOT_SEQUENCE_LENGTH, temp_dir, with_indels
                             )
                             result_row.update({
                                 'our_sim_time': our_sim_result['runtime_seconds'],
@@ -293,7 +294,7 @@ def main():
                             alisim_result = run_alisim(
                                 scaled_tree_path, 
                                 {'insertion_rate': indel_rate[0], 'deletion_rate': indel_rate[1]},
-                                ROOT_SEQUENCE_LENGTH, temp_dir, with_substitutions
+                                ROOT_SEQUENCE_LENGTH, temp_dir, with_indels
                             )
                             result_row.update({
                                 'alisim_time': alisim_result['runtime_seconds'],

@@ -12,8 +12,8 @@ import tempfile
 from pathlib import Path
 
 # Configuration
-OUTPUT_DIR = "./algorithm_comparison"
-ALGORITHMS = [ 'list', 'tree']
+OUTPUT_DIR = "benchmark/assets/data/"
+ALGORITHMS = ['naive', 'list', 'tree']
 # INDEL_RATES = [0.01, 0.05, 0.1, 0.5]  # Combined insertion + deletion rate
 INSERTION_RATE = 0.03
 DELETION_RATE = 0.09
@@ -54,7 +54,7 @@ def run_simulation(algorithm, ins_rate, del_rate, seq_len, branch_len, tree_cont
             "--original_sequence_length", str(seq_len),
             "--tree_file", str(tree_file),
             "--number_of_simulations", str(NUM_SIMULATIONS),
-            "--output_type", "drop_output",
+            # "--output_type", "drop_output",
             "--benchmark",
         ]
         # print(" ".join(cmd))
@@ -86,6 +86,7 @@ def run_simulation(algorithm, ins_rate, del_rate, seq_len, branch_len, tree_cont
                 'speedup_vs_naive': 1.0
             }
         except Exception as e:
+            print(e)
             return None
 
 def main():
@@ -129,7 +130,7 @@ def main():
             df.at[idx, 'speedup_vs_naive'] = naive_time / row['indel_time'] if row['indel_time'] > 0 else 1.0
     
     # Save results
-    output_file = output_dir / "tree_list_comparison.csv"
+    output_file = output_dir / "naive_list_tree_comparison.csv"
     df.to_csv(output_file, index=False)
     
     # Print summary

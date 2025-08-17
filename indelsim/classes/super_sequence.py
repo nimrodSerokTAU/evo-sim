@@ -1,6 +1,23 @@
 
+
 from llist import sllist,sllistnode #https://ajakubek.github.io/python-llist/index.html#llist.sllist
 
+
+class SuperSequenceNode:
+    __slots__ = ['position', 'is_column', 'absolute_position']
+    
+    def __init__(self, position, is_column=False):
+        self.position = position
+        self.is_column = is_column
+        self.absolute_position = None
+    
+    def __getitem__(self, key):
+        """Enable bracket notation for reading: node['position']"""
+        return getattr(self, key)
+    
+    def __setitem__(self, key, value):
+        """Enable bracket notation for writing: node['position'] = 42"""
+        setattr(self, key, value)
 
 class SuperSequence:
     _sequence: sllist
@@ -17,7 +34,7 @@ class SuperSequence:
         self._sequence = sllist()
         
         for i in range(0, root_sequence_size + 1):
-            column = {'position': i, 'is_column': False}
+            column = SuperSequenceNode(position=i)
             self._sequence.append(column)
             
         self._inserted_sequence_counter = root_sequence_size + 1
@@ -33,13 +50,13 @@ class SuperSequence:
     def set_absolute_positions(self):
         i = 0
         for column in self._sequence:
-            if not column.get('is_column', False): 
+            if not column.is_column: 
                 continue
             column['absolute_position'] = i
             i += 1
 
     def insert_item_at_position(self, ref_position, position, is_to_save):
-        new_column = {'position': position, 'is_column': False}
+        new_column = SuperSequenceNode(position=position)
 
         if is_to_save:
             new_column['is_column'] = True
@@ -48,7 +65,7 @@ class SuperSequence:
         return ref_position.next
     
     def insert_item_before_position(self, ref_position, position, is_to_save):
-        new_column = {'position': position, 'is_column': False}
+        new_column = SuperSequenceNode(position=position)
 
         if is_to_save:
             new_column['is_column'] = True

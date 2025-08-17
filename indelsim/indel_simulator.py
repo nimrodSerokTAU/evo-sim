@@ -248,16 +248,15 @@ Examples:
         if args.verbose:
             print(f"Running simulation {sim_num + 1}/{args.number_of_simulations}...")
         
-        print(args)
         # Create configuration with incremented seed for each simulation
         config = self._create_sim_config(args)
         config.random_seed = args.seed + sim_num
         
-        start_time = time.perf_counter()
-        # Create and run simulation
+        # Create events list
         simulation = Simulation(args.tree_file, config)
         
-        # Choose simulation method based on type
+        start_time = time.perf_counter()
+        # Choose simulation method based on type and run simulation
         sim_type = args.type
         if sim_type == "naive":
             simulation.msa_from_naive()

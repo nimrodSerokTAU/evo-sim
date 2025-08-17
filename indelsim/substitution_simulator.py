@@ -179,6 +179,25 @@ Examples:
         with open(args.output_directory / TEMP_FILE_NAME, 'w') as f:
             f.write("")
 
+    def _merge_with_gap_template(self, args: argparse.Namespace, name: str, sequence: np.ndarray):
+            if not (args.output_directory / "_temp_indels.fasta").exists():
+                return
+            with open(args.output_directory / "_temp_indels.fasta", 'r') as indel_file:
+                species_line = indel_file.readline()
+                while name != species_line[1:-1]:
+                    next(indel_file)
+                    species_line = indel_file.readline()
+                    if not species_line:
+                        raise KeyError("Missing species in indel file")
+
+                sequence_line = indel_file.readline()
+                for idx,c in enumerate(sequence_line):
+                    if c=="-":
+                        sequence[idx] = 20
+
+
+
+
     
     def _generate_root_sequence(self, length: int, seed: int) -> List[int]:
         """Generate random amino acid sequence using JTT equilibrium frequencies."""
@@ -241,6 +260,9 @@ Examples:
                     if args.keep_in_memory:
                         sequences[idx] = AMINO_ACID_CHARS[evolved_sequence]
                     else:
+                        self._merge_with_gap_template(args, node.name, evolved_sequence)
+                        # Add here a function to write directly the sequence while reading the _temp_indel.fasta
+                        # That way, there is now double pass, only a single one.
                         with open(args.output_directory / TEMP_FILE_NAME, 'a') as f:
                             f.write(f">{node.name}\n")
                             f.write(''.join(AMINO_ACID_CHARS[evolved_sequence]))
@@ -322,7 +344,7 @@ Examples:
             if args.keep_in_memory:
                 msa = result["msa"]
                 for species_name, sequence in msa.items():
-                    f.write(f">{self.id_to_name[species_name]}_sim{result['simulation_number']}\n")
+                    f.write(f">{self.id_to_name[species_name]}\n")
                     f.write(''.join(sequence))
 
             f.write(f"# Substitution Simulation {result['simulation_number']}\n")

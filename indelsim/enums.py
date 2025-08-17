@@ -61,4 +61,4 @@ def index_to_amino_acid(index: int) -> str:
     except ValueError:
         raise ValueError(f"Invalid amino acid index: {index}")
     
-PROTEIN_ALPHABET = [aa.name for aa in AminoAcid]
+PROTEIN_ALPHABET = [aa.name for aa in AminoAcid] + ['-']

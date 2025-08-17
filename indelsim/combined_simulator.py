@@ -12,15 +12,15 @@ import argparse
 import sys
 import os
 import pathlib
+import traceback
 from typing import List, Dict, Any, Tuple
 import time
 from datetime import datetime
 import numpy as np
 
 # Import existing CLI classes to reuse their functionality
-from indelsim.indel_simulator import IndelSimulatorCLI
-from indelsim.substitution_simulator import SubstitutionSimulatorCLI
-from indelsim.classes.jtt import get_jtt_model
+from indelsim.indel_simulator import IndelSimulatorCLI, TEMP_FILE_NAME as TEMP_INDEL_FILE
+from indelsim.substitution_simulator import SubstitutionSimulatorCLI, TEMP_FILE_NAME as TEMP_SUBS_FILE
 
 
 class CombinedSimulatorCLI:
@@ -103,6 +103,23 @@ Examples:
         
         return parser
     
+    def _init_output_file(self, args: argparse.Namespace) -> None:
+        """Save simulation results to files."""
+        if args.output_type == "drop_output":
+            return
+        
+        # Create output directory
+        output_dir = pathlib.Path(args.output_directory)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        with open(output_dir / TEMP_INDEL_FILE, 'w') as f:
+            f.write("")
+        with open(output_dir / TEMP_SUBS_FILE, 'w') as f:
+            f.write("")
+
+        args.output_directory = output_dir
+
+
+    
     def _run_indel_simulation(self, args: argparse.Namespace, sim_num: int) -> Tuple[Dict[str, Any], int]:
         """
         Run indel simulation using existing IndelSimulatorCLI and return results with MSA length.
@@ -119,7 +136,7 @@ Examples:
         indel_runtime = end_time - start_time
         
         # Extract MSA length from the indel result
-        msa_length = len(list(indel_result["msa"]._aligned_sequences.values())[0])
+        msa_length = indel_result["msa"]._msa_length
         
         if args.verbose:
             print(f"    Indel simulation completed in {indel_runtime:.3f} seconds")
@@ -136,6 +153,7 @@ Examples:
         
         # Create modified args for substitution simulation with the correct sequence length
         sub_args = argparse.Namespace(**vars(args))
+        sub_args.output_directory = pathlib.Path(sub_args.output_directory)
         sub_args.original_sequence_length = msa_length
         
         start_time = time.perf_counter()
@@ -201,12 +219,14 @@ Examples:
         substitution_result = self._run_substitution_simulation(args, msa_length, sim_num)
         
         # Step 3: Merge simulations
-        if args.verbose:
-            print(f"  Step 3: Merging indel template with substitution sequences...")
+        # if args.verbose:
+        #     print(f"  Step 3: Merging indel template with substitution sequences...")
         
-        merge_start_time = time.perf_counter()
-        merged_sequences = self._merge_simulations(indel_result, substitution_result)
-        merge_time = time.perf_counter() - merge_start_time
+        # merge_start_time = time.perf_counter()
+        merged_sequences = None
+        if args.keep_in_memory:
+            merged_sequences = self._merge_simulations(indel_result, substitution_result)
+        # merge_time = time.perf_counter() - merge_start_time
         
         total_end_time = time.perf_counter()
         total_runtime = total_end_time - total_start_time
@@ -217,7 +237,6 @@ Examples:
             "total_runtime_seconds": total_runtime,
             "indel_runtime_seconds": indel_result["runtime_seconds"],
             "substitution_runtime_seconds": substitution_result["runtime_seconds"],
-            "merge_runtime_seconds": merge_time,
             "indel_config": indel_result["config"],
             "substitution_config": substitution_result["config"],
             "final_msa": merged_sequences,
@@ -227,71 +246,58 @@ Examples:
         }
         
         if args.verbose:
-            print(f"    Merging completed in {merge_time:.3f} seconds")
             print(f"  Total simulation completed in {total_runtime:.3f} seconds")
             print(f"    Indel time: {indel_result['runtime_seconds']:.3f}s")
             print(f"    Substitution time: {substitution_result['runtime_seconds']:.3f}s")
-            print(f"    Merge time: {merge_time:.3f}s")
         
         return results
     
-    def _save_results(self, results: List[Dict[str, Any]], args: argparse.Namespace) -> None:
-        """Save simulation results to files."""
-        if args.output_type == "drop_output":
-            return
-        
-        # Create output directory
-        output_dir = pathlib.Path(args.output_directory)
-        output_dir.mkdir(parents=True, exist_ok=True)
-        
-        if args.output_type == "multiple_files":
-            self._save_multiple_files(results, args, output_dir)
-        elif args.output_type == "single_file":
-            self._save_single_file(results, args, output_dir)
     
-    def _save_multiple_files(self, results: List[Dict[str, Any]], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
+    def _save_multiple_files(self, result: List[Dict[str, Any]], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
         """Save each simulation to a separate file."""
-        for result in results:
-            sim_num = result["simulation_number"]
-            
-            filename = output_dir / f"combined_sim_{sim_num:04d}.fasta"
-            self._write_fasta(result["final_msa"], filename, result)
-            
-            if args.verbose:
-                print(f"Saved simulation {sim_num} to {filename}")
-    
-    def _save_single_file(self, results: List[Dict[str, Any]], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
-        """Save all simulations to a single file."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        sim_num = result["simulation_number"]
         
-        filename = output_dir / f"combined_simulations_{timestamp}.fasta"
-        with open(filename, 'w') as f:
-            for result in results:
-                f.write(f"# Combined Simulation {result['simulation_number']}\n")
-                f.write(f"# Total Runtime: {result['total_runtime_seconds']:.3f}s\n")
-                f.write(f"# Indel Runtime: {result['indel_runtime_seconds']:.3f}s\n")
-                f.write(f"# Substitution Runtime: {result['substitution_runtime_seconds']:.3f}s\n")
-                f.write(f"# Merge Runtime: {result['merge_runtime_seconds']:.3f}s\n")
-                f.write(f"# Indel Type: {result['indel_type']}\n")
-                f.write(f"# Substitution Algorithm: {result['substitution_algorithm']}\n")
-                f.write(f"# Insertion Rate: {result['indel_config']['insertion_rate']}\n")
-                f.write(f"# Deletion Rate: {result['indel_config']['deletion_rate']}\n")
-                f.write(f"# Substitution Rate: {result['substitution_config']['substitution_rate']}\n")
-                f.write(f"# Original Sequence Length: {result['indel_config']['original_sequence_length']}\n")
-                f.write(f"# Final MSA Length: {len(list(result['final_msa'].values())[0])}\n")
-                f.write(f"# Indel Seed: {result['indel_config']['seed']}\n")
-                f.write(f"# Substitution Seed: {result['substitution_config']['seed']}\n")
-                
-                # Write MSA sequences
-                final_msa = result["final_msa"]
-                for species_id, sequence in final_msa.items():
-                    f.write(f">{species_id}_sim{result['simulation_number']}\n")
-                    f.write(sequence)
-                    f.write("\n")
-                f.write("\n")
+        output_msa_path = output_dir / f"combined_sim_{sim_num:04d}.fasta"
+        (output_dir / TEMP_SUBS_FILE).rename(output_msa_path)
+        
+        if args.keep_in_memory:
+            self._write_fasta(result["final_msa"], output_msa_path)
+
+        if args.verbose:
+            print(f"Saved simulation {sim_num} to {output_msa_path}")
+
+    def _save_single_file(self, result: List[Dict[str, Any]], args: argparse.Namespace, output_dir: pathlib.Path) -> None:
+        """Save all simulations to a single file."""
+
+        temp_path = output_dir / TEMP_SUBS_FILE
+        
+
+        with open(temp_path, 'a') as f:
+            if args.keep_in_memory:
+                msa = result["final_msa"]
+                for species_name, sequence in msa.items():
+                    f.write(f">{self.id_to_name[species_name]}\n")
+                    f.write(''.join(sequence))
+            
+            f.write(f"# Combined Simulation {result['simulation_number']}\n")
+            f.write(f"# Total Runtime: {result['total_runtime_seconds']:.3f}s\n")
+            f.write(f"# Indel Runtime: {result['indel_runtime_seconds']:.3f}s\n")
+            f.write(f"# Substitution Runtime: {result['substitution_runtime_seconds']:.3f}s\n")
+            f.write(f"# Indel Type: {result['indel_type']}\n")
+            f.write(f"# Substitution Algorithm: {result['substitution_algorithm']}\n")
+            f.write(f"# Insertion Rate: {result['indel_config']['insertion_rate']}\n")
+            f.write(f"# Deletion Rate: {result['indel_config']['deletion_rate']}\n")
+            f.write(f"# Substitution Rate: {result['substitution_config']['substitution_rate']}\n")
+            f.write(f"# Original Sequence Length: {result['indel_config']['original_sequence_length']}\n")
+            f.write(f"# Seed: {result['indel_config']['seed']}\n")
+            
+            # Write MSA sequences
+            f.write("\n\n")
         
         if args.verbose:
-            print(f"Saved {len(results)} simulations to {filename}")
+            print(f"Saved simulation to {temp_path}")
+
+                
     
     def _write_fasta(self, msa: Dict[str, str], filename: pathlib.Path, result: Dict[str, Any]) -> None:
         """Write MSA in FASTA format with metadata."""
@@ -316,7 +322,6 @@ Examples:
         total_runtimes = [r["total_runtime_seconds"] for r in results]
         indel_runtimes = [r["indel_runtime_seconds"] for r in results]
         substitution_runtimes = [r["substitution_runtime_seconds"] for r in results]
-        merge_runtimes = [r["merge_runtime_seconds"] for r in results]
         
         print("\n" + "="*60)
         print("COMBINED SIMULATION BENCHMARK RESULTS")
@@ -328,22 +333,20 @@ Examples:
         print(f"Insertion rate: {args.insertion_rate}")
         print(f"Deletion rate: {args.deletion_rate}")
         print(f"Substitution rate: {args.substitution_rate}")
-        if len(results) > 0:
-            final_length = len(list(results[0]["final_msa"].values())[0])
-            print(f"Average final MSA length: {final_length}")
+        # if len(results) > 0:
+        #     final_length = len(list(results[0]["final_msa"].values())[0])
+        #     print(f"Average final MSA length: {final_length}")
         print("-"*60)
         print("TIMING BREAKDOWN:")
         print(f"Total runtime: {sum(total_runtimes):.3f}s")
         if sum(total_runtimes) > 0:
             print(f"  Indel simulation: {sum(indel_runtimes):.3f}s ({sum(indel_runtimes)/sum(total_runtimes)*100:.1f}%)")
             print(f"  Substitution simulation: {sum(substitution_runtimes):.3f}s ({sum(substitution_runtimes)/sum(total_runtimes)*100:.1f}%)")
-            print(f"  Merge operations: {sum(merge_runtimes):.3f}s ({sum(merge_runtimes)/sum(total_runtimes)*100:.1f}%)")
         print("-"*60)
         print("AVERAGE TIMES PER SIMULATION:")
         print(f"Total average: {sum(total_runtimes)/len(total_runtimes):.3f}s")
         print(f"  Indel average: {sum(indel_runtimes)/len(indel_runtimes):.3f}s")
         print(f"  Substitution average: {sum(substitution_runtimes)/len(substitution_runtimes):.3f}s")
-        print(f"  Merge average: {sum(merge_runtimes)/len(merge_runtimes):.3f}s")
         print("-"*60)
         print(f"Min total runtime: {min(total_runtimes):.3f}s")
         print(f"Max total runtime: {max(total_runtimes):.3f}s")
@@ -376,19 +379,39 @@ Examples:
         
         # Run simulations
         results = []
-        for sim_num in range(args.number_of_simulations):
-            try:
-                result = self._run_single_simulation(args, sim_num)
-                results.append(result)
-            except Exception as e:
-                print(f"Error in simulation {sim_num + 1}: {e}", file=sys.stderr)
-                if args.verbose:
-                    import traceback
-                    traceback.print_exc()
-                sys.exit(1)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self._init_output_file(args)
+        combined_file_path = args.output_directory / f"combined_simulations_{timestamp}.fasta"
+
+        for i in range(args.number_of_simulations):
+            result = self._run_single_simulation(args, i)
+            results.append(result)
+            if args.output_type == "multiple_files":
+                self._save_multiple_files(result, args, args.output_directory)
+                self._init_output_file(args)
+
+            elif args.output_type == "single_file":
+                self._save_single_file(result, args, args.output_directory)
+                (args.output_directory / TEMP_INDEL_FILE).unlink(missing_ok=True)
+        
+        if args.output_type == "single_file":
+            (args.output_directory / TEMP_SUBS_FILE).rename(combined_file_path)
+        (args.output_directory / TEMP_SUBS_FILE).unlink(missing_ok=True)
+        (args.output_directory / TEMP_INDEL_FILE).unlink(missing_ok=True)
+
+        # for sim_num in range(args.number_of_simulations):
+        #     try:
+        #         result = self._run_single_simulation(args, sim_num)
+        #         results.append(result)
+        #     except Exception as e:
+        #         traceback.print_exc()
+        #         print(f"Error in simulation {sim_num + 1}: {e}", file=sys.stderr)
+        #         if args.verbose:
+        #             traceback.print_exc()
+        #         sys.exit(1)
         
         # Save results
-        self._save_results(results, args)
+        # self._save_results(results, args)
         
         # Print benchmark results if requested
         if args.benchmark:
