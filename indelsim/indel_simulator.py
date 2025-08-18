@@ -374,7 +374,7 @@ Examples:
             total_start_time = time.perf_counter()
 
             output_dir = pathlib.Path(args.output_directory)
-            output_dir.mkdir(parents=True, exist_ok=True)
+            # output_dir.mkdir(parents=True, exist_ok=True)
 
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             self._init_output_file(args)

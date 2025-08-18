@@ -76,7 +76,7 @@ class Msa:
             output_path: Path where the MSA file should be saved
         """
         # Ensure output directory exists
-        output_path.parent.mkdir(parents=True, exist_ok=True)
+        # output_path.parent.mkdir(parents=True, exist_ok=True)
         if self._is_from_naive:
             with open(output_path, 'a') as f:
 

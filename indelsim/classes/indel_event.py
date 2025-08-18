@@ -1,4 +1,6 @@
 class IndelEvent:
+    __slots__ = ['is_insertion', 'place', 'length']
+
     is_insertion: bool
     place: int
     length: int

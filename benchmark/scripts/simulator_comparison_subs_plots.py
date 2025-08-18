@@ -4,6 +4,7 @@ Plotting Script for Dual-Mode Simulator Comparison Results
 Creates comparison plots from the CSV output of the dual-mode simulator_comparison.py
 """
 
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -35,7 +36,7 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
         labels = []
         
         # Collect data for our simulator (both modes)
-        for mode_idx, mode in enumerate(['with_indels', 'without_indels']):
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
             mode_data = group_data[group_data['mode'] == mode]
             if 'our_sim_time' in mode_data.columns:
                 mask = mode_data['our_sim_time'].notna()
@@ -44,11 +45,11 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
                         'x': mode_data.loc[mask, 'insertion_rate'].values,
                         'y': mode_data.loc[mask, 'our_sim_time'].values,
                         'style': styles[mode_idx],
-                        'label': f'Our Sim ({"with" if mode == "with_indels" else "no"} indels)'
+                        'label': f'Our Sim ({"with" if mode == "with_substitutions" else "no"} subs)'
                     })
         
         # Collect data for AliSim (both modes)
-        for mode_idx, mode in enumerate(['with_indels', 'without_indels']):
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
             mode_data = group_data[group_data['mode'] == mode]
             if 'alisim_time' in mode_data.columns:
                 mask = mode_data['alisim_time'].notna()
@@ -57,7 +58,7 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
                         'x': mode_data.loc[mask, 'insertion_rate'].values,
                         'y': mode_data.loc[mask, 'alisim_time'].values,
                         'style': styles[mode_idx + 2],
-                        'label': f'AliSim ({"with" if mode == "with_indels" else "no"} indels)'
+                        'label': f'AliSim ({"with" if mode == "with_substitutions" else "no"} subs)'
                     })
         
         # Plot all data WITHOUT legend
@@ -90,7 +91,7 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
         plot_data = []
         
         # Collect data for our simulator memory (both modes)
-        for mode_idx, mode in enumerate(['with_indels', 'without_indels']):
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
             mode_data = group_data[group_data['mode'] == mode]
             if 'our_sim_memory' in mode_data.columns:
                 mask = mode_data['our_sim_memory'].notna()
@@ -99,11 +100,11 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
                         'x': mode_data.loc[mask, 'insertion_rate'].values,
                         'y': mode_data.loc[mask, 'our_sim_memory'].values,
                         'style': styles[mode_idx],
-                        'label': f'Our Sim ({"with" if mode == "with_indels" else "no"} indels)'
+                        'label': f'Our Sim ({"with" if mode == "with_substitutions" else "no"} subs)'
                     })
         
         # Collect data for AliSim memory (both modes)
-        for mode_idx, mode in enumerate(['with_indels', 'without_indels']):
+        for mode_idx, mode in enumerate(['with_substitutions', 'without_substitutions']):
             mode_data = group_data[group_data['mode'] == mode]
             if 'alisim_memory' in mode_data.columns:
                 mask = mode_data['alisim_memory'].notna()
@@ -112,7 +113,7 @@ def create_comparison_plots(results_df: pd.DataFrame, output_dir: Optional[Path]
                         'x': mode_data.loc[mask, 'insertion_rate'].values,
                         'y': mode_data.loc[mask, 'alisim_memory'].values,
                         'style': styles[mode_idx + 2],
-                        'label': f'AliSim ({"with" if mode == "with_indels" else "no"} indels)'
+                        'label': f'AliSim ({"with" if mode == "with_substitutions" else "no"} subs)'
                     })
         
         # Plot all data WITHOUT legend
@@ -142,7 +143,7 @@ def create_standalone_legend(output_dir: Path):
     
     # Define the same styles and labels
     styles = ['C0s-', 'C1D-', 'C2^-', 'C3v-']
-    labels = ['Block tree (with indels)', 'Block tree (no indels)', 'AliSim (with indels)', 'AliSim (no indels)']
+    labels = ['Block tree (with substitutions)', 'Block tree (no substitutions)', 'AliSim (with substitutions)', 'AliSim (no substitutions)']
     
     # Create invisible plots just to generate legend entries
     for style, label in zip(styles, labels):
@@ -206,8 +207,8 @@ def create_summary_statistics(results_df: pd.DataFrame) -> pd.DataFrame:
 def main():
     """Main function for the plotting script."""
     
-    input_file = Path("benchmark/assets/data/simulator_comparison_dual_mode.csv")
-    plots_output_dir = Path("benchmark/assets/plots/vs_alisim")
+    input_file = Path("benchmark/assets/data/simulator_comparison_subs_dual_mode.csv")
+    plots_output_dir = Path("benchmark/assets/plots/vs_alisim/subs")
     data_output_dir = Path("benchmark/assets/data")
     
     # Check if input file exists
@@ -235,10 +236,10 @@ def main():
     
     # Create summary statistics
     summary_stats = create_summary_statistics(results_df)
-    summary_stats.to_csv(data_output_dir / "summary_statistics.csv", index=False)
+    summary_stats.to_csv(data_output_dir / "summary_statistics_subs.csv", index=False)
     
     print(f"Plots saved to {plots_output_dir}")
-    print(f"Summary statistics saved to {data_output_dir / 'summary_statistics.csv'}")
+    print(f"Summary statistics saved to {data_output_dir / 'summary_statistics_subs.csv'}")
 
 
 if __name__ == "__main__":

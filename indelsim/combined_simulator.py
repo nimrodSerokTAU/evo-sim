@@ -105,18 +105,17 @@ Examples:
     
     def _init_output_file(self, args: argparse.Namespace) -> None:
         """Save simulation results to files."""
+        args.output_directory = pathlib.Path(args.output_directory)
         if args.output_type == "drop_output":
             return
         
         # Create output directory
-        output_dir = pathlib.Path(args.output_directory)
-        output_dir.mkdir(parents=True, exist_ok=True)
-        with open(output_dir / TEMP_INDEL_FILE, 'w') as f:
+        args.output_directory.mkdir(parents=True, exist_ok=True)
+        with open(args.output_directory / TEMP_INDEL_FILE, 'w') as f:
             f.write("")
-        with open(output_dir / TEMP_SUBS_FILE, 'w') as f:
+        with open(args.output_directory / TEMP_SUBS_FILE, 'w') as f:
             f.write("")
 
-        args.output_directory = output_dir
 
 
     
@@ -399,20 +398,6 @@ Examples:
         (args.output_directory / TEMP_SUBS_FILE).unlink(missing_ok=True)
         (args.output_directory / TEMP_INDEL_FILE).unlink(missing_ok=True)
 
-        # for sim_num in range(args.number_of_simulations):
-        #     try:
-        #         result = self._run_single_simulation(args, sim_num)
-        #         results.append(result)
-        #     except Exception as e:
-        #         traceback.print_exc()
-        #         print(f"Error in simulation {sim_num + 1}: {e}", file=sys.stderr)
-        #         if args.verbose:
-        #             traceback.print_exc()
-        #         sys.exit(1)
-        
-        # Save results
-        # self._save_results(results, args)
-        
         # Print benchmark results if requested
         if args.benchmark:
             self._print_benchmark_results(results, args)

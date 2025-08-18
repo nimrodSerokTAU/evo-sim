@@ -2,9 +2,6 @@ import numpy as np
 import random as rnd
 
 from indelsim.classes.indel_event import IndelEvent
-from indelsim.classes.seq_node_as_list import SequenceNodeAsList
-from indelsim.classes.seq_node_as_tree import SequenceNodeAsTree
-from indelsim.classes.seq_node_naive import SequenceNodeNaive
 from indelsim.classes.sim_config import SimConfiguration
 from indelsim.utils import calc_trunc_zipf
 
@@ -13,9 +10,6 @@ class SimulatedNode:
     id: int
     branch_length: float
     list_of_events: list[IndelEvent]
-    seq_node_naive: SequenceNodeNaive
-    seq_node_as_list: SequenceNodeAsList
-    seq_node_as_tree: SequenceNodeAsTree
 
     def __init__(self, node_id: int, parent_id: int, branch_length: float, config: SimConfiguration, father_seq_length: int):
 
@@ -64,19 +58,6 @@ class SimulatedNode:
 
         return events
     
-    def apply_events_with_blocktree(self):
-        self.seq_node_as_tree = SequenceNodeAsTree(self.id, self.length_of_sequence_before)
-        
-        for event in self.list_of_events:
-            self.seq_node_as_tree.calculate_event(event)
-    
-    def apply_events_with_blocklist(self):
-        self.seq_node_as_list = SequenceNodeAsList(self.id, self.length_of_sequence_before)
-        
-        for event in self.list_of_events:
-            self.seq_node_as_list.calculate_event(event)
-
-        
 
     
     def __repr__(self):
