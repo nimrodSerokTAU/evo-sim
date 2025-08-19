@@ -183,22 +183,13 @@ Examples:
         merged_sequences = {}
         
         for seq_id, template_seq in indel_sequences.items():
+            # print(template_seq)
             if seq_id in substitution_sequences:
-                substitution_seq = ''.join(substitution_sequences[seq_id])
-                merged_seq = []
-                sub_index = 0
-                
-                for char in template_seq:
-                    if char == 'X':
-                        if sub_index < len(substitution_seq):
-                            merged_seq.append(substitution_seq[sub_index])
-                            sub_index += 1
-                        else:
-                            merged_seq.append('X')  # Fallback if not enough substitutions
-                    else:
-                        merged_seq.append(char)  # Keep gaps as they are
-                
-                merged_sequences[id_to_name[seq_id]] = ''.join(merged_seq)
+                substitution_seq = (substitution_sequences[seq_id])
+                for idx,c in enumerate(template_seq):
+                    if c=="-":
+                        substitution_seq[idx] = '-'
+                merged_sequences[id_to_name[seq_id]] = ''.join(substitution_seq)
             else:
                 # Keep original template if no substitution sequence available
                 merged_sequences[id_to_name[seq_id]] = template_seq

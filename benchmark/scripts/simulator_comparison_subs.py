@@ -85,12 +85,13 @@ def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float],
         "--deletion_rate", str(indel_rate[1]),
         "--tree_file", str(tree_file),
         "--original_sequence_length", str(root_seq_length),
-        "--output_type", "drop_output",  # Don't write files
-        "--seed", "42", "--verbose"
+        "--output_type", "drop_output",
+        # "--keep_in_memory",
+        "--seed", "420"
     ]
     
     runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
-
+    # print(stdout, stderr)
     # Parse benchmark results from stdout if available
     benchmark_time = None
     if stdout:
@@ -139,7 +140,7 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
         "--length", str(root_seq_length),
         "--indel", f"{ins_rate},{del_rate}",
         "--indel-size", "POW{2.0/50},POW{2.0/50}",
-        "--seed", "42"
+        "--seed", "420"
     ]
     
     runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)

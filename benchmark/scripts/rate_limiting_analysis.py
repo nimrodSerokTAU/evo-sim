@@ -99,7 +99,6 @@ def main():
     results = []
     total_runs = len(ALGORITHMS) * len(SEQUENCE_LENGTHS) * len(BRANCH_LENGTHS)
     current_run = 0
-    tree_content = create_test_tree()
     
     for algorithm in ALGORITHMS:
         print(f"\nTesting {algorithm} algorithm...")
@@ -111,9 +110,10 @@ def main():
                 ins_rate = INSERTION_RATE
                 del_rate = DELETION_RATE
                 print(f"  [{current_run:2d}/{total_runs}] "
-                        f"indel={INDEL_RATES:.2f}, len={seq_len}, branch={branch_len:.1f}", 
+                        f"indel={INDEL_RATES:.3f}, len={seq_len}, branch={branch_len:.3f}", 
                         end=" ... ")
                 
+                tree_content = create_test_tree(branch_len)
                 result = run_simulation(algorithm, ins_rate, del_rate, seq_len, branch_len, tree_content)
                 
                 if result:
