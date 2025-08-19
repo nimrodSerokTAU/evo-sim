@@ -11,10 +11,11 @@ class SimulatedNode:
     branch_length: float
     list_of_events: list[IndelEvent]
 
-    def __init__(self, node_id: int, parent_id: int, branch_length: float, config: SimConfiguration, father_seq_length: int):
+    def __init__(self, node_id: int, parent_id: int, number_of_children: int, branch_length: float, config: SimConfiguration, father_seq_length: int):
 
         self.id = node_id
         self.parent_id = parent_id
+        self.number_of_children = number_of_children
 
         self.branch_length = branch_length
         self.length_of_sequence_before = father_seq_length

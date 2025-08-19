@@ -12,11 +12,13 @@ class Sequence:
     _is_save_sequence: bool
     _node_id: int
     _sequence: list[sllistnode]
+    _number_of_children: int
 
-    def __init__(self, super_seq: SuperSequence, is_save_seq: bool, node_id: int):
+    def __init__(self, super_seq: SuperSequence, is_save_seq: bool, node_id: int, number_of_children: int):
         self._super_seq = super_seq
         self._is_save_sequence = is_save_seq
         self._node_id = node_id
+        self._number_of_children = number_of_children
         self._sequence = []
 
     def init_root_seq(self) -> None:
@@ -26,7 +28,7 @@ class Sequence:
             self._sequence.append(node)
             if self._is_save_sequence:
                 self._super_seq.reference_position(node)
-
+    
     def generate_sequence(self, blocks: Iterator[Block], parent_seq: Sequence):
         """
         Generate a sequence based on a blocklist and parent sequence.
@@ -40,7 +42,6 @@ class Sequence:
         self._sequence.append(parent_seq._sequence[0])
         for block in blocks:
             self.apply_block(block, parent_seq)
-
 
     def apply_block(self, block: Block, parent_seq: Sequence):
         random_pos = self._super_seq.get_num_inserted_positions()
