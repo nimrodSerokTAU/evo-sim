@@ -114,7 +114,7 @@ class SubstitutionEvolver:
         Returns a fresh list with evolved residues.
         """
 
-        self._validate_inputs(sequence, branch_length)
+        # self._validate_inputs(sequence, branch_length)
 
         eff_time = branch_length * self.substitution_rate
         P_t: np.ndarray = self.jtt_model.transition_probability(eff_time)

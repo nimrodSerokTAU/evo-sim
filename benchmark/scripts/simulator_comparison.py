@@ -195,7 +195,7 @@ def check_simulator_availability() -> Dict[str, bool]:
 def main():
     """Main comparison function with dual-mode support."""
     
-    ROOT_SEQUENCE_LENGTH = 10000
+    ROOT_SEQUENCE_LENGTH = 100000
     SCALED_TREES_PATH = Path.cwd() / "benchmark" / "scaled_trees"
     
     # Check available simulators
@@ -223,7 +223,7 @@ def main():
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_dir = Path(temp_dir)
         
-        for RATE_MULTIPLIER in [1,5,10]:  # Same as switch_factor.py
+        for RATE_MULTIPLIER in [1,5]:  # Same as switch_factor.py
             print(f"\nRATE_MULTIPLIER: {RATE_MULTIPLIER}")
             
             # Use pre-scaled tree files

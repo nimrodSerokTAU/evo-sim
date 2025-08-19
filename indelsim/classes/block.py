@@ -1,4 +1,6 @@
 class Block:
+    __slots__ = ['index_in_predecessor', 'copy_sites_count', 'inserted_seq_count']
+
     index_in_predecessor: int
     copy_sites_count: int
     inserted_seq_count: int

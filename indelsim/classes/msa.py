@@ -138,7 +138,7 @@ class Msa:
     def msa_str_rep(self):
         msa_str = ""
         for key,val in self._aligned_sequences.items():
-            msa_str += f">{self.id_to_name[key]}\n{val}\n"
+            msa_str += f">{self._id_to_name[key]}\n{val}\n"
         return msa_str
     
 

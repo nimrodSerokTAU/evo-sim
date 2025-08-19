@@ -3,7 +3,6 @@ import random as rnd
 from ete3 import Tree, TreeNode
 import numpy as np
 
-
 from indelsim.classes.sim_config import SimConfiguration
 from indelsim.classes.sim_node import SimulatedNode
 from indelsim.classes.super_sequence import SuperSequence
@@ -44,7 +43,7 @@ class Simulation:
             if node.is_leaf():
                 self.nodes_to_align.add(node.id)
 
-            simulatedNode = SimulatedNode(node.id, node.up.id, node.dist, self.config, node.up.sequence_length)
+            simulatedNode = SimulatedNode(node.id, node.up.id, len(node.children), node.dist, self.config, node.up.sequence_length)
             node.add_features(sequence_length=simulatedNode.length_of_sequence_after_events)
 
 
@@ -53,10 +52,10 @@ class Simulation:
 
     def msa_from_blocklist(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
-        sequences = []
-        parent_seq = Sequence(super_seq, True, 0)
+        parent_seq = Sequence(super_seq, True, 0, 2)
         parent_seq.init_root_seq()
-        sequences.append(parent_seq)
+        sequences = {0: parent_seq}
+
         sequences_to_save = []
         for node in self.sim_nodes[1:]:
             # print("node id:", node.id)
@@ -65,41 +64,48 @@ class Simulation:
             for event in node.list_of_events:
                 node.seq_node_as_list.calculate_event(event)
             # print("done with events!")
-            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
+            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id, node.number_of_children)
             blocks = node.seq_node_as_list.blocks_iterator()
             current_seq.generate_sequence(blocks, sequences[node.parent_id])
-            # print("parent length",len(sequences[node.parent_id]._sequence))
-            # print("child length", len(current_seq._sequence))
 
-            sequences.append(current_seq)
+            sequences[node.parent_id]._number_of_children -= 1
+            if sequences[node.parent_id]._number_of_children == 0:
+                del sequences[node.parent_id]
+
             if node.id in self.nodes_to_align:
                 sequences_to_save.append(current_seq)
+                continue
+            sequences[node.id] = current_seq
 
         self.msa = Msa(super_seq)
         self.msa._id_to_name = self.id_to_name
         self.msa._sequences_to_save = sequences_to_save
 
         # self.msa.compute_msa(sequences_to_save)
-    
     def msa_from_blocktree(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
-        parent_seq = Sequence(super_seq, True, 0)
+        parent_seq = Sequence(super_seq, True, 0, 2)
         parent_seq.init_root_seq()
-        sequences = [parent_seq]
+        sequences = {0: parent_seq}
 
         sequences_to_save = []
         for node in self.sim_nodes[1:]:
-            node.seq_node_as_list = SequenceNodeAsTree(node.id, node.length_of_sequence_before)
+            seq_node_as_list = SequenceNodeAsTree(node.id, node.length_of_sequence_before)
             for event in node.list_of_events:
-                node.seq_node_as_list.calculate_event(event)
+                seq_node_as_list.calculate_event(event)
 
-            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id)
-            blocks = node.seq_node_as_list.blocks_iterator()
+            current_seq = Sequence(super_seq, node.id in self.nodes_to_align, node.id, node.number_of_children)
+            blocks = seq_node_as_list.blocks_iterator()
             current_seq.generate_sequence(blocks, sequences[node.parent_id])
 
-            sequences.append(current_seq)
+            sequences[node.parent_id]._number_of_children -= 1
+            if sequences[node.parent_id]._number_of_children == 0:
+                del sequences[node.parent_id]
+
             if node.id in self.nodes_to_align:
                 sequences_to_save.append(current_seq)
+                continue
+            sequences[node.id] = current_seq
 
         self.msa = Msa(super_seq)
         self.msa._id_to_name = self.id_to_name

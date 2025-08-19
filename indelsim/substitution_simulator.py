@@ -292,13 +292,13 @@ Examples:
             print(f"Running substitution simulation {sim_num + 1}/{args.number_of_simulations}...")
         
         # Create configuration with incremented seed for each simulation
-        config = self._create_sim_config(args)
-        config.random_seed = args.seed + sim_num
-        
+        # config = self._create_sim_config(args)
+        random_seed = args.seed + sim_num
+
         start_time = time.perf_counter()
         
         # Run substitution simulation
-        msa = self._simulate_substitutions(args, config.random_seed)
+        msa = self._simulate_substitutions(args, random_seed)
         
         end_time = time.perf_counter()
         runtime = end_time - start_time
@@ -311,7 +311,7 @@ Examples:
             "config": {
                 "substitution_rate": args.substitution_rate,
                 "original_sequence_length": args.original_sequence_length,
-                "seed": config.random_seed
+                "seed": random_seed
             },
             "msa": msa
         }
@@ -346,6 +346,7 @@ Examples:
                 for species_name, sequence in msa.items():
                     f.write(f">{self.id_to_name[species_name]}\n")
                     f.write(''.join(sequence))
+                    f.write("\n")
 
             f.write(f"# Substitution Simulation {result['simulation_number']}\n")
             f.write(f"# Runtime: {result['runtime_seconds']:.3f}s\n")
