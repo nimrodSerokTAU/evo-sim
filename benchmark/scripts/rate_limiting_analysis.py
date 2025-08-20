@@ -19,7 +19,6 @@ INSERTION_RATE = 0.03
 DELETION_RATE = 0.09
 SEQUENCE_LENGTHS = [100, 500, 1000, 5000]
 BRANCH_LENGTHS = [0.01, 0.05, 0.1, 0.5]
-SUBSTITUTION_RATE = 1.0
 NUM_SIMULATIONS = 3
 TREE_FILE = "benchmark/scaled_trees/scaled_1.tree"  # Path to your tree file
 
@@ -47,14 +46,13 @@ def run_simulation(algorithm, ins_rate, del_rate, seq_len, branch_len, tree_cont
         cmd = [
             "msa-simulator",
             "--type", algorithm,
-            "--algorithm", "matrix",
             "--insertion_rate", str(ins_rate),
             "--deletion_rate", str(del_rate),
-            "--substitution_rate", str(SUBSTITUTION_RATE),
             "--original_sequence_length", str(seq_len),
             "--tree_file", str(tree_file),
             "--number_of_simulations", str(NUM_SIMULATIONS),
-            # "--output_type", "drop_output",
+            "--keep_in_memory",
+            "--output_type", "drop_output",
             "--benchmark",
         ]
         # print(" ".join(cmd))
@@ -62,7 +60,6 @@ def run_simulation(algorithm, ins_rate, del_rate, seq_len, branch_len, tree_cont
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
             if result.returncode != 0:
                 return None
-            
             # Parse timing from output
             indel_time = sub_time = total_time = 0.0
             for line in result.stdout.split('\n'):

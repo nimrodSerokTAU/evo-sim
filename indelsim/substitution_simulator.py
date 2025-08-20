@@ -19,6 +19,7 @@ from indelsim.classes.simulation import Simulation
 from indelsim.classes.sim_config import SimConfiguration
 from indelsim.classes.substitution import SubstitutionEvolver
 from indelsim.classes.jtt import get_jtt_model
+from indelsim.classes import Msa
 from indelsim.enums import PROTEIN_ALPHABET
 from ete3 import Tree
 
@@ -178,8 +179,18 @@ Examples:
         # Create output directory
         with open(args.output_directory / TEMP_FILE_NAME, 'w') as f:
             f.write("")
+    
+    def _merge_with_gap_template_memory(self, args: argparse.Namespace, id: int,
+                                 sequence: np.ndarray, template_msa: Msa=None):
+        if template_msa is None:
+            return
+        sequence_line = template_msa._aligned_sequences[id]
+        for idx,c in enumerate(sequence_line):
+            if c=="-":
+                sequence[idx] = 20
 
-    def _merge_with_gap_template(self, args: argparse.Namespace, name: str, sequence: np.ndarray):
+    def _merge_with_gap_template(self, args: argparse.Namespace, name: str,
+                                 sequence: np.ndarray):
             if not (args.output_directory / "_temp_indels.fasta").exists():
                 return
             with open(args.output_directory / "_temp_indels.fasta", 'r') as indel_file:
@@ -211,7 +222,7 @@ Examples:
         root_sequence = rng.choice(20, size=length, p=equilibrium_freqs)
         return root_sequence
     
-    def _simulate_substitutions(self, args: argparse.Namespace, seed: int) -> Dict[str, List[str]]:
+    def _simulate_substitutions(self, args: argparse.Namespace, seed: int, template_msa: Msa=None) -> Dict[str, List[str]]:
         """Run the complete substitution simulation workflow."""
         # 1. Generate root sequence
         root_sequence = self._generate_root_sequence(args.original_sequence_length, seed)
@@ -258,6 +269,7 @@ Examples:
                 # If this is a leaf node, store the sequence
                 if node.is_leaf():
                     if args.keep_in_memory:
+                        self._merge_with_gap_template_memory(args, idx, evolved_sequence, template_msa)
                         sequences[idx] = AMINO_ACID_CHARS[evolved_sequence]
                     else:
                         self._merge_with_gap_template(args, node.name, evolved_sequence)
@@ -286,7 +298,7 @@ Examples:
                     f"All sequences should have equal length in substitution-only simulation."
                 )
     
-    def _run_single_simulation(self, args: argparse.Namespace, sim_num: int) -> Dict[str, Any]:
+    def _run_single_simulation(self, args: argparse.Namespace, sim_num: int, template_msa: Msa=None) -> Dict[str, Any]:
         """Run a single simulation and return results."""
         if args.verbose:
             print(f"Running substitution simulation {sim_num + 1}/{args.number_of_simulations}...")
@@ -298,7 +310,7 @@ Examples:
         start_time = time.perf_counter()
         
         # Run substitution simulation
-        msa = self._simulate_substitutions(args, random_seed)
+        msa = self._simulate_substitutions(args, random_seed, template_msa)
         
         end_time = time.perf_counter()
         runtime = end_time - start_time

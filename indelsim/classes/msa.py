@@ -30,12 +30,12 @@ class Msa:
         Args:
             sequences: List of Sequence objects
         """
-        self._aligned_sequences.clear()
-
         if self._is_from_naive:
             for idx, seq in self._aligned_sequences.items():
                 seq_str = "".join(["X" if (site != -1) else "-" for site in seq])
                 self._aligned_sequences[idx] = seq_str
+                self._msa_length = len(seq_str)
+                self._number_of_sequences = len(self._aligned_sequences)
             return
 
         for idx,seq in enumerate(self._sequences_to_save):

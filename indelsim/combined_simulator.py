@@ -21,7 +21,7 @@ import numpy as np
 # Import existing CLI classes to reuse their functionality
 from indelsim.indel_simulator import IndelSimulatorCLI, TEMP_FILE_NAME as TEMP_INDEL_FILE
 from indelsim.substitution_simulator import SubstitutionSimulatorCLI, TEMP_FILE_NAME as TEMP_SUBS_FILE
-
+from indelsim.classes import Msa
 
 class CombinedSimulatorCLI:
     """Command-line interface for the combined indel and substitution simulator."""
@@ -144,22 +144,22 @@ Examples:
         
         return indel_result, msa_length
     
-    def _run_substitution_simulation(self, args: argparse.Namespace, msa_length: int, sim_num: int) -> Dict[str, Any]:
+    def _run_substitution_simulation(self, args: argparse.Namespace, template_msa: Msa, sim_num: int) -> Dict[str, Any]:
         """
         Run substitution simulation using existing SubstitutionSimulatorCLI.
         """
         if args.verbose:
-            print(f"  Step 2: Running substitution simulation on MSA length {msa_length}...")
+            print(f"  Step 2: Running substitution simulation on MSA length {template_msa._msa_length}...")
         
         # Create modified args for substitution simulation with the correct sequence length
         sub_args = argparse.Namespace(**vars(args))
         sub_args.output_directory = pathlib.Path(sub_args.output_directory)
-        sub_args.original_sequence_length = msa_length
+        sub_args.original_sequence_length = template_msa._msa_length
         
         start_time = time.perf_counter()
         
         # Use the existing substitution simulator method
-        substitution_result = self.substitution_cli._run_single_simulation(sub_args, sim_num)
+        substitution_result = self.substitution_cli._run_single_simulation(sub_args, sim_num, template_msa)
         
         end_time = time.perf_counter()
         substitution_runtime = end_time - start_time
@@ -168,33 +168,6 @@ Examples:
             print(f"    Substitution simulation completed in {substitution_runtime:.3f} seconds")
         
         return substitution_result
-    
-    def _merge_simulations(self, indel_result: Dict[str, Any], substitution_result: Dict[str, Any]) -> Dict[str, str]:
-        """
-        Merge indel template with substitution sequences by replacing X placeholders.
-        """
-        # Get the aligned sequences from indel simulation
-        indel_sequences = indel_result["msa"]._aligned_sequences
-        id_to_name = indel_result["msa"]._id_to_name
-        
-        # Get the substitution sequences  
-        substitution_sequences = substitution_result["msa"]
-        # Replace X placeholders with actual amino acids
-        merged_sequences = {}
-        
-        for seq_id, template_seq in indel_sequences.items():
-            # print(template_seq)
-            if seq_id in substitution_sequences:
-                substitution_seq = (substitution_sequences[seq_id])
-                for idx,c in enumerate(template_seq):
-                    if c=="-":
-                        substitution_seq[idx] = '-'
-                merged_sequences[id_to_name[seq_id]] = ''.join(substitution_seq)
-            else:
-                # Keep original template if no substitution sequence available
-                merged_sequences[id_to_name[seq_id]] = template_seq
-        
-        return merged_sequences
     
     def _run_single_simulation(self, args: argparse.Namespace, sim_num: int) -> Dict[str, Any]:
         """Run a single combined simulation and return results."""
@@ -205,19 +178,14 @@ Examples:
         
         # Step 1: Run indel simulation
         indel_result, msa_length = self._run_indel_simulation(args, sim_num)
-        
-        # Step 2: Run substitution simulation
-        substitution_result = self._run_substitution_simulation(args, msa_length, sim_num)
-        
-        # Step 3: Merge simulations
-        # if args.verbose:
-        #     print(f"  Step 3: Merging indel template with substitution sequences...")
-        
-        # merge_start_time = time.perf_counter()
-        merged_sequences = None
+        template_msa: Msa = indel_result["msa"]
+        # Step 2: Run substitution simulation and merge with template
+        substitution_result = self._run_substitution_simulation(args, template_msa, sim_num)
+        merged_sequences = substitution_result["msa"]
+
         if args.keep_in_memory:
-            merged_sequences = self._merge_simulations(indel_result, substitution_result)
-        # merge_time = time.perf_counter() - merge_start_time
+            for key in list(merged_sequences.keys()):
+                merged_sequences[template_msa._id_to_name[key]] = merged_sequences.pop(key)
         
         total_end_time = time.perf_counter()
         total_runtime = total_end_time - total_start_time
