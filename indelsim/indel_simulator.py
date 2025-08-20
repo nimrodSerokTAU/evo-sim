@@ -6,11 +6,9 @@ using different data structures (naive, list, tree) for performance optimization
 
 This tool implements the algorithms described in:
 "Efficient algorithms for simulating sequences along a phylogenetic tree"
-by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Omer Israeli, 
+by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, Noa Ecker, Naiel Jabareen, Omer Israeli, 
 Itsik Pe'er, and Tal Pupko.
 
-Based on work by Elya Wygoda, Asher Moshe, Nimrod Serok, Edo Dotan, 
-         Noa Ecker, Naiel Jabareen, Omer Israeli, Itsik Pe'er, and Tal Pupko
 Contact: talp@tauex.tau.ac.il
 License: Academic Free License v. 3.0
 Repository: https://github.com/nimrodSerokTAU/evo-sim
