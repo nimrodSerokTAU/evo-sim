@@ -6,7 +6,6 @@ from indelsim.classes.sequence import Sequence
 class Msa:
     _aligned_sequences: dict[int, str]
     _id_to_name: dict[int,str]
-    _substitutions: list[str] # dict[int, list[int]]
     _msa_length: int
     _number_of_sequences: int
     _sequences_to_save: list[Sequence]
@@ -31,13 +30,15 @@ class Msa:
         Args:
             sequences: List of Sequence objects
         """
+        self._aligned_sequences.clear()
+
         if self._is_from_naive:
             for idx, seq in self._aligned_sequences.items():
                 seq_str = "".join(["X" if (site != -1) else "-" for site in seq])
                 self._aligned_sequences[idx] = seq_str
             return
 
-        for idx,seq in enumerate(self._sequences_to_save):            
+        for idx,seq in enumerate(self._sequences_to_save):
             sequence_node_id = seq.get_sequence_node_id()
             
             # Initialize the aligned sequence for this ID if not exists
@@ -67,6 +68,8 @@ class Msa:
 
             self._aligned_sequences[sequence_node_id] = seq_str
             self._sequences_to_save[idx] = 0
+        self._sequences_to_save.clear()
+
 
     def compute_msa_to_disk(self, output_path: Path) -> Path:
         """
@@ -145,3 +148,11 @@ class Msa:
     def __repr__(self):
         return self.msa_str_rep()
     
+    def clear(self):
+        self._aligned_sequences = {}
+        self._number_of_sequences = 0
+        self._id_to_name = {}
+        self._sequences_to_save = []
+        self._is_from_naive = True
+        self._msa_length = 0
+
