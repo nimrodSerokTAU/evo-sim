@@ -250,10 +250,10 @@ Examples:
         config = self._create_sim_config(args)
         config.random_seed = args.seed + sim_num
         
+        start_time = time.perf_counter()
         # Create events list
         simulation = Simulation(args.tree_file, config)
         
-        start_time = time.perf_counter()
         # Choose simulation method based on type and run simulation
         sim_type = args.type
         if sim_type == "naive":

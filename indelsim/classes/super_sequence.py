@@ -40,10 +40,11 @@ class SuperSequence:
         self._inserted_sequence_counter = root_sequence_size + 1
 
     def reference_position(self, position_ref: sllistnode):
-        if position_ref()['position'] == 0:
+        node = position_ref()
+        if node['position'] == 0:
             return
-        if (not position_ref()['is_column']):
-            position_ref()['is_column'] = True
+        if (not node['is_column']):
+            node['is_column'] = True
             self._msa_seq_length += 1
         
 
@@ -97,8 +98,8 @@ class SuperSequence:
     def print_seq(self):
         print(self._sequence)
 
-    def __getitem__(self, item):
-        return self._sequence.nodeat(item)
+    # def __getitem__(self, item):
+    #     return self._sequence.nodeat(item)
     
     def get_iterator(self):
         return self._sequence.iternodes()

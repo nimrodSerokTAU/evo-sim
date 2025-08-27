@@ -1,7 +1,7 @@
 import math
 
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 def random_zipf(a: float, max_int: int) -> int:
@@ -25,15 +25,15 @@ def calc_trunc_zipf(alpha: float, max_val: int) -> int:
             return z
 
 
-def plot_distribution(distribution_list: list[float], bins: int, density: bool, file_name: str,
-                      measure: str):  # task 1 / st 5
-    fig, ax = plt.subplots()
-    ax.hist(distribution_list, bins=bins, density=density)
-    ax.set_title(f'{measure} Distribution')
-    plt.xlabel(f'{measure} Value')
-    plt.ylabel("counts")
-    plt.savefig(file_name)
-    plt.show()
+# def plot_distribution(distribution_list: list[float], bins: int, density: bool, file_name: str,
+#                       measure: str):  # task 1 / st 5
+#     fig, ax = plt.subplots()
+#     ax.hist(distribution_list, bins=bins, density=density)
+#     ax.set_title(f'{measure} Distribution')
+#     plt.xlabel(f'{measure} Value')
+#     plt.ylabel("counts")
+#     plt.savefig(file_name)
+#     plt.show()
 
 
 def calc_msa_from_naive_nodes(sequences: list[list[int]], ancestors: list[int]) -> list[list[int]]:

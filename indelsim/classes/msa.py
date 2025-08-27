@@ -51,22 +51,25 @@ class Msa:
                 continue
             
             previous_absolute_position = -1
-            seq_str = ""
+            seq_str = []
+            positions_counter = 0
             for site in seq[1:]:
                 current_absolute_position = site()['absolute_position']
                 position_difference = current_absolute_position-previous_absolute_position
                 if (position_difference) > 1:
-                    seq_str += "-" * ((position_difference) - 1)
-                    seq_str += "X"
+                    seq_str.append(("-" * ((position_difference) - 1)))
+                    seq_str.append("X")
+                    positions_counter += position_difference
                 else:
-                    seq_str += "X"
+                    seq_str.append("X")
+                    positions_counter += 1
 
                 previous_absolute_position = current_absolute_position
-            if (self._msa_length - len(seq_str))  >  0:
-                seq_str += "-" * (self._msa_length - len(seq_str))
+            if (self._msa_length - positions_counter)  >  0:
+                seq_str.append(("-" * (self._msa_length - positions_counter)))
 
 
-            self._aligned_sequences[sequence_node_id] = seq_str
+            self._aligned_sequences[sequence_node_id] = ''.join(seq_str)
             self._sequences_to_save[idx] = 0
         self._sequences_to_save.clear()
 

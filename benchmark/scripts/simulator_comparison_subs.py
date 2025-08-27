@@ -85,8 +85,8 @@ def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float],
         "--deletion_rate", str(indel_rate[1]),
         "--tree_file", str(tree_file),
         "--original_sequence_length", str(root_seq_length),
-        "--output_type", "drop_output",
-        # "--keep_in_memory",
+        # "--output_type", "drop_output",
+        "--keep_in_memory",
         "--seed", "420"
     ]
     
