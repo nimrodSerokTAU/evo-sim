@@ -11,13 +11,7 @@ class SuperSequenceNode:
         self.is_column = is_column
         self.absolute_position = None
     
-    def __getitem__(self, key):
-        """Enable bracket notation for reading: node['position']"""
-        return getattr(self, key)
-    
-    def __setitem__(self, key, value):
-        """Enable bracket notation for writing: node['position'] = 42"""
-        setattr(self, key, value)
+
 
 class SuperSequence:
     _sequence: sllist
@@ -41,10 +35,10 @@ class SuperSequence:
 
     def reference_position(self, position_ref: sllistnode):
         node = position_ref()
-        if node['position'] == 0:
+        if node.position == 0:
             return
-        if (not node['is_column']):
-            node['is_column'] = True
+        if (not node.is_column):
+            node.is_column = True
             self._msa_seq_length += 1
         
 
@@ -53,14 +47,14 @@ class SuperSequence:
         for column in self._sequence:
             if not column.is_column: 
                 continue
-            column['absolute_position'] = i
+            column.absolute_position = i
             i += 1
 
     def insert_item_at_position(self, ref_position, position, is_to_save):
         new_column = SuperSequenceNode(position=position)
 
         if is_to_save:
-            new_column['is_column'] = True
+            new_column.is_column = True
             self._msa_seq_length += 1
         self._sequence.insertafter(new_column, ref_position)
         return ref_position.next
@@ -69,7 +63,7 @@ class SuperSequence:
         new_column = SuperSequenceNode(position=position)
 
         if is_to_save:
-            new_column['is_column'] = True
+            new_column.is_column = True
             self._msa_seq_length += 1
         self._sequence.insertbefore(new_column, ref_position)
 
@@ -105,15 +99,6 @@ class SuperSequence:
         return self._sequence.iternodes()
     
     def __repr__(self):
-        zip()
-        # positions = [str(node["position"]) for node in self._sequence]
-        # absolute_positions = [str(node["absolute_position"]) for node in self._sequence]
-        # super_seq_str = "\n".join(map(str,zip(positions, absolute_positions)))
-
-        super_seq_str = "·".join([str(node["position"]) for node in self._sequence])
-
-        # super_seq_str += "\n"
-        # super_seq_str += "~".join([str(node["absolute_position"]) for node in self._sequence])
-
+        super_seq_str = "·".join([str(node.position) for node in self._sequence])
         return super_seq_str
 

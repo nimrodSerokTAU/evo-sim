@@ -54,7 +54,7 @@ class Msa:
             seq_str = []
             positions_counter = 0
             for site in seq[1:]:
-                current_absolute_position = site()['absolute_position']
+                current_absolute_position = (site()).absolute_position
                 position_difference = current_absolute_position-previous_absolute_position
                 if (position_difference) > 1:
                     seq_str.append(("-" * ((position_difference) - 1)))
@@ -110,26 +110,28 @@ class Msa:
                 
                 # Build sequence string (same logic as original compute_msa)
                 previous_absolute_position = -1
-                seq_str = ""
-                
+                positions_counter = 0
+
                 for site in seq[1:]:
-                    current_absolute_position = site()['absolute_position']
+                    current_absolute_position = (site()).absolute_position
                     position_difference = current_absolute_position - previous_absolute_position
                     
                     if position_difference > 1:
-                        seq_str += "-" * (position_difference - 1) + "X"
+                        f.write("-" * (position_difference - 1) + "X")
+                        positions_counter += position_difference
                     else:
-                        seq_str += "X"
-                        
+                        f.write("X")
+                        positions_counter += 1
+
                     previous_absolute_position = current_absolute_position
                 
                 # Add trailing gaps if needed
-                if (self._msa_length - len(seq_str)) > 0:
-                    seq_str += "-" * (self._msa_length - len(seq_str))
+                if (self._msa_length - positions_counter) > 0:
+                    f.write("-" * (self._msa_length - positions_counter))
                 
                 # Write sequence directly to file instead of storing in _aligned_sequences
-                f.write(seq_str + "\n")
-                # seq_str goes out of scope and gets garbage collected
+                f.write("\n")
+
                 self._sequences_to_save[idx] = 0
 
             self._sequences_to_save.clear()

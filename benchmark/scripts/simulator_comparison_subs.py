@@ -17,11 +17,12 @@ from typing import Dict, Tuple, Optional
 import pandas as pd
 
 IQTREE_EXE_NAME = "iqtree3_intel"
+NUMBER_OF_SIMULATIONS = 1
 
 
 def process_monitor(cmd: list[str]):
     # Measure memory and time
-    start_time = time.time()
+    start_time = time.perf_counter()
     process = psutil.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
     # Monitor memory usage
@@ -33,7 +34,7 @@ def process_monitor(cmd: list[str]):
                 current_memory_mb = mem_info.rss / 1024 / 1024  # Convert to MB
                 max_memory_mb = max(max_memory_mb, current_memory_mb)
                 time.sleep(0.01)  # Check every 10ms
-                elapsed_time = time.time() - start_time
+                elapsed_time = time.perf_counter() - start_time
                 if elapsed_time > 300:
                     process.kill()
                     break
@@ -51,7 +52,7 @@ def process_monitor(cmd: list[str]):
 
     
     stdout, stderr = process.communicate()
-    end_time = time.time()
+    end_time = time.perf_counter()
     runtime_seconds = end_time - start_time
 
     return (
@@ -85,27 +86,26 @@ def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float],
         "--deletion_rate", str(indel_rate[1]),
         "--tree_file", str(tree_file),
         "--original_sequence_length", str(root_seq_length),
-        # "--output_type", "drop_output",
-        "--keep_in_memory",
-        "--seed", "420"
+        "--output_type", "single_file",
+        # "--keep_in_memory",
+        "--output_directory", f"{temp_dir}",
+        "--seed", "420",
+        "--number_of_simulations", f"{NUMBER_OF_SIMULATIONS}"
     ]
-    
+
     runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
-    # print(stdout, stderr)
-    # Parse benchmark results from stdout if available
-    benchmark_time = None
-    if stdout:
-        stdout_text = stdout
-        # Look for "Average runtime" in the benchmark output
-        for line in stdout_text.split('\n'):
-            if "Average runtime:" in line:
-                try:
-                    benchmark_time = float(line.split(':')[1].strip().replace('s', ''))
-                except (ValueError, IndexError):
-                    pass
+    average_runtime = runtime_seconds/float(NUMBER_OF_SIMULATIONS)
+
+
+    
+    for output_file in temp_dir.glob("combined_simulations_*"):
+        try:
+            output_file.unlink()
+        except FileNotFoundError:
+            pass
     
     return {
-        'runtime_seconds': benchmark_time if benchmark_time else runtime_seconds,
+        'runtime_seconds': average_runtime,
         'max_memory_mb': max_memory_mb,
         'returncode': returncode,
         'stdout': stdout,
@@ -140,11 +140,13 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
         "--length", str(root_seq_length),
         "--indel", f"{ins_rate},{del_rate}",
         "--indel-size", "POW{2.0/50},POW{2.0/50}",
-        "--seed", "420"
+        "--seed", "420",
+        "--num-alignments", f"{NUMBER_OF_SIMULATIONS}",
+        "--single-output"
     ]
-    
-    runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
 
+    runtime_seconds, max_memory_mb, returncode, stdout, stderr = process_monitor(cmd=cmd)
+    average_runtime = runtime_seconds/float(NUMBER_OF_SIMULATIONS)
     # Clean up output files
     for output_file in temp_dir.glob("alisim_output*"):
         try:
@@ -153,7 +155,7 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
             pass
     
     return {
-        'runtime_seconds': runtime_seconds,
+        'runtime_seconds': average_runtime,
         'max_memory_mb': max_memory_mb,
         'returncode': returncode,
         'stdout': stdout,
