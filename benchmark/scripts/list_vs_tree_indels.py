@@ -46,13 +46,12 @@ def refresh_sim(tree_file, indel_rate):
                                 indel_truncated_length=50,
                                 rate_ins=indel_rate[0], rate_del=indel_rate[1],
                                 deletion_extra_edge_length=50,
-                                seed=420)
+                                seed=111)
     sim = Simulation(input_tree=str(tree_file), config=sim_config)
 
     return sim
 
 def run_simulation(sim: Simulation, type: str):
-    print(type)
     if type == "list":
         sim.msa_from_blocklist()
     if type == "tree":

@@ -87,9 +87,8 @@ def run_our_simulator(tree_file: Path, indel_rate: Tuple[float, float],
         "--tree_file", str(tree_file),
         "--original_sequence_length", str(root_seq_length),
         "--output_type", "single_file",
-        # "--keep_in_memory",
         "--output_directory", f"{temp_dir}",
-        "--seed", "420",
+        "--seed", "123",
         "--number_of_simulations", f"{NUMBER_OF_SIMULATIONS}"
     ]
 
@@ -140,7 +139,7 @@ def run_alisim(tree_file: Path, model_params: Dict, root_seq_length: int = 10000
         "--length", str(root_seq_length),
         "--indel", f"{ins_rate},{del_rate}",
         "--indel-size", "POW{2.0/50},POW{2.0/50}",
-        "--seed", "420",
+        "--seed", "123",
         "--num-alignments", f"{NUMBER_OF_SIMULATIONS}",
         "--single-output"
     ]
