@@ -52,7 +52,7 @@ class Simulation:
 
     def msa_from_blocklist(self):
         super_seq = SuperSequence(self.sim_nodes[1].length_of_sequence_before, len(self.nodes_to_align))
-        parent_seq = Sequence(super_seq, True, 0, 2)
+        parent_seq = Sequence(super_seq, True, 0, 3)
         parent_seq.init_root_seq()
         sequences = {0: parent_seq}
 

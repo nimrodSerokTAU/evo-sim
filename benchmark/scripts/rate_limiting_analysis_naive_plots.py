@@ -33,18 +33,22 @@ else:
     print(f"\n✓ Minimal overhead detected - both approaches would be similar")
 
 # Set up the plotting style
-plt.style.use('seaborn-v0_8-whitegrid')
-sns.set_palette("husl")
+plt.style.use('default')
 
 # Create the single plot you requested - Time Fraction Trends Across Cases
 fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-
+bottom = np.zeros(16)
 # Line plot showing trends across cases
-ax.plot(df['case_number'], df['substitution_fraction'] * 100, 
-        marker='o', linewidth=3, markersize=8, label='Substitutions', color='blue', alpha=0.8)
-ax.plot(df['case_number'], df['indel_fraction'] * 100, 
-        marker='s', linewidth=3, markersize=8, label='Indels', color='red', alpha=0.8)
+# ax.plot(df['case_number'], df['substitution_fraction'] * 100, 
+#         marker='o', linewidth=3, markersize=8, label='Substitutions', color='blue', alpha=0.8)
+# ax.plot(df['case_number'], df['indel_fraction'] * 100, 
+#         marker='s', linewidth=3, markersize=8, label='Indels', color='red', alpha=0.8)
+ax.bar(df['case_number'], df['indel_fraction'] * 100, edgecolor='black',
+         linewidth=0.8, label='Indels', color="#3a923a", alpha=0.9, hatch='xx')
 
+bottom = df['indel_fraction'] * 100
+ax.bar(df['case_number'], df['substitution_fraction'] * 100, bottom=bottom, edgecolor='black',
+        linewidth=0.8,  label='Substitutions', color="#3a923a", alpha=0.7, hatch='..')
 # Since fractions now sum to exactly 100%, we can add a verification line
 # ax.axhline(y=100, color='black', linestyle='-', alpha=0.3, linewidth=1)
 
@@ -55,13 +59,35 @@ ax.set_xlabel('Test Case', fontsize=18, fontweight='bold')
 ax.set_ylabel('Time Fraction (%)', fontsize=18, fontweight='bold')
 ax.tick_params(axis='both', which='major', labelsize=16)
 ax.minorticks_on()
-ax.legend(fontsize=12)
+# ax.legend(fontsize=12)
+
+legend = ax.legend(fontsize=14, loc='lower right', frameon=True, 
+                  fancybox=True, shadow=False, framealpha=1.0)
+legend.get_frame().set_facecolor('white')
+legend.get_frame().set_edgecolor('#cccccc')
+# Remove background color from legend items
+for handle in legend.legend_handles:
+    handle.set_facecolor('none')
+    handle.set_edgecolor('black')
+    handle.set_linewidth(0.8)
+    handle.set_hatch(2*handle.get_hatch())
+
 ax.grid(True, alpha=0.3)
 
 ax.set_xticks(df['case_number'])
 ax.set_xticklabels(df['case_number'].astype(int))
 # Set reasonable y-axis limits
 ax.set_ylim(0, 100)
+
+
+# Despine - remove top and right spines
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+# Style remaining spines
+ax.spines['left'].set_color('black')
+ax.spines['left'].set_linewidth(0.8)
+ax.spines['bottom'].set_color('black')
+ax.spines['bottom'].set_linewidth(0.8)
 
 
 
