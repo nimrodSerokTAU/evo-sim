@@ -13,7 +13,7 @@ combined_df['indel_fraction'] = combined_df['indel_time'] / combined_df['actual_
 
 # Set up the plotting style to match the reference
 plt.style.use('default')  # Use default style instead of seaborn
-fig, ax = plt.subplots(1, 1, figsize=(8, 6))
+fig, ax = plt.subplots(1, 1, figsize=(12, 8))
 
 # Colors matching the reference plot exactly
 colors = {
@@ -41,14 +41,14 @@ bars2 = ax.bar(x + width/2, subst_avgs, width, label='Substitution Time',
                hatch='..', edgecolor='black', linewidth=0.8, alpha=0.7)
 
 # Style matching the reference
-ax.set_title('Average Time Distribution by Algorithm', fontweight='bold', fontsize=14, pad=20)
-ax.set_xlabel('Algorithm', fontsize=12, fontweight='bold')
-ax.set_ylabel('Average Time Fraction (%)', fontsize=12, fontweight='bold')
+# ax.set_title('Average Time Distribution by Algorithm', fontweight='bold', fontsize=14, pad=20)
+ax.set_xlabel('Algorithm', fontsize=18, fontweight='bold')
+ax.set_ylabel('Average Time Fraction (%)', fontsize=18, fontweight='bold')
 ax.set_xticks(x)
-ax.set_xticklabels(algorithm_labels, fontsize=11)
+ax.set_xticklabels(algorithm_labels, fontsize=16)
 
 # Legend styling with transparent legend item backgrounds
-legend = ax.legend(fontsize=11, loc='upper right', frameon=True, 
+legend = ax.legend(fontsize=16, loc='upper right', frameon=True, 
                   fancybox=True, shadow=False, framealpha=0.8)
 legend.get_frame().set_facecolor('white')
 legend.get_frame().set_edgecolor('#cccccc')
@@ -79,7 +79,7 @@ for bar in bars2:
 ax.set_ylim(0, max(max(indel_avgs), max(subst_avgs)) + 8)
 
 # Tick styling to match reference
-ax.tick_params(axis='both', which='major', labelsize=10, colors='black')
+ax.tick_params(axis='both', which='major', labelsize=16, colors='black')
 ax.tick_params(axis='x', which='major', length=3.5, width=0.8)
 ax.tick_params(axis='y', which='major', length=3.5, width=0.8)
 

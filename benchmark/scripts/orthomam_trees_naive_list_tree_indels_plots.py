@@ -21,8 +21,9 @@ df_scores = pd.read_csv(DATA_PATH)
 df_scores["Time [ms]"] = df_scores["Time"]*1000
 
 
-ax = sns.barplot(data=df_scores, x="Root length", y="Time [ms]", hue="Method")
-ax.figure.set_size_inches(7.1, 5)
+ax = sns.barplot(data=df_scores, x="Root length", y="Time [ms]", hue="Method",edgecolor='black',
+        linewidth=0.8, errorbar=None)
+ax.figure.set_size_inches(12, 8)
 sns.despine()
 hatches = ['//', '//', '//','//', 
            '..', '..', '..', '..', 
@@ -32,11 +33,17 @@ hatches = ['//', '//', '//','//',
 
 for i,thisbar in enumerate(ax.patches):
     # Set a different hatch for each bar
-    thisbar.set_hatch(hatches[i])
+    thisbar.set_hatch(hatches[i])   
 
 handles, old_labels = ax.get_legend_handles_labels()
 # new_labels = ['Block list', 'Block tree', 'Naive']  # Your custom labels here
-plt.legend(handles, old_labels, title='Methods')
+plt.legend(handles, old_labels, title='Methods', fontsize=16, title_fontsize=16)
+ax.xaxis.label.set_fontsize(18)
+ax.xaxis.label.set_fontweight("bold")
+ax.yaxis.label.set_fontsize(18)
+ax.yaxis.label.set_fontweight("bold")
+
+ax.tick_params(axis='both', which='major', labelsize=16)
 
 plt.tight_layout()
 plt.savefig(OUTPUT_PATH / "orthomam_benchmark_root_length.svg",bbox_inches="tight", dpi=300)

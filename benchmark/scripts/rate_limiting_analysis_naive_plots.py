@@ -53,15 +53,15 @@ ax.bar(df['case_number'], df['substitution_fraction'] * 100, bottom=bottom, edge
 # ax.axhline(y=100, color='black', linestyle='-', alpha=0.3, linewidth=1)
 
 # Formatting
-ax.set_title('Time Fraction Trends Across Test Cases', 
-            fontsize=20, fontweight='bold', pad=20)
+# ax.set_title('Time Fraction Trends Across Test Cases', 
+#             fontsize=20, fontweight='bold', pad=20)
 ax.set_xlabel('Test Case', fontsize=18, fontweight='bold')
 ax.set_ylabel('Time Fraction (%)', fontsize=18, fontweight='bold')
 ax.tick_params(axis='both', which='major', labelsize=16)
 ax.minorticks_on()
 # ax.legend(fontsize=12)
 
-legend = ax.legend(fontsize=14, loc='lower right', frameon=True, 
+legend = ax.legend(fontsize=16, loc='lower right', frameon=True, 
                   fancybox=True, shadow=False, framealpha=1.0)
 legend.get_frame().set_facecolor('white')
 legend.get_frame().set_edgecolor('#cccccc')
